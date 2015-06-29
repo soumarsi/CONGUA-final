@@ -1303,7 +1303,7 @@
         // show insurance view
         [UIView animateWithDuration:0.5 animations:^{
             
-             btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+InsuranceView.frame.size.height+20, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+             btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+InsuranceView.frame.size.height+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
             
             
             
@@ -1317,7 +1317,7 @@
     else if (btnhasInsure.selected==YES) {
         btnhasInsure.selected=NO;
         Isinsured=@"0";
-        toggleimg.frame=CGRectMake(toggleimg.frame.origin.x-20, toggleimg.frame.origin.y, toggleimg.frame.size.width, toggleimg.frame.size.height);
+        toggleimg.frame=CGRectMake(toggleimg.frame.origin.x-10, toggleimg.frame.origin.y, toggleimg.frame.size.width, toggleimg.frame.size.height);
         self.inametxt.userInteractionEnabled=NO;
         self.idetail.userInteractionEnabled=NO;
         self.btnstartdate.userInteractionEnabled=NO;

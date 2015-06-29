@@ -1107,7 +1107,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <view hidden="YES" contentMode="scaleToFill" id="J9f-gC-POH">
-                                                <rect key="frame" x="0.0" y="192" width="320" height="213"/>
+                                                <rect key="frame" x="0.0" y="192" width="320" height="206"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="input-field" id="IKr-Cs-bgl">
