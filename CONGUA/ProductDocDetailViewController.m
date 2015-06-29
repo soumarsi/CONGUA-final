@@ -18,7 +18,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 520)];
+    [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 440)];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
@@ -59,6 +59,7 @@
                     lblDocName.text=[[result objectForKey:@"ResultInfo"] valueForKey:@"DocName"];
                     
                     lblDesc.text=[[result objectForKey:@"ResultInfo"] valueForKey:@"Description"];
+                    
                     //dynamic height of label
                     NSString *str=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"Description"]];
                     
@@ -67,7 +68,10 @@
                     
                     
                     lblDesc.frame=CGRectMake(lblDesc.frame.origin.x, lblDesc.frame.origin.y,lblDesc.frame.size.width, len);
-                    
+                    if (len>270)
+                    {
+                        self.mainscroll.contentSize = CGSizeMake(0, self.mainscroll.contentSize.height+len-270);
+                    }
                     
                     
                     

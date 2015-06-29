@@ -77,19 +77,14 @@
                 
                 if ([[result valueForKey:@"IsSuccess"] integerValue]==1)
                 {
-                    /*
-                    for ( NSDictionary *tempDict1 in  [result objectForKey:@"ResultInfo"])
-                    {
-                        [ArrPortDetail addObject:tempDict1];
-                        
-                    }
-                     */
+                    
                     
                     lblTitle.text=[[result objectForKey:@"ResultInfo"] valueForKey:@"PortfolioName"];
                     [[NSUserDefaults standardUserDefaults] setObject:[[result valueForKey:@"ResultInfo"] valueForKey:@"PortfolioName"]  forKey:@"PortfolioName"];
                     [[NSUserDefaults standardUserDefaults] setObject:[[result valueForKey:@"ResultInfo"] valueForKey:@"PortfolioTypeCode"]  forKey:@"PortfolioTypeCode"];
                     [[NSUserDefaults standardUserDefaults] setObject:[[result valueForKey:@"ResultInfo"] valueForKey:@"Address1"]  forKey:@"Address1"];
                     lbladdress.text=[[result objectForKey:@"ResultInfo"] valueForKey:@"Address1"];
+                //    lblNoOfItem.text=[NSString stringWithFormat:@"You have "@"%@"@" items in your portfolio",[[result objectForKey:@"ResultInfo"] valueForKey:@"ProductCount"]];
                     lblNoOfItem.text=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"ProductCount"]];
                     lbltotalcover.text=[@"$" stringByAppendingString:[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"TotalCover"]]];
                     lbltotalValue.text=[@"$" stringByAppendingString:[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"TotalValue"]]];
