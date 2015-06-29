@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>31C7010D-3D23-4E22-B7AD-9BAE5AA8A27C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CONGUA</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0CD81CF9633DCEF7846F63F4BD78AF664806267F</key>
+		<string>https://github.com/soumarsi/CONGUA-final.git</string>
+		<key>F5F3A15890B70AB318B9E2418F99A7D9F71EDAAF</key>
+		<string>https://github.com/soumarsi/CONGUA.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CONGUA.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0CD81CF9633DCEF7846F63F4BD78AF664806267F</key>
+		<string>../..</string>
+		<key>F5F3A15890B70AB318B9E2418F99A7D9F71EDAAF</key>
+		<string>../..CONGUA/</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/soumarsi/CONGUA-final.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0CD81CF9633DCEF7846F63F4BD78AF664806267F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F5F3A15890B70AB318B9E2418F99A7D9F71EDAAF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CONGUA</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0CD81CF9633DCEF7846F63F4BD78AF664806267F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CONGUA-final</string>
+		</dict>
+	</array>
+</dict>
+</plist>
