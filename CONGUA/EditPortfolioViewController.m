@@ -13,7 +13,7 @@
 @end
 
 @implementation EditPortfolioViewController
-@synthesize lblEndDate,lblInsureDetail,lblPortfolioType,lblStartDate,mainscroll,txtInsureName,txtPortfolioName,txtPostCode,txtValueCovered,txtvwAddress,txtvwInsureDetail,btnEndDate,btnHasInsure,btnPortfolioType,btnStartDate,lblAddress,HasInsureImg,btnSubmit,InsuranceView;
+@synthesize lblEndDate,lblInsureDetail,lblPortfolioType,lblStartDate,mainscroll,txtInsureName,txtPortfolioName,txtPostCode,txtValueCovered,txtvwAddress,txtvwInsureDetail,btnEndDate,btnHasInsure,btnPortfolioType,btnStartDate,lblAddress,HasInsureImg,btnSubmit,InsuranceView,IsInsuredSwitch,homeImg,personalImg,businessImg,otherImg,btnBusiness,btnHome,btnOther,btnPersonal;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -96,6 +96,10 @@
     lblInsureDetail.textColor=[UIColor grayColor];
     lblPortfolioType.textColor=[UIColor grayColor];
     
+    IsInsuredSwitch.on=NO;
+    [IsInsuredSwitch addTarget:self action:@selector(switched:)
+            forControlEvents:UIControlEventValueChanged];
+    
     [self PortfolioViewUrl];
 }
 
@@ -128,16 +132,27 @@
                     lblPortfolioType.textColor=[UIColor blackColor];
                     if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"PortfolioTypeCode"] integerValue] ==1) {
                         lblPortfolioType.text=@"Home";
-                        
+                        homeImg.image=[UIImage imageNamed:@"redioOn"];
+                        btnHome.selected=YES;
+                        portType=@"1";
                     }
                     else if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"PortfolioTypeCode"] integerValue] ==2) {
                         lblPortfolioType.text=@"Business";
+                        businessImg.image=[UIImage imageNamed:@"redioOn"];
+                        btnBusiness.selected=YES;
+                        portType=@"2";
                     }
                     else if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"PortfolioTypeCode"] integerValue] ==3) {
                         lblPortfolioType.text=@"Personal";
+                        personalImg.image=[UIImage imageNamed:@"redioOn"];
+                        btnPersonal.selected=YES;
+                        portType=@"3";
                     }
                     else if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"PortfolioTypeCode"] integerValue] ==4) {
                         lblPortfolioType.text=@"Other";
+                        otherImg.image=[UIImage imageNamed:@"redioOn"];
+                        btnOther.selected=YES;
+                        portType=@"4";
                     }
                     
                     IsPriviouslyInsured=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"IsInsured"]];
@@ -145,7 +160,7 @@
                     {
                         btnHasInsure.selected=NO;
                         Isinsured=@"0";
-                        
+                        IsInsuredSwitch.on=NO;
                         //insurance view hide
                         
                         btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
@@ -155,6 +170,8 @@
                     {
                         btnHasInsure.selected=YES;
                         Isinsured=@"1";
+                         IsInsuredSwitch.on=YES;
+                        IsInsuredSwitch.userInteractionEnabled=NO;
                         btnHasInsure.userInteractionEnabled=NO;
                         HasInsureImg.frame=CGRectMake(HasInsureImg.frame.origin.x+20, HasInsureImg.frame.origin.y, HasInsureImg.frame.size.width, HasInsureImg.frame.size.height);
                         txtInsureName.userInteractionEnabled=YES;
@@ -167,6 +184,22 @@
                         
                         btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+InsuranceView.frame.size.height+20, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
                         InsuranceView.hidden=NO;
+                        
+                        if(self.view.frame.size.width==320)
+                        {
+                            
+                            mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+70);
+                            // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
+                        }
+                        
+                        
+                        
+                        if ([UIScreen mainScreen].bounds.size.width>320)
+                        {
+                            
+                            //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
+                            mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+70);
+                        }
                         
                         [self InsuranceViewUrl];
                         
@@ -408,6 +441,82 @@
 }
 */
 
+- (IBAction)HomeClick:(id)sender
+{
+   if (btnHome.selected==NO)
+    {
+        btnHome.selected=YES;
+        homeImg.image=[UIImage imageNamed:@"redioOn"];
+        
+        btnBusiness.selected=NO;
+        businessImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnPersonal.selected=NO;
+        personalImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnOther.selected=NO;
+        otherImg.image=[UIImage imageNamed:@"redioOff"];
+        portType=@"1";
+    }
+}
+
+- (IBAction)BusinessClick:(id)sender
+{
+    if (btnBusiness.selected==NO)
+    {
+        btnHome.selected=NO;
+        homeImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnBusiness.selected=YES;
+        businessImg.image=[UIImage imageNamed:@"redioOn"];
+        
+        btnPersonal.selected=NO;
+        personalImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnOther.selected=NO;
+        otherImg.image=[UIImage imageNamed:@"redioOff"];
+        portType=@"2";
+    }
+}
+
+- (IBAction)PersonalClick:(id)sender
+{
+    if (btnPersonal.selected==NO)
+    {
+        btnHome.selected=NO;
+        homeImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnBusiness.selected=NO;
+        businessImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnPersonal.selected=YES;
+        personalImg.image=[UIImage imageNamed:@"redioOn"];
+        
+        btnOther.selected=NO;
+        otherImg.image=[UIImage imageNamed:@"redioOff"];
+        portType=@"3";
+    }
+}
+
+- (IBAction)OtherClick:(id)sender
+{
+    if (btnOther.selected==NO)
+    {
+        btnHome.selected=NO;
+        homeImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnBusiness.selected=NO;
+        businessImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnPersonal.selected=NO;
+        personalImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnOther.selected=YES;
+        otherImg.image=[UIImage imageNamed:@"redioOn"];
+        portType=@"4";
+    }
+}
+
 - (IBAction)PortfolioTypeClk:(id)sender
 {
     ArrPortDetail=[NSMutableArray arrayWithObjects:@"Home",@"Business",@"Personal",@"Other",nil];
@@ -620,13 +729,57 @@
         [btn1 addTarget:self action:@selector(buttonInfo3:) forControlEvents:UIControlEventTouchUpInside];
     }
 }
-
-- (IBAction)HasInsureClk:(id)sender
-{
-    if (btnHasInsure.selected==NO) {
+-(IBAction)switched:(id)sender{
+    NSLog(@"Switch current state %@", IsInsuredSwitch.on ? @"On" : @"Off");
+    if (IsInsuredSwitch.on==NO)
+    {
+        
+        btnHasInsure.selected=NO;
+        Isinsured=@"0";
+    //    HasInsureImg.frame=CGRectMake(HasInsureImg.frame.origin.x-20, HasInsureImg.frame.origin.y, HasInsureImg.frame.size.width, HasInsureImg.frame.size.height);
+        txtInsureName.userInteractionEnabled=NO;
+        txtvwInsureDetail.userInteractionEnabled=NO;
+        btnStartDate.userInteractionEnabled=NO;
+        btnEndDate.userInteractionEnabled=NO;
+        txtValueCovered.userInteractionEnabled=NO;
+        
+        // hide insurance view
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            
+            
+            
+            
+            
+        } completion:^(BOOL finished) {
+            
+            
+            btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+            InsuranceView.hidden=YES;
+            if(self.view.frame.size.width==320)
+            {
+                
+                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height-70);
+                // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
+            }
+            
+            
+            
+            if ([UIScreen mainScreen].bounds.size.width>320)
+            {
+                
+                //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
+                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height-70);
+            }
+        }];
+        
+    }
+    else if (IsInsuredSwitch.on==YES)
+    {
+        
         btnHasInsure.selected=YES;
         Isinsured=@"1";
-        HasInsureImg.frame=CGRectMake(HasInsureImg.frame.origin.x+20, HasInsureImg.frame.origin.y, HasInsureImg.frame.size.width, HasInsureImg.frame.size.height);
+    //    HasInsureImg.frame=CGRectMake(HasInsureImg.frame.origin.x+20, HasInsureImg.frame.origin.y, HasInsureImg.frame.size.width, HasInsureImg.frame.size.height);
         txtInsureName.userInteractionEnabled=YES;
         txtvwInsureDetail.userInteractionEnabled=YES;
         btnStartDate.userInteractionEnabled=YES;
@@ -643,6 +796,64 @@
         } completion:^(BOOL finished) {
             
             InsuranceView.hidden=NO;
+            if(self.view.frame.size.width==320)
+            {
+                
+                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+70);
+                // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
+            }
+            
+            
+            
+            if ([UIScreen mainScreen].bounds.size.width>320)
+            {
+                
+                //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
+                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+70);
+            }
+        }];
+    }
+}
+
+- (IBAction)HasInsureClk:(id)sender
+{
+    /*
+    if (btnHasInsure.selected==NO) {
+        btnHasInsure.selected=YES;
+        Isinsured=@"1";
+        HasInsureImg.frame=CGRectMake(HasInsureImg.frame.origin.x+20, HasInsureImg.frame.origin.y, HasInsureImg.frame.size.width, HasInsureImg.frame.size.height);
+        txtInsureName.userInteractionEnabled=YES;
+        txtvwInsureDetail.userInteractionEnabled=YES;
+        btnStartDate.userInteractionEnabled=YES;
+        btnEndDate.userInteractionEnabled=YES;
+        txtValueCovered.userInteractionEnabled=YES;
+        
+        // show insurance view
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+InsuranceView.frame.size.height+20, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+            mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+100);
+            NSLog(@"content=%f",mainscroll.contentSize.height);
+            
+            
+        } completion:^(BOOL finished) {
+            
+            InsuranceView.hidden=NO;
+            if(self.view.frame.size.width==320)
+            {
+               
+               
+               // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
+            }
+           
+            
+            
+            if ([UIScreen mainScreen].bounds.size.width>320)
+            {
+               
+              //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
+                  mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+100);
+            }
         }];
 
     }
@@ -671,6 +882,7 @@
             InsuranceView.hidden=YES;
         }];
     }
+     */
 }
 
 - (IBAction)StartDateClk:(id)sender
@@ -1121,6 +1333,7 @@
 
 - (IBAction)SubmitClk:(id)sender
 {
+    /*
     if ([lblPortfolioType.text isEqualToString:@"Home"])
     {
         portType=@"1";
@@ -1137,6 +1350,7 @@
     {
         portType=@"4";
     }
+     */
     if(txtPortfolioName.text.length==0)
     {
         txtPortfolioName.text=@"";
@@ -1157,11 +1371,11 @@
         txtPostCode.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Postal Code" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
         //  [Main_acroll setContentOffset:CGPointMake(0,160) animated:YES];
     }
-    else if (lblPortfolioType.text.length==0 || [lblPortfolioType.text isEqualToString:@"Portfolio Type"])
+ /*   else if (lblPortfolioType.text.length==0 || [lblPortfolioType.text isEqualToString:@"Portfolio Type"])
     {
         lblPortfolioType.text=@"Portfolio Type";
         lblPortfolioType.textColor=[UIColor redColor];
-    }
+    }*/
     else if(txtInsureName.text.length==0 && btnHasInsure.selected==YES)
     {
         txtInsureName.text=@"";
@@ -1237,7 +1451,7 @@
     tempDict = [[NSDictionary alloc] initWithObjectsAndKeys:PortfolioCode, @"PortfolioCode",txtPortfolioName.text, @"PortfolioName",txtvwAddress.text,@"Address1",@"",@"Address2",txtPostCode.text, @"PostCode",Isinsured, @"IsInsured",portType,@"PortfolioTypeCode",  nil];
     NSLog(@"tempdic=%@",tempDict);
     NSString *loginstring = [NSString stringWithFormat:@"%@UpdatePortfolio/%@?CustomerCode=%@",URL_LINK,AuthToken,CustomerCode]; //api done
-    
+    NSLog(@"edit url=%@",loginstring);
     NSError *localErr;
     
     NSData *jsonData2 = [NSJSONSerialization dataWithJSONObject:(NSDictionary *) tempDict options:NSJSONWritingPrettyPrinted error:&localErr];

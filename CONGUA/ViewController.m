@@ -256,7 +256,16 @@ menu *menuview;
         cell.celltitlelbl.text=[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"PortfolioName"];
         cell.celladdresslbl.text=[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"Address1"];
         cell.lblactive.text=[NSString stringWithFormat:@"%@",[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"ProductCount"]];
-        cell.lblinsured.text=[NSString stringWithFormat:@"%@",[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]];
+            if([[NSString stringWithFormat:@"%@",[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]] isEqualToString:@"0"])
+            {
+                 cell.lblinsured.text=@"NO";
+            }
+            else if([[NSString stringWithFormat:@"%@",[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]] isEqualToString:@"1"])
+            {
+                cell.lblinsured.text=@"YES";
+            }
+         
+     //   cell.lblinsured.text=[NSString stringWithFormat:@"%@",[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]];
         
         if ([[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==1) {
             cell.cellIcon.image=[UIImage imageNamed:@"home"];

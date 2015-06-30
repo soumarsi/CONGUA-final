@@ -43,6 +43,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
 @property (weak, nonatomic) IBOutlet UIImageView *DescImgView;
+@property (weak, nonatomic) IBOutlet UISwitch *InsuredPortSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *OtherInsuredSwitch;
 
 
 

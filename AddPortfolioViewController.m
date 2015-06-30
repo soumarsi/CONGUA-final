@@ -18,11 +18,16 @@
     
 }
 - (IBAction)HasInsureClk:(id)sender;
+- (IBAction)HomeClick:(id)sender;
+- (IBAction)BusinessClick:(id)sender;
+- (IBAction)PersonalClick:(id)sender;
+
+- (IBAction)OtherClick:(id)sender;
 
 @end
 
 @implementation AddPortfolioViewController
-@synthesize lbladdress,lblinsureDetail,btnhasInsure,toggleimg,btnenddate,btnstartdate,InsuranceView,btnSubmit;
+@synthesize lbladdress,lblinsureDetail,btnhasInsure,toggleimg,btnenddate,btnstartdate,InsuranceView,btnSubmit,InsuredSwitch,btnOther,btnPersonal,btnBusiness,businessImg,btnHome,homeImg,personalImg,otherImg;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden=YES;
@@ -104,6 +109,14 @@
      self.lbladdress.textColor=[UIColor grayColor];
      self.lblinsureDetail.textColor=[UIColor grayColor];
      self.ptypelbl.textColor=[UIColor grayColor];
+    
+    InsuredSwitch.on=NO;
+    [InsuredSwitch addTarget:self action:@selector(switched:)
+       forControlEvents:UIControlEventValueChanged];
+    
+    homeImg.image=[UIImage imageNamed:@"redioOn"];
+    btnHome.selected=YES;
+    portType=@"1";
 }
 
 - (void) viewWillLayoutSubviews
@@ -1288,6 +1301,62 @@
         [self.view addSubview:loader_shadow_View];
     }
 }
+-(IBAction)switched:(id)sender{
+    NSLog(@"Switch current state %@", InsuredSwitch.on ? @"On" : @"Off");
+    if (InsuredSwitch.on==NO)
+    {
+       
+        btnhasInsure.selected=NO;
+        Isinsured=@"0";
+    //    toggleimg.frame=CGRectMake(toggleimg.frame.origin.x-10, toggleimg.frame.origin.y, toggleimg.frame.size.width, toggleimg.frame.size.height);
+        self.inametxt.userInteractionEnabled=NO;
+        self.idetail.userInteractionEnabled=NO;
+        self.btnstartdate.userInteractionEnabled=NO;
+        self.btnenddate.userInteractionEnabled=NO;
+        self.vcovertxt.userInteractionEnabled=NO;
+        
+        // hide insurance view
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            
+            
+            
+            
+            
+        } completion:^(BOOL finished) {
+            
+            
+            btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+            InsuranceView.hidden=YES;
+        }];
+
+    }
+    else if (InsuredSwitch.on==YES)
+    {
+        
+        btnhasInsure.selected=YES;
+        Isinsured=@"1";
+    //    toggleimg.frame=CGRectMake(toggleimg.frame.origin.x+20, toggleimg.frame.origin.y, toggleimg.frame.size.width, toggleimg.frame.size.height);
+        self.inametxt.userInteractionEnabled=YES;
+        self.idetail.userInteractionEnabled=YES;
+        self.btnstartdate.userInteractionEnabled=YES;
+        self.btnenddate.userInteractionEnabled=YES;
+        self.vcovertxt.userInteractionEnabled=YES;
+        
+        // show insurance view
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+InsuranceView.frame.size.height+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+            
+            
+            
+        } completion:^(BOOL finished) {
+            
+            InsuranceView.hidden=NO;
+        }];
+
+    }
+}
 - (IBAction)HasInsureClk:(id)sender
 {
     if (btnhasInsure.selected==NO) {
@@ -1341,5 +1410,82 @@
 
        
             }
+}
+
+- (IBAction)HomeClick:(id)sender
+{
+    if (btnHome.selected==NO)
+    {
+        btnHome.selected=YES;
+        homeImg.image=[UIImage imageNamed:@"redioOn"];
+        
+        btnBusiness.selected=NO;
+        businessImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnPersonal.selected=NO;
+        personalImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnOther.selected=NO;
+        otherImg.image=[UIImage imageNamed:@"redioOff"];
+        portType=@"1";
+    }
+}
+
+- (IBAction)BusinessClick:(id)sender
+{
+    if (btnBusiness.selected==NO)
+    {
+        btnHome.selected=NO;
+        homeImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnBusiness.selected=YES;
+        businessImg.image=[UIImage imageNamed:@"redioOn"];
+        
+        btnPersonal.selected=NO;
+        personalImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnOther.selected=NO;
+        otherImg.image=[UIImage imageNamed:@"redioOff"];
+        portType=@"2";
+    }
+}
+
+- (IBAction)PersonalClick:(id)sender
+{
+    if (btnPersonal.selected==NO)
+    {
+        btnHome.selected=NO;
+        homeImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnBusiness.selected=NO;
+        businessImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnPersonal.selected=YES;
+        personalImg.image=[UIImage imageNamed:@"redioOn"];
+        
+        btnOther.selected=NO;
+        otherImg.image=[UIImage imageNamed:@"redioOff"];
+        portType=@"3";
+    }
+
+}
+
+- (IBAction)OtherClick:(id)sender
+{
+    if (btnOther.selected==NO)
+    {
+        btnHome.selected=NO;
+        homeImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnBusiness.selected=NO;
+        businessImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnPersonal.selected=NO;
+        personalImg.image=[UIImage imageNamed:@"redioOff"];
+        
+        btnOther.selected=YES;
+        otherImg.image=[UIImage imageNamed:@"redioOn"];
+        portType=@"4";
+    }
 }
 @end

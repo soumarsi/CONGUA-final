@@ -22,7 +22,7 @@
 		<key>0CD81CF9633DCEF7846F63F4BD78AF664806267F</key>
 		<string>../..</string>
 		<key>F5F3A15890B70AB318B9E2418F99A7D9F71EDAAF</key>
-		<string>../..CONGUA/</string>
+		<string>../..CONGUA</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/soumarsi/CONGUA-final.git</string>
@@ -36,17 +36,17 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>F5F3A15890B70AB318B9E2418F99A7D9F71EDAAF</string>
+			<string>0CD81CF9633DCEF7846F63F4BD78AF664806267F</string>
 			<key>IDESourceControlWCCName</key>
-			<string>CONGUA</string>
+			<string>CONGUA-final</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>0CD81CF9633DCEF7846F63F4BD78AF664806267F</string>
+			<string>F5F3A15890B70AB318B9E2418F99A7D9F71EDAAF</string>
 			<key>IDESourceControlWCCName</key>
-			<string>CONGUA-final</string>
+			<string>CONGUA-finalCONGUA</string>
 		</dict>
 	</array>
 </dict>

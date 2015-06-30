@@ -13,7 +13,7 @@
 @end
 
 @implementation AddProductViewController
-@synthesize txtproductName,txtPurchaseValue,txtVwDescription,btnIsInsuredPort,btnIsOtherInsured,btnproductType,btnPurchaseDt,IsInsuredPortToggleImg,IsOtherInsuredToggleImg,mainscroll,lblDescription,lblProductType,lblPurchaseDt,CategoryCode,btnSubmit,DescImgView;
+@synthesize txtproductName,txtPurchaseValue,txtVwDescription,btnIsInsuredPort,btnIsOtherInsured,btnproductType,btnPurchaseDt,IsInsuredPortToggleImg,IsOtherInsuredToggleImg,mainscroll,lblDescription,lblProductType,lblPurchaseDt,CategoryCode,btnSubmit,DescImgView,InsuredPortSwitch,OtherInsuredSwitch;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -49,6 +49,14 @@
     lblDescription.textColor=[UIColor grayColor];
     lblProductType.textColor=[UIColor grayColor];
     lblPurchaseDt.textColor=[UIColor grayColor];
+    
+    InsuredPortSwitch.on=NO;
+    [InsuredPortSwitch addTarget:self action:@selector(InsuredPortSwitched:)
+            forControlEvents:UIControlEventValueChanged];
+    
+    OtherInsuredSwitch.on=NO;
+    [OtherInsuredSwitch addTarget:self action:@selector(OtherInsuredSwitched:)
+            forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -104,7 +112,20 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+-(IBAction)InsuredPortSwitched:(id)sender{
+    NSLog(@"Switch current state %@", InsuredPortSwitch.on ? @"On" : @"Off");
+    
+    if (InsuredPortSwitch.on==YES) {
+        btnIsInsuredPort.selected=YES;
+     //   IsInsuredPortToggleImg.frame=CGRectMake(IsInsuredPortToggleImg.frame.origin.x+20, IsInsuredPortToggleImg.frame.origin.y, IsInsuredPortToggleImg.frame.size.width, IsInsuredPortToggleImg.frame.size.height);
+        Isinsured=@"1";
+    }
+    else if (InsuredPortSwitch.on==NO) {
+        btnIsInsuredPort.selected=NO;
+ //       IsInsuredPortToggleImg.frame=CGRectMake(IsInsuredPortToggleImg.frame.origin.x-20, IsInsuredPortToggleImg.frame.origin.y, IsInsuredPortToggleImg.frame.size.width, IsInsuredPortToggleImg.frame.size.height);
+        Isinsured=@"0";
+    }
+}
 - (IBAction)IsInsuredPortClk:(id)sender
 {
     if (btnIsInsuredPort.selected==NO) {
@@ -268,7 +289,53 @@
         
     }
 }
-
+-(IBAction)OtherInsuredSwitched:(id)sender{
+    NSLog(@"Switch current state %@", OtherInsuredSwitch.on ? @"On" : @"Off");
+    if (OtherInsuredSwitch.on==YES) {
+        btnIsOtherInsured.selected=YES;
+    //    IsOtherInsuredToggleImg.frame=CGRectMake(IsOtherInsuredToggleImg.frame.origin.x+20, IsOtherInsuredToggleImg.frame.origin.y, IsOtherInsuredToggleImg.frame.size.width, IsOtherInsuredToggleImg.frame.size.height);
+        txtVwDescription.userInteractionEnabled=YES;
+        Isotherinsured=@"1";
+        
+        // show insurance view
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DescImgView.frame.origin.y+DescImgView.frame.size.height+20, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+            
+            
+            
+        } completion:^(BOOL finished) {
+            
+            DescImgView.hidden=NO;
+            lblDescription.hidden=NO;
+            txtVwDescription.hidden=NO;
+        }];
+    }
+    else if (OtherInsuredSwitch.on==NO) {
+        btnIsOtherInsured.selected=NO;
+    //    IsOtherInsuredToggleImg.frame=CGRectMake(IsOtherInsuredToggleImg.frame.origin.x-20, IsOtherInsuredToggleImg.frame.origin.y, IsOtherInsuredToggleImg.frame.size.width, IsOtherInsuredToggleImg.frame.size.height);
+        txtVwDescription.userInteractionEnabled=NO;
+        Isotherinsured=@"0";
+        
+        // hide insurance view
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            
+            
+            
+            
+            
+        } completion:^(BOOL finished) {
+            
+            
+            btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DescImgView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+            DescImgView.hidden=YES;
+            lblDescription.hidden=YES;
+            txtVwDescription.hidden=YES;
+        }];
+        
+    }
+}
 - (IBAction)IsOtherInsuredClk:(id)sender
 {
     if (btnIsOtherInsured.selected==NO) {

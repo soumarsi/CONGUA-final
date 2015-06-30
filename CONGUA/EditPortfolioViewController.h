@@ -40,6 +40,25 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblAddress;
 @property (weak, nonatomic) IBOutlet UIView *InsuranceView;
 @property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
+@property (weak, nonatomic) IBOutlet UISwitch *IsInsuredSwitch;
+@property (weak, nonatomic) IBOutlet UIImageView *homeImg;
+@property (weak, nonatomic) IBOutlet UIImageView *businessImg;
+@property (weak, nonatomic) IBOutlet UIImageView *personalImg;
+@property (weak, nonatomic) IBOutlet UIImageView *otherImg;
+@property (weak, nonatomic) IBOutlet UIButton *btnHome;
+@property (weak, nonatomic) IBOutlet UIButton *btnBusiness;
+@property (weak, nonatomic) IBOutlet UIButton *btnPersonal;
+@property (weak, nonatomic) IBOutlet UIButton *btnOther;
+
+
+
+
+- (IBAction)HomeClick:(id)sender;
+- (IBAction)BusinessClick:(id)sender;
+- (IBAction)PersonalClick:(id)sender;
+- (IBAction)OtherClick:(id)sender;
+
+
 
 - (IBAction)PortfolioTypeClk:(id)sender;
 - (IBAction)HasInsureClk:(id)sender;
