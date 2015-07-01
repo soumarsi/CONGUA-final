@@ -31,6 +31,7 @@
 - (IBAction)EditClk:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 
 
 @end

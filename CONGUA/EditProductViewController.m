@@ -22,6 +22,7 @@
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
+    PortfolioCode=[prefs valueForKey:@"PortfolioCode"];
     AuthToken=[prefs valueForKey:@"AuthToken"];
     ProductCode=[prefs valueForKey:@"ProductCode"];
     NSLog(@"product code=%@",ProductCode);
@@ -45,9 +46,9 @@
     
     
     
- //   ArrProductType=[[NSMutableArray alloc]initWithObjects:@"1",@"2",@"3",@"4",nil];
-    ArrProductType=[[NSMutableArray alloc]initWithObjects:@"1",nil];
-    
+
+ //   ArrProductType=[[NSMutableArray alloc]initWithObjects:@"1",nil];
+    ArrCategory=[[NSMutableArray alloc]init];
    
     ArrProductDetail=[[NSMutableArray alloc]init];
   
@@ -65,8 +66,24 @@
     [OtherInsuredSwitch addTarget:self action:@selector(OtherInsuredSwitched:)
                 forControlEvents:UIControlEventValueChanged];
     
-    [self ProductViewUrl];
+    UIToolbar *toolbar1 = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 35.0f)];
+    toolbar1.barStyle=UIBarStyleDefault;
+    //    // Create a flexible space to align buttons to the right
+    UIBarButtonItem *flexibleSpace1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    //    // Create a cancel button to dismiss the keyboard
+    UIBarButtonItem *barButtonItem1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(resetView1)];
+    //    // Add buttons to the toolbar
+    [toolbar1 setItems:[NSArray arrayWithObjects:flexibleSpace1, barButtonItem1, nil]];
+    // Set the toolbar as accessory view of an UITextField object
+    txtPurchaseValue.inputAccessoryView = toolbar1;
+    
+    [self CategoryShowUrl];
+    
 
+}
+-(void)resetView1
+{
+    [txtPurchaseValue resignFirstResponder];
 }
 -(void)ProductViewUrl
 {
@@ -85,10 +102,12 @@
                    
                     txtProductNmae.text=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"ProductName"]];
                    
-                    lblProductType.text=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"ProductTypeCode"]];
+                //    lblProductType.text=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"ProductTypeCode"]];
                     lblPurchaseDt.text=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"PurchaseDate"]];
                     txtPurchaseValue.text=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"PurchaseValue"]];
+                    
                      CategoryCode=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"CategoryCode"]];
+                    
                     PortfolioCode=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"PortfolioCode"]];
                     
                     lblPurchaseDt.textColor=[UIColor blackColor];
@@ -168,6 +187,19 @@
                      //   lblDescription.hidden=YES;
                     }
                     
+                    //category
+                    for (int i=0; i<[ArrCategory count]; i++)
+                    {
+                       //  NSLog(@"category=%@",[[ArrCategory objectAtIndex:i] valueForKey:@"CategoryCode"]);
+                      //   NSLog(@"category code=%@",CategoryCode);
+                        if ([CategoryCode isEqualToString:[NSString stringWithFormat:@"%@",[[ArrCategory objectAtIndex:i] valueForKey:@"CategoryCode"]]]) {
+                           
+                            lblProductType.text=[[ArrCategory objectAtIndex:i] valueForKey:@"CategoryName"];
+                            break;
+                        }
+                    }
+                    
+                    
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
                 {
@@ -204,7 +236,65 @@
     
     
 }
-
+-(void)CategoryShowUrl
+{
+    @try {
+        
+        
+        [ArrCategory removeAllObjects];
+        NSString *str=[NSString stringWithFormat:@"%@GetCategoryInfoList/%@?PortfolioCode=%@",URL_LINK,AuthToken,PortfolioCode];
+        NSLog(@"str=%@",str);
+        BOOL net=[urlobj connectedToNetwork];
+        if (net==YES) {
+            [urlobj global:str typerequest:@"array" withblock:^(id result, NSError *error,BOOL completed) {
+                
+                if ([[result valueForKey:@"IsSuccess"] integerValue]==1)
+                {
+                    for ( NSDictionary *tempDict1 in  [result objectForKey:@"ResultInfo"])
+                    {
+                        [ArrCategory addObject:tempDict1];
+                        
+                    }
+                    NSMutableDictionary *tempDict2=[[NSMutableDictionary alloc]init];
+                    [tempDict2 setObject:@"0" forKey:@"CategoryCode"];
+                    [tempDict2 setObject:@"Other" forKey:@"CategoryName"];
+                    [ArrCategory addObject:tempDict2];
+                    //   NSLog(@"category name=%@",ArrCategory);
+                    
+                   [self ProductViewUrl];
+                }
+                else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
+                {
+                    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+                    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                    login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+                    [self.navigationController pushViewController:obj1 animated:YES];
+                }
+                else
+                {
+                    
+                    UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Error" message:@"Unsucessful...." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [aler show];
+                }
+                
+            }];
+        }
+        else{
+            UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"No Network Connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [aler show];
+        }
+    }
+    @catch (NSException *exception)
+    {
+    }
+    @finally {
+        
+    }
+    
+    
+    
+    
+}
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -527,7 +617,9 @@
     
     if (ProductType.length==0) {
         
-        lblProductType.text=[ArrProductType objectAtIndex:0];
+       // lblProductType.text=[ArrProductType objectAtIndex:0];
+        lblProductType.text=[[ArrCategory objectAtIndex:0] valueForKey:@"CategoryName"];
+        CategoryCode=[[ArrCategory objectAtIndex:0] valueForKey:@"CategoryCode"];
     }
     else
     {
@@ -557,7 +649,8 @@
 {
     if(pickerView==producttypepicker)
     {
-        return ArrProductType.count;
+       // return ArrProductType.count;
+        return ArrCategory.count;
     }
     else
     {
@@ -568,7 +661,8 @@
 {
     if(pickerView==producttypepicker)
     {
-        return ArrProductType[row];
+       // return ArrProductType[row];
+        return [[ArrCategory objectAtIndex:row] valueForKey:@"CategoryName"];
     }
     else
     {
@@ -580,7 +674,9 @@
 {
     if(pickerView==producttypepicker){
         
-        ProductType= ArrProductType[row];
+      //  ProductType= ArrProductType[row];
+        ProductType= [[ArrCategory objectAtIndex:row] valueForKey:@"CategoryName"];
+         CategoryCode=[[ArrCategory objectAtIndex:row] valueForKey:@"CategoryCode"];
         lblProductType.textColor=[UIColor blackColor];
     }
     
@@ -730,7 +826,7 @@
     
     else if (lblProductType.text.length==0 || [lblProductType.text isEqualToString:@"Product Type"])
     {
-        lblProductType.text=@"Product Type";
+        lblProductType.text=@"Choose Category";
         lblProductType.textColor=[UIColor redColor];
     }
     else if ((lblPurchaseDt.text.length==0 || [lblPurchaseDt.text isEqualToString:@"Purchase Date"]))

@@ -36,10 +36,8 @@
     
     if ([UIScreen mainScreen].bounds.size.width>320)
     {
-        //_mainscroll.frame = CGRectMake(0,90,320,875);
-        //[self.mainscroll setFrame:CGRectMake(0, 60, 320, 875)];
-        [self.mainscroll setContentSize:CGSizeMake(320.0f,600.0f)];
-        //   [_mainscroll setFrame:CGRectMake(0, 90,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+        
+        [self.mainscroll setContentSize:CGSizeMake(320.0f,430.0f)];
         
         
     }
@@ -100,9 +98,25 @@
     [IsInsuredSwitch addTarget:self action:@selector(switched:)
             forControlEvents:UIControlEventValueChanged];
     
+    //done button on numberic keyboard
+    UIToolbar *toolbar1 = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 35.0f)];
+    toolbar1.barStyle=UIBarStyleDefault;
+    //    // Create a flexible space to align buttons to the right
+    UIBarButtonItem *flexibleSpace1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    //    // Create a cancel button to dismiss the keyboard
+    UIBarButtonItem *barButtonItem1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(resetView1)];
+    //    // Add buttons to the toolbar
+    [toolbar1 setItems:[NSArray arrayWithObjects:flexibleSpace1, barButtonItem1, nil]];
+    // Set the toolbar as accessory view of an UITextField object
+    txtValueCovered.inputAccessoryView = toolbar1;
+    
     [self PortfolioViewUrl];
 }
-
+-(void)resetView1
+{
+    [txtValueCovered resignFirstResponder];
+    [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
+}
 -(void)PortfolioViewUrl
 {
     @try {
@@ -336,11 +350,11 @@
         [myview removeFromSuperview];
         if ([UIScreen mainScreen].bounds.size.width>320)
         {
-            [self.mainscroll setContentOffset:CGPointMake(0.0f, 150.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 170.0f) animated:YES];
         }
         else
         {
-            [self.mainscroll setContentOffset:CGPointMake(0.0f, 200.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 230.0f) animated:YES];
         }
     }
     

@@ -12,7 +12,7 @@
 #import "PortFolio2ViewController.h"
 
 
-@interface portfolioitemViewController ()
+@interface portfolioitemViewController ()<UIAlertViewDelegate>
 {
     NSString *lbltext;
 }
@@ -55,6 +55,8 @@
     tappedRow=5000;
     showAllSections = NO;
     
+   
+    
     [self CategoryShowUrl];
     
 }
@@ -64,6 +66,7 @@
     
    
 }
+
 -(void)CategoryShowUrl
 {
     @try {
@@ -83,7 +86,10 @@
                         [ArrCategory addObject:tempDict1];
                         
                     }
-                   
+                    NSMutableDictionary *tempDict2=[[NSMutableDictionary alloc]init];
+                    [tempDict2 setObject:@"0" forKey:@"CategoryCode"];
+                    [tempDict2 setObject:@"Other" forKey:@"CategoryName"];
+                    [ArrCategory addObject:tempDict2];
                  //   NSLog(@"category name=%@",ArrCategory);
                     [self ProductShowUrl];
                   //  [mytabview reloadData];
@@ -221,7 +227,7 @@
     if (ArrShowProduct.count>0)
     {
         cell.framelbl.text=[NSString stringWithFormat:@"%@",[[ArrShowProduct objectAtIndex:indexPath.row] valueForKey:@"ProductName"]];
-        cell.lblProductCost.text=[@"$ " stringByAppendingString:[NSString stringWithFormat:@"%@",[[ArrShowProduct objectAtIndex:indexPath.row] valueForKey:@"ProductValue"]]];
+        cell.lblProductCost.text=[@"£ " stringByAppendingString:[NSString stringWithFormat:@"%@",[[ArrShowProduct objectAtIndex:indexPath.row] valueForKey:@"ProductValue"]]];
     }
     
     /*
@@ -260,21 +266,84 @@
  //   categoryCode=[NSString stringWithFormat:@"%@",[[ArrCategory objectAtIndex:section] valueForKey:@"CategoryCode"]];
     [headerCell.btndropdown addTarget:self action:@selector(DropDownClk:) forControlEvents:UIControlEventTouchUpInside];
     
+    /*
     UIButton *BtnAdd=(UIButton *)[headerCell viewWithTag:2];
     
     BtnAdd.tag=[[[ArrCategory objectAtIndex:section] valueForKey:@"CategoryCode"] integerValue];
     [BtnAdd addTarget:self action:@selector(AddProductClk:) forControlEvents:UIControlEventTouchUpInside];
-
+   */
     UILabel *lbl=(UILabel *)[headerCell viewWithTag:1];
     
     lbl.text=[[ArrCategory objectAtIndex:section] valueForKey:@"CategoryName"];
-    
   
+    if([[[ArrCategory objectAtIndex:section] valueForKey:@"CategoryCode"] integerValue]==0)
+    {
+        headerCell.btnEdit.hidden=YES;
+        headerCell.btnDelete.hidden=YES;
+    }
+    else
+    {
+    //scroll on header to show edit and delete
+     [headerCell.headerCellScroll setContentSize:CGSizeMake(self.view.frame.size.width+headerCell.btnEdit.frame.size.width+headerCell.btnDelete.frame.size.width,headerCell.frame.size.height)];
+    headerCell.btnEdit.frame=CGRectMake(self.view.frame.size.width, 0, headerCell.btnEdit.frame.size.width, headerCell.btnEdit.frame.size.height);
+     headerCell.btnDelete.frame=CGRectMake(self.view.frame.size.width+headerCell.btnEdit.frame.size.width, 0, headerCell.btnDelete.frame.size.width, headerCell.btnDelete.frame.size.height);
+    
+    
+        headerCell.btnEdit.hidden=NO;
+        headerCell.btnDelete.hidden=NO;
+    headerCell.btnEdit.tag=[[[ArrCategory objectAtIndex:section] valueForKey:@"CategoryCode"] integerValue];
+    [headerCell.btnEdit addTarget:self action:@selector(EditCategoryClk:) forControlEvents:UIControlEventTouchUpInside];
+    
+    headerCell.btnDelete.tag=[[[ArrCategory objectAtIndex:section] valueForKey:@"CategoryCode"] integerValue];
+   
+    [headerCell.btnDelete addTarget:self action:@selector(DeleteCategoryClk:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    /*
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedScreen:)];
+    swipeGesture.direction = (UISwipeGestureRecognizerDirectionLeft );
+    [headerCell addGestureRecognizer:swipeGesture];
+   */
     return headerCell;
 }
+/*
+- (void)swipedScreen:(UISwipeGestureRecognizer*)gesture
+{
+    
+        NSLog(@"left swipe");
+        //Get the cell out of the table view
+       portfolioitemprototyoecellheader  * cell1 = [mytabview dequeueReusableCellWithIdentifier:@"portfolioitemprototyoecellheader"];
+    
+        if(cell1.center.x==160)
+        {
+            
+            [UIView beginAnimations:@"ToggleViews" context:nil];
+            [UIView setAnimationRepeatCount:1];
+            [UIView setAnimationRepeatAutoreverses:NO];
+            cell1.center = CGPointMake(cell1.center.x-70,cell1.center.y);
+            NSLog(@"cell center=%f",cell1.center.x);
+            [UIView commitAnimations];
+            UIView *swipeview = [[UIView alloc] initWithFrame: CGRectMake (250,0,70,70)];
+            [cell1.contentView addSubview: swipeview];
+            swipeview.backgroundColor=[UIColor redColor];
+            UIButton  *btncelldelete = [UIButton buttonWithType:UIButtonTypeCustom];
+            btncelldelete.frame = CGRectMake(0, 0,70, 70);
+            [btncelldelete setBackgroundImage:[UIImage imageNamed:@"delete.png"] forState:UIControlStateNormal];
+          //  btncelldelete.tag=indexPath.row;
+            [btncelldelete addTarget:self action:@selector(celldelete:) forControlEvents:UIControlEventTouchUpInside];
+            [swipeview addSubview:btncelldelete];
+            
+            
+            UIButton *btncelledit = [UIButton buttonWithType:UIButtonTypeCustom];
+            btncelledit.frame = CGRectMake(70, 0,70, 70);
+            [btncelledit setBackgroundImage:[UIImage imageNamed:@"pencis.png"] forState:UIControlStateNormal];
+          //  btncelledit.tag=indexPath.row;
+            [btncelledit addTarget:self action:@selector(celledit:) forControlEvents:UIControlEventTouchUpInside];
+            [swipeview addSubview:btncelledit];
+        }
+    
 
-
-
+}
+*/
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    
@@ -358,15 +427,105 @@
     
  
 }
+-(void)DeleteCategoryUrl
+{
+    @try {
+        
+        
+        
+        NSString *str=[NSString stringWithFormat:@"%@DeleteCategory/%@?PortfolioCode=%@&CategoryCode=%@",URL_LINK,AuthToken,PortfolioCode,categoryCode];
+        NSLog(@"str=%@",str);
+        BOOL net=[urlobj connectedToNetwork];
+        if (net==YES) {
+            [urlobj global:str typerequest:@"array" withblock:^(id result, NSError *error,BOOL completed) {
+                NSLog(@"array=%@",result);
+                if ([[result valueForKey:@"IsSuccess"] integerValue]==1)
+                {
+                    /* UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Unsucessful...." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                     [aler show];
+                     */
+                  //  [self.navigationController popViewControllerAnimated: YES];
+                    [self CategoryShowUrl];
+                }
+                else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
+                {
+                    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+                    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                    login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+                    [self.navigationController pushViewController:obj1 animated:YES];
+                }
+                else
+                {
+                    
+                    UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Error" message:@"Unsucessful...." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [aler show];
+                }
+                
+                
+                
+                
+            }];
+        }
+        else{
+            UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"No Network Connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [aler show];
+        }
+    }
+    @catch (NSException *exception)
+    {
+    }
+    @finally {
+        
+    }
+    
+    
+    
+    
+}
+-(void)EditCategoryClk:(UIButton *)sender
+{
+    categoryCode=[NSString stringWithFormat:@"%d",sender.tag];
+    //  NSLog(@"OKkkkkk");
+    
+     EditCategoryViewController *addportvc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditCategoryViewControllersid"];
+     addportvc.CategoryCode=[NSString stringWithFormat:@"%d",sender.tag];
+     [self presentViewController:addportvc
+     animated:YES
+     completion:NULL];
+    
+}
+-(void)DeleteCategoryClk:(UIButton *)sender
+{
+    categoryCode=[NSString stringWithFormat:@"%d",sender.tag];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@" Do you want to Delete This Category?" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+    [alertView show];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex == [alertView cancelButtonIndex])
+    {
+        
+    }
+    else
+    {
+        [self DeleteCategoryUrl];
+        
+        
+    }
+    
+    
+}
 -(void)AddProductClk:(UIButton *)sender
 {
   //  NSLog(@"OKkkkkk");
+    /*
     AddProductViewController *addportvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddProductViewControllersid"];
     addportvc.CategoryCode=[NSString stringWithFormat:@"%ld",(long)sender.tag];
     [self presentViewController:addportvc
                        animated:YES
                      completion:NULL];
-
+*/
 }
 
 - (IBAction)backtoportdetail:(id)sender
@@ -397,6 +556,16 @@
 
 - (IBAction)AddCategoryClk:(id)sender {
     
+    //add product
+    AddProductViewController *addportvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddProductViewControllersid"];
+  //  addportvc.CategoryCode=[NSString stringWithFormat:@"%ld",(long)sender.tag];
+    [self presentViewController:addportvc
+                       animated:YES
+                     completion:NULL];
+}
+
+- (IBAction)AddCategoryPlusClick:(id)sender
+{
     AddCategoryViewController *addportvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddCategoryViewControllersid"];
     [self presentViewController:addportvc
                        animated:YES

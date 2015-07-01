@@ -13,7 +13,10 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnAddProduct;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *headerCellScroll;
+@property (weak, nonatomic) IBOutlet UIButton *btnDelete;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnEdit;
 
 
 @end

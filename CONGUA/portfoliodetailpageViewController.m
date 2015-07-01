@@ -25,7 +25,7 @@
     }
     else if([UIScreen mainScreen].bounds.size.width>320)
     {
-        mainscroll.contentSize = CGSizeMake(0, 530);
+        mainscroll.contentSize = CGSizeMake(0, 590);
     }
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];

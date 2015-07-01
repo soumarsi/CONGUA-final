@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AddCategoryViewController.h"
 #import "AddProductViewController.h"
+#import "EditCategoryViewController.h"
 @interface portfolioitemViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     NSString *CustomerCode,*AuthToken,*PortfolioCode,*categoryCode;
@@ -28,5 +29,6 @@
 
 
 - (IBAction)AddCategoryClk:(id)sender;
+- (IBAction)AddCategoryPlusClick:(id)sender;
 
 @end

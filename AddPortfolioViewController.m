@@ -53,10 +53,8 @@
     
     if ([UIScreen mainScreen].bounds.size.width>320)
     {
-        //_mainscroll.frame = CGRectMake(0,90,320,875);
-        //[self.mainscroll setFrame:CGRectMake(0, 60, 320, 875)];
-        [self.mainscroll setContentSize:CGSizeMake(320.0f,600.0f)];
-     //   [_mainscroll setFrame:CGRectMake(0, 90,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+        [self.mainscroll setContentSize:CGSizeMake(320.0f,430.0f)];
+    
         
         
     }
@@ -117,6 +115,24 @@
     homeImg.image=[UIImage imageNamed:@"redioOn"];
     btnHome.selected=YES;
     portType=@"1";
+    
+    //done button on numberic keyboard
+    UIToolbar *toolbar1 = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 35.0f)];
+    toolbar1.barStyle=UIBarStyleDefault;
+    //    // Create a flexible space to align buttons to the right
+    UIBarButtonItem *flexibleSpace1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    //    // Create a cancel button to dismiss the keyboard
+    UIBarButtonItem *barButtonItem1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(resetView1)];
+    //    // Add buttons to the toolbar
+    [toolbar1 setItems:[NSArray arrayWithObjects:flexibleSpace1, barButtonItem1, nil]];
+    // Set the toolbar as accessory view of an UITextField object
+    self.vcovertxt.inputAccessoryView = toolbar1;
+
+}
+-(void)resetView1
+{
+    [self.vcovertxt resignFirstResponder];
+    [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
 }
 
 - (void) viewWillLayoutSubviews
@@ -151,7 +167,7 @@
         }
         else
         {
-            [self.mainscroll setContentOffset:CGPointMake(0.0f, 200.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 230.0f) animated:YES];
         }
     }
     
@@ -790,105 +806,10 @@
 
 - (IBAction)PortTypeClk:(id)sender
 {
+    /*
     [self.pcodetxt resignFirstResponder];
      myarr=[NSMutableArray arrayWithObjects:@"Home",@"Business",@"Personal",@"Other",nil];
-  //  myarr=[NSMutableArray arrayWithObjects:@"KOLKATA",@"MUMBAI",@"CHENNAI",@"DELHI",@"JAIPUR",nil];
-    /*
-    if(self.view.frame.size.width==414)
-    {
-        myview = [[UIView alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width),(self.view.frame.size.height))];
-        [myview setBackgroundColor: [UIColor colorWithRed:(0.0f/255.0f) green:(0.0f/255.0f) blue:(0.0f/255.0f) alpha:0.7]];
-        [self.view addSubview:myview];
-        mypicker = [[UIPickerView alloc] initWithFrame:CGRectMake(40, 210, 330, 320)];
-        [mypicker setBackgroundColor: [UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:1]];
-        [myview addSubview:mypicker];
-        
-        UIButton *btn=[[UIButton alloc]initWithFrame:CGRectMake(10,175,100,35)];
-        //btn.backgroundColor=[UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:0.1];
-        btn.backgroundColor=[UIColor clearColor];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn setTitle: @"Save" forState: UIControlStateNormal];
-        //[btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [myview addSubview:btn];
-        
-        UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(275,175,100,35)];
-        //btn1.backgroundColor=[UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:0.1];
-        btn1.backgroundColor=[UIColor clearColor];
-        [btn1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn1 setTitle: @"Cancel" forState: UIControlStateNormal];
-        //[btn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [myview addSubview:btn1];
-        
-        mypicker.delegate = self;
-        mypicker.dataSource=self;
-        
-        [btn addTarget:self action:@selector(buttonInfo2:) forControlEvents:UIControlEventTouchUpInside];
-        [btn1 addTarget:self action:@selector(buttonInfo3:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    if(self.view.frame.size.width==375)
-    {
-        myview = [[UIView alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width),(self.view.frame.size.height))];
-        [myview setBackgroundColor: [UIColor colorWithRed:(0.0f/255.0f) green:(0.0f/255.0f) blue:(0.0f/255.0f) alpha:0.7]];
-        [self.view addSubview:myview];
-        mypicker = [[UIPickerView alloc] initWithFrame:CGRectMake(50, 210, 280, 280)];
-        [mypicker setBackgroundColor: [UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:1]];
-        [myview addSubview:mypicker];
-        
-        UIButton *btn=[[UIButton alloc]initWithFrame:CGRectMake(250,175,100,35)];
-        //btn.backgroundColor=[UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:0.1];
-        btn.backgroundColor=[UIColor clearColor];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn setTitle: @"Save" forState: UIControlStateNormal];
-        //[btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [myview addSubview:btn];
-        
-        UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(25,175,100,35)];
-        //btn1.backgroundColor=[UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:0.1];
-        btn1.backgroundColor=[UIColor clearColor];
-        [btn1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn1 setTitle: @"Cancel" forState: UIControlStateNormal];
-        //[btn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [myview addSubview:btn1];
-        
-        mypicker.delegate = self;
-        mypicker.dataSource=self;
-        
-        [btn addTarget:self action:@selector(buttonInfo2:) forControlEvents:UIControlEventTouchUpInside];
-        [btn1 addTarget:self action:@selector(buttonInfo3:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    else if(self.view.frame.size.width==320)
-    {
-        myview = [[UIView alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width),(self.view.frame.size.height))];
-        [myview setBackgroundColor: [UIColor colorWithRed:(0.0f/255.0f) green:(0.0f/255.0f) blue:(0.0f/255.0f) alpha:0.7]];
-        [self.view addSubview:myview];
-        
-        mypicker = [[UIPickerView alloc] initWithFrame:CGRectMake(30, 175, 260, 220)];
-        [mypicker setBackgroundColor: [UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:1]];
-        [myview addSubview:mypicker];
-        
-        UIButton *btn=[[UIButton alloc]initWithFrame:CGRectMake(215,140,100,35)];
-        //btn.backgroundColor=[UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:0.1];
-        btn.backgroundColor=[UIColor clearColor];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn setTitle: @"Save" forState: UIControlStateNormal];
-        //[btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [myview addSubview:btn];
-        
-        UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(8,140,100,35)];
-        //btn1.backgroundColor=[UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:0.1];
-        btn1.backgroundColor=[UIColor clearColor];
-        [btn1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn1 setTitle: @"Cancel" forState: UIControlStateNormal];
-        //btn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [myview addSubview:btn1];
-        
-        mypicker.delegate = self;
-        mypicker.dataSource=self;
-        
-        [btn addTarget:self action:@selector(buttonInfo2:) forControlEvents:UIControlEventTouchUpInside];
-        [btn1 addTarget:self action:@selector(buttonInfo3:) forControlEvents:UIControlEventTouchUpInside];
-    }
-     */
+ 
     [self.pcodetxt resignFirstResponder];
     if(self.view.frame.size.width==375)
     {
@@ -998,10 +919,12 @@
         [btn addTarget:self action:@selector(buttonInfo2:) forControlEvents:UIControlEventTouchUpInside];
         [btn1 addTarget:self action:@selector(buttonInfo3:) forControlEvents:UIControlEventTouchUpInside];
     }
+     */
 }
 
 - (IBAction)SubmitClk:(id)sender
 {
+    /*
     if ([_ptypelbl.text isEqualToString:@"Home"])
     {
         portType=@"1";
@@ -1018,6 +941,7 @@
      {
          portType=@"4";
      }
+     */
     if(self.portnmtxt.text.length==0)
     {
         self.portnmtxt.text=@"";
@@ -1038,11 +962,11 @@
         self.pcodetxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Postal Code" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
       //  [Main_acroll setContentOffset:CGPointMake(0,160) animated:YES];
     }
-    else if (self.ptypelbl.text.length==0 || [self.ptypelbl.text isEqualToString:@"Portfolio Type"])
+/*    else if (self.ptypelbl.text.length==0 || [self.ptypelbl.text isEqualToString:@"Portfolio Type"])
     {
         self.ptypelbl.text=@"Portfolio Type";
         self.ptypelbl.textColor=[UIColor redColor];
-    }
+    }*/
     else if(self.inametxt.text.length==0 && btnhasInsure.selected==YES)
     {
         self.inametxt.text=@"";

@@ -23,7 +23,7 @@
     AuthToken=[prefs valueForKey:@"AuthToken"];
     PortfolioCode=[prefs valueForKey:@"PortfolioCode"];
     NSLog(@"portfolio code=%@",PortfolioCode);
-    NSLog(@"category code=%@",CategoryCode);
+  //  NSLog(@"category code=%@",CategoryCode);
     urlobj=[[UrlconnectionObject alloc]init];
     
     UIGraphicsBeginImageContext(self.view.frame.size);
@@ -41,8 +41,10 @@
     txtPurchaseValue.leftViewMode = UITextFieldViewModeAlways;
  
     
-  //  ArrProductType=[[NSMutableArray alloc]initWithObjects:@"1",@"2",@"3",@"4",nil];
+  //i am using category in place of product type and product type kept 1
+    
      ArrProductType=[[NSMutableArray alloc]initWithObjects:@"1",nil];
+    ArrCategory=[[NSMutableArray alloc]init];
 
     txtproductName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Product Name" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
     txtPurchaseValue.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Purchase Value" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
@@ -57,8 +59,25 @@
     OtherInsuredSwitch.on=NO;
     [OtherInsuredSwitch addTarget:self action:@selector(OtherInsuredSwitched:)
             forControlEvents:UIControlEventValueChanged];
+    
+    UIToolbar *toolbar1 = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 35.0f)];
+    toolbar1.barStyle=UIBarStyleDefault;
+    //    // Create a flexible space to align buttons to the right
+    UIBarButtonItem *flexibleSpace1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    //    // Create a cancel button to dismiss the keyboard
+    UIBarButtonItem *barButtonItem1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(resetView1)];
+    //    // Add buttons to the toolbar
+    [toolbar1 setItems:[NSArray arrayWithObjects:flexibleSpace1, barButtonItem1, nil]];
+    // Set the toolbar as accessory view of an UITextField object
+    txtPurchaseValue.inputAccessoryView = toolbar1;
+    
+    
+    [self CategoryShowUrl];
 }
-
+-(void)resetView1
+{
+    [txtPurchaseValue resignFirstResponder];
+}
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -139,7 +158,65 @@
         Isinsured=@"0";
     }
 }
-
+-(void)CategoryShowUrl
+{
+    @try {
+        
+        
+        [ArrCategory removeAllObjects];
+        NSString *str=[NSString stringWithFormat:@"%@GetCategoryInfoList/%@?PortfolioCode=%@",URL_LINK,AuthToken,PortfolioCode];
+        NSLog(@"str=%@",str);
+        BOOL net=[urlobj connectedToNetwork];
+        if (net==YES) {
+            [urlobj global:str typerequest:@"array" withblock:^(id result, NSError *error,BOOL completed) {
+                
+                if ([[result valueForKey:@"IsSuccess"] integerValue]==1)
+                {
+                    for ( NSDictionary *tempDict1 in  [result objectForKey:@"ResultInfo"])
+                    {
+                        [ArrCategory addObject:tempDict1];
+                        
+                    }
+                    NSMutableDictionary *tempDict2=[[NSMutableDictionary alloc]init];
+                    [tempDict2 setObject:@"0" forKey:@"CategoryCode"];
+                     [tempDict2 setObject:@"Other" forKey:@"CategoryName"];
+                    [ArrCategory addObject:tempDict2];
+                    //   NSLog(@"category name=%@",ArrCategory);
+                    
+                    //  [mytabview reloadData];
+                }
+                else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
+                {
+                    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+                    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                    login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+                    [self.navigationController pushViewController:obj1 animated:YES];
+                }
+                else
+                {
+                    
+                    UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Error" message:@"Unsucessful...." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [aler show];
+                }
+                
+            }];
+        }
+        else{
+            UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"No Network Connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [aler show];
+        }
+    }
+    @catch (NSException *exception)
+    {
+    }
+    @finally {
+        
+    }
+    
+    
+    
+    
+}
 - (IBAction)ProductTypeClk:(id)sender
 {
     [txtproductName resignFirstResponder];
@@ -169,14 +246,19 @@
         
    //     Producttypeview=[[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, btnSubmit.frame.origin.y+btnSubmit.frame.size.height+10, self.view.frame.size.width,200)];
         //    NSLog(@"height=%f",self.view.frame.size.height-200);
-             Producttypeview=[[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.size.height-200, self.view.frame.size.width,200)];
+        if (self.view.frame.size.width==320)
+        {
+             [self.mainscroll setContentOffset:CGPointMake(0.0f,70.0f) animated:YES];
+        }
+       
+             Producttypeview=[[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.size.height-250, self.view.frame.size.width,250)];
         [Producttypeview setBackgroundColor:[UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:1]];
         [self.view addSubview:Producttypeview];
         
         
         //picker create
-        
-        producttypepicker=[[UIPickerView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-125, 10, 250,150)];
+        NSLog(@"picker create");
+        producttypepicker=[[UIPickerView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-125, 10, 250,200)];
         //   amtpicker=[[UIPickerView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, 50, self.view.frame.size.width,150)];
         producttypepicker.delegate=self;
         producttypepicker.dataSource=self;
@@ -197,6 +279,7 @@
         btnproducttypeCancel.titleLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:14.0];
         [btnproducttypeCancel addTarget:self action:@selector(producttypepickerCancel) forControlEvents:UIControlEventTouchUpInside];
         [Producttypeview addSubview:btnproducttypeCancel];
+        
         
     }
     else
@@ -238,7 +321,9 @@
      ];
     if (ProductType.length==0) {
         
-        lblProductType.text=[ArrProductType objectAtIndex:0];
+      //  lblProductType.text=[ArrProductType objectAtIndex:0];
+         lblProductType.text=[[ArrCategory objectAtIndex:0] valueForKey:@"CategoryName"];
+        CategoryCode=[[ArrCategory objectAtIndex:0] valueForKey:@"CategoryCode"];
     }
     else
     {
@@ -257,7 +342,8 @@
 {
     if(pickerView==producttypepicker)
     {
-        return ArrProductType.count;
+       // return ArrProductType.count;
+        return ArrCategory.count;
     }
     else
     {
@@ -268,7 +354,9 @@
 {
     if(pickerView==producttypepicker)
     {
-        return ArrProductType[row];
+       // return ArrProductType[row];
+      
+        return [[ArrCategory objectAtIndex:row] valueForKey:@"CategoryName"];
     }
     else
     {
@@ -280,7 +368,9 @@
 {
     if(pickerView==producttypepicker){
         
-        ProductType= ArrProductType[row];
+      //  ProductType= ArrProductType[row];
+        ProductType= [[ArrCategory objectAtIndex:row] valueForKey:@"CategoryName"];
+        CategoryCode=[[ArrCategory objectAtIndex:row] valueForKey:@"CategoryCode"];
         lblProductType.textColor=[UIColor blackColor];
     }
    
@@ -395,7 +485,7 @@
     
     else if (lblProductType.text.length==0 || [lblProductType.text isEqualToString:@"Product Type"])
     {
-        lblProductType.text=@"Product Type";
+        lblProductType.text=@"Choose Category";
         lblProductType.textColor=[UIColor redColor];
     }
     else if ((lblPurchaseDt.text.length==0 || [lblPurchaseDt.text isEqualToString:@"Purchase Date"]))

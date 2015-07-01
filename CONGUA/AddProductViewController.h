@@ -15,7 +15,7 @@
     UrlconnectionObject *urlobj;
     NSDictionary *tempDict;
     NSString *CustomerCode,*AuthToken,*PortfolioCode,*ProductType,*Isinsured,*Isotherinsured;
-    NSMutableArray *ArrProductType;
+    NSMutableArray *ArrProductType,*ArrCategory;
     UIPickerView *producttypepicker;
     UIDatePicker *datepicker;
     UIButton *btnProducttypesave,*btnproducttypeCancel;

@@ -17,6 +17,7 @@
 		5B7DE0101B3C22AD00D0F6D2 /* ProductDocDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7DE00F1B3C22AD00D0F6D2 /* ProductDocDetailViewController.m */; };
 		5B7DE0131B3C35D200D0F6D2 /* EditProductDocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7DE0121B3C35D200D0F6D2 /* EditProductDocViewController.m */; };
 		5B7DE0161B3C423700D0F6D2 /* ProductImgDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7DE0151B3C423700D0F6D2 /* ProductImgDetailViewController.m */; };
+		5B94C37C1B440769007174F5 /* EditCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B94C37B1B440769007174F5 /* EditCategoryViewController.m */; };
 		5B9ADACB1B313E4C00B454C6 /* AddProductImgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ADACA1B313E4C00B454C6 /* AddProductImgViewController.m */; };
 		5B9ADACE1B31921E00B454C6 /* EditProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ADACD1B31921E00B454C6 /* EditProductViewController.m */; };
 		5B9ADAD11B319E4B00B454C6 /* EditPortfolioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ADAD01B319E4B00B454C6 /* EditPortfolioViewController.m */; };
@@ -84,6 +85,8 @@
 		5B7DE0121B3C35D200D0F6D2 /* EditProductDocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProductDocViewController.m; sourceTree = "<group>"; };
 		5B7DE0141B3C423700D0F6D2 /* ProductImgDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductImgDetailViewController.h; sourceTree = "<group>"; };
 		5B7DE0151B3C423700D0F6D2 /* ProductImgDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductImgDetailViewController.m; sourceTree = "<group>"; };
+		5B94C37A1B440769007174F5 /* EditCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCategoryViewController.h; sourceTree = "<group>"; };
+		5B94C37B1B440769007174F5 /* EditCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCategoryViewController.m; sourceTree = "<group>"; };
 		5B9ADAC91B313E4C00B454C6 /* AddProductImgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductImgViewController.h; sourceTree = "<group>"; };
 		5B9ADACA1B313E4C00B454C6 /* AddProductImgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductImgViewController.m; sourceTree = "<group>"; };
 		5B9ADACC1B31921E00B454C6 /* EditProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProductViewController.h; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 				5B7DE0151B3C423700D0F6D2 /* ProductImgDetailViewController.m */,
 				5B00AA251B3D1FAE00A9432B /* EditProductImgViewController.h */,
 				5B00AA261B3D1FAE00A9432B /* EditProductImgViewController.m */,
+				5B94C37A1B440769007174F5 /* EditCategoryViewController.h */,
+				5B94C37B1B440769007174F5 /* EditCategoryViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -486,6 +491,7 @@
 				849B4BE41B149AD8000F2436 /* prototypecell.m in Sources */,
 				849B4BAB1B147474000F2436 /* main.m in Sources */,
 				5B9D44191B2EEB3E000B78EC /* PortfolioDocCell.m in Sources */,
+				5B94C37C1B440769007174F5 /* EditCategoryViewController.m in Sources */,
 				849B4BDF1B148218000F2436 /* headerview.m in Sources */,
 				846DECAF1B15A30300AC184B /* portfoliodetailpageViewController.m in Sources */,
 				5B6D509B1B21AF7100E29021 /* UrlconnectionObject.m in Sources */,

@@ -14,7 +14,7 @@
 @end
 
 @implementation PortFolio2ViewController
-@synthesize ProductCode,portfoliotabview,tblDoc,tblPhoto,lblUserName;
+@synthesize ProductCode,portfoliotabview,tblDoc,tblPhoto,lblUserName,mainscroll;
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -33,6 +33,14 @@
     ArrDoc=[[NSMutableArray alloc]init];
     ArrImage=[[NSMutableArray alloc]init];
     
+    if ([UIScreen mainScreen].bounds.size.width==320)
+    {
+        mainscroll.contentSize = CGSizeMake(0, 450);
+    }
+    else if([UIScreen mainScreen].bounds.size.width>320)
+    {
+        mainscroll.contentSize = CGSizeMake(0, 530);
+    }
     [self ProductViewUrl];
     
 }
@@ -67,7 +75,7 @@
                     NSLog(@"array=%@",ArrProductDetail);
                     */
                  //   [portfoliotabview reloadData];
-                    PurchaseValue=[@"$ " stringByAppendingString:[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"PurchaseValue"]]];
+                    PurchaseValue=[@"£ " stringByAppendingString:[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"PurchaseValue"]]];
                     NSLog(@"purchase value=%@",PurchaseValue);
                     purchaseDate=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"PurchaseDate"]];
                     purchaseDate = [purchaseDate stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
