@@ -10,6 +10,7 @@
 #import "UrlconnectionObject.h"
 #import "login.h"
 #import "EditProductImgViewController.h"
+#import "UIImageView+WebCache.h"
 @interface ProductImgDetailViewController : UIViewController
 {
     NSString *CustomerCode,*AuthToken,*ProductCode,*FileName;
@@ -20,6 +21,7 @@
 @property (strong, nonatomic)  NSString *ProductImgCode;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
+@property (weak, nonatomic) IBOutlet UIImageView *ProductImg;
 
 
 

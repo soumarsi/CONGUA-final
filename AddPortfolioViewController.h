@@ -8,12 +8,14 @@
 
 #import "ViewController.h"
 #import "UrlconnectionObject.h"
+#import "CKCalendarView.h"
 @interface AddPortfolioViewController : UIViewController
 {
     NSString *portType,*CustomerCode,*AuthToken,*Isinsured,*portfoliocode;
     UIView *loader_shadow_View;
     UrlconnectionObject *urlobj;
     NSDictionary *tempDict;
+    bool start;
 }
 @property (strong, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (strong, nonatomic) IBOutlet UITextField *portnmtxt;

@@ -10,6 +10,8 @@
 #import "UrlconnectionObject.h"
 #import "login.h"
 #import "EditProductDocViewController.h"
+#import "ALAssetsLibrary+CustomPhotoAlbum.h"
+#import "UIImageView+WebCache.h"
 @interface ProductDocDetailViewController : UIViewController
 {
     NSString *CustomerCode,*AuthToken,*ProductCode,*FileName;

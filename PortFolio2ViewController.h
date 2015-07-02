@@ -30,8 +30,11 @@
 - (IBAction)DeleteClk:(id)sender;
 - (IBAction)EditClk:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
-
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
+@property (weak, nonatomic) IBOutlet UIView *photoUpperLineView;
+@property (weak, nonatomic) IBOutlet UILabel *lblPhoto;
+@property (weak, nonatomic) IBOutlet UIButton *btnPhotoPlus;
+@property (weak, nonatomic) IBOutlet UIButton *btnPhoto;
 
 
 @end

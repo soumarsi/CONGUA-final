@@ -14,7 +14,7 @@
 @end
 
 @implementation portfoliodetailpageViewController
-@synthesize PortfolioCode,lbladdress,lblTitle,lblexpiryDate,lblinsureexpiry,lblNoOfItem,lbltotalcover,lbltotalValue,iconImage,tblDoc,lblUserName,mainscroll;
+@synthesize PortfolioCode,lbladdress,lblTitle,lblexpiryDate,lblinsureexpiry,lblNoOfItem,lbltotalcover,lbltotalValue,iconImage,tblDoc,lblUserName,mainscroll,lblTolalValuable,lblTotalCover1,dividerImg;
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -38,6 +38,7 @@
     ArrPortDetail=[[NSMutableArray alloc]init];
     ArrInsureDetail=[[NSMutableArray alloc]init];
     ArrDoc=[[NSMutableArray alloc]init];
+    
     [self PortfolioViewUrl];
     
 }
@@ -46,6 +47,7 @@
     // Do any additional setup after loading the view.
      NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
    lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
+    didappear=1;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -107,7 +109,18 @@
                     {
                         lblinsureexpiry.hidden=YES;
                         lblexpiryDate.hidden=YES;
+                        if (didappear)
+                        {
+                            lbltotalValue.frame=CGRectMake(lbltotalValue.frame.origin.x, lbltotalValue.frame.origin.y+12, lbltotalValue.frame.size.width, lbltotalValue.frame.size.height);
+                            lblTolalValuable.frame=CGRectMake(lblTolalValuable.frame.origin.x, lblTolalValuable.frame.origin.y+12, lblTolalValuable.frame.size.width, lblTolalValuable.frame.size.height);
+                            lbltotalcover.frame=CGRectMake(lbltotalcover.frame.origin.x, lbltotalcover.frame.origin.y+12, lbltotalcover.frame.size.width, lbltotalcover.frame.size.height);
+                            lblTotalCover1.frame=CGRectMake(lblTotalCover1.frame.origin.x, lblTotalCover1.frame.origin.y+12, lblTotalCover1.frame.size.width, lblTotalCover1.frame.size.height);
+                            dividerImg.frame=CGRectMake(dividerImg.frame.origin.x, dividerImg.frame.origin.y+12, dividerImg.frame.size.width, dividerImg.frame.size.height);
+                            didappear=0;
+                        }
+                        
                         [self DocShowUrl];
+                       
                     }
                     else
                     {

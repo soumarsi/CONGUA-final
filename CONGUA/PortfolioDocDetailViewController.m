@@ -253,7 +253,97 @@
         NSString *str=[NSString stringWithFormat:@"%@DownloadFile/%@?CustomerCode=%@&FileName=%@",URL_LINK,AuthToken,CustomerCode,FileName];
         NSLog(@"str=%@",str);
         
-     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        // 1
+        
+        NSURL *url = [NSURL URLWithString:str];
+        
+        
+        
+        // 2
+        
+        NSURLSessionDownloadTask *downloadPhotoTask =[[NSURLSession sharedSession]
+                                                      
+                                                      downloadTaskWithURL:url completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+                                                          
+                                                          
+                                                          
+                                                          [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                                                          
+                                                          
+                                                          
+                                                          
+                                                          
+                                                          // 3
+                                                          
+                                                          UIImage *downloadedImage = [UIImage imageWithData:
+                                                                                      
+                                                                                      [NSData dataWithContentsOfURL:location]];
+                                                          
+                                                          
+                                                          
+                                                          // Handle the downloaded image
+                                                          
+                                                          
+                                                          
+                                                          // Save the image to your Photo Album
+                                                          
+                                                          ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+                                                          [library saveImage:downloadedImage toAlbum:@"ConguaFile" withCompletionBlock:^(NSError *error) {
+                                                              
+                                                              if (error!=nil)
+                                                              {
+                                                                  NSLog(@"Noooo error: %@", [error description]);
+                                                                  
+                                                                  //  [busyview removeFromSuperview];
+                                                              }
+                                                              else{
+                                                                  
+                                                              }
+                                                          }];
+
+                                                          
+                                                          
+                                                          
+                                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                                              
+                                                              NSLog(@"updating UIImageView");
+                                                              
+                                                              UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Image saved successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                                                              [alert show];
+
+                                                         
+                                                              
+                                                          });
+                                                          
+                                                      }];
+        
+        
+        
+        // 4
+        
+        [downloadPhotoTask resume];
+#if 0
+        UIImageView *downloadimg=[[UIImageView alloc]init];
+        [downloadimg sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@""] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+        
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        [library saveImage:downloadimg.image toAlbum:@"ConguaFile" withCompletionBlock:^(NSError *error) {
+            
+            if (error!=nil)
+            {
+                NSLog(@"Noooo error: %@", [error description]);
+                
+                //  [busyview removeFromSuperview];
+            }
+            else{
+                
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Image saved successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alert show];
+                
+            }
+        }];
+#endif
+        
     //    NSURL *url = [NSURL URLWithString:str];
    //     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     //    [WebView loadRequest:requestObj];

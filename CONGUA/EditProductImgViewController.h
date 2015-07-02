@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UrlconnectionObject.h"
 #import "login.h"
+#import "UIImageView+WebCache.h"
 @interface EditProductImgViewController : UIViewController
 {
     UIView *loader_shadow_View;

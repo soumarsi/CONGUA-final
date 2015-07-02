@@ -13,7 +13,7 @@
 @end
 
 @implementation ProductImgDetailViewController
-@synthesize lblDesc,WebView,ProductImgCode,lblUserName,mainscroll;
+@synthesize lblDesc,WebView,ProductImgCode,lblUserName,mainscroll,ProductImg;
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -76,7 +76,7 @@
                     else
                     {
                       //  WebView.hidden=NO;
-                      //  [self DownloadUrl];
+                        [self DownloadUrl];
                     }
                     
                     
@@ -126,10 +126,12 @@
         NSLog(@"str=%@",str);
         
         
-        NSURL *url = [NSURL URLWithString:str];
-        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-        [WebView loadRequest:requestObj];
+  //      NSURL *url = [NSURL URLWithString:str];
+  //      NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+ //       [WebView loadRequest:requestObj];
         
+        [ProductImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str]] placeholderImage:[UIImage imageNamed:@"PlaceholderImg"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+        ProductImg.contentMode=UIViewContentModeScaleAspectFit;
         /*
          BOOL net=[urlobj connectedToNetwork];
          if (net==YES) {

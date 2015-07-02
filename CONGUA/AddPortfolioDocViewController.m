@@ -119,6 +119,18 @@
             {
                  [mainscroll setContentOffset:CGPointMake(0,40) animated:YES];
             }
+            
+            if (self.view.frame.size.height==480)
+            {
+                [mainscroll setContentOffset:CGPointMake(0,220) animated:YES];
+            }
+        }
+        else
+        {
+            if (self.view.frame.size.height==480)
+            {
+                [mainscroll setContentOffset:CGPointMake(0,80) animated:YES];
+            }
         }
         [Doctypeview removeFromSuperview];
         

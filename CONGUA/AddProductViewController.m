@@ -8,7 +8,7 @@
 
 #import "AddProductViewController.h"
 
-@interface AddProductViewController ()<UITextFieldDelegate,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+@interface AddProductViewController ()<UITextFieldDelegate,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,CKCalendarDelegate>
 
 @end
 
@@ -624,142 +624,125 @@
 - (IBAction)PurchaseDateClk:(id)sender
 {
     [txtproductName resignFirstResponder];
+    mainscroll.scrollEnabled=NO;
+    [myview resignFirstResponder];
     if(self.view.frame.size.width==375)
     {
-        [self.mainscroll setContentOffset:CGPointMake(0.0f,280.0f) animated:YES];
-        PurchaseDateview = [[UIView alloc] initWithFrame:CGRectMake(0,540,375,340)];
-        [PurchaseDateview setBackgroundColor: [UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:1]];
+        [self.mainscroll setContentOffset:CGPointMake(0.0f,50.0f) animated:YES];
+        myview = [[UIView alloc] initWithFrame:CGRectMake(0,370,375,300)];
+        [myview setBackgroundColor: [UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:1]];
+        [mainscroll addSubview:myview];
         
-        UIButton *btn=[[UIButton alloc]initWithFrame:CGRectMake(0,235,187,35)];
-        btn.backgroundColor=[UIColor colorWithRed:(250.0f/255.0f) green:(58.0f/255.0f) blue:(47.0f/255.0f) alpha:1];
-        [btn setTitle: @"OK" forState: UIControlStateNormal];
-        [PurchaseDateview addSubview:btn];
+        CKCalendarView *calendar = [[CKCalendarView alloc] initWithStartDay:startMonday];
+        calendar.delegate = self;
+        /*
+         self.dateFormatter = [[NSDateFormatter alloc] init];
+         [self.dateFormatter setDateFormat:@"dd/MM/yyyy"];
+         self.minimumDate = [self.dateFormatter dateFromString:@"20/09/2012"];
+         
+         self.disabledDates = @[
+         //                [self.dateFormatter dateFromString:@"05/01/2013"],
+         //                [self.dateFormatter dateFromString:@"06/01/2013"],
+         //                [self.dateFormatter dateFromString:@"07/01/2013"]
+         ];
+         */
+        calendar.onlyShowCurrentMonth = NO;
+        calendar.adaptHeightToNumberOfWeeksInMonth = YES;
         
-        UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(187,235,187,35)];
-        btn1.backgroundColor=[UIColor colorWithRed:(20.0f/255.0f) green:(123.0f/255.0f) blue:(250.0f/255.0f) alpha:1];
-        [btn1 setTitle: @"CANCEL" forState: UIControlStateNormal];
-        [PurchaseDateview addSubview:btn1];
+        calendar.frame = CGRectMake(40,10, myview.frame.size.width-80,myview.frame.size.height);
+        [myview addSubview:calendar];
         
-        
-        datepicker =[[UIDatePicker alloc]initWithFrame:CGRectMake(0,20,375,10)];
-        [PurchaseDateview addSubview:datepicker];
-        [mainscroll addSubview:PurchaseDateview];
-        
-        [datepicker setBackgroundColor: [UIColor colorWithRed:(250.0f/255.0f) green:(250.0f/255.0f) blue:(250.0f/255.0f) alpha:1]];
-        
-        datepicker.datePickerMode=UIDatePickerModeDate;
-        NSDate *currDate = [NSDate date];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"ddMMyyyy"];
-        //    NSString *dateString = [dateFormatter stringFromDate:currDate];
-        //    NSLog(@"%@",dateString);
-        
-        [datepicker setMinimumDate:currDate];
-        //    picker.hidden=NO;
-        datepicker.date=[NSDate date];
-        [datepicker addTarget:self action:@selector(datepickerChange:) forControlEvents:UIControlEventValueChanged];
-        [btn addTarget:self action:@selector(DateSaveClk:) forControlEvents:UIControlEventTouchUpInside];
-        [btn1 addTarget:self action:@selector(buttoncross:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     else if (self.view.frame.size.width==320)
     {
-        [self.mainscroll setContentOffset:CGPointMake(0.0f,200.0f) animated:YES];
-        PurchaseDateview = [[UIView alloc] initWithFrame:CGRectMake(0,400,320,280)];
-        [PurchaseDateview setBackgroundColor: [UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:1]];
+        [self.mainscroll setContentOffset:CGPointMake(0.0f,150.0f) animated:YES];
+        myview = [[UIView alloc] initWithFrame:CGRectMake(0,350,320,300)];
+        [myview setBackgroundColor: [UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:1]];
+        [mainscroll addSubview:myview];
         
-        UIButton *btn=[[UIButton alloc]initWithFrame:CGRectMake(0,235,160,35)];
-        btn.backgroundColor=[UIColor colorWithRed:(235.0f/255.0f) green:(64.0f/255.0f) blue:(38.0f/255.0f) alpha:1];
-        [btn setTitle: @"OK" forState: UIControlStateNormal];
-        [PurchaseDateview addSubview:btn];
+        CKCalendarView *calendar = [[CKCalendarView alloc] initWithStartDay:startMonday];
+        calendar.delegate = self;
+        /*
+         self.dateFormatter = [[NSDateFormatter alloc] init];
+         [self.dateFormatter setDateFormat:@"dd/MM/yyyy"];
+         self.minimumDate = [self.dateFormatter dateFromString:@"20/09/2012"];
+         
+         self.disabledDates = @[
+         //                [self.dateFormatter dateFromString:@"05/01/2013"],
+         //                [self.dateFormatter dateFromString:@"06/01/2013"],
+         //                [self.dateFormatter dateFromString:@"07/01/2013"]
+         ];
+         */
+        calendar.onlyShowCurrentMonth = NO;
+        calendar.adaptHeightToNumberOfWeeksInMonth = YES;
         
-        UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(160,235,160,35)];
-        btn1.backgroundColor=[UIColor colorWithRed:(20.0f/255.0f) green:(123.0f/255.0f) blue:(250.0f/255.0f) alpha:1];
-        [btn1 setTitle: @"CANCEL" forState: UIControlStateNormal];
-        [PurchaseDateview addSubview:btn1];
+        calendar.frame = CGRectMake(0,0, myview.frame.size.width,myview.frame.size.height);
+        [myview addSubview:calendar];
         
         
         
-        datepicker =[[UIDatePicker alloc]initWithFrame:CGRectMake(0,20,200,10)];
-        [PurchaseDateview addSubview:datepicker];
-        [mainscroll addSubview:PurchaseDateview];
         
-        [datepicker setBackgroundColor: [UIColor colorWithRed:(250.0f/255.0f) green:(250.0f/255.0f) blue:(250.0f/255.0f) alpha:1]];
-        
-        datepicker.datePickerMode=UIDatePickerModeDate;
-        
-        NSDate *currDate = [NSDate date];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"ddMMyyyy"];
-        //    NSString *dateString = [dateFormatter stringFromDate:currDate];
-        //    NSLog(@"%@",dateString);
-        
-        [datepicker setMinimumDate:currDate];
-        //    picker.hidden=NO;
-        datepicker.date=[NSDate date];
-        [datepicker addTarget:self action:@selector(datepickerChange:) forControlEvents:UIControlEventValueChanged];
-        [btn addTarget:self action:@selector(DateSaveClk:) forControlEvents:UIControlEventTouchUpInside];
-        [btn1 addTarget:self action:@selector(buttoncross:) forControlEvents:UIControlEventTouchUpInside];
     }
-    else
+    if (self.view.frame.size.height==480)
     {
-        [self.mainscroll setContentOffset:CGPointMake(0.0f,450.0f) animated:YES];
-        PurchaseDateview = [[UIView alloc] initWithFrame:CGRectMake(0,620,414,280)];
-        [PurchaseDateview setBackgroundColor: [UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:1]];
+        [myview removeFromSuperview];
+        //   NSLog(@"4s=%f",self.view.frame.size.height);
+        [self.mainscroll setContentOffset:CGPointMake(0.0f,150.0f) animated:YES];
+        myview = [[UIView alloc] initWithFrame:CGRectMake(0,300,320,300)];
+        [myview setBackgroundColor: [UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:1]];
+        [mainscroll addSubview:myview];
         
-        UIButton *btn=[[UIButton alloc]initWithFrame:CGRectMake(0,235,207,35)];
-        btn.backgroundColor=[UIColor colorWithRed:(235.0f/255.0f) green:(64.0f/255.0f) blue:(38.0f/255.0f) alpha:1];
-        [btn setTitle: @"OK" forState: UIControlStateNormal];
-        [PurchaseDateview addSubview:btn];
+        CKCalendarView *calendar = [[CKCalendarView alloc] initWithStartDay:startMonday];
+        calendar.delegate = self;
+        /*
+         self.dateFormatter = [[NSDateFormatter alloc] init];
+         [self.dateFormatter setDateFormat:@"dd/MM/yyyy"];
+         self.minimumDate = [self.dateFormatter dateFromString:@"20/09/2012"];
+         
+         self.disabledDates = @[
+         //                [self.dateFormatter dateFromString:@"05/01/2013"],
+         //                [self.dateFormatter dateFromString:@"06/01/2013"],
+         //                [self.dateFormatter dateFromString:@"07/01/2013"]
+         ];
+         */
+        calendar.onlyShowCurrentMonth = NO;
+        calendar.adaptHeightToNumberOfWeeksInMonth = YES;
+        
+        calendar.frame = CGRectMake(0,0, myview.frame.size.width,myview.frame.size.height);
+        [myview addSubview:calendar];
         
         
         
-        UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(207,235,207,35)];
-        btn1.backgroundColor=[UIColor colorWithRed:(20.0f/255.0f) green:(123.0f/255.0f) blue:(250.0f/255.0f) alpha:1];
-        [btn1 setTitle: @"CANCEL" forState: UIControlStateNormal];
-        [PurchaseDateview addSubview:btn1];
-        datepicker =[[UIDatePicker alloc]initWithFrame:CGRectMake(0,20,200,10)];
-        [PurchaseDateview addSubview:datepicker];
-        [mainscroll addSubview:PurchaseDateview];
         
-        [datepicker setBackgroundColor: [UIColor colorWithRed:(250.0f/255.0f) green:(250.0f/255.0f) blue:(250.0f/255.0f) alpha:1]];
-        
-        datepicker.datePickerMode=UIDatePickerModeDate;
-        
-        NSDate *currDate = [NSDate date];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"ddMMyyyy"];
-        //    NSString *dateString = [dateFormatter stringFromDate:currDate];
-        //    NSLog(@"%@",dateString);
-        
-        [datepicker setMinimumDate:currDate];
-        
-        //    picker.hidden=NO;
-        datepicker.date=[NSDate date];
-        [datepicker addTarget:self action:@selector(datepickerChange:) forControlEvents:UIControlEventValueChanged];
-        [btn addTarget:self action:@selector(DateSaveClk:) forControlEvents:UIControlEventTouchUpInside];
-        [btn1 addTarget:self action:@selector(buttoncross:) forControlEvents:UIControlEventTouchUpInside];
     }
+
 }
--(void)datepickerChange:(id)sender
-{
-    NSDateFormatter *dateFormat=[[NSDateFormatter alloc]init];
-    dateFormat.dateStyle=NSDateFormatterMediumStyle;
-    [dateFormat setDateFormat:@"dd-MM-yyyy"];
-    NSString *str=[NSString stringWithFormat:@"%@",[dateFormat  stringFromDate:datepicker.date]];
- //   lblPurchaseDt.font = [UIFont fontWithName:@"HelveticaNeueLTPro-UltLt.otf" size:14];
-    lblPurchaseDt.font = [UIFont fontWithName:@"Helvetica Neue" size:14];
-    lblPurchaseDt.textColor=[UIColor blackColor];
-    lblPurchaseDt.text=str;
+#pragma mark - CKCalendarDelegate
+
+- (void)calendar:(CKCalendarView *)calendar configureDateItem:(CKDateItem *)dateItem forDate:(NSDate *)date {
+    //  TODO: play with the coloring if we want to...
     
     
-    //[picker removeFromSuperview];
+    
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy"];
+    //   NSString *Current_date = [formatter stringFromDate:date];
+    
+    
+    
+    
+    
 }
--(void)DateSaveClk:(id)sender
+
+
+
+
+
+- (void)calendar:(CKCalendarView *)calendar didSelectDate:(NSDate *)date
 {
+     mainscroll.scrollEnabled=YES;
     [UIView animateWithDuration:0.4f
      // delay:0.1f
      // options:UIViewAnimationTransitionNone
@@ -774,33 +757,24 @@
     NSDateFormatter *dateFormat=[[NSDateFormatter alloc]init];
     dateFormat.dateStyle=NSDateFormatterMediumStyle;
     [dateFormat setDateFormat:@"dd-MM-yyyy"];
-    NSString *str=[NSString stringWithFormat:@"%@",[dateFormat  stringFromDate:datepicker.date]];
-    lblPurchaseDt.font = [UIFont fontWithName:@"Helvetica Neue" size:14];
-    lblPurchaseDt.textColor=[UIColor blackColor];
-    lblPurchaseDt.text=str;
+    NSString *str=[NSString stringWithFormat:@"%@",[dateFormat  stringFromDate:date]];
+    
+  
+        lblPurchaseDt.font = [UIFont fontWithName:@"Helvetica Neue" size:14];
+        lblPurchaseDt.textColor=[UIColor blackColor];
+        lblPurchaseDt.text=str;
+  
+    
     
     self.navigationItem.rightBarButtonItem=nil;
-    [PurchaseDateview removeFromSuperview];
+    [myview removeFromSuperview];
     
 }
--(void)buttoncross:(id)sender
-{
-    [UIView animateWithDuration:0.4f
-     // delay:0.1f
-     // options:UIViewAnimationTransitionNone
-                     animations:^{
-                         
-                         [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f)];
-                     }
-                     completion:^(BOOL finished){
-                         
-                     }
-     ];
-    lblPurchaseDt.text=@"Purchase Date";
-    lblPurchaseDt.font = [UIFont fontWithName:@"Helvetica Neue" size:14];
-    lblPurchaseDt.textColor=[UIColor colorWithRed:(193.0/255.0) green:(193.0/255.0) blue:(193.0/255.0) alpha:1];
-    self.navigationItem.rightBarButtonItem=nil;
-    [PurchaseDateview removeFromSuperview];
+
+
+
+- (BOOL)calendar:(CKCalendarView *)calendar willChangeToMonth:(NSDate *)date {
     
+    return YES;
 }
 @end

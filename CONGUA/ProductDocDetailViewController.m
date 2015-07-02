@@ -169,7 +169,30 @@
         NSString *str=[NSString stringWithFormat:@"%@DownloadFile/%@?CustomerCode=%@&FileName=%@",URL_LINK,AuthToken,CustomerCode,FileName];
         NSLog(@"str=%@",str);
         
-         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    //     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        
+        UIImageView *downloadimg=[[UIImageView alloc]init];
+        [downloadimg sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"PlaceholderImg"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        [library saveImage:downloadimg.image toAlbum:@"ConguaFile" withCompletionBlock:^(NSError *error) {
+            
+            if (error!=nil)
+            {
+                NSLog(@"Noooo error: %@", [error description]);
+                
+                //  [busyview removeFromSuperview];
+            }
+            else{
+                
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Image saved successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                    [alert show];
+                
+            }
+        }];
+        
+        
+        
     //    NSURL *url = [NSURL URLWithString:str];
     //    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     //    [WebView loadRequest:requestObj];

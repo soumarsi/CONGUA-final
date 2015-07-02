@@ -124,10 +124,11 @@
         NSLog(@"str=%@",str);
         
         
-        NSURL *url = [NSURL URLWithString:str];
-        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-        [WebView loadRequest:requestObj];
-        
+     //   NSURL *url = [NSURL URLWithString:str];
+    //    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    //    [WebView loadRequest:requestObj];
+        [ProductImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str]] placeholderImage:[UIImage imageNamed:@"PlaceholderImg"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+        ProductImgView.contentMode=UIViewContentModeScaleAspectFit;
         
     }
     @catch (NSException *exception)

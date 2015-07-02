@@ -14,7 +14,7 @@
 @end
 
 @implementation PortFolio2ViewController
-@synthesize ProductCode,portfoliotabview,tblDoc,tblPhoto,lblUserName,mainscroll;
+@synthesize ProductCode,portfoliotabview,tblDoc,tblPhoto,lblUserName,mainscroll,btnPhoto,btnPhotoPlus,photoUpperLineView,lblPhoto;
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -39,7 +39,7 @@
     }
     else if([UIScreen mainScreen].bounds.size.width>320)
     {
-        mainscroll.contentSize = CGSizeMake(0, 530);
+        mainscroll.contentSize = CGSizeMake(0, 540);
     }
     [self ProductViewUrl];
     
@@ -202,6 +202,49 @@
                     
                     NSLog(@"summary name=%@",ArrImage);
                     [tblPhoto reloadData];
+                    if ([UIScreen mainScreen].bounds.size.width==320)
+                    {
+                        if (ArrDoc.count>2)
+                        {
+                            
+                            mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+44*ArrDoc.count-2*44);
+                            tblDoc.frame=CGRectMake(tblDoc.frame.origin.x, tblDoc.frame.origin.y, tblDoc.frame.size.width,44*ArrDoc.count);
+                            photoUpperLineView.frame=CGRectMake(photoUpperLineView.frame.origin.x, tblDoc.frame.origin.y+tblDoc.frame.size.height+5, photoUpperLineView.frame.size.width,photoUpperLineView.frame.size.height);
+                            btnPhoto.frame=CGRectMake(btnPhoto.frame.origin.x, photoUpperLineView.frame.origin.y+3, btnPhoto.frame.size.width,btnPhoto.frame.size.height);
+                            lblPhoto.frame=CGRectMake(lblPhoto.frame.origin.x, photoUpperLineView.frame.origin.y+7, lblPhoto.frame.size.width,lblPhoto.frame.size.height);
+                            btnPhotoPlus.frame=CGRectMake(btnPhotoPlus.frame.origin.x, photoUpperLineView.frame.origin.y+10, btnPhotoPlus.frame.size.width,btnPhotoPlus.frame.size.height);
+                            tblPhoto.frame=CGRectMake(tblPhoto.frame.origin.x, btnPhoto.frame.origin.y+btnPhoto.frame.size.height+5, tblPhoto.frame.size.width,tblPhoto.frame.size.height);
+                            if (ArrImage.count>2)
+                            {
+                                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+44*ArrImage.count-2*44);
+                                tblPhoto.frame=CGRectMake(tblPhoto.frame.origin.x, tblPhoto.frame.origin.y, tblPhoto.frame.size.width,44*ArrImage.count);
+                            }
+                            
+                        }
+                    }
+                    else if([UIScreen mainScreen].bounds.size.width>320)
+                    {
+                        if (ArrDoc.count>3)
+                        {
+                            
+                            mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+44*ArrDoc.count-3*44);
+                            tblDoc.frame=CGRectMake(tblDoc.frame.origin.x, tblDoc.frame.origin.y, tblDoc.frame.size.width,44*ArrDoc.count);
+                            photoUpperLineView.frame=CGRectMake(photoUpperLineView.frame.origin.x, tblDoc.frame.origin.y+tblDoc.frame.size.height+5, photoUpperLineView.frame.size.width,photoUpperLineView.frame.size.height);
+                             btnPhoto.frame=CGRectMake(btnPhoto.frame.origin.x, photoUpperLineView.frame.origin.y+3, btnPhoto.frame.size.width,btnPhoto.frame.size.height);
+                             lblPhoto.frame=CGRectMake(lblPhoto.frame.origin.x, photoUpperLineView.frame.origin.y+7, lblPhoto.frame.size.width,lblPhoto.frame.size.height);
+                            btnPhotoPlus.frame=CGRectMake(btnPhotoPlus.frame.origin.x, photoUpperLineView.frame.origin.y+10, btnPhotoPlus.frame.size.width,btnPhotoPlus.frame.size.height);
+                           tblPhoto.frame=CGRectMake(tblPhoto.frame.origin.x, btnPhoto.frame.origin.y+btnPhoto.frame.size.height+5, tblPhoto.frame.size.width,tblPhoto.frame.size.height);
+                            if (ArrImage.count>2)
+                            {
+                                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+44*ArrImage.count-2*44);
+                                tblPhoto.frame=CGRectMake(tblPhoto.frame.origin.x, tblPhoto.frame.origin.y, tblPhoto.frame.size.width,44*ArrImage.count);
+                            }
+                            
+                        }
+                        
+                        
+                    }
+
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
                 {

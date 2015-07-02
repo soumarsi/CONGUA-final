@@ -19,6 +19,7 @@
     NSString *CustomerCode,*AuthToken;
     NSMutableArray *ArrPortDetail,*ArrInsureDetail,*ArrDoc;
     UrlconnectionObject *urlobj;
+    bool didappear;
 }
 @property (strong, nonatomic)  NSString *PortfolioCode;
 - (IBAction)leftClk:(id)sender;
@@ -35,6 +36,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *tblDoc;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
+@property (weak, nonatomic) IBOutlet UILabel *lblTolalValuable;
+@property (weak, nonatomic) IBOutlet UILabel *lblTotalCover1;
+@property (weak, nonatomic) IBOutlet UIImageView *dividerImg;
 
 
 - (IBAction)PortfolioDetailClk:(id)sender;

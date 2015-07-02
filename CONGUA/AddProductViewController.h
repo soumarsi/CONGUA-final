@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UrlconnectionObject.h"
 #import "login.h"
+#import "CKCalendarView.h"
 @interface AddProductViewController : UIViewController
 {
     UIView *loader_shadow_View,*Producttypeview,*PurchaseDateview;
@@ -19,6 +20,7 @@
     UIPickerView *producttypepicker;
     UIDatePicker *datepicker;
     UIButton *btnProducttypesave,*btnproducttypeCancel;
+    UIView *myview;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (weak, nonatomic) IBOutlet UITextField *txtproductName;

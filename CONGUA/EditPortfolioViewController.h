@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UrlconnectionObject.h"
 #import "login.h"
+#import "CKCalendarView.h"
 @interface EditPortfolioViewController : UIViewController
 {
     NSString *portType,*CustomerCode,*AuthToken,*Isinsured,*PortfolioCode,*IsPriviouslyInsured;
@@ -20,6 +21,7 @@
     UIView *myview;
     NSMutableArray *ArrPortDetail,*ArrInsureDetail;
     UIPickerView *mypicker;
+    bool start;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (weak, nonatomic) IBOutlet UITextField *txtPortfolioName;

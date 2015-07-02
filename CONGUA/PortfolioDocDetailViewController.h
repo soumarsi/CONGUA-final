@@ -10,6 +10,8 @@
 #import "UrlconnectionObject.h"
 #import "login.h"
 #import "EditPortfolioDocViewController.h"
+#import "ALAssetsLibrary+CustomPhotoAlbum.h"
+#import "UIImageView+WebCache.h"
 @interface PortfolioDocDetailViewController : UIViewController
 {
     NSString *CustomerCode,*AuthToken,*PortfolioCode,*FileName;
