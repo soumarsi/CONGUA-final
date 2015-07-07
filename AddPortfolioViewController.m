@@ -53,7 +53,7 @@
     
     if ([UIScreen mainScreen].bounds.size.width>320)
     {
-        [self.mainscroll setContentSize:CGSizeMake(320.0f,430.0f)];
+        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width,595.0f)];
     
         
         
@@ -98,10 +98,10 @@
     Isinsured=@"0";
     
     
-    self.portnmtxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Portfolio Name" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
-    self.pcodetxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Post Code" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
-    self.inametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Insurance Name" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
-    self.vcovertxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Value Covered" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
+ //   self.portnmtxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Portfolio Name" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
+ //   self.pcodetxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Post Code" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
+//    self.inametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Insurance Name" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
+//    self.vcovertxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Value Covered" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
     self.startdatelbl.textColor=[UIColor grayColor];
      self.enddatelbl.textColor=[UIColor grayColor];
      self.lbladdress.textColor=[UIColor grayColor];
@@ -127,6 +127,39 @@
     [toolbar1 setItems:[NSArray arrayWithObjects:flexibleSpace1, barButtonItem1, nil]];
     // Set the toolbar as accessory view of an UITextField object
     self.vcovertxt.inputAccessoryView = toolbar1;
+    
+    //button design
+    [btnHome.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
+    btnHome.layer.borderWidth=0.5;
+    btnHome.layer.cornerRadius=15.0f;
+    [btnHome setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [[btnHome layer] setBorderWidth:0.5f];
+    [[btnHome layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+    btnHome.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
+    
+    [btnBusiness.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
+    btnBusiness.layer.borderWidth=0.5;
+    btnBusiness.layer.cornerRadius=15.0f;
+    //  [btnHome setTitleColor:[UIColor colorWithRed:(115.0f/255.0) green:(115.0f/255.0) blue:(115.0f/255.0) alpha:3] forState:UIControlStateNormal];
+    [[btnBusiness layer] setBorderWidth:0.5f];
+    [[btnBusiness layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+    //  [btnHome setBackgroundColor:[UIColor whiteColor]];
+    
+    [btnPersonal.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
+    btnPersonal.layer.borderWidth=0.5;
+    btnPersonal.layer.cornerRadius=15.0f;
+    //  [btnHome setTitleColor:[UIColor colorWithRed:(115.0f/255.0) green:(115.0f/255.0) blue:(115.0f/255.0) alpha:3] forState:UIControlStateNormal];
+    [[btnPersonal layer] setBorderWidth:0.5f];
+    [[btnPersonal layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+    //  [btnHome setBackgroundColor:[UIColor whiteColor]];
+    
+    [btnOther.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
+    btnOther.layer.borderWidth=0.5;
+    btnOther.layer.cornerRadius=15.0f;
+    //  [btnHome setTitleColor:[UIColor colorWithRed:(115.0f/255.0) green:(115.0f/255.0) blue:(115.0f/255.0) alpha:3] forState:UIControlStateNormal];
+    [[btnOther layer] setBorderWidth:0.5f];
+    [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+    //  [btnHome setBackgroundColor:[UIColor whiteColor]];
 
 }
 -(void)resetView1
@@ -145,12 +178,13 @@
     //UITextField *yourTextField;
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
     
+    
     if(textField==self.inametxt)
     {
         [myview removeFromSuperview];
         if ([UIScreen mainScreen].bounds.size.width>320)
         {
-          //  [self.mainscroll setContentOffset:CGPointMake(0.0f, 100.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 100.0f) animated:YES];
         }
         else
         {
@@ -163,7 +197,7 @@
         [myview removeFromSuperview];
         if ([UIScreen mainScreen].bounds.size.width>320)
         {
-            [self.mainscroll setContentOffset:CGPointMake(0.0f, 150.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 300.0f) animated:YES];
         }
         else
         {
@@ -262,10 +296,10 @@
     [myview removeFromSuperview];
     if(self.view.frame.size.width==375)
     {
-        [self.mainscroll setContentOffset:CGPointMake(0.0f,200.0f) animated:YES];
-        myview = [[UIView alloc] initWithFrame:CGRectMake(0,520,375,300)];
-        [myview setBackgroundColor: [UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:1]];
-         [_mainscroll addSubview:myview];
+      //  [self.mainscroll setContentOffset:CGPointMake(0.0f,200.0f) animated:YES];
+        myview = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width,self.view.frame.size.height)];
+        [myview setBackgroundColor:[[UIColor blackColor]colorWithAlphaComponent:0.8]];
+         [self.view addSubview:myview];
         
         CKCalendarView *calendar = [[CKCalendarView alloc] initWithStartDay:startMonday];
         calendar.delegate = self;
@@ -1265,7 +1299,21 @@
         // hide insurance view
         [UIView animateWithDuration:0.5 animations:^{
             
+            if(self.view.frame.size.width==320)
+            {
+                
+                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-250);
+                // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
+            }
             
+            
+            
+            if ([UIScreen mainScreen].bounds.size.width>320)
+            {
+                
+                //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
+                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-250);
+            }
             
             
             
@@ -1294,7 +1342,21 @@
         [UIView animateWithDuration:0.5 animations:^{
             
             btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+InsuranceView.frame.size.height+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+            if(self.view.frame.size.width==320)
+            {
+                
+                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+250);
+                // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
+            }
             
+            
+            
+            if ([UIScreen mainScreen].bounds.size.width>320)
+            {
+                
+                //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
+                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+250);
+            }
             
             
         } completion:^(BOOL finished) {
@@ -1304,6 +1366,7 @@
 
     }
 }
+/*
 - (IBAction)HasInsureClk:(id)sender
 {
     if (btnhasInsure.selected==NO) {
@@ -1358,22 +1421,43 @@
        
             }
 }
-
+*/
 - (IBAction)HomeClick:(id)sender
 {
     if (btnHome.selected==NO)
     {
         btnHome.selected=YES;
-        homeImg.image=[UIImage imageNamed:@"redioOn"];
+        [btnHome.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
+        btnHome.layer.borderWidth=0.5;
+        btnHome.layer.cornerRadius=15.0f;
+        [btnHome setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [[btnHome layer] setBorderWidth:0.5f];
+        [[btnHome layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnHome.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
         
         btnBusiness.selected=NO;
-        businessImg.image=[UIImage imageNamed:@"redioOff"];
+        btnBusiness.layer.borderWidth=0.5;
+        btnBusiness.layer.cornerRadius=15.0f;
+        [btnBusiness setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnBusiness layer] setBorderWidth:0.5f];
+        [[btnBusiness layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnBusiness.backgroundColor=[UIColor whiteColor];
         
         btnPersonal.selected=NO;
-        personalImg.image=[UIImage imageNamed:@"redioOff"];
+        btnPersonal.layer.borderWidth=0.5;
+        btnPersonal.layer.cornerRadius=15.0f;
+        [btnPersonal setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnPersonal layer] setBorderWidth:0.5f];
+        [[btnPersonal layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnPersonal.backgroundColor=[UIColor whiteColor];
         
         btnOther.selected=NO;
-        otherImg.image=[UIImage imageNamed:@"redioOff"];
+        btnOther.layer.borderWidth=0.5;
+        btnOther.layer.cornerRadius=15.0f;
+        [btnOther setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnOther layer] setBorderWidth:0.5f];
+        [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnOther.backgroundColor=[UIColor whiteColor];
         portType=@"1";
     }
 }
@@ -1383,16 +1467,37 @@
     if (btnBusiness.selected==NO)
     {
         btnHome.selected=NO;
-        homeImg.image=[UIImage imageNamed:@"redioOff"];
+        btnHome.layer.borderWidth=0.5;
+        btnHome.layer.cornerRadius=15.0f;
+        [btnHome setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnHome layer] setBorderWidth:0.5f];
+        [[btnHome layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnHome.backgroundColor=[UIColor whiteColor];
         
         btnBusiness.selected=YES;
-        businessImg.image=[UIImage imageNamed:@"redioOn"];
+        [btnBusiness.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
+        btnBusiness.layer.borderWidth=0.5;
+        btnBusiness.layer.cornerRadius=15.0f;
+        [btnBusiness setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [[btnBusiness layer] setBorderWidth:0.5f];
+        [[btnBusiness layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnBusiness.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
         
         btnPersonal.selected=NO;
-        personalImg.image=[UIImage imageNamed:@"redioOff"];
+        btnPersonal.layer.borderWidth=0.5;
+        btnPersonal.layer.cornerRadius=15.0f;
+        [btnPersonal setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnPersonal layer] setBorderWidth:0.5f];
+        [[btnPersonal layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnPersonal.backgroundColor=[UIColor whiteColor];
         
         btnOther.selected=NO;
-        otherImg.image=[UIImage imageNamed:@"redioOff"];
+        btnOther.layer.borderWidth=0.5;
+        btnOther.layer.cornerRadius=15.0f;
+        [btnOther setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnOther layer] setBorderWidth:0.5f];
+        [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnOther.backgroundColor=[UIColor whiteColor];
         portType=@"2";
     }
 }
@@ -1402,16 +1507,38 @@
     if (btnPersonal.selected==NO)
     {
         btnHome.selected=NO;
-        homeImg.image=[UIImage imageNamed:@"redioOff"];
+        btnHome.layer.borderWidth=0.5;
+        btnHome.layer.cornerRadius=15.0f;
+        [btnHome setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnHome layer] setBorderWidth:0.5f];
+        [[btnHome layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnHome.backgroundColor=[UIColor whiteColor];
         
         btnBusiness.selected=NO;
-        businessImg.image=[UIImage imageNamed:@"redioOff"];
+        btnBusiness.layer.borderWidth=0.5;
+        btnBusiness.layer.cornerRadius=15.0f;
+        [btnBusiness setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnBusiness layer] setBorderWidth:0.5f];
+        [[btnBusiness layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnBusiness.backgroundColor=[UIColor whiteColor];
         
         btnPersonal.selected=YES;
-        personalImg.image=[UIImage imageNamed:@"redioOn"];
+        [btnPersonal.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
+        btnPersonal.layer.borderWidth=0.5;
+        btnPersonal.layer.cornerRadius=15.0f;
+        [btnPersonal setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [[btnPersonal layer] setBorderWidth:0.5f];
+        [[btnPersonal layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnPersonal.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
         
         btnOther.selected=NO;
-        otherImg.image=[UIImage imageNamed:@"redioOff"];
+        btnOther.layer.borderWidth=0.5;
+        btnOther.layer.cornerRadius=15.0f;
+        [btnOther setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnOther layer] setBorderWidth:0.5f];
+        [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnOther.backgroundColor=[UIColor whiteColor];
+        
         portType=@"3";
     }
 
@@ -1422,16 +1549,37 @@
     if (btnOther.selected==NO)
     {
         btnHome.selected=NO;
-        homeImg.image=[UIImage imageNamed:@"redioOff"];
+        btnHome.layer.borderWidth=0.5;
+        btnHome.layer.cornerRadius=15.0f;
+        [btnHome setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnHome layer] setBorderWidth:0.5f];
+        [[btnHome layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnHome.backgroundColor=[UIColor whiteColor];
         
         btnBusiness.selected=NO;
-        businessImg.image=[UIImage imageNamed:@"redioOff"];
+        btnBusiness.layer.borderWidth=0.5;
+        btnBusiness.layer.cornerRadius=15.0f;
+        [btnBusiness setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnBusiness layer] setBorderWidth:0.5f];
+        [[btnBusiness layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnBusiness.backgroundColor=[UIColor whiteColor];
         
         btnPersonal.selected=NO;
-        personalImg.image=[UIImage imageNamed:@"redioOff"];
+        btnPersonal.layer.borderWidth=0.5;
+        btnPersonal.layer.cornerRadius=15.0f;
+        [btnPersonal setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnPersonal layer] setBorderWidth:0.5f];
+        [[btnPersonal layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnPersonal.backgroundColor=[UIColor whiteColor];
         
         btnOther.selected=YES;
-        otherImg.image=[UIImage imageNamed:@"redioOn"];
+        [btnOther.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
+        btnOther.layer.borderWidth=0.5;
+        btnOther.layer.cornerRadius=15.0f;
+        [btnOther setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [[btnOther layer] setBorderWidth:0.5f];
+        [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnOther.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
         portType=@"4";
     }
 }

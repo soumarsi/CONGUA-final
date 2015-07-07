@@ -17,5 +17,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *celldetailslbl;
 @property (weak, nonatomic) IBOutlet UILabel *lblactive;
 @property (weak, nonatomic) IBOutlet UILabel *lblinsured;
+@property (weak, nonatomic) IBOutlet UIImageView *tickImg;
 
 @end

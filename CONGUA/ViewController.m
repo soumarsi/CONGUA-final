@@ -255,14 +255,27 @@ menu *menuview;
        
         cell.celltitlelbl.text=[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"PortfolioName"];
         cell.celladdresslbl.text=[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"Address1"];
-        cell.lblactive.text=[NSString stringWithFormat:@"%@",[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"ProductCount"]];
+           
+            if([[NSString stringWithFormat:@"%@",[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"ProductCount"]] isEqualToString:@"1"])
+            {
+                 cell.lblactive.text=[NSString stringWithFormat:@"%@ %@ %@",@"Total",[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"ProductCount"],@"item"];
+            }
+            else
+            {
+                 cell.lblactive.text=[NSString stringWithFormat:@"%@ %@ %@",@"Total",[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"ProductCount"],@"items"];
+            }
+       
             if([[NSString stringWithFormat:@"%@",[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]] isEqualToString:@"0"])
             {
-                 cell.lblinsured.text=@"NO";
+                 cell.lblinsured.text=@"Not Insured";
+                cell.lblinsured.textColor=[UIColor blackColor];
+                cell.tickImg.hidden=YES;
             }
             else if([[NSString stringWithFormat:@"%@",[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]] isEqualToString:@"1"])
             {
-                cell.lblinsured.text=@"YES";
+                cell.lblinsured.text=@"Insured";
+                cell.lblinsured.textColor=[UIColor colorWithRed:(32.0/255.0) green:(138.0/255.0) blue:(83.0/255.0) alpha:1.0];
+                cell.tickImg.hidden=NO;
             }
          
      //   cell.lblinsured.text=[NSString stringWithFormat:@"%@",[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]];

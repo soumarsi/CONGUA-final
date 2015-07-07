@@ -490,71 +490,117 @@
 {
     if([self textFieldBlankorNot:_titletxt.text].length==0)
     {
+        /*
         self.titletxt.text=Nil;
         UIColor *color = [UIColor redColor];
         _titletxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Title can't Left Blank" attributes:@{NSForegroundColorAttributeName: color}];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Title can't Left Blank." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
         return NO;
     }
     if([self textFieldBlankorNot:_fnametxt.text].length==0)
     {
+        /*
         self.fnametxt.text=Nil;
         UIColor *color = [UIColor redColor];
         _fnametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Firstname can't Left Blank" attributes:@{NSForegroundColorAttributeName: color}];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"First name can't Left Blank." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
         return NO;
     }
     if([self textFieldBlankorNot:_lnametxt.text].length==0)
     {
+        /*
         self.lnametxt.text=Nil;
         UIColor *color = [UIColor redColor];
         _lnametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Lastame can't Left Blank" attributes:@{NSForegroundColorAttributeName: color}];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Last name can't Left Blank." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
         return NO;
     }
     
     BOOL r=[self validateEmailWithString:self.emailtxt.text];
     if (r==NO)
     {
+        /*
         self.emailtxt.text=Nil;
-        //self.emailtxt.placeholder=@"Put Proper Email Address";
         UIColor *color = [UIColor redColor];
         _emailtxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Put Proper Email Address" attributes:@{NSForegroundColorAttributeName: color}];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Put Proper Email Address." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
         return NO;
     }
     
     if([self myMobileNumberValidate:_phnotxt.text]==FALSE)
     {
-        self.phnotxt.text=Nil;
+      /*  self.phnotxt.text=Nil;
         UIColor *color = [UIColor redColor];
         _phnotxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Put Proper Phone Number" attributes:@{NSForegroundColorAttributeName: color}];
+       */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Put Proper Phone Number." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
         return NO;
     }
     if([self textFieldBlankorNot:_addrtxt.text].length==0)
     {
+        /*
         self.addrtxt.text=Nil;
         UIColor *color = [UIColor redColor];
         _addrtxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Address can't Left Blank" attributes:@{NSForegroundColorAttributeName: color}];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Address can't Left Blank." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
         return NO;
     }
     if([self textFieldBlankorNot:_pcodetxt.text].length==0)
     {
+        /*
         self.pcodetxt.text=Nil;
         UIColor *color = [UIColor redColor];
         _pcodetxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Postal Code can't Left Blank" attributes:@{NSForegroundColorAttributeName: color}];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Postal Code can't Left Blank." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
+
         return NO;
     }
     
     if([self textFieldBlankorNot:_passtxt.text].length==0)
     {
+        /*
         self.passtxt.text=Nil;
         UIColor *color = [UIColor redColor];
         _passtxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password can't Left Blank" attributes:@{NSForegroundColorAttributeName: color}];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Password can't Left Blank." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
         return NO;
     }
     
     if(![_passtxt.text isEqualToString:_cpasstxt.text])
     {
+        /*
         self.cpasstxt.text=Nil;
         UIColor *color = [UIColor redColor];
         _cpasstxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password Mismatch" attributes:@{NSForegroundColorAttributeName: color}];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Password Mismatch." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
+        return NO;
+    }
+    if([self textFieldBlankorNot:txtcountry.text].length==0)
+    {
+        /*
+         self.passtxt.text=Nil;
+         UIColor *color = [UIColor redColor];
+         _passtxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password can't Left Blank" attributes:@{NSForegroundColorAttributeName: color}];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Country name can't Left Blank." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
         return NO;
     }
     return YES;

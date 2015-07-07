@@ -32,6 +32,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnhasInsure;
 @property (weak, nonatomic) IBOutlet UIImageView *toggleimg;
 @property (weak, nonatomic) IBOutlet UISwitch *InsuredSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *btnHome;
+@property (weak, nonatomic) IBOutlet UIButton *btnBusiness;
+@property (weak, nonatomic) IBOutlet UIButton *btnPersonal;
+@property (weak, nonatomic) IBOutlet UIButton *btnOther;
+
+
+
 
 - (IBAction)PortTypeClk:(id)sender;
 
@@ -48,10 +55,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *businessImg;
 @property (weak, nonatomic) IBOutlet UIImageView *personalImg;
 @property (weak, nonatomic) IBOutlet UIImageView *otherImg;
-@property (weak, nonatomic) IBOutlet UIButton *btnHome;
-@property (weak, nonatomic) IBOutlet UIButton *btnBusiness;
-@property (weak, nonatomic) IBOutlet UIButton *btnPersonal;
-@property (weak, nonatomic) IBOutlet UIButton *btnOther;
+
 
 
 
