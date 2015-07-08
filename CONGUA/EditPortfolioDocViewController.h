@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UrlconnectionObject.h"
 #import "login.h"
+#import "UIImageView+WebCache.h"
 @interface EditPortfolioDocViewController : UIViewController
 {
     UIView *loader_shadow_View,*Doctypeview;
@@ -28,6 +29,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnDocType;
 @property (weak, nonatomic) IBOutlet UIButton *btnsubmit;
 @property (weak, nonatomic) IBOutlet UIButton *btnAddDoc;
+@property (weak, nonatomic) IBOutlet UIButton *btnInsureCertificate;
+@property (weak, nonatomic) IBOutlet UIButton *btnPurchaseReceipt;
+@property (weak, nonatomic) IBOutlet UIButton *btnOther;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 
@@ -35,6 +39,9 @@
 - (IBAction)AddDocumentClick:(id)sender;
 - (IBAction)SubmitClick:(id)sender;
 - (IBAction)BackClick:(id)sender;
+- (IBAction)InsureCertificateClick:(id)sender;
+- (IBAction)PurchaseReceiptClick:(id)sender;
+- (IBAction)OtherClick:(id)sender;
 
 
 

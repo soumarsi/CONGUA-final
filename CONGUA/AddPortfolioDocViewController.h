@@ -30,8 +30,17 @@
 @property (weak, nonatomic) IBOutlet UIImageView *DocImage;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (weak, nonatomic) IBOutlet UIButton *btnAddDoc;
-
+@property (strong, nonatomic) UIImage *documentImage;
 @property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
+@property (weak, nonatomic) IBOutlet UIButton *btnInsureCertificate;
+@property (weak, nonatomic) IBOutlet UIButton *btnPurchaseReceipt;
+@property (weak, nonatomic) IBOutlet UIButton *btnOther;
+
+
+
+- (IBAction)InsureCertificateClick:(id)sender;
+- (IBAction)PurchaseReceiptClick:(id)sender;
+- (IBAction)OtherClick:(id)sender;
 
 
 - (IBAction)BackClk:(id)sender;

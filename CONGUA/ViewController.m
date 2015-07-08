@@ -298,8 +298,28 @@ menu *menuview;
     {
         cell.celltitlelbl.text=[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioName"];
         cell.celladdresslbl.text=[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"Address1"];
-        cell.lblactive.text=[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductCount"]];
-        cell.lblinsured.text=[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]];
+        
+        if([[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductCount"]] isEqualToString:@"1"])
+        {
+            cell.lblactive.text=[NSString stringWithFormat:@"%@ %@ %@",@"Total",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductCount"],@"item"];
+        }
+        else
+        {
+            cell.lblactive.text=[NSString stringWithFormat:@"%@ %@ %@",@"Total",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductCount"],@"items"];
+        }
+        
+        if([[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]] isEqualToString:@"0"])
+        {
+            cell.lblinsured.text=@"Not Insured";
+            cell.lblinsured.textColor=[UIColor blackColor];
+            cell.tickImg.hidden=YES;
+        }
+        else if([[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]] isEqualToString:@"1"])
+        {
+            cell.lblinsured.text=@"Insured";
+            cell.lblinsured.textColor=[UIColor colorWithRed:(32.0/255.0) green:(138.0/255.0) blue:(83.0/255.0) alpha:1.0];
+            cell.tickImg.hidden=NO;
+        }
         
         if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==1) {
             cell.cellIcon.image=[UIImage imageNamed:@"home"];
@@ -335,21 +355,34 @@ menu *menuview;
     
     if (Issearch==0)
     {
+        
+        
         if (ArrSummary.count>0)
         {
+           
+            
+             [[NSUserDefaults standardUserDefaults] setObject:[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"PortfolioCode"]  forKey:@"PortfolioCode"];
+            
+           
+            
+            
             portfoliodetailpageViewController * pdvc=[self.storyboard instantiateViewControllerWithIdentifier:@"portfoliodetailpageviewcontroller"];
-            [[NSUserDefaults standardUserDefaults] setObject:[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"PortfolioCode"]  forKey:@"PortfolioCode"];
+         //   pdvc.PortfolioCode=[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"PortfolioCode"];
             [self.navigationController  pushViewController:pdvc animated:YES];
         }
         
-     //   pdvc.PortfolioCode=[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"PortfolioCode"];
+       
     }
     else if (Issearch==1)
     {
+        
+        if (ArrFilter.count>0)
+        {
         portfoliodetailpageViewController * pdvc=[self.storyboard instantiateViewControllerWithIdentifier:@"portfoliodetailpageviewcontroller"];
         [[NSUserDefaults standardUserDefaults] setObject:[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioCode"]  forKey:@"PortfolioCode"];
         [self.navigationController  pushViewController:pdvc animated:YES];
       //  pdvc.PortfolioCode=[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioCode"];
+        }
     }
     
 

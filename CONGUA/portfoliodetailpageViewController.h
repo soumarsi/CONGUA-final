@@ -20,6 +20,8 @@
     NSMutableArray *ArrPortDetail,*ArrInsureDetail,*ArrDoc;
     UrlconnectionObject *urlobj;
     bool didappear;
+    UIActionSheet *actionsheet;
+    UIImage *docImage;
 }
 @property (strong, nonatomic)  NSString *PortfolioCode;
 - (IBAction)leftClk:(id)sender;

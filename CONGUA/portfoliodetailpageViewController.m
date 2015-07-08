@@ -9,16 +9,30 @@
 #import "portfoliodetailpageViewController.h"
 #import "portfolioitemViewController.h"
 
-@interface portfoliodetailpageViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface portfoliodetailpageViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate>
 
 @end
 
 @implementation portfoliodetailpageViewController
 @synthesize PortfolioCode,lbladdress,lblTitle,lblexpiryDate,lblinsureexpiry,lblNoOfItem,lbltotalcover,lbltotalValue,iconImage,tblDoc,lblUserName,mainscroll,lblTolalValuable,lblTotalCover1,dividerImg;
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    
+    
+
+    
+
+    
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
+    
+   
     if ([UIScreen mainScreen].bounds.size.width==320)
     {
     mainscroll.contentSize = CGSizeMake(0, 450);
@@ -39,13 +53,33 @@
     ArrInsureDetail=[[NSMutableArray alloc]init];
     ArrDoc=[[NSMutableArray alloc]init];
     
-    [self PortfolioViewUrl];
+    [self DocShowUrl];
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if ([UIScreen mainScreen].bounds.size.width==320)
+    {
+        mainscroll.contentSize = CGSizeMake(0, 450);
+    }
+    else if([UIScreen mainScreen].bounds.size.width>320)
+    {
+        mainscroll.contentSize = CGSizeMake(0, 590);
+    }
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    CustomerCode=[prefs valueForKey:@"CustomerCode"];
+    AuthToken=[prefs valueForKey:@"AuthToken"];
+    PortfolioCode=[prefs valueForKey:@"PortfolioCode"];
+    NSLog(@"portfolio code=%@",PortfolioCode);
+    
+    urlobj=[[UrlconnectionObject alloc]init];
+    ArrPortDetail=[[NSMutableArray alloc]init];
+    ArrInsureDetail=[[NSMutableArray alloc]init];
+    ArrDoc=[[NSMutableArray alloc]init];
+     [self PortfolioViewUrl];
     // Do any additional setup after loading the view.
-     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+     //NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
    lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
     didappear=1;
 }
@@ -237,7 +271,7 @@
     @try {
         
         
-        [ArrDoc removeAllObjects];
+        
         NSString *str=[NSString stringWithFormat:@"%@GetPortfolioDocInfoList/%@?PortfolioCode=%@",URL_LINK,AuthToken,PortfolioCode];
         NSLog(@"str=%@",str);
         BOOL net=[urlobj connectedToNetwork];
@@ -246,6 +280,7 @@
                 
                 if ([[result valueForKey:@"IsSuccess"] integerValue]==1)
                 {
+                    [ArrDoc removeAllObjects];
                     for ( NSDictionary *tempDict1 in  [result objectForKey:@"ResultInfo"])
                     {
                         [ArrDoc addObject:tempDict1];
@@ -357,13 +392,58 @@
 
 - (IBAction)AddDocumentClk:(id)sender
 {
+    /*
     AddPortfolioDocViewController *addportvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPortfolioDocViewControllersid"];
     [self.navigationController  pushViewController:addportvc animated:YES];
- //   [self presentViewController:addportvc
-  //                     animated:YES
-   //                  completion:NULL];
-}
+     */
+    actionsheet=[[UIActionSheet alloc]initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Library", nil];
+    [actionsheet showInView:self.view];
+ }
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    picker.delegate = (id)self;
+    picker.allowsEditing = YES;
+    
+    switch (buttonIndex) {
+            
+        case 0:
+            
+            
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self.navigationController presentViewController:picker animated:YES completion:NULL];
+            
+            break;
+            
+        case 1:
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self.navigationController presentViewController:picker animated:YES completion:NULL];
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+   
+    docImage=info[UIImagePickerControllerEditedImage];
+    AddPortfolioDocViewController *addportvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPortfolioDocViewControllersid"];
+    addportvc.documentImage=docImage;
+    [self.navigationController  pushViewController:addportvc animated:YES];
+   
+    //   [DocImage setUserInteractionEnabled:YES];
+    
+    
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    
+    
+    
+}
 - (IBAction)EditPortfolioClk:(id)sender
 {
     EditPortfolioViewController * pdvc=[self.storyboard instantiateViewControllerWithIdentifier:@"EditPortfolioViewControllersid"];

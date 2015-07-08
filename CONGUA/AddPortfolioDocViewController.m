@@ -13,16 +13,24 @@
 @end
 
 @implementation AddPortfolioDocViewController
-@synthesize mainscroll,btnDocType,txtDocName,txtvwDescription,lblDesc,lblDocType,DocImage,btnSubmit,btnAddDoc;
+@synthesize mainscroll,btnDocType,txtDocName,txtvwDescription,lblDesc,lblDocType,DocImage,btnSubmit,btnAddDoc,documentImage,btnOther,btnInsureCertificate,btnPurchaseReceipt;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    if(self.view.frame.size.height==480)
+    {
+        //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];
+        
+        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 520)];
+    }
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
     AuthToken=[prefs valueForKey:@"AuthToken"];
     PortfolioCode=[prefs valueForKey:@"PortfolioCode"];
     NSLog(@"portfolio code=%@",PortfolioCode);
+    
+    DocImage.image=documentImage;
     
     urlobj=[[UrlconnectionObject alloc]init];
     
@@ -38,9 +46,36 @@
     
     ArrDocType=[[NSMutableArray alloc]initWithObjects:@"Purchase Receipt",@"Insurance Certificate",@"Others",nil];
     
+    /*
     txtDocName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Document Name" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
     lblDesc.textColor=[UIColor grayColor];
     lblDocType.textColor=[UIColor grayColor];
+     */
+    
+    btnInsureCertificate.selected=YES;
+    DocType1=@"2";
+    [btnInsureCertificate.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
+    btnInsureCertificate.layer.borderWidth=0.5;
+    btnInsureCertificate.layer.cornerRadius=15.0f;
+    [btnInsureCertificate setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [[btnInsureCertificate layer] setBorderWidth:0.5f];
+    [[btnInsureCertificate layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+    btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
+    
+    [btnPurchaseReceipt.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
+    btnPurchaseReceipt.layer.borderWidth=0.5;
+    btnPurchaseReceipt.layer.cornerRadius=15.0f;
+    //  [btnHome setTitleColor:[UIColor colorWithRed:(115.0f/255.0) green:(115.0f/255.0) blue:(115.0f/255.0) alpha:3] forState:UIControlStateNormal];
+    [[btnPurchaseReceipt layer] setBorderWidth:0.5f];
+    [[btnPurchaseReceipt layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+    //  [btnHome setBackgroundColor:[UIColor whiteColor]];
+    
+    [btnOther.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
+    btnOther.layer.borderWidth=0.5;
+    btnOther.layer.cornerRadius=15.0f;
+    //  [btnHome setTitleColor:[UIColor colorWithRed:(115.0f/255.0) green:(115.0f/255.0) blue:(115.0f/255.0) alpha:3] forState:UIControlStateNormal];
+    [[btnOther layer] setBorderWidth:0.5f];
+    [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -58,7 +93,7 @@
     if(textView==txtvwDescription)
     {
         lblDesc.hidden=YES;
-       // [mainscroll setContentOffset:CGPointMake(0.0f,170.0f) animated:YES];
+        [mainscroll setContentOffset:CGPointMake(0.0f,150.0f) animated:YES];
     }
     
 }
@@ -70,11 +105,11 @@
         [textView resignFirstResponder];
         if(textView==txtvwDescription)
         {
-          //  [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
             
             if (txtvwDescription.text.length==0)
             {
-                lblDesc.hidden=NO;
+              //  lblDesc.hidden=NO;
             }
         }
         
@@ -96,6 +131,108 @@
 }
 */
 
+- (IBAction)InsureCertificateClick:(id)sender
+{
+    if (btnInsureCertificate.selected==NO)
+    {
+        btnInsureCertificate.selected=YES;
+        [btnInsureCertificate.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
+        btnInsureCertificate.layer.borderWidth=0.5;
+        btnInsureCertificate.layer.cornerRadius=15.0f;
+        [btnInsureCertificate setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [[btnInsureCertificate layer] setBorderWidth:0.5f];
+        [[btnInsureCertificate layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
+        
+        btnPurchaseReceipt.selected=NO;
+        btnPurchaseReceipt.layer.borderWidth=0.5;
+        btnPurchaseReceipt.layer.cornerRadius=15.0f;
+        [btnPurchaseReceipt setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnPurchaseReceipt layer] setBorderWidth:0.5f];
+        [[btnPurchaseReceipt layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
+        
+        btnOther.selected=NO;
+        btnOther.layer.borderWidth=0.5;
+        btnOther.layer.cornerRadius=15.0f;
+        [btnOther setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnOther layer] setBorderWidth:0.5f];
+        [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnOther.backgroundColor=[UIColor whiteColor];
+        
+        
+        DocType1=@"2";
+    }
+}
+
+- (IBAction)PurchaseReceiptClick:(id)sender
+{
+    if (btnPurchaseReceipt.selected==NO)
+    {
+        btnPurchaseReceipt.selected=YES;
+        [btnPurchaseReceipt.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
+        btnPurchaseReceipt.layer.borderWidth=0.5;
+        btnPurchaseReceipt.layer.cornerRadius=15.0f;
+        [btnPurchaseReceipt setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [[btnPurchaseReceipt layer] setBorderWidth:0.5f];
+        [[btnPurchaseReceipt layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
+        
+        btnInsureCertificate.selected=NO;
+        btnInsureCertificate.layer.borderWidth=0.5;
+        btnInsureCertificate.layer.cornerRadius=15.0f;
+        [btnInsureCertificate setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnInsureCertificate layer] setBorderWidth:0.5f];
+        [[btnInsureCertificate layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnInsureCertificate.backgroundColor=[UIColor whiteColor];
+        
+        btnOther.selected=NO;
+        btnOther.layer.borderWidth=0.5;
+        btnOther.layer.cornerRadius=15.0f;
+        [btnOther setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnOther layer] setBorderWidth:0.5f];
+        [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnOther.backgroundColor=[UIColor whiteColor];
+        
+        
+        DocType1=@"1";
+    }
+}
+
+- (IBAction)OtherClick:(id)sender
+{
+    if (btnOther.selected==NO)
+    {
+        btnOther.selected=YES;
+        [btnOther.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
+        btnOther.layer.borderWidth=0.5;
+        btnOther.layer.cornerRadius=15.0f;
+        [btnOther setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [[btnOther layer] setBorderWidth:0.5f];
+        [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnOther.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
+        
+        btnInsureCertificate.selected=NO;
+        btnInsureCertificate.layer.borderWidth=0.5;
+        btnInsureCertificate.layer.cornerRadius=15.0f;
+        [btnInsureCertificate setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnInsureCertificate layer] setBorderWidth:0.5f];
+        [[btnInsureCertificate layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnInsureCertificate.backgroundColor=[UIColor whiteColor];
+        
+        btnPurchaseReceipt.selected=NO;
+        btnPurchaseReceipt.layer.borderWidth=0.5;
+        btnPurchaseReceipt.layer.cornerRadius=15.0f;
+        [btnPurchaseReceipt setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
+        [[btnPurchaseReceipt layer] setBorderWidth:0.5f];
+        [[btnPurchaseReceipt layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
+        
+        
+        DocType1=@"99";
+    }
+}
+
 - (IBAction)BackClk:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -103,6 +240,7 @@
 
 - (IBAction)DocTypeClk:(id)sender
 {
+    /*
     [txtDocName resignFirstResponder];
     if (btnDocType.selected==NO)
     {
@@ -173,6 +311,7 @@
         [Doctypeview removeFromSuperview];
         
     }
+     */
 }
 -(void)DoctypepickerCancel
 {
@@ -290,7 +429,7 @@
 }
 - (IBAction)SubmitClk:(id)sender
 {
-   
+   /*
     if ([lblDocType.text isEqualToString:@"Purchase Receipt"]) {
         DocType1=@"1";
     }
@@ -300,18 +439,28 @@
     else if ([lblDocType.text isEqualToString:@"Others"]) {
         DocType1=@"99";
     }
+    */
     if(txtDocName.text.length==0)
     {
+        /*
         txtDocName.text=@"";
         txtDocName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Document Name" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
         //  [Main_acroll setContentOffset:CGPointMake(0,0) animated:YES];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Document Name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
     }
-    
+    /*
     else if (lblDocType.text.length==0 || [lblDocType.text isEqualToString:@"Document Type"])
     {
+        
         lblDocType.text=@"Document Type";
         lblDocType.textColor=[UIColor redColor];
+        
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please Add Document" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
     }
+     */
   //  else if([DocImage.image isEqual:[UIImage imageNamed:@"doc"]])
     else if(DocImage.image==nil)
     {

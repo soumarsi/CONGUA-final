@@ -35,7 +35,7 @@
     txtcategoryName.leftView = paddingView1;
     txtcategoryName.leftViewMode = UITextFieldViewModeAlways;
     
-    txtcategoryName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Category Name" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
+  //  txtcategoryName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Category Name" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -154,8 +154,11 @@
 {
     if (txtcategoryName.text.length==0)
     {
-        
+        /*
         txtcategoryName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Category" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Category" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
     }
     else
     {
