@@ -20,11 +20,19 @@
 @end
 
 @implementation portfolioitemViewController
-@synthesize mytabview,lblAddress,lblportfilioName,logoimage,lblUserName;
+@synthesize mytabview,lblAddress,lblportfilioName,logoimage,lblUserName,mainscroll;
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
+    if ([UIScreen mainScreen].bounds.size.width==320)
+    {
+        mainscroll.contentSize = CGSizeMake(0, 491);
+    }
+    else if([UIScreen mainScreen].bounds.size.width>320)
+    {
+        mainscroll.contentSize = CGSizeMake(0, 590);
+    }
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
     AuthToken=[prefs valueForKey:@"AuthToken"];

@@ -54,6 +54,11 @@
     
     btnInsureCertificate.selected=YES;
     DocType1=@"2";
+    btnInsureCertificate.backgroundColor=[UIColor whiteColor];
+    btnInsureCertificate.layer.cornerRadius=15.0f;
+    btnPurchaseReceipt.layer.cornerRadius=15.0f;
+    btnOther.layer.cornerRadius=15.0f;
+    /*
     [btnInsureCertificate.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
     btnInsureCertificate.layer.borderWidth=0.5;
     btnInsureCertificate.layer.cornerRadius=15.0f;
@@ -76,6 +81,7 @@
     //  [btnHome setTitleColor:[UIColor colorWithRed:(115.0f/255.0) green:(115.0f/255.0) blue:(115.0f/255.0) alpha:3] forState:UIControlStateNormal];
     [[btnOther layer] setBorderWidth:0.5f];
     [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
+     */
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -136,6 +142,13 @@
     if (btnInsureCertificate.selected==NO)
     {
         btnInsureCertificate.selected=YES;
+         btnPurchaseReceipt.selected=NO;
+         btnOther.selected=NO;
+         btnInsureCertificate.backgroundColor=[UIColor whiteColor];
+         btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+         btnOther.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
+        /*
+         btnInsureCertificate.backgroundColor=[UIColor whiteColor];
         [btnInsureCertificate.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
         btnInsureCertificate.layer.borderWidth=0.5;
         btnInsureCertificate.layer.cornerRadius=15.0f;
@@ -159,7 +172,7 @@
         [[btnOther layer] setBorderWidth:0.5f];
         [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
         btnOther.backgroundColor=[UIColor whiteColor];
-        
+        */
         
         DocType1=@"2";
     }
