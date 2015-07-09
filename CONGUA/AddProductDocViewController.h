@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnInsuranceCertificate;
 @property (weak, nonatomic) IBOutlet UIButton *btnPurchaseReceipt;
 @property (weak, nonatomic) IBOutlet UIButton *btnOther;
+@property (weak, nonatomic) IBOutlet UIView *DocView;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnsubmit;
 
@@ -43,6 +44,8 @@
 - (IBAction)PurchaseReceiptClick:(id)sender;
 - (IBAction)OtherClick:(id)sender;
 - (IBAction)InsuranceCertificateClick:(id)sender;
+- (IBAction)CameraClick:(id)sender;
+- (IBAction)PhotoLibClick:(id)sender;
 
 
 

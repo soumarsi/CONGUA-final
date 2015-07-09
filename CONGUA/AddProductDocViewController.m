@@ -13,7 +13,7 @@
 @end
 
 @implementation AddProductDocViewController
-@synthesize mainscroll,lblDesc,lblDocType,txtDocName,txtvwDescription,btnDocType,DocImage,btnsubmit,btnAddDoc,btnPurchaseReceipt,btnOther,btnInsuranceCertificate;
+@synthesize mainscroll,lblDesc,lblDocType,txtDocName,txtvwDescription,btnDocType,DocImage,btnsubmit,btnAddDoc,btnPurchaseReceipt,btnOther,btnInsuranceCertificate,DocView;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -36,10 +36,11 @@
     txtDocName.leftViewMode = UITextFieldViewModeAlways;
     
     ArrDocType=[[NSMutableArray alloc]initWithObjects:@"Purchase Receipt",@"Insurance Certificate",@"Others",nil];
-    
+    /*
     txtDocName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Document Name" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
     lblDesc.textColor=[UIColor grayColor];
     lblDocType.textColor=[UIColor grayColor];
+     */
     
     btnInsuranceCertificate.selected=YES;
     DocType1=@"2";
@@ -47,6 +48,13 @@
     btnInsuranceCertificate.layer.cornerRadius=15.0f;
     btnPurchaseReceipt.layer.cornerRadius=15.0f;
     btnOther.layer.cornerRadius=15.0f;
+    
+    if(self.view.frame.size.height==480)
+    {
+        //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];
+        
+        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 520)];
+    }
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -64,7 +72,7 @@
     if(textView==txtvwDescription)
     {
         lblDesc.hidden=YES;
-        // [mainscroll setContentOffset:CGPointMake(0.0f,170.0f) animated:YES];
+         [mainscroll setContentOffset:CGPointMake(0.0f,80.0f) animated:YES];
     }
     
 }
@@ -74,15 +82,19 @@
     if ([text isEqualToString:@"\n"])
     {
         [textView resignFirstResponder];
-        if(textView==txtvwDescription)
+        if (self.view.frame.size.height==480)
         {
-            //  [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
-            
-            if (txtvwDescription.text.length==0)
+            if(textView==txtvwDescription)
             {
-                lblDesc.hidden=NO;
+                [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
+                
+                if (txtvwDescription.text.length==0)
+                {
+                    // lblDesc.hidden=NO;
+                }
             }
         }
+        
         
     }
     return YES;
@@ -291,7 +303,7 @@
   //  [DocImage setUserInteractionEnabled:YES];
     btnsubmit.frame=CGRectMake(btnsubmit.frame.origin.x, DocImage.frame.origin.y+DocImage.frame.size.height+10, btnsubmit.frame.size.width, btnsubmit.frame.size.height);
     
-    
+    DocView.hidden=YES;
     [picker dismissViewControllerAnimated:YES completion:nil];
     btnAddDoc.selected=YES;
     
@@ -314,16 +326,24 @@
      */
     if(txtDocName.text.length==0)
     {
+        /*
         txtDocName.text=@"";
         txtDocName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Document Name" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
         //  [Main_acroll setContentOffset:CGPointMake(0,0) animated:YES];
+        */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Document Name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
     }
-    
+   /*
     else if (lblDocType.text.length==0 || [lblDocType.text isEqualToString:@"Document Type"])
     {
+        
         lblDocType.text=@"Document Type";
         lblDocType.textColor=[UIColor redColor];
+         
+       
     }
+    */
   //  else if([DocImage.image isEqual:[UIImage imageNamed:@"doc"]])
      else if(DocImage.image ==nil)
     {
@@ -553,13 +573,75 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)PurchaseReceiptClick:(id)sender {
+- (IBAction)PurchaseReceiptClick:(id)sender
+{
+    if (btnPurchaseReceipt.selected==NO)
+    {
+        btnInsuranceCertificate.selected=NO;
+        btnPurchaseReceipt.selected=YES;
+        btnOther.selected=NO;
+        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
+        btnInsuranceCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+       
+        
+        DocType1=@"1";
+    }
 }
 
-- (IBAction)OtherClick:(id)sender {
+- (IBAction)OtherClick:(id)sender
+{
+    if (btnOther.selected==NO)
+    {
+        
+        btnInsuranceCertificate.selected=NO;
+        btnPurchaseReceipt.selected=NO;
+        btnOther.selected=YES;
+        btnOther.backgroundColor=[UIColor whiteColor];
+        btnInsuranceCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        
+        DocType1=@"99";
+    }
 }
 
-- (IBAction)InsuranceCertificateClick:(id)sender {
+- (IBAction)InsuranceCertificateClick:(id)sender
+{
+    if (btnInsuranceCertificate.selected==NO)
+    {
+        btnInsuranceCertificate.selected=YES;
+        btnPurchaseReceipt.selected=NO;
+        btnOther.selected=NO;
+        btnInsuranceCertificate.backgroundColor=[UIColor whiteColor];
+        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        
+        
+        DocType1=@"2";
+    }
+}
+
+- (IBAction)CameraClick:(id)sender
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    picker.delegate = (id)self;
+    picker.allowsEditing = YES;
+   
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self.navigationController presentViewController:picker animated:YES completion:NULL];
+          
+
+}
+
+- (IBAction)PhotoLibClick:(id)sender
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    picker.delegate = (id)self;
+    picker.allowsEditing = YES;
+   
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self.navigationController presentViewController:picker animated:YES completion:NULL];
+ 
 }
 
 

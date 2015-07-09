@@ -136,11 +136,12 @@
  //   [[btnHome layer] setBorderWidth:0.5f];
  //   [[btnHome layer] setBorderColor:[UIColor blackColor].CGColor];
 //    btnHome.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
-    btnHome.backgroundColor=[UIColor whiteColor];
+ //   btnHome.backgroundColor=[UIColor whiteColor];
     
  //   [btnBusiness.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
  //   btnBusiness.layer.borderWidth=0.5;
     btnBusiness.layer.cornerRadius=15.0f;
+    btnBusiness.backgroundColor=[UIColor whiteColor];
     //  [btnHome setTitleColor:[UIColor colorWithRed:(115.0f/255.0) green:(115.0f/255.0) blue:(115.0f/255.0) alpha:3] forState:UIControlStateNormal];
 //    [[btnBusiness layer] setBorderWidth:0.5f];
 //    [[btnBusiness layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
@@ -149,6 +150,7 @@
 //    [btnPersonal.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
 //    btnPersonal.layer.borderWidth=0.5;
     btnPersonal.layer.cornerRadius=15.0f;
+    btnPersonal.backgroundColor=[UIColor whiteColor];
     //  [btnHome setTitleColor:[UIColor colorWithRed:(115.0f/255.0) green:(115.0f/255.0) blue:(115.0f/255.0) alpha:3] forState:UIControlStateNormal];
 //    [[btnPersonal layer] setBorderWidth:0.5f];
 //    [[btnPersonal layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
@@ -157,6 +159,7 @@
  //   [btnOther.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
 //    btnOther.layer.borderWidth=0.5;
     btnOther.layer.cornerRadius=15.0f;
+    btnOther.backgroundColor=[UIColor whiteColor];
     //  [btnHome setTitleColor:[UIColor colorWithRed:(115.0f/255.0) green:(115.0f/255.0) blue:(115.0f/255.0) alpha:3] forState:UIControlStateNormal];
 //    [[btnOther layer] setBorderWidth:0.5f];
 //    [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
@@ -1471,10 +1474,11 @@
         [btnHome setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
     //    [[btnHome layer] setBorderWidth:0.5f];
     //    [[btnHome layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-        btnHome.backgroundColor=[UIColor whiteColor];
+        
+         btnHome.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
         
         btnBusiness.selected=NO;
-        btnBusiness.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnBusiness.backgroundColor=[UIColor whiteColor];
         [btnBusiness setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         /*
         btnBusiness.layer.borderWidth=0.5;
@@ -1486,7 +1490,7 @@
          */
         
         btnPersonal.selected=NO;
-         btnPersonal.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+          btnPersonal.backgroundColor=[UIColor whiteColor];
         [btnPersonal setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         /*
         btnPersonal.layer.borderWidth=0.5;
@@ -1498,7 +1502,7 @@
          */
         
         btnOther.selected=NO;
-         btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+         btnOther.backgroundColor=[UIColor whiteColor];
         [btnOther setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         /*
         btnOther.layer.borderWidth=0.5;

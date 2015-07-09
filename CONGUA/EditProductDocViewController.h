@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UrlconnectionObject.h"
 #import "login.h"
+#import "UIImageView+WebCache.h"
 @interface EditProductDocViewController : UIViewController
 {
     UIView *loader_shadow_View,*Doctypeview;
@@ -28,6 +29,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (weak, nonatomic) IBOutlet UIButton *btnAddDoc;
+@property (weak, nonatomic) IBOutlet UIButton *btnInsureCertificate;
+@property (weak, nonatomic) IBOutlet UIButton *btnPurchaseReceipt;
+@property (weak, nonatomic) IBOutlet UIButton *btnOther;
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *DocImage;
@@ -36,5 +40,8 @@
 - (IBAction)AddDocClick:(id)sender;
 - (IBAction)SubmitClick:(id)sender;
 - (IBAction)DocTypeClick:(id)sender;
+- (IBAction)InsureCertificateClk:(id)sender;
+- (IBAction)PurchaseReceiptClick:(id)sender;
+- (IBAction)OtherClick:(id)sender;
 
 @end

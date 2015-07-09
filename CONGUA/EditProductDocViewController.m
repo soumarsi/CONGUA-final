@@ -13,11 +13,17 @@
 @end
 
 @implementation EditProductDocViewController
-@synthesize txtDocName,txtVwDesc,DocImage,lblDesc,lblDocType,btnDocType,btnSubmit,btnAddDoc,mainscroll;
+@synthesize txtDocName,txtVwDesc,DocImage,lblDesc,lblDocType,btnDocType,btnSubmit,btnAddDoc,mainscroll,btnOther,btnPurchaseReceipt,btnInsureCertificate;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    if(self.view.frame.size.height==480)
+    {
+        //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];
+        
+        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 520)];
+    }
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
     AuthToken=[prefs valueForKey:@"AuthToken"];
@@ -42,6 +48,10 @@
     txtDocName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Document Name" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
     lblDesc.textColor=[UIColor grayColor];
     lblDocType.textColor=[UIColor grayColor];
+    
+    btnInsureCertificate.layer.cornerRadius=15.0f;
+    btnPurchaseReceipt.layer.cornerRadius=15.0f;
+    btnOther.layer.cornerRadius=15.0f;
     
     [self DocumentViewUrl];
 }
@@ -77,15 +87,52 @@
                     lblDocType.textColor=[UIColor blackColor];
                     if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"DocTypeCode"] integerValue] ==1) {
                         lblDocType.text=@"Purchase Receipt";
+                        
+                        btnInsureCertificate.selected=NO;
+                        btnPurchaseReceipt.selected=YES;
+                        btnOther.selected=NO;
+                        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
+                        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        
+                        
+                        DocType1=@"1";
                     }
                     else if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"DocTypeCode"] integerValue] ==2) {
                         lblDocType.text=@"Insurance Certificate";
+                        btnInsureCertificate.selected=YES;
+                        btnPurchaseReceipt.selected=NO;
+                        btnOther.selected=NO;
+                        btnInsureCertificate.backgroundColor=[UIColor whiteColor];
+                        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        
+                        
+                        DocType1=@"2";
                     }
                     else if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"DocTypeCode"] integerValue] ==99) {
                         lblDocType.text=@"Others";
+                        btnInsureCertificate.selected=NO;
+                        btnPurchaseReceipt.selected=NO;
+                        btnOther.selected=YES;
+                        btnOther.backgroundColor=[UIColor whiteColor];
+                        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        
+                        
+                        DocType1=@"99";
                     }
                     
-                    
+                    FileName=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"FileName"]];
+                    if (FileName.length==0)
+                    {
+                        
+                    }
+                    else
+                    {
+                        
+                        [self DownloadUrl];
+                    }
                     
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
@@ -111,6 +158,35 @@
             UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"No Network Connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [aler show];
         }
+    }
+    @catch (NSException *exception)
+    {
+    }
+    @finally {
+        
+    }
+    
+    
+    
+    
+}
+-(void)DownloadUrl
+{
+    @try {
+        
+        //  FileName=@"34.png";
+        NSString *str=[NSString stringWithFormat:@"%@DownloadFile/%@?CustomerCode=%@&FileName=%@",URL_LINK,AuthToken,CustomerCode,FileName];
+        NSLog(@"str=%@",str);
+        
+        
+        //   NSURL *url = [NSURL URLWithString:str];
+        //    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+        //    [WebView loadRequest:requestObj];
+        [DocImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str]] placeholderImage:[UIImage imageNamed:@""] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+        DocImage.contentMode=UIViewContentModeScaleAspectFit;
+        
+    //    btnsubmit.frame=CGRectMake(btnsubmit.frame.origin.x, DocImage.frame.origin.y+DocImage.frame.size.height+10, btnsubmit.frame.size.width, btnsubmit.frame.size.height);
+        btnAddDoc.selected=YES;
     }
     @catch (NSException *exception)
     {
@@ -235,6 +311,7 @@
 }
 - (IBAction)SubmitClick:(id)sender
 {
+    /*
     if ([lblDocType.text isEqualToString:@"Purchase Receipt"]) {
         DocType1=@"1";
     }
@@ -244,18 +321,24 @@
     else if ([lblDocType.text isEqualToString:@"Others"]) {
         DocType1=@"99";
     }
+     */
     if(txtDocName.text.length==0)
     {
+        /*
         txtDocName.text=@"";
         txtDocName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Document Name" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
         //  [Main_acroll setContentOffset:CGPointMake(0,0) animated:YES];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Document Name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
     }
-    
+    /*
     else if (lblDocType.text.length==0 || [lblDocType.text isEqualToString:@"Document Type"])
     {
         lblDocType.text=@"Document Type";
         lblDocType.textColor=[UIColor redColor];
     }
+     */
     //   else if([DocImage.image isEqual:[UIImage imageNamed:@"doc"]])
     else if(DocImage.image==nil)
     {
@@ -546,6 +629,54 @@
         
     }
 
+}
+
+- (IBAction)InsureCertificateClk:(id)sender
+{
+    if (btnInsureCertificate.selected==NO)
+    {
+        btnInsureCertificate.selected=YES;
+        btnPurchaseReceipt.selected=NO;
+        btnOther.selected=NO;
+        btnInsureCertificate.backgroundColor=[UIColor whiteColor];
+        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        
+        DocType1=@"2";
+    }
+}
+
+- (IBAction)PurchaseReceiptClick:(id)sender
+{
+    if (btnPurchaseReceipt.selected==NO)
+    {
+        btnInsureCertificate.selected=NO;
+        btnPurchaseReceipt.selected=YES;
+        btnOther.selected=NO;
+        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
+        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        
+        
+        DocType1=@"1";
+    }
+}
+
+- (IBAction)OtherClick:(id)sender
+{
+    if (btnOther.selected==NO)
+    {
+        
+        
+        btnInsureCertificate.selected=NO;
+        btnPurchaseReceipt.selected=NO;
+        btnOther.selected=YES;
+        btnOther.backgroundColor=[UIColor whiteColor];
+        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        
+        DocType1=@"99";
+    }
 }
 -(void)DoctypepickerCancel
 {
