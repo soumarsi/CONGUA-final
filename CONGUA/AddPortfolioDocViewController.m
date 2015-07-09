@@ -13,7 +13,7 @@
 @end
 
 @implementation AddPortfolioDocViewController
-@synthesize mainscroll,btnDocType,txtDocName,txtvwDescription,lblDesc,lblDocType,DocImage,btnSubmit,btnAddDoc,documentImage,btnOther,btnInsureCertificate,btnPurchaseReceipt;
+@synthesize mainscroll,btnDocType,txtDocName,txtvwDescription,lblDesc,lblDocType,DocImage,btnSubmit,btnAddDoc,documentImage,btnOther,btnInsureCertificate,btnPurchaseReceipt,DocView,btnCamera,btnPhotoLib;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -137,6 +137,30 @@
 }
 */
 
+- (IBAction)CameraClick:(id)sender
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    picker.delegate = (id)self;
+    picker.allowsEditing = YES;
+    
+              picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self.navigationController presentViewController:picker animated:YES completion:NULL];
+
+}
+
+- (IBAction)PhotoLibClick:(id)sender
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    picker.delegate = (id)self;
+    picker.allowsEditing = YES;
+    
+   
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self.navigationController presentViewController:picker animated:YES completion:NULL];
+
+
+}
+
 - (IBAction)InsureCertificateClick:(id)sender
 {
     if (btnInsureCertificate.selected==NO)
@@ -146,7 +170,7 @@
          btnOther.selected=NO;
          btnInsureCertificate.backgroundColor=[UIColor whiteColor];
          btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-         btnOther.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
+         btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
         /*
          btnInsureCertificate.backgroundColor=[UIColor whiteColor];
         [btnInsureCertificate.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
@@ -182,6 +206,13 @@
 {
     if (btnPurchaseReceipt.selected==NO)
     {
+        btnInsureCertificate.selected=NO;
+        btnPurchaseReceipt.selected=YES;
+        btnOther.selected=NO;
+        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
+        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        /*
         btnPurchaseReceipt.selected=YES;
         [btnPurchaseReceipt.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
         btnPurchaseReceipt.layer.borderWidth=0.5;
@@ -206,7 +237,7 @@
         [[btnOther layer] setBorderWidth:0.5f];
         [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
         btnOther.backgroundColor=[UIColor whiteColor];
-        
+        */
         
         DocType1=@"1";
     }
@@ -216,6 +247,7 @@
 {
     if (btnOther.selected==NO)
     {
+        /*
         btnOther.selected=YES;
         [btnOther.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
         btnOther.layer.borderWidth=0.5;
@@ -240,7 +272,13 @@
         [[btnPurchaseReceipt layer] setBorderWidth:0.5f];
         [[btnPurchaseReceipt layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
         btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
-        
+        */
+        btnInsureCertificate.selected=NO;
+        btnPurchaseReceipt.selected=NO;
+        btnOther.selected=YES;
+        btnOther.backgroundColor=[UIColor whiteColor];
+        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
         
         DocType1=@"99";
     }
@@ -432,7 +470,7 @@
     btnAddDoc.selected=YES;
  //   [DocImage setUserInteractionEnabled:YES];
     
-    
+    [DocView setHidden:YES];
     
     [picker dismissViewControllerAnimated:YES completion:nil];
     

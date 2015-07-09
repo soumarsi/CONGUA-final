@@ -20,7 +20,7 @@
 @end
 
 @implementation portfolioitemViewController
-@synthesize mytabview,lblAddress,lblportfilioName,logoimage,lblUserName,mainscroll;
+@synthesize mytabview,lblAddress,lblportfilioName,logoimage,lblUserName,mainscroll,AddProductView;
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -153,7 +153,11 @@
                         [ArrProduct addObject:tempDict1];
                         
                     }
-                   
+                    if (ArrCategory.count>7) {
+                        mytabview.frame=CGRectMake(mytabview.frame.origin.x, mytabview.frame.origin.y, mytabview.frame.size.width,50.0*[ArrCategory count]);
+                        AddProductView.frame=CGRectMake(AddProductView.frame.origin.x, mytabview.frame.origin.y+mytabview.frame.size.height+3, AddProductView.frame.size.width,AddProductView.frame.size.height);
+                        mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+50.0*[ArrCategory count]-330.0);
+                    }
                 //    NSLog(@"product name=%@",ArrProduct);
                     [mytabview reloadData];
                 }

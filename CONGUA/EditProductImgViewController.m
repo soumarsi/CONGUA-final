@@ -201,8 +201,12 @@
 {
     if(txtVwDesc.text.length==0)
     {
+        /*
         lblDesc.text=@"Enter Description";
         lblDesc.textColor=[UIColor redColor];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Description" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
     }
     
      else if([ProductImgView.image isEqual:[UIImage imageNamed:@"PlaceholderImg"]])
@@ -370,6 +374,7 @@
                 [self checkLoader];
                 UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Image Updated Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [aler show];
+                [self.navigationController popViewControllerAnimated:YES];
                 [self.navigationController popViewControllerAnimated:YES];
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])

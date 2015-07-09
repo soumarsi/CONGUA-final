@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UrlconnectionObject.h"
 #import "CKCalendarView.h"
+#import "ViewController.h"
 @interface EditProductViewController : UIViewController
 {
     UIView *loader_shadow_View,*Producttypeview,*PurchaseDateview;
@@ -41,11 +42,14 @@
 - (IBAction)IsOtherInsureClk:(id)sender;
 - (IBAction)SubmitClk:(id)sender;
 - (IBAction)BackClk:(id)sender;
+- (IBAction)DeleteClick:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
 @property (weak, nonatomic) IBOutlet UIImageView *DescImgView;
 @property (weak, nonatomic) IBOutlet UISwitch *InsuredPortSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *OtherInsuredSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescTop;
+@property (weak, nonatomic) IBOutlet UIButton *btnDelete;
 
 
 

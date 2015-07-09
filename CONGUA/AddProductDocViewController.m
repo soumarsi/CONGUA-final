@@ -13,7 +13,7 @@
 @end
 
 @implementation AddProductDocViewController
-@synthesize mainscroll,lblDesc,lblDocType,txtDocName,txtvwDescription,btnDocType,DocImage,btnsubmit,btnAddDoc;
+@synthesize mainscroll,lblDesc,lblDocType,txtDocName,txtvwDescription,btnDocType,DocImage,btnsubmit,btnAddDoc,btnPurchaseReceipt,btnOther,btnInsuranceCertificate;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -40,6 +40,13 @@
     txtDocName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Document Name" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
     lblDesc.textColor=[UIColor grayColor];
     lblDocType.textColor=[UIColor grayColor];
+    
+    btnInsuranceCertificate.selected=YES;
+    DocType1=@"2";
+    btnInsuranceCertificate.backgroundColor=[UIColor whiteColor];
+    btnInsuranceCertificate.layer.cornerRadius=15.0f;
+    btnPurchaseReceipt.layer.cornerRadius=15.0f;
+    btnOther.layer.cornerRadius=15.0f;
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -294,6 +301,7 @@
 
 - (IBAction)SubmitClk:(id)sender
 {
+    /*
     if ([lblDocType.text isEqualToString:@"Purchase Receipt"]) {
         DocType1=@"1";
     }
@@ -303,6 +311,7 @@
     else if ([lblDocType.text isEqualToString:@"Others"]) {
         DocType1=@"99";
     }
+     */
     if(txtDocName.text.length==0)
     {
         txtDocName.text=@"";
@@ -543,4 +552,15 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (IBAction)PurchaseReceiptClick:(id)sender {
+}
+
+- (IBAction)OtherClick:(id)sender {
+}
+
+- (IBAction)InsuranceCertificateClick:(id)sender {
+}
+
+
 @end

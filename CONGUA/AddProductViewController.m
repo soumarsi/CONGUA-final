@@ -13,10 +13,17 @@
 @end
 
 @implementation AddProductViewController
-@synthesize txtproductName,txtPurchaseValue,txtVwDescription,btnIsInsuredPort,btnIsOtherInsured,btnproductType,btnPurchaseDt,IsInsuredPortToggleImg,IsOtherInsuredToggleImg,mainscroll,lblDescription,lblProductType,lblPurchaseDt,CategoryCode,btnSubmit,DescImgView,InsuredPortSwitch,OtherInsuredSwitch;
+@synthesize txtproductName,txtPurchaseValue,txtVwDescription,btnIsInsuredPort,btnIsOtherInsured,btnproductType,btnPurchaseDt,IsInsuredPortToggleImg,IsOtherInsuredToggleImg,mainscroll,lblDescription,lblProductType,lblPurchaseDt,CategoryCode,btnSubmit,DescImgView,InsuredPortSwitch,OtherInsuredSwitch,lblDescTop;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    if(self.view.frame.size.height==480)
+    {
+        //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];
+        
+        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 520)];
+    }
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
@@ -46,11 +53,13 @@
      ArrProductType=[[NSMutableArray alloc]initWithObjects:@"1",nil];
     ArrCategory=[[NSMutableArray alloc]init];
 
+    /*
     txtproductName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Product Name" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
     txtPurchaseValue.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Purchase Value" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
     lblDescription.textColor=[UIColor grayColor];
     lblProductType.textColor=[UIColor grayColor];
     lblPurchaseDt.textColor=[UIColor grayColor];
+    */
     
     InsuredPortSwitch.on=NO;
     [InsuredPortSwitch addTarget:self action:@selector(InsuredPortSwitched:)
@@ -77,24 +86,54 @@
 -(void)resetView1
 {
     [txtPurchaseValue resignFirstResponder];
+    [mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    if (self.view.frame.size.height==480)
+    {
+        if(textField==txtPurchaseValue)
+        {
+            lblDescription.hidden=YES;
+            [mainscroll setContentOffset:CGPointMake(0.0f,120.0f) animated:YES];
+        }
+    }
+    else
+    {
+        if(textField==txtPurchaseValue)
+        {
+            lblDescription.hidden=YES;
+            [mainscroll setContentOffset:CGPointMake(0.0f,70.0f) animated:YES];
+        }
+    }
+    
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    [mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
     return YES;
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     
     textView.autocorrectionType = UITextAutocorrectionTypeNo;
+    if (self.view.frame.size.height==480)
+    {
+        if(textView==txtVwDescription)
+        {
+            lblDescription.hidden=YES;
+            [mainscroll setContentOffset:CGPointMake(0.0f,260.0f) animated:YES];
+        }
+    }
+    else
+    {
     if(textView==txtVwDescription)
     {
         lblDescription.hidden=YES;
           [mainscroll setContentOffset:CGPointMake(0.0f,170.0f) animated:YES];
+    }
     }
    
 }
@@ -110,7 +149,7 @@
           
             if (txtVwDescription.text.length==0)
             {
-                lblDescription.hidden=NO;
+              //  lblDescription.hidden=NO;
             }
         }
         
@@ -398,6 +437,7 @@
             
             DescImgView.hidden=NO;
             lblDescription.hidden=NO;
+            lblDescTop.hidden=NO;
             txtVwDescription.hidden=NO;
         }];
     }
@@ -422,6 +462,7 @@
             DescImgView.hidden=YES;
             lblDescription.hidden=YES;
             txtVwDescription.hidden=YES;
+             lblDescTop.hidden=YES;
         }];
         
     }
@@ -478,33 +519,53 @@
 {
     if(txtproductName.text.length==0)
     {
+        /*
         txtproductName.text=@"";
         txtproductName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Product Name" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
         //  [Main_acroll setContentOffset:CGPointMake(0,0) animated:YES];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Product Name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
     }
     
     else if (lblProductType.text.length==0 || [lblProductType.text isEqualToString:@"Product Type"])
     {
+        /*
         lblProductType.text=@"Choose Category";
         lblProductType.textColor=[UIColor redColor];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Choose Category" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
     }
     else if ((lblPurchaseDt.text.length==0 || [lblPurchaseDt.text isEqualToString:@"Purchase Date"]))
     {
+        /*
         lblPurchaseDt.text=@"Purchase Date";
         lblPurchaseDt.textColor=[UIColor redColor];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Choose Purchase Date" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
     }
     else if(txtPurchaseValue.text.length==0)
     {
+        /*
         txtPurchaseValue.text=@"";
         txtPurchaseValue.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Purchase Value" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
         //  [Main_acroll setContentOffset:CGPointMake(0,0) animated:YES];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Purchase Value" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
     }
     else if (txtVwDescription.text.length==0 && btnIsOtherInsured.selected==YES)
     {
+        /*
         lblDescription.text=@"";
         lblDescription.hidden=NO;
         lblDescription.text=@"Enter Description";
         lblDescription.textColor=[UIColor redColor];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Description" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
     }
     
     else
@@ -628,10 +689,10 @@
     [myview resignFirstResponder];
     if(self.view.frame.size.width==375)
     {
-        [self.mainscroll setContentOffset:CGPointMake(0.0f,50.0f) animated:YES];
-        myview = [[UIView alloc] initWithFrame:CGRectMake(0,370,375,300)];
-        [myview setBackgroundColor: [UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:1]];
-        [mainscroll addSubview:myview];
+      //  [self.mainscroll setContentOffset:CGPointMake(0.0f,50.0f) animated:YES];
+        myview = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width,self.view.frame.size.height)];
+        [myview setBackgroundColor:[[UIColor blackColor]colorWithAlphaComponent:0.8]];
+        [self.view addSubview:myview];
         
         CKCalendarView *calendar = [[CKCalendarView alloc] initWithStartDay:startMonday];
         calendar.delegate = self;
@@ -649,17 +710,22 @@
         calendar.onlyShowCurrentMonth = NO;
         calendar.adaptHeightToNumberOfWeeksInMonth = YES;
         
-        calendar.frame = CGRectMake(40,10, myview.frame.size.width-80,myview.frame.size.height);
+        calendar.frame = CGRectMake(40,150, myview.frame.size.width-80,myview.frame.size.height);
         [myview addSubview:calendar];
         
+        UIButton *btnCross = [UIButton buttonWithType:UIButtonTypeCustom];
+        btnCross.frame = CGRectMake(calendar.frame.origin.x+calendar.frame.size.width-30, 110, 30, 30);
+        [btnCross addTarget:self action:@selector(CrossClick) forControlEvents:UIControlEventTouchUpInside];
+        [btnCross setImage:[UIImage imageNamed:@"crossWhite"] forState:UIControlStateNormal];
+        [myview addSubview:btnCross];
     }
     
     else if (self.view.frame.size.width==320)
     {
-        [self.mainscroll setContentOffset:CGPointMake(0.0f,150.0f) animated:YES];
-        myview = [[UIView alloc] initWithFrame:CGRectMake(0,350,320,300)];
-        [myview setBackgroundColor: [UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:1]];
-        [mainscroll addSubview:myview];
+      //  [self.mainscroll setContentOffset:CGPointMake(0.0f,150.0f) animated:YES];
+        myview = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width,self.view.frame.size.height)];
+        [myview setBackgroundColor:[[UIColor blackColor]colorWithAlphaComponent:0.8]];
+        [self.view addSubview:myview];
         
         CKCalendarView *calendar = [[CKCalendarView alloc] initWithStartDay:startMonday];
         calendar.delegate = self;
@@ -677,8 +743,14 @@
         calendar.onlyShowCurrentMonth = NO;
         calendar.adaptHeightToNumberOfWeeksInMonth = YES;
         
-        calendar.frame = CGRectMake(0,0, myview.frame.size.width,myview.frame.size.height);
+        calendar.frame = CGRectMake(20,120, myview.frame.size.width-40,myview.frame.size.height);
         [myview addSubview:calendar];
+        
+        UIButton *btnCross = [UIButton buttonWithType:UIButtonTypeCustom];
+        btnCross.frame = CGRectMake(calendar.frame.origin.x+calendar.frame.size.width-30, 80, 30, 30);
+        [btnCross addTarget:self action:@selector(CrossClick) forControlEvents:UIControlEventTouchUpInside];
+        [btnCross setImage:[UIImage imageNamed:@"crossWhite"] forState:UIControlStateNormal];
+        [myview addSubview:btnCross];
         
         
         
@@ -687,11 +759,10 @@
     if (self.view.frame.size.height==480)
     {
         [myview removeFromSuperview];
-        //   NSLog(@"4s=%f",self.view.frame.size.height);
-        [self.mainscroll setContentOffset:CGPointMake(0.0f,150.0f) animated:YES];
-        myview = [[UIView alloc] initWithFrame:CGRectMake(0,300,320,300)];
-        [myview setBackgroundColor: [UIColor colorWithRed:(255.0f/255.0f) green:(255.0f/255.0f) blue:(255.0f/255.0f) alpha:1]];
-        [mainscroll addSubview:myview];
+       
+        myview = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width,self.view.frame.size.height)];
+        [myview setBackgroundColor:[[UIColor blackColor]colorWithAlphaComponent:0.8]];
+        [self.view addSubview:myview];
         
         CKCalendarView *calendar = [[CKCalendarView alloc] initWithStartDay:startMonday];
         calendar.delegate = self;
@@ -709,14 +780,25 @@
         calendar.onlyShowCurrentMonth = NO;
         calendar.adaptHeightToNumberOfWeeksInMonth = YES;
         
-        calendar.frame = CGRectMake(0,0, myview.frame.size.width,myview.frame.size.height);
+        calendar.frame = CGRectMake(20,120, myview.frame.size.width-40,myview.frame.size.height);
         [myview addSubview:calendar];
+        
+        UIButton *btnCross = [UIButton buttonWithType:UIButtonTypeCustom];
+        btnCross.frame = CGRectMake(calendar.frame.origin.x+calendar.frame.size.width-30, 80, 30, 30);
+        [btnCross addTarget:self action:@selector(CrossClick) forControlEvents:UIControlEventTouchUpInside];
+        [btnCross setImage:[UIImage imageNamed:@"crossWhite"] forState:UIControlStateNormal];
+        [myview addSubview:btnCross];
         
         
         
         
     }
 
+}
+-(void)CrossClick
+{
+    [myview removeFromSuperview];
+    mainscroll.scrollEnabled=YES;
 }
 #pragma mark - CKCalendarDelegate
 

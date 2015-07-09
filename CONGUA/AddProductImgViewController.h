@@ -27,10 +27,13 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ProductImg;
 @property (weak, nonatomic) IBOutlet UILabel *lblDesc;
 @property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
+@property (weak, nonatomic) IBOutlet UIView *DocView;
 
 - (IBAction)AddImageClk:(id)sender;
 - (IBAction)SubmitClk:(id)sender;
 - (IBAction)BackClk:(id)sender;
+- (IBAction)CameraClick:(id)sender;
+- (IBAction)PhotoLibClick:(id)sender;
 
 
 @end

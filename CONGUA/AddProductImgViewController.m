@@ -13,7 +13,7 @@
 @end
 
 @implementation AddProductImgViewController
-@synthesize mainscroll,lblDesc,txtvwDesc,ProductImg,btnSubmit;
+@synthesize mainscroll,lblDesc,txtvwDesc,ProductImg,btnSubmit,DocView;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -121,7 +121,7 @@
     
   //  [ProductImg setUserInteractionEnabled:YES];
     btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, ProductImg.frame.origin.y+ProductImg.frame.size.height+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
-    
+    DocView.hidden=YES;
     
     [picker dismissViewControllerAnimated:YES completion:nil];
     
@@ -134,8 +134,12 @@
 {
     if(txtvwDesc.text.length==0)
     {
+        /*
         lblDesc.text=@"Enter Description";
         lblDesc.textColor=[UIColor redColor];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Description" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
     }
    
  //   else if([ProductImg.image isEqual:[UIImage imageNamed:@"doc"]])
@@ -516,4 +520,23 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (IBAction)CameraClick:(id)sender
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    picker.delegate = (id)self;
+    picker.allowsEditing = YES;
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self.navigationController presentViewController:picker animated:YES completion:NULL];
+   }
+
+- (IBAction)PhotoLibClick:(id)sender
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    picker.delegate = (id)self;
+    picker.allowsEditing = YES;
+  
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self.navigationController presentViewController:picker animated:YES completion:NULL];
+ }
 @end

@@ -35,8 +35,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnInsureCertificate;
 @property (weak, nonatomic) IBOutlet UIButton *btnPurchaseReceipt;
 @property (weak, nonatomic) IBOutlet UIButton *btnOther;
+@property (weak, nonatomic) IBOutlet UIView *DocView;
+@property (weak, nonatomic) IBOutlet UIButton *btnCamera;
+@property (weak, nonatomic) IBOutlet UIButton *btnPhotoLib;
 
 
+- (IBAction)CameraClick:(id)sender;
+- (IBAction)PhotoLibClick:(id)sender;
 
 - (IBAction)InsureCertificateClick:(id)sender;
 - (IBAction)PurchaseReceiptClick:(id)sender;

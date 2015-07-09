@@ -113,6 +113,8 @@
     // Set the toolbar as accessory view of an UITextField object
     txtValueCovered.inputAccessoryView = toolbar1;
     
+    
+    
     [self PortfolioViewUrl];
 }
 -(void)resetView1

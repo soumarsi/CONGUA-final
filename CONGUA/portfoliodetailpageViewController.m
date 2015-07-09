@@ -9,21 +9,17 @@
 #import "portfoliodetailpageViewController.h"
 #import "portfolioitemViewController.h"
 
-@interface portfoliodetailpageViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate>
+@interface portfoliodetailpageViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
 @implementation portfoliodetailpageViewController
-@synthesize PortfolioCode,lbladdress,lblTitle,lblexpiryDate,lblinsureexpiry,lblNoOfItem,lbltotalcover,lbltotalValue,iconImage,tblDoc,lblUserName,mainscroll,lblTolalValuable,lblTotalCover1,dividerImg;
+@synthesize PortfolioCode,lbladdress,lblTitle,lblexpiryDate,lblinsureexpiry,lblNoOfItem,lbltotalcover,lbltotalValue,iconImage,tblDoc,lblUserName,mainscroll,lblTolalValuable,lblTotalCover1,dividerImg,AddDocView;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    
-    
-
-    
-
+ 
     
 }
 
@@ -31,11 +27,11 @@
 {
     [super viewDidAppear:animated];
     
-    
+    /*
    
     if ([UIScreen mainScreen].bounds.size.width==320)
     {
-    mainscroll.contentSize = CGSizeMake(0, 450);
+    mainscroll.contentSize = CGSizeMake(0, 500);
     }
     else if([UIScreen mainScreen].bounds.size.width>320)
     {
@@ -54,13 +50,13 @@
     ArrDoc=[[NSMutableArray alloc]init];
     
     [self DocShowUrl];
-    
+    */
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     if ([UIScreen mainScreen].bounds.size.width==320)
     {
-        mainscroll.contentSize = CGSizeMake(0, 450);
+        mainscroll.contentSize = CGSizeMake(0, 500);
     }
     else if([UIScreen mainScreen].bounds.size.width>320)
     {
@@ -288,9 +284,14 @@
                     }
                     //  ArrFilter = [NSMutableArray arrayWithCapacity:[ArrSummary count]];
                     NSLog(@"summary name=%@",ArrDoc);
-                    tblDoc.frame=CGRectMake(tblDoc.frame.origin.x, tblDoc.frame.origin.y, tblDoc.frame.size.width,43.0*[ArrDoc count]);
-                    mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+43.0*[ArrDoc count]-86.0);
-                    [tblDoc reloadData];
+                    if (ArrDoc.count>0)
+                    {
+                        tblDoc.frame=CGRectMake(tblDoc.frame.origin.x, tblDoc.frame.origin.y, tblDoc.frame.size.width,43.0*[ArrDoc count]);
+                        AddDocView.frame=CGRectMake(AddDocView.frame.origin.x, tblDoc.frame.origin.y+tblDoc.frame.size.height+3, AddDocView.frame.size.width,AddDocView.frame.size.height);
+                        mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+43.0*[ArrDoc count]-86.0);
+                        [tblDoc reloadData];
+                    }
+                    
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
                 {
@@ -392,58 +393,16 @@
 
 - (IBAction)AddDocumentClk:(id)sender
 {
-    /*
+    
     AddPortfolioDocViewController *addportvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPortfolioDocViewControllersid"];
     [self.navigationController  pushViewController:addportvc animated:YES];
-     */
+   
+    /*
     actionsheet=[[UIActionSheet alloc]initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Library", nil];
     [actionsheet showInView:self.view];
+     */
  }
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 
-{
-    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
-    picker.delegate = (id)self;
-    picker.allowsEditing = YES;
-    
-    switch (buttonIndex) {
-            
-        case 0:
-            
-            
-            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self.navigationController presentViewController:picker animated:YES completion:NULL];
-            
-            break;
-            
-        case 1:
-            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            [self.navigationController presentViewController:picker animated:YES completion:NULL];
-            break;
-            
-        default:
-            break;
-    }
-    
-}
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-   
-    docImage=info[UIImagePickerControllerEditedImage];
-    AddPortfolioDocViewController *addportvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPortfolioDocViewControllersid"];
-    addportvc.documentImage=docImage;
-    [self.navigationController  pushViewController:addportvc animated:YES];
-   
-    //   [DocImage setUserInteractionEnabled:YES];
-    
-    
-    
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
-    
-    
-    
-}
 - (IBAction)EditPortfolioClk:(id)sender
 {
     EditPortfolioViewController * pdvc=[self.storyboard instantiateViewControllerWithIdentifier:@"EditPortfolioViewControllersid"];

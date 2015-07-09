@@ -99,6 +99,16 @@
 -(void)resetView
 {
     [self.phnotxt resignFirstResponder];
+    [UIView animateWithDuration:0.4f
+     // delay:0.1f
+     //options:UIViewAnimationTransitionNone
+                     animations:^{
+                         
+                         self.regview.frame=CGRectOffset(f,0.0f,0.0f);}
+                     completion:^(BOOL finished){
+                         
+                     }
+     ];
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {

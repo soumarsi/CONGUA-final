@@ -50,6 +50,10 @@
     lblDesc.textColor=[UIColor grayColor];
     lblDocType.textColor=[UIColor grayColor];
     
+    btnInsureCertificate.layer.cornerRadius=15.0f;
+    btnPurchaseReceipt.layer.cornerRadius=15.0f;
+    btnOther.layer.cornerRadius=15.0f;
+    
     [self DocumentViewUrl];
 }
 -(void)DocumentViewUrl
@@ -83,7 +87,14 @@
                     lblDocType.textColor=[UIColor blackColor];
                     if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"DocTypeCode"] integerValue] ==1) {
                         lblDocType.text=@"Purchase Receipt";
+                       
+                        btnInsureCertificate.selected=NO;
                         btnPurchaseReceipt.selected=YES;
+                        btnOther.selected=NO;
+                        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
+                        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        /*
                         [btnPurchaseReceipt.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
                         btnPurchaseReceipt.layer.borderWidth=0.5;
                         btnPurchaseReceipt.layer.cornerRadius=15.0f;
@@ -107,13 +118,19 @@
                         [[btnOther layer] setBorderWidth:0.5f];
                         [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
                         btnOther.backgroundColor=[UIColor whiteColor];
-                        
+                        */
                         
                         DocType1=@"1";
                     }
                     else if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"DocTypeCode"] integerValue] ==2) {
                         lblDocType.text=@"Insurance Certificate";
                         btnInsureCertificate.selected=YES;
+                        btnPurchaseReceipt.selected=NO;
+                        btnOther.selected=NO;
+                        btnInsureCertificate.backgroundColor=[UIColor whiteColor];
+                        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        /*
                         [btnInsureCertificate.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
                         btnInsureCertificate.layer.borderWidth=0.5;
                         btnInsureCertificate.layer.cornerRadius=15.0f;
@@ -137,13 +154,19 @@
                         [[btnOther layer] setBorderWidth:0.5f];
                         [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
                         btnOther.backgroundColor=[UIColor whiteColor];
-                        
+                        */
                         
                         DocType1=@"2";
                     }
                     else if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"DocTypeCode"] integerValue] ==99) {
                         lblDocType.text=@"Others";
+                        btnInsureCertificate.selected=NO;
+                        btnPurchaseReceipt.selected=NO;
                         btnOther.selected=YES;
+                        btnOther.backgroundColor=[UIColor whiteColor];
+                        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        /*
                         [btnOther.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
                         btnOther.layer.borderWidth=0.5;
                         btnOther.layer.cornerRadius=15.0f;
@@ -167,7 +190,7 @@
                         [[btnPurchaseReceipt layer] setBorderWidth:0.5f];
                         [[btnPurchaseReceipt layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
                         btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
-                        
+                        */
                         
                         DocType1=@"99";
                     }
@@ -774,6 +797,12 @@
     if (btnInsureCertificate.selected==NO)
     {
         btnInsureCertificate.selected=YES;
+        btnPurchaseReceipt.selected=NO;
+        btnOther.selected=NO;
+        btnInsureCertificate.backgroundColor=[UIColor whiteColor];
+        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        /*
         [btnInsureCertificate.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
         btnInsureCertificate.layer.borderWidth=0.5;
         btnInsureCertificate.layer.cornerRadius=15.0f;
@@ -797,7 +826,7 @@
         [[btnOther layer] setBorderWidth:0.5f];
         [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
         btnOther.backgroundColor=[UIColor whiteColor];
-        
+        */
         
         DocType1=@"2";
     }
@@ -807,6 +836,13 @@
 {
     if (btnPurchaseReceipt.selected==NO)
     {
+        btnInsureCertificate.selected=NO;
+        btnPurchaseReceipt.selected=YES;
+        btnOther.selected=NO;
+        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
+        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        /*
         btnPurchaseReceipt.selected=YES;
         [btnPurchaseReceipt.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
         btnPurchaseReceipt.layer.borderWidth=0.5;
@@ -831,7 +867,7 @@
         [[btnOther layer] setBorderWidth:0.5f];
         [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
         btnOther.backgroundColor=[UIColor whiteColor];
-        
+        */
         
         DocType1=@"1";
     }
@@ -841,6 +877,7 @@
 {
     if (btnOther.selected==NO)
     {
+        /*
         btnOther.selected=YES;
         [btnOther.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
         btnOther.layer.borderWidth=0.5;
@@ -865,7 +902,14 @@
         [[btnPurchaseReceipt layer] setBorderWidth:0.5f];
         [[btnPurchaseReceipt layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
         btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
+        */
         
+        btnInsureCertificate.selected=NO;
+        btnPurchaseReceipt.selected=NO;
+        btnOther.selected=YES;
+        btnOther.backgroundColor=[UIColor whiteColor];
+        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
         
         DocType1=@"99";
     }
