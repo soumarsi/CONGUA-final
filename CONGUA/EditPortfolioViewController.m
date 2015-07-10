@@ -157,8 +157,10 @@
                     
                     if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"PortfolioTypeCode"] integerValue] ==1) {
                         lblPortfolioType.text=@"Home";
+                        
                         btnHome.selected=YES;
-                         btnHome.backgroundColor=[UIColor whiteColor];
+                         btnHome.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        
                         /*
                         [btnHome.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
                         btnHome.layer.borderWidth=0.5;
@@ -198,9 +200,7 @@
                     else if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"PortfolioTypeCode"] integerValue] ==2) {
                         lblPortfolioType.text=@"Business";
                         btnBusiness.selected=YES;
-                       
-                        btnBusiness.backgroundColor=[UIColor whiteColor];
-                        /*
+                      btnBusiness.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];                     /*
                         [btnBusiness.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
                         btnBusiness.layer.borderWidth=0.5;
                         btnBusiness.layer.cornerRadius=15.0f;
@@ -238,7 +238,7 @@
                         lblPortfolioType.text=@"Personal";
                        
                         btnPersonal.selected=YES;
-                         btnPersonal.backgroundColor=[UIColor whiteColor];
+                        btnPersonal.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
                         /*
                         [btnPersonal.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
                         btnPersonal.layer.borderWidth=0.5;
@@ -277,7 +277,7 @@
                         lblPortfolioType.text=@"Other";
                        
                         btnOther.selected=YES;
-                        btnOther.backgroundColor=[UIColor whiteColor];
+                        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
                         /*
                         [btnOther.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
                         btnOther.layer.borderWidth=0.5;
@@ -600,7 +600,7 @@
     {
         btnHome.selected=YES;
         homeImg.image=[UIImage imageNamed:@"redioOn"];
-        btnHome.backgroundColor=[UIColor whiteColor];
+       btnHome.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
         btnBusiness.selected=NO;
         businessImg.image=[UIImage imageNamed:@"redioOff"];
         
@@ -609,9 +609,9 @@
         
         btnOther.selected=NO;
         otherImg.image=[UIImage imageNamed:@"redioOff"];
-        btnBusiness.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-        btnPersonal.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnBusiness.backgroundColor=[UIColor whiteColor];
+        btnPersonal.backgroundColor=[UIColor whiteColor];
+        btnOther.backgroundColor=[UIColor whiteColor];
         
         /*
         [btnHome.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
@@ -659,16 +659,16 @@
         
         btnBusiness.selected=YES;
         businessImg.image=[UIImage imageNamed:@"redioOn"];
-         btnBusiness.backgroundColor=[UIColor whiteColor];
+         btnBusiness.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
         btnPersonal.selected=NO;
         personalImg.image=[UIImage imageNamed:@"redioOff"];
         
         btnOther.selected=NO;
         otherImg.image=[UIImage imageNamed:@"redioOff"];
         portType=@"2";
-        btnHome.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-        btnPersonal.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnHome.backgroundColor=[UIColor whiteColor];
+        btnPersonal.backgroundColor=[UIColor whiteColor];
+        btnOther.backgroundColor=[UIColor whiteColor];
         /*
         btnHome.selected=NO;
         btnHome.layer.borderWidth=0.5;
@@ -718,13 +718,13 @@
         
         btnPersonal.selected=YES;
         personalImg.image=[UIImage imageNamed:@"redioOn"];
-        btnPersonal.backgroundColor=[UIColor whiteColor];
+         btnPersonal.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
         btnOther.selected=NO;
         otherImg.image=[UIImage imageNamed:@"redioOff"];
         portType=@"3";
-        btnHome.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-        btnBusiness.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnHome.backgroundColor=[UIColor whiteColor];
+        btnBusiness.backgroundColor=[UIColor whiteColor];
+        btnOther.backgroundColor=[UIColor whiteColor];
         /*
         btnHome.selected=NO;
         btnHome.layer.borderWidth=0.5;
@@ -777,11 +777,12 @@
         
         btnOther.selected=YES;
         otherImg.image=[UIImage imageNamed:@"redioOn"];
-        btnOther.backgroundColor=[UIColor whiteColor];
+       
+        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
         portType=@"4";
-        btnHome.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-        btnPersonal.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-        btnBusiness.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnHome.backgroundColor=[UIColor whiteColor];
+        btnPersonal.backgroundColor=[UIColor whiteColor];
+        btnBusiness.backgroundColor=[UIColor whiteColor];
         /*
         btnHome.selected=NO;
         btnHome.layer.borderWidth=0.5;

@@ -284,6 +284,9 @@
     BtnAdd.tag=[[[ArrCategory objectAtIndex:section] valueForKey:@"CategoryCode"] integerValue];
     [BtnAdd addTarget:self action:@selector(AddProductClk:) forControlEvents:UIControlEventTouchUpInside];
    */
+    if (ArrCategory.count>0) {
+        
+    
     UILabel *lbl=(UILabel *)[headerCell viewWithTag:1];
     
     lbl.text=[[ArrCategory objectAtIndex:section] valueForKey:@"CategoryName"];
@@ -309,6 +312,7 @@
     headerCell.btnDelete.tag=[[[ArrCategory objectAtIndex:section] valueForKey:@"CategoryCode"] integerValue];
    
     [headerCell.btnDelete addTarget:self action:@selector(DeleteCategoryClk:) forControlEvents:UIControlEventTouchUpInside];
+    }
     }
     /*
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedScreen:)];

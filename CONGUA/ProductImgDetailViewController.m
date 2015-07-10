@@ -17,7 +17,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    mainscroll.contentSize=CGSizeMake(0, 480);
+    mainscroll.contentSize=CGSizeMake(0, 489);
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
@@ -130,7 +130,7 @@
   //      NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
  //       [WebView loadRequest:requestObj];
         
-        [ProductImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str]] placeholderImage:[UIImage imageNamed:@"PlaceholderImg"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+        [ProductImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str]] placeholderImage:[UIImage imageNamed:@""] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
         ProductImg.contentMode=UIViewContentModeScaleAspectFit;
         /*
          BOOL net=[urlobj connectedToNetwork];

@@ -10,6 +10,7 @@
 #import "UrlconnectionObject.h"
 #import "login.h"
 #import "UIImageView+WebCache.h"
+#import "ViewController.h"
 @interface EditProductDocViewController : UIViewController
 {
     UIView *loader_shadow_View,*Doctypeview;
@@ -43,5 +44,6 @@
 - (IBAction)InsureCertificateClk:(id)sender;
 - (IBAction)PurchaseReceiptClick:(id)sender;
 - (IBAction)OtherClick:(id)sender;
+- (IBAction)DeleteClick:(id)sender;
 
 @end

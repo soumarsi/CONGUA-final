@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UrlconnectionObject.h"
 #import "login.h"
+#import "ViewController.h"
 #import "UIImageView+WebCache.h"
 @interface EditProductImgViewController : UIViewController
 {
@@ -30,5 +31,6 @@
 - (IBAction)BackClick:(id)sender;
 - (IBAction)SubmitClick:(id)sender;
 - (IBAction)ImageClick:(id)sender;
+- (IBAction)DeleteClick:(id)sender;
 
 @end

@@ -435,6 +435,82 @@
     [actionsheet showInView:self.view];
 
 }
+
+- (IBAction)DeleteClick:(id)sender
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@" Do you want to Delete This Image?" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+    [alertView show];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex == [alertView cancelButtonIndex])
+    {
+        
+    }
+    else
+    {
+        [self DeleteDocumentUrl];
+        
+        
+    }
+    
+    
+}
+
+-(void)DeleteDocumentUrl
+{
+    @try {
+        
+        
+        
+        NSString *str=[NSString stringWithFormat:@"%@DeleteProductImage/%@?ProductCode=%@&ProductImageCode=%@",URL_LINK,AuthToken,ProductCode,ProductImgCode];
+        NSLog(@"str=%@",str);
+        BOOL net=[urlobj connectedToNetwork];
+        if (net==YES) {
+            [urlobj global:str typerequest:@"array" withblock:^(id result, NSError *error,BOOL completed) {
+                NSLog(@"array=%@",result);
+                if ([[result valueForKey:@"IsSuccess"] integerValue]==1)
+                {
+                    ViewController *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"viewcontroller"];
+                    [self.navigationController pushViewController:obj1 animated:YES];
+                  //  [self.navigationController popViewControllerAnimated: YES];
+                }
+                else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
+                {
+                    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+                    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                    login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+                    [self.navigationController pushViewController:obj1 animated:YES];
+                }
+                else
+                {
+                    
+                    UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Error" message:@"Unsucessful...." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [aler show];
+                }
+                
+                
+                
+                
+            }];
+        }
+        else{
+            UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"No Network Connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [aler show];
+        }
+    }
+    @catch (NSException *exception)
+    {
+    }
+    @finally {
+        
+    }
+    
+    
+    
+    
+}
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 
 {

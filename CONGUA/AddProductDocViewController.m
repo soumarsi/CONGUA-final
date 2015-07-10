@@ -44,7 +44,7 @@
     
     btnInsuranceCertificate.selected=YES;
     DocType1=@"2";
-    btnInsuranceCertificate.backgroundColor=[UIColor whiteColor];
+    btnInsuranceCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
     btnInsuranceCertificate.layer.cornerRadius=15.0f;
     btnPurchaseReceipt.layer.cornerRadius=15.0f;
     btnOther.layer.cornerRadius=15.0f;
@@ -580,9 +580,9 @@
         btnInsuranceCertificate.selected=NO;
         btnPurchaseReceipt.selected=YES;
         btnOther.selected=NO;
-        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
-        btnInsuranceCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnOther.backgroundColor=[UIColor whiteColor];
+        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnInsuranceCertificate.backgroundColor=[UIColor whiteColor];
        
         
         DocType1=@"1";
@@ -597,9 +597,9 @@
         btnInsuranceCertificate.selected=NO;
         btnPurchaseReceipt.selected=NO;
         btnOther.selected=YES;
-        btnOther.backgroundColor=[UIColor whiteColor];
-        btnInsuranceCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
+        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnInsuranceCertificate.backgroundColor=[UIColor whiteColor];
         
         DocType1=@"99";
     }
@@ -612,9 +612,9 @@
         btnInsuranceCertificate.selected=YES;
         btnPurchaseReceipt.selected=NO;
         btnOther.selected=NO;
-        btnInsuranceCertificate.backgroundColor=[UIColor whiteColor];
-        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
+        btnInsuranceCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnOther.backgroundColor=[UIColor whiteColor];
         
         
         DocType1=@"2";

@@ -27,8 +27,8 @@
 {
     [super viewDidAppear:animated];
     
-    /*
-   
+    
+    mainscroll.hidden=YES;
     if ([UIScreen mainScreen].bounds.size.width==320)
     {
     mainscroll.contentSize = CGSizeMake(0, 500);
@@ -49,11 +49,12 @@
     ArrInsureDetail=[[NSMutableArray alloc]init];
     ArrDoc=[[NSMutableArray alloc]init];
     
-    [self DocShowUrl];
-    */
+    [self PortfolioViewUrl];
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    /*
     if ([UIScreen mainScreen].bounds.size.width==320)
     {
         mainscroll.contentSize = CGSizeMake(0, 500);
@@ -74,9 +75,11 @@
     ArrInsureDetail=[[NSMutableArray alloc]init];
     ArrDoc=[[NSMutableArray alloc]init];
      [self PortfolioViewUrl];
+     
     // Do any additional setup after loading the view.
      //NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
    lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
+     */
     didappear=1;
 }
 
@@ -135,6 +138,8 @@
                     }
                     
                     NSString *insured=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"IsInsured"]];
+                    
+                    mainscroll.hidden=NO;
                     if ([insured isEqualToString:@"0"])
                     {
                         lblinsureexpiry.hidden=YES;

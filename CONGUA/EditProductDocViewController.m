@@ -91,9 +91,9 @@
                         btnInsureCertificate.selected=NO;
                         btnPurchaseReceipt.selected=YES;
                         btnOther.selected=NO;
-                        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
-                        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-                        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        btnInsureCertificate.backgroundColor=[UIColor whiteColor];
+                        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        btnOther.backgroundColor=[UIColor whiteColor];
                         
                         
                         DocType1=@"1";
@@ -103,9 +103,9 @@
                         btnInsureCertificate.selected=YES;
                         btnPurchaseReceipt.selected=NO;
                         btnOther.selected=NO;
-                        btnInsureCertificate.backgroundColor=[UIColor whiteColor];
-                        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-                        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
+                        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        btnOther.backgroundColor=[UIColor whiteColor];
                         
                         
                         DocType1=@"2";
@@ -115,9 +115,9 @@
                         btnInsureCertificate.selected=NO;
                         btnPurchaseReceipt.selected=NO;
                         btnOther.selected=YES;
-                        btnOther.backgroundColor=[UIColor whiteColor];
-                        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-                        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+                        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
+                        btnInsureCertificate.backgroundColor=[UIColor whiteColor];
+                        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
                         
                         
                         DocType1=@"99";
@@ -638,9 +638,9 @@
         btnInsureCertificate.selected=YES;
         btnPurchaseReceipt.selected=NO;
         btnOther.selected=NO;
-        btnInsureCertificate.backgroundColor=[UIColor whiteColor];
-        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnOther.backgroundColor=[UIColor whiteColor];
+        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
         
         DocType1=@"2";
     }
@@ -653,9 +653,9 @@
         btnInsureCertificate.selected=NO;
         btnPurchaseReceipt.selected=YES;
         btnOther.selected=NO;
-        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
-        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnInsureCertificate.backgroundColor=[UIColor whiteColor];
+        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnOther.backgroundColor=[UIColor whiteColor];
         
         
         DocType1=@"1";
@@ -671,12 +671,90 @@
         btnInsureCertificate.selected=NO;
         btnPurchaseReceipt.selected=NO;
         btnOther.selected=YES;
-        btnOther.backgroundColor=[UIColor whiteColor];
-        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnInsureCertificate.backgroundColor=[UIColor whiteColor];
+        btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
+        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
         
         DocType1=@"99";
     }
+}
+
+- (IBAction)DeleteClick:(id)sender
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@" Do you want to Delete This Document?" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+    [alertView show];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex == [alertView cancelButtonIndex])
+    {
+        
+    }
+    else
+    {
+        [self DeleteDocumentUrl];
+        
+        
+    }
+    
+    
+}
+-(void)DeleteDocumentUrl
+{
+    @try {
+        
+        
+        
+        NSString *str=[NSString stringWithFormat:@"%@DeleteProductDoc/%@?ProductCode=%@&ProductDocCode=%@",URL_LINK,AuthToken,ProductCode,ProductDocCode];
+        NSLog(@"str=%@",str);
+        BOOL net=[urlobj connectedToNetwork];
+        if (net==YES) {
+            [urlobj global:str typerequest:@"array" withblock:^(id result, NSError *error,BOOL completed) {
+                NSLog(@"array=%@",result);
+                if ([[result valueForKey:@"IsSuccess"] integerValue]==1)
+                {
+                    /* UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Unsucessful...." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                     [aler show];
+                     */
+                  //  [self.navigationController popViewControllerAnimated: YES];
+                    ViewController *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"viewcontroller"];
+                    [self.navigationController pushViewController:obj1 animated:YES];
+                }
+                else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
+                {
+                    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+                    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                    login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+                    [self.navigationController pushViewController:obj1 animated:YES];
+                }
+                else
+                {
+                    
+                    UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Error" message:@"Unsucessful...." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [aler show];
+                }
+                
+                
+                
+                
+            }];
+        }
+        else{
+            UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"No Network Connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [aler show];
+        }
+    }
+    @catch (NSException *exception)
+    {
+    }
+    @finally {
+        
+    }
+    
+    
+    
+    
 }
 -(void)DoctypepickerCancel
 {

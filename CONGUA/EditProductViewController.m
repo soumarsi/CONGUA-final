@@ -166,7 +166,7 @@
                         // hide desc
                         
                         btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DescImgView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
-                        btnDelete.frame=CGRectMake(btnDelete.frame.origin.x, btnSubmit.frame.origin.y+btnSubmit.frame.size.height+10, btnDelete.frame.size.width, btnDelete.frame.size.height);
+                        btnDelete.frame=CGRectMake(btnDelete.frame.origin.x, DescImgView.frame.origin.y+10, btnDelete.frame.size.width, btnDelete.frame.size.height);
                         
                         DescImgView.hidden=YES;
                         lblDescription.hidden=YES;
@@ -183,7 +183,7 @@
                         //show desc
                         
                         btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DescImgView.frame.origin.y+DescImgView.frame.size.height+20, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
-                        btnDelete.frame=CGRectMake(btnDelete.frame.origin.x, btnSubmit.frame.origin.y+btnSubmit.frame.size.height+10, btnDelete.frame.size.width, btnDelete.frame.size.height);
+                        btnDelete.frame=CGRectMake(btnDelete.frame.origin.x, DescImgView.frame.origin.y+DescImgView.frame.size.height+20, btnDelete.frame.size.width, btnDelete.frame.size.height);
                         
                         
                         DescImgView.hidden=NO;
@@ -761,7 +761,7 @@
         [UIView animateWithDuration:0.5 animations:^{
             
             btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DescImgView.frame.origin.y+DescImgView.frame.size.height+20, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
-            btnDelete.frame=CGRectMake(btnDelete.frame.origin.x, btnSubmit.frame.origin.y+btnSubmit.frame.size.height+10, btnDelete.frame.size.width, btnDelete.frame.size.height);
+            btnDelete.frame=CGRectMake(btnDelete.frame.origin.x, DescImgView.frame.origin.y+DescImgView.frame.size.height+20, btnDelete.frame.size.width, btnDelete.frame.size.height);
             
             
         } completion:^(BOOL finished) {
@@ -794,7 +794,7 @@
             
             
             btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DescImgView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
-            btnDelete.frame=CGRectMake(btnDelete.frame.origin.x, btnSubmit.frame.origin.y+btnSubmit.frame.size.height+10, btnDelete.frame.size.width, btnDelete.frame.size.height);
+            btnDelete.frame=CGRectMake(btnDelete.frame.origin.x, DescImgView.frame.origin.y+10, btnDelete.frame.size.width, btnDelete.frame.size.height);
             DescImgView.hidden=YES;
             lblDescription.hidden=YES;
             txtVwDescription.hidden=YES;
