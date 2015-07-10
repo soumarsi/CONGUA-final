@@ -21,7 +21,7 @@
 
 
 @implementation SignUp
-@synthesize btncountry,imgArrow,txtcountry;
+@synthesize btncountry,imgArrow,txtcountry,mainscroll;
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -52,6 +52,8 @@
     
     ArrCountryName=[[NSMutableArray alloc]init];
     ArrCountryCode=[[NSMutableArray alloc]init];
+    
+    [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 1100)];
     [self CountryShowUrl];
 
     

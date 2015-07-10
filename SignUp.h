@@ -39,5 +39,6 @@
 - (IBAction)CountryClk:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *txtcountry;
 @property (weak, nonatomic) IBOutlet UIButton *btnSignUp;
+@property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 
 @end
