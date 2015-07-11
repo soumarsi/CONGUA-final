@@ -49,6 +49,13 @@
     btnPurchaseReceipt.layer.cornerRadius=15.0f;
     btnOther.layer.cornerRadius=15.0f;
     
+    [[btnInsuranceCertificate layer] setBorderWidth:0.5f];
+    [btnInsuranceCertificate.layer setBorderColor:[[UIColor colorWithRed:(202.0f/255.0f) green:(202.0f/255.0f) blue:(202.0f/255.0f) alpha:1] CGColor]];
+    [[btnPurchaseReceipt layer] setBorderWidth:0.5f];
+    [btnPurchaseReceipt.layer setBorderColor:[[UIColor colorWithRed:(202.0f/255.0f) green:(202.0f/255.0f) blue:(202.0f/255.0f) alpha:1] CGColor]];
+    [[btnOther layer] setBorderWidth:0.5f];
+    [btnOther.layer setBorderColor:[[UIColor colorWithRed:(202.0f/255.0f) green:(202.0f/255.0f) blue:(202.0f/255.0f) alpha:1] CGColor]];
+    
     if(self.view.frame.size.height==480)
     {
         //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];

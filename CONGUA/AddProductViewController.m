@@ -80,6 +80,9 @@
     // Set the toolbar as accessory view of an UITextField object
     txtPurchaseValue.inputAccessoryView = toolbar1;
     
+    [[btnproductType layer] setBorderWidth:0.5f];
+    [btnproductType.layer setBorderColor:[[UIColor colorWithRed:(202.0f/255.0f) green:(202.0f/255.0f) blue:(202.0f/255.0f) alpha:1] CGColor]];
+    btnproductType.layer.cornerRadius=5.0;
     
     [self CategoryShowUrl];
 }
@@ -709,13 +712,16 @@
          */
         calendar.onlyShowCurrentMonth = NO;
         calendar.adaptHeightToNumberOfWeeksInMonth = YES;
-        
+        calendar.layer.cornerRadius=0.0f;
+        calendar.backgroundColor=[UIColor whiteColor];
+
         calendar.frame = CGRectMake(40,150, myview.frame.size.width-80,myview.frame.size.height);
         [myview addSubview:calendar];
         
         UIButton *btnCross = [UIButton buttonWithType:UIButtonTypeCustom];
         btnCross.frame = CGRectMake(calendar.frame.origin.x+calendar.frame.size.width-30, 110, 30, 30);
         [btnCross addTarget:self action:@selector(CrossClick) forControlEvents:UIControlEventTouchUpInside];
+        btnCross.imageEdgeInsets = UIEdgeInsetsMake(5,5, 5, 5);
         [btnCross setImage:[UIImage imageNamed:@"crossWhite"] forState:UIControlStateNormal];
         [myview addSubview:btnCross];
     }
@@ -742,12 +748,14 @@
          */
         calendar.onlyShowCurrentMonth = NO;
         calendar.adaptHeightToNumberOfWeeksInMonth = YES;
-        
+        calendar.layer.cornerRadius=0.0f;
+        calendar.backgroundColor=[UIColor whiteColor];
         calendar.frame = CGRectMake(20,120, myview.frame.size.width-40,myview.frame.size.height);
         [myview addSubview:calendar];
         
         UIButton *btnCross = [UIButton buttonWithType:UIButtonTypeCustom];
         btnCross.frame = CGRectMake(calendar.frame.origin.x+calendar.frame.size.width-30, 80, 30, 30);
+        btnCross.imageEdgeInsets = UIEdgeInsetsMake(5,5, 5, 5);
         [btnCross addTarget:self action:@selector(CrossClick) forControlEvents:UIControlEventTouchUpInside];
         [btnCross setImage:[UIImage imageNamed:@"crossWhite"] forState:UIControlStateNormal];
         [myview addSubview:btnCross];
@@ -779,7 +787,8 @@
          */
         calendar.onlyShowCurrentMonth = NO;
         calendar.adaptHeightToNumberOfWeeksInMonth = YES;
-        
+        calendar.layer.cornerRadius=0.0f;
+        calendar.backgroundColor=[UIColor whiteColor];
         calendar.frame = CGRectMake(20,120, myview.frame.size.width-40,myview.frame.size.height);
         [myview addSubview:calendar];
         
@@ -787,6 +796,7 @@
         btnCross.frame = CGRectMake(calendar.frame.origin.x+calendar.frame.size.width-30, 80, 30, 30);
         [btnCross addTarget:self action:@selector(CrossClick) forControlEvents:UIControlEventTouchUpInside];
         [btnCross setImage:[UIImage imageNamed:@"crossWhite"] forState:UIControlStateNormal];
+         btnCross.imageEdgeInsets = UIEdgeInsetsMake(5,5, 5, 5);
         [myview addSubview:btnCross];
         
         

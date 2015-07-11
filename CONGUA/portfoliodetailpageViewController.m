@@ -75,11 +75,11 @@
     ArrInsureDetail=[[NSMutableArray alloc]init];
     ArrDoc=[[NSMutableArray alloc]init];
      [self PortfolioViewUrl];
-     
-    // Do any additional setup after loading the view.
-     //NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-   lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
      */
+    // Do any additional setup after loading the view.
+     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+   lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
+     
     didappear=1;
 }
 

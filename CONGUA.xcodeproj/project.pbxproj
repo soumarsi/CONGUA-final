@@ -740,7 +740,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Congua;
-				PROVISIONING_PROFILE = "030b4633-123a-42fb-8d3b-6a24f5db777b";
+				PROVISIONING_PROFILE = "81fad019-6e05-48f0-9918-2fcbcd5c6a28";
 			};
 			name = Debug;
 		};
@@ -756,7 +756,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Congua;
-				PROVISIONING_PROFILE = "030b4633-123a-42fb-8d3b-6a24f5db777b";
+				PROVISIONING_PROFILE = "81fad019-6e05-48f0-9918-2fcbcd5c6a28";
 			};
 			name = Release;
 		};

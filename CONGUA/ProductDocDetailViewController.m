@@ -13,12 +13,27 @@
 @end
 
 @implementation ProductDocDetailViewController
-@synthesize mainscroll,lblDesc,lblDocType,lblDocName,WebView,ProductDocCode,lblUserName;
+@synthesize mainscroll,lblDesc,lblDocType,lblDocName,WebView,ProductDocCode,lblUserName,btnEditTop;
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 487)];
+    
+    if (self.view.frame.size.width==375)
+    {
+        btnEditTop.imageEdgeInsets = UIEdgeInsetsMake(34, 36, 17, 0);
+    }
+    else
+    {
+        btnEditTop.imageEdgeInsets = UIEdgeInsetsMake(27, 36, 24, 0);
+    }
+    
+    if (self.view.frame.size.height==480)
+    {
+        btnEditTop.imageEdgeInsets = UIEdgeInsetsMake(20, 36, 32, 0);
+    }
+    
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
@@ -27,6 +42,8 @@
     NSLog(@"product doc code=%@",ProductDocCode);
     [[NSUserDefaults standardUserDefaults] setObject:ProductDocCode forKey:@"ProductDocCode"];
     urlobj=[[UrlconnectionObject alloc]init];
+    
+   
     
     [self DocumentViewUrl];
 }

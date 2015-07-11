@@ -25,6 +25,7 @@
 @property (strong, nonatomic)  NSString *ProductDocCode;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
+@property (weak, nonatomic) IBOutlet UIButton *btnEditTop;
 
 
 - (IBAction)BackClick:(id)sender;

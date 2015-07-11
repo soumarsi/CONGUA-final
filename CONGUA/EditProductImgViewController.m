@@ -18,6 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    mainscroll.hidden=YES;
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
     AuthToken=[prefs valueForKey:@"AuthToken"];
@@ -67,6 +68,8 @@
                     lblDesc.hidden=YES;
                     
                           FileName=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"FileName"]];
+                    
+                    mainscroll.hidden=NO;
                     if (FileName.length==0)
                     {
                         

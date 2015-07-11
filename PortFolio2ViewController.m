@@ -23,6 +23,8 @@
     self.portfoliotabview.delegate=self;
     self.portfoliotabview.dataSource=self;
     
+     mainscroll.hidden=YES;
+    
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
     AuthToken=[prefs valueForKey:@"AuthToken"];
@@ -143,7 +145,7 @@
                         [ArrDoc addObject:tempDict1];
                         
                     }
-                   
+                    mainscroll.hidden=NO;
                     NSLog(@"summary name=%@",ArrDoc);
                     [tblDoc reloadData];
                     [self ImageShowUrl];

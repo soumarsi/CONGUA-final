@@ -25,6 +25,8 @@
     PortfolioCode=[prefs valueForKey:@"PortfolioCode"];
     NSLog(@"portfolio doc code=%@",DocCode);
     
+    
+    
     urlobj=[[UrlconnectionObject alloc]init];
 
     [self DocumentViewUrl];

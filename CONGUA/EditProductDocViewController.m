@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    mainscroll.hidden=YES;
     if(self.view.frame.size.height==480)
     {
         //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];
@@ -52,6 +52,13 @@
     btnInsureCertificate.layer.cornerRadius=15.0f;
     btnPurchaseReceipt.layer.cornerRadius=15.0f;
     btnOther.layer.cornerRadius=15.0f;
+    
+    [[btnInsureCertificate layer] setBorderWidth:0.5f];
+    [btnInsureCertificate.layer setBorderColor:[[UIColor colorWithRed:(202.0f/255.0f) green:(202.0f/255.0f) blue:(202.0f/255.0f) alpha:1] CGColor]];
+    [[btnPurchaseReceipt layer] setBorderWidth:0.5f];
+    [btnPurchaseReceipt.layer setBorderColor:[[UIColor colorWithRed:(202.0f/255.0f) green:(202.0f/255.0f) blue:(202.0f/255.0f) alpha:1] CGColor]];
+    [[btnOther layer] setBorderWidth:0.5f];
+    [btnOther.layer setBorderColor:[[UIColor colorWithRed:(202.0f/255.0f) green:(202.0f/255.0f) blue:(202.0f/255.0f) alpha:1] CGColor]];
     
     [self DocumentViewUrl];
 }
@@ -124,6 +131,8 @@
                     }
                     
                     FileName=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"FileName"]];
+                    
+                    mainscroll.hidden=NO;
                     if (FileName.length==0)
                     {
                         
@@ -674,6 +683,7 @@
         btnInsureCertificate.backgroundColor=[UIColor whiteColor];
         btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
         btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
+        
         
         DocType1=@"99";
     }

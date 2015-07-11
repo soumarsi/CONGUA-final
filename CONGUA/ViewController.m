@@ -270,13 +270,13 @@ menu *menuview;
                  cell.lblinsured.text=@"Not Insured";
                 cell.lblinsured.textColor=[UIColor blackColor];
                 cell.tickImg.hidden=YES;
-                cell.lblinsured.textAlignment=NSTextAlignmentRight;
+              //  cell.lblinsured.textAlignment=NSTextAlignmentRight;
             }
             else if([[NSString stringWithFormat:@"%@",[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]] isEqualToString:@"1"])
             {
                 cell.lblinsured.text=@"Insured";
              //   cell.lblinsured.textColor=[UIColor colorWithRed:(137.0/255.0) green:(211.0/255.0) blue:(0.0/255.0) alpha:1.0];
-                cell.lblinsured.textAlignment=NSTextAlignmentRight;
+             //   cell.lblinsured.textAlignment=NSTextAlignmentRight;
                 cell.lblinsured.textColor=[UIColor colorWithRed:(32.0/255.0) green:(138.0/255.0) blue:(83.0/255.0) alpha:1.0];
                 cell.tickImg.hidden=NO;
             }

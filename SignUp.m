@@ -53,7 +53,67 @@
     ArrCountryName=[[NSMutableArray alloc]init];
     ArrCountryCode=[[NSMutableArray alloc]init];
     
-    [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 1100)];
+    UIView *paddingView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0,18, 20)];
+    self.titletxt.leftView = paddingView1;
+    self.titletxt.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIView *paddingView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0,18, 20)];
+    self.fnametxt.leftView = paddingView2;
+    self.fnametxt.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIView *paddingView3 = [[UIView alloc] initWithFrame:CGRectMake(0, 0,18, 20)];
+    self.lnametxt.leftView = paddingView3;
+    self.lnametxt.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIView *paddingView4 = [[UIView alloc] initWithFrame:CGRectMake(0, 0,18, 20)];
+    self.emailtxt.leftView = paddingView4;
+    self.emailtxt.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIView *paddingView5 = [[UIView alloc] initWithFrame:CGRectMake(0, 0,18, 20)];
+    self.phnotxt.leftView = paddingView5;
+    self.phnotxt.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIView *paddingView6 = [[UIView alloc] initWithFrame:CGRectMake(0, 0,18, 20)];
+    self.addrtxt.leftView = paddingView6;
+    self.addrtxt.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIView *paddingView7 = [[UIView alloc] initWithFrame:CGRectMake(0, 0,18, 20)];
+    self.alteraddrtxt.leftView = paddingView7;
+    self.alteraddrtxt.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIView *paddingView8 = [[UIView alloc] initWithFrame:CGRectMake(0, 0,18, 20)];
+    self.pcodetxt.leftView = paddingView8;
+    self.pcodetxt.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIView *paddingView9 = [[UIView alloc] initWithFrame:CGRectMake(0, 0,18, 20)];
+    self.passtxt.leftView = paddingView9;
+    self.passtxt.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIView *paddingView10 = [[UIView alloc] initWithFrame:CGRectMake(0, 0,18, 20)];
+    self.cpasstxt.leftView = paddingView10;
+    self.cpasstxt.leftViewMode = UITextFieldViewModeAlways;
+
+    UIView *paddingView11 = [[UIView alloc] initWithFrame:CGRectMake(0, 0,18, 20)];
+    self.txtcountry.leftView = paddingView11;
+    self.txtcountry.leftViewMode = UITextFieldViewModeAlways;
+
+[self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 900)];
+    /*
+    if (self.view.frame.size.width==320)
+    {
+         [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 900)];
+    }
+   else if (self.view.frame.size.width>=375)
+   {
+       [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 900)];
+
+   }
+    if (self.view.frame.size.height==480)
+    {
+        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 900)];
+    }
+     */
+    
     [self CountryShowUrl];
 
     
@@ -106,7 +166,8 @@
      //options:UIViewAnimationTransitionNone
                      animations:^{
                          
-                         self.regview.frame=CGRectOffset(f,0.0f,0.0f);}
+                         [self.mainscroll setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
+                     }
                      completion:^(BOOL finished){
                          
                      }
@@ -143,7 +204,7 @@
    
     if(self.view.frame.size.width>=375)
     {
-        if(textField==self.phnotxt)
+        if(textField==self.addrtxt)
         {
             //self.addrtxt.placeholder=Nil;
             [UIView animateWithDuration:0.4f
@@ -151,7 +212,9 @@
                                 //options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,0.0f);}
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,70.0f
+                                                                               ) animated:YES];
+                             }
                              completion:^(BOOL finished){
                                  
                              }
@@ -167,7 +230,8 @@
                                 //options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,0.0f);}
+                               //  self.regview.frame=CGRectOffset(f,0.0f,0.0f);
+                             }
                              completion:^(BOOL finished){
                                  
                              }
@@ -184,7 +248,9 @@
                                 //options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,-30.0f);}
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,140.0f
+                                                                               ) animated:YES];
+                             }
                              completion:^(BOOL finished){
                                  
                              }
@@ -202,7 +268,9 @@
                                 //options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,0.0f);}
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 70.0f
+                                                                               ) animated:YES];
+                             }
                              completion:^(BOOL finished){
                                  
                              }
@@ -218,13 +286,14 @@
                                 //options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,0.0f);}
+                               //  self.regview.frame=CGRectOffset(f,0.0f,0.0f);
+                             }
                              completion:^(BOOL finished){
                                  
                              }
              ];
             
-            //            self.regview.frame=CGRectOffset(f,0.0f,-20.0f);
+          
         }
         if(textField==self.fnametxt)
         {
@@ -234,13 +303,14 @@
                                 //options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,0.0f);}
+                                // self.regview.frame=CGRectOffset(f,0.0f,0.0f);
+                             }
                              completion:^(BOOL finished){
                                  
                              }
              ];
             
-            //            self.regview.frame=CGRectOffset(f,0.0f,-20.0f);
+          
         }
 
         if(textField==self.alteraddrtxt)
@@ -251,7 +321,9 @@
                                // options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,-60.0f);}
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,140.0f
+                                                                               ) animated:YES];
+                             }
                              completion:^(BOOL finished){
                                  
                              }
@@ -268,7 +340,8 @@
                                // options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,-100.0f);                             }
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,210.0f
+                                                                               ) animated:YES];                          }
                              completion:^(BOOL finished){
                                  
                              }
@@ -285,7 +358,8 @@
                                // options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                self.regview.frame=CGRectOffset(f,0.0f,-145.0f);
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,280.0f
+                                                                               ) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -301,7 +375,8 @@
                               //  options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,-180.0f);
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,350.0f
+                                                                               ) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -312,23 +387,7 @@
     }
     else if (self.view.frame.size.width==320)
     {
-        if(textField==self.phnotxt)
-        {
-            //self.addrtxt.placeholder=Nil;
-            [UIView animateWithDuration:0.4f
-                               //   delay:0.1f
-                               // options:UIViewAnimationTransitionNone
-                             animations:^{
-                                 
-                                 self.regview.frame=CGRectOffset(f,0.0f,0.0f);}
-                             completion:^(BOOL finished){
-                                 
-                             }
-             ];
-            
-            //            self.regview.frame=CGRectOffset(f,0.0f,-20.0f);
-        }
-        if(textField==self.titletxt)
+                if(textField==self.titletxt)
         {
             //self.addrtxt.placeholder=Nil;
             [UIView animateWithDuration:0.4f
@@ -336,7 +395,8 @@
                               //  options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,0.0f);}
+                               //  self.regview.frame=CGRectOffset(f,0.0f,0.0f);
+                             }
                              completion:^(BOOL finished){
                                  
                              }
@@ -353,7 +413,8 @@
                               //  options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,-30.0f);}
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 140.0f) animated:YES];
+                             }
                              completion:^(BOOL finished){
                                  
                              }
@@ -371,7 +432,8 @@
                               //  options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,0.0f);}
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 70.0f) animated:YES];
+                             }
                              completion:^(BOOL finished){
                                  
                              }
@@ -387,7 +449,8 @@
                              //   options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,0.0f);}
+                               //  self.regview.frame=CGRectOffset(f,0.0f,0.0f);
+                             }
                              completion:^(BOOL finished){
                                  
                              }
@@ -403,7 +466,8 @@
                             //    options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,0.0f);}
+                               //  self.regview.frame=CGRectOffset(f,0.0f,0.0f);
+                             }
                              completion:^(BOOL finished){
                                  
                              }
@@ -420,7 +484,7 @@
                            //     options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,-50.0f);
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 210.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -437,7 +501,7 @@
                            //     options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,-90.0f);
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 280.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -453,7 +517,7 @@
                             //    options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,-130.0f);
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 350.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -471,7 +535,7 @@
                            //     options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,-160.0f);
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 420.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -487,13 +551,189 @@
                            //     options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 self.regview.frame=CGRectOffset(f,0.0f,-190.0f);
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 490.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
                              }
              ];
 //            self.regview.frame=CGRectOffset(f,0.0f,-190.0f);
+        }
+    }
+    
+    if (self.view.frame.size.height==480)
+    {
+        if(textField==self.titletxt)
+        {
+            //self.addrtxt.placeholder=Nil;
+            [UIView animateWithDuration:0.4f
+             //  delay:0.1f
+             //  options:UIViewAnimationTransitionNone
+                             animations:^{
+                                 
+                                 //  self.regview.frame=CGRectOffset(f,0.0f,0.0f);
+                             }
+                             completion:^(BOOL finished){
+                                 
+                             }
+             ];
+            
+            //            self.regview.frame=CGRectOffset(f,0.0f,-20.0f);
+        }
+        
+        if(textField==self.phnotxt)
+        {
+            //self.addrtxt.placeholder=Nil;
+            [UIView animateWithDuration:0.4f
+             //   delay:0.1f
+             //  options:UIViewAnimationTransitionNone
+                             animations:^{
+                                 
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 250.0f) animated:YES];
+                             }
+                             completion:^(BOOL finished){
+                                 
+                             }
+             ];
+            
+            //            self.regview.frame=CGRectOffset(f,0.0f,-20.0f);
+        }
+        
+        
+        if(textField==self.emailtxt)
+        {
+            //self.addrtxt.placeholder=Nil;
+            [UIView animateWithDuration:0.4f
+             //    delay:0.1f
+             //  options:UIViewAnimationTransitionNone
+                             animations:^{
+                                 
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 140.0f) animated:YES];
+                             }
+                             completion:^(BOOL finished){
+                                 
+                             }
+             ];
+            
+            //            self.regview.frame=CGRectOffset(f,0.0f,-20.0f);
+        }
+        if(textField==self.lnametxt)
+        {
+            //self.addrtxt.placeholder=Nil;
+            [UIView animateWithDuration:0.4f
+             //    delay:0.1f
+             //   options:UIViewAnimationTransitionNone
+                             animations:^{
+                                 
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 80.0f) animated:YES];
+                             }
+                             completion:^(BOOL finished){
+                                 
+                             }
+             ];
+            
+            //            self.regview.frame=CGRectOffset(f,0.0f,-20.0f);
+        }
+        if(textField==self.fnametxt)
+        {
+            //self.addrtxt.placeholder=Nil;
+            [UIView animateWithDuration:0.4f
+             //    delay:0.1f
+             //    options:UIViewAnimationTransitionNone
+                             animations:^{
+                                 
+                                [self.mainscroll setContentOffset:CGPointMake(0.0f, 40.0f) animated:YES];
+                             }
+                             completion:^(BOOL finished){
+                                 
+                             }
+             ];
+            
+            //            self.regview.frame=CGRectOffset(f,0.0f,-20.0f);
+        }
+        
+        if(textField==self.addrtxt)
+        {
+            // self.addrtxt.placeholder=Nil;
+            [UIView animateWithDuration:0.4f
+             //        delay:0.1f
+             //     options:UIViewAnimationTransitionNone
+                             animations:^{
+                                 
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 280.0f) animated:YES];
+                             }
+                             completion:^(BOOL finished){
+                                 
+                             }
+             ];
+            
+            // self.regview.frame=CGRectOffset(f,0.0f,-50.0f);
+        }
+        if(textField==self.alteraddrtxt)
+        {
+            self.alteraddrtxt.placeholder=Nil;
+            [UIView animateWithDuration:0.4f
+             //       delay:0.1f
+             //     options:UIViewAnimationTransitionNone
+                             animations:^{
+                                 
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,350.0f) animated:YES];
+                             }
+                             completion:^(BOOL finished){
+                                 
+                             }
+             ];
+            //self.regview.frame=CGRectOffset(f,0.0f,-90.0f);
+        }
+        if(textField==self.pcodetxt)
+        {
+            //self.pcodetxt.placeholder=Nil;
+            [UIView animateWithDuration:0.4f
+             //     delay:0.1f
+             //    options:UIViewAnimationTransitionNone
+                             animations:^{
+                                 
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 400.0f) animated:YES];
+                             }
+                             completion:^(BOOL finished){
+                                 
+                             }
+             ];
+            
+            
+            //self.regview.frame=CGRectOffset(f,0.0f,-130.0f);
+        }
+        if(textField==self.passtxt)
+        {
+            //self.passtxt.placeholder=Nil;
+            [UIView animateWithDuration:0.4f
+             //       delay:0.1f
+             //     options:UIViewAnimationTransitionNone
+                             animations:^{
+                                 
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 450.0f) animated:YES];
+                             }
+                             completion:^(BOOL finished){
+                                 
+                             }
+             ];
+            //            self.regview.frame=CGRectOffset(f,0.0f,-160.0f);
+        }
+        if(textField==self.cpasstxt)
+        {
+            //self.cpasstxt.placeholder=Nil;
+            [UIView animateWithDuration:0.4f
+             //     delay:0.1f
+             //     options:UIViewAnimationTransitionNone
+                             animations:^{
+                                 
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 500.0f) animated:YES];
+                             }
+                             completion:^(BOOL finished){
+                                 
+                             }
+             ];
+            //            self.regview.frame=CGRectOffset(f,0.0f,-190.0f);
         }
     }
 }
@@ -764,6 +1004,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    /*
     if([_titletxt.text isEqual:@""])
     {
         UIColor *color1 = [UIColor lightGrayColor];
@@ -814,13 +1055,14 @@
         UIColor *color1 = [UIColor lightGrayColor];
         _cpasstxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Confirm Password" attributes:@{NSForegroundColorAttributeName: color1}];
     }
+     */
     //self.regview.frame=CGRectOffset(f,0.0f,0.0f);
     [UIView animateWithDuration:0.4f
                          // delay:0.1f
                        // options:UIViewAnimationTransitionNone
                      animations:^{
 
-                         self.regview.frame=CGRectOffset(f,0.0f,0.0f);
+                         [self.mainscroll setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
                      }
                      completion:^(BOOL finished){
                         
@@ -844,7 +1086,7 @@
      // options:UIViewAnimationTransitionNone
                      animations:^{
                          
-                         self.regview.frame=CGRectOffset(f,0.0f,-200.0f);
+                         [self.mainscroll setContentOffset:CGPointMake(0.0f, 490.0f) animated:YES];
                      }
                      completion:^(BOOL finished){
                          
@@ -902,8 +1144,8 @@
      // delay:0.1f
      // options:UIViewAnimationTransitionNone
                      animations:^{
-                         
-                        self.regview.frame=CGRectOffset(f,0.0f,0.0f);
+                         [self.mainscroll setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
+                        
                      }
                      completion:^(BOOL finished){
                          
@@ -929,7 +1171,7 @@
      // options:UIViewAnimationTransitionNone
                      animations:^{
                          
-                         self.regview.frame=CGRectOffset(f,0.0f,0.0f);
+                         [self.mainscroll setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
                      }
                      completion:^(BOOL finished){
                          
