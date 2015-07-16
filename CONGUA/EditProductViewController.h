@@ -10,6 +10,10 @@
 #import "UrlconnectionObject.h"
 #import "CKCalendarView.h"
 #import "ViewController.h"
+@protocol PopView_delegate2<NSObject>
+@optional
+-(void)Popaction_method2;
+@end
 @interface EditProductViewController : UIViewController
 {
     UIView *loader_shadow_View,*Producttypeview,*PurchaseDateview;
@@ -21,6 +25,7 @@
     UIDatePicker *datepicker;
     UIButton *btnProducttypesave,*btnproducttypeCancel;
 }
+@property(assign)id<PopView_delegate2>PopDelegate2;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (weak, nonatomic) IBOutlet UITextField *txtProductNmae;
 @property (weak, nonatomic) IBOutlet UILabel *lblProductType;

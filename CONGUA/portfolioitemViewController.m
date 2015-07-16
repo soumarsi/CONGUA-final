@@ -12,7 +12,7 @@
 #import "PortFolio2ViewController.h"
 
 
-@interface portfolioitemViewController ()<UIAlertViewDelegate>
+@interface portfolioitemViewController ()<UIAlertViewDelegate,PopView_delegate3,PopView_delegate4,PopView_delegate5>
 {
     NSString *lbltext;
 }
@@ -20,11 +20,18 @@
 @end
 
 @implementation portfolioitemViewController
-@synthesize mytabview,lblAddress,lblportfilioName,logoimage,lblUserName,mainscroll,AddProductView;
+@synthesize mytabview,lblAddress,lblportfilioName,logoimage,lblUserName,mainscroll,AddProductView,PopDelegateFromItem;
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
+    
+    
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    mainscroll.hidden=YES;
     if ([UIScreen mainScreen].bounds.size.width==320)
     {
         mainscroll.contentSize = CGSizeMake(0, 491);
@@ -53,8 +60,8 @@
     else if ([[prefs valueForKey:@"PortfolioTypeCode"] integerValue] ==4) {
         logoimage.image=[UIImage imageNamed:@"other"];
     }
-
-   
+    
+    
     urlobj=[[UrlconnectionObject alloc]init];
     ArrCategory=[[NSMutableArray alloc]init];
     ArrProduct=[[NSMutableArray alloc]init];
@@ -63,18 +70,35 @@
     tappedRow=5000;
     showAllSections = NO;
     
-   
+    
     
     [self CategoryShowUrl];
-    
-}
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
    
 }
-
+-(void)Popaction_method3
+{
+    NSLog(@"pop view called");
+    mainscroll.hidden=YES;
+    [self viewDidLoad];
+}
+-(void)Popaction_method4
+{
+    NSLog(@"pop view called");
+    mainscroll.hidden=YES;
+    [self viewDidLoad];
+}
+-(void)Popaction_method5
+{
+    NSLog(@"pop view called");
+    mainscroll.hidden=YES;
+    [self viewDidLoad];
+}
+-(void)Popaction_methodFromAddProduct
+{
+    NSLog(@"pop view called");
+    mainscroll.hidden=YES;
+    [self viewDidLoad];
+}
 -(void)CategoryShowUrl
 {
     @try {
@@ -160,6 +184,7 @@
                     }
                 //    NSLog(@"product name=%@",ArrProduct);
                     [mytabview reloadData];
+                    mainscroll.hidden=NO;
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
                 {
@@ -369,7 +394,7 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         PortFolio2ViewController *pv2vc = [storyboard instantiateViewControllerWithIdentifier:@"portfolio2viewcontroller"];
         pv2vc.ProductCode=[NSString stringWithFormat:@"%@",[[ArrShowProduct objectAtIndex:indexPath.row] valueForKey:@"ProductCode"]];
-        
+        pv2vc.PopDelegate5=self;
         [self.navigationController pushViewController:pv2vc animated:YES];
     }
     
@@ -505,6 +530,7 @@
     
      EditCategoryViewController *addportvc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditCategoryViewControllersid"];
      addportvc.CategoryCode=[NSString stringWithFormat:@"%d",sender.tag];
+    addportvc.PopDelegate4=self;
      [self presentViewController:addportvc
      animated:YES
      completion:NULL];
@@ -546,6 +572,7 @@
 
 - (IBAction)backtoportdetail:(id)sender
 {
+    [PopDelegateFromItem Popaction_methodFromItem];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -574,6 +601,7 @@
     
     //add product
     AddProductViewController *addportvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddProductViewControllersid"];
+    addportvc.PopDelegateFromAddProduct=self;
   //  addportvc.CategoryCode=[NSString stringWithFormat:@"%ld",(long)sender.tag];
     [self presentViewController:addportvc
                        animated:YES
@@ -583,6 +611,7 @@
 - (IBAction)AddCategoryPlusClick:(id)sender
 {
     AddCategoryViewController *addportvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddCategoryViewControllersid"];
+    addportvc.PopDelegate3=self;
     [self presentViewController:addportvc
                        animated:YES
                      completion:NULL];

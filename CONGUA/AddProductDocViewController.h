@@ -11,6 +11,10 @@
 #import "login.h"
 #import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
+@protocol PopView_delegate<NSObject>
+@optional
+-(void)Popaction_method;
+@end
 @interface AddProductDocViewController : UIViewController
 {
     UIView *loader_shadow_View,*Doctypeview;
@@ -22,6 +26,7 @@
     UIButton *btnDoctypesave,*btnDoctypeCancel;
     UIActionSheet *actionsheet;
 }
+@property(assign)id<PopView_delegate>PopDelegate;
 @property (weak, nonatomic) IBOutlet UITextField *txtDocName;
 @property (weak, nonatomic) IBOutlet UIButton *btnDocType;
 @property (weak, nonatomic) IBOutlet UILabel *lblDocType;

@@ -11,6 +11,10 @@
 #import "login.h"
 #import "CKCalendarView.h"
 #import "countryViewController.h"
+@protocol PopView_delegateFromAddProduct<NSObject>
+@optional
+-(void)Popaction_methodFromAddProduct;
+@end
 @interface AddProductViewController : UIViewController<countryDelegate>
 {
     UIView *loader_shadow_View,*Producttypeview,*PurchaseDateview;
@@ -23,7 +27,7 @@
     UIButton *btnProducttypesave,*btnproducttypeCancel;
     UIView *myview;
 }
-
+@property(assign)id<PopView_delegateFromAddProduct>PopDelegateFromAddProduct;
 @property(nonatomic,strong)NSMutableArray *ArrProductType,*ArrCategory;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;

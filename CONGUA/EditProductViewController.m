@@ -16,7 +16,7 @@
 @end
 
 @implementation EditProductViewController
-@synthesize lblDescription,lblProductType,lblPurchaseDt,txtProductNmae,txtPurchaseValue,txtVwDescription,btnIsInsured,btnIsOtherInsure,btnProductType,btnPurchaseDt,mainscroll,CategoryCode,IsInsureImg,IsOtherInsureImg,btnSubmit,DescImgView,InsuredPortSwitch,OtherInsuredSwitch,lblDescTop,btnDelete;
+@synthesize lblDescription,lblProductType,lblPurchaseDt,txtProductNmae,txtPurchaseValue,txtVwDescription,btnIsInsured,btnIsOtherInsure,btnProductType,btnPurchaseDt,mainscroll,CategoryCode,IsInsureImg,IsOtherInsureImg,btnSubmit,DescImgView,InsuredPortSwitch,OtherInsuredSwitch,lblDescTop,btnDelete,PopDelegate2;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -1036,6 +1036,7 @@
              //   UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Product Updated Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
               
              //   [aler show];
+                [PopDelegate2 Popaction_method2];
                 [self.navigationController popViewControllerAnimated:YES];
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])

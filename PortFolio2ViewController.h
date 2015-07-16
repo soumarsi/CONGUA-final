@@ -14,12 +14,17 @@
 #import "UrlconnectionObject.h"
 #import "ProductDocDetailViewController.h"
 #import "ProductImgDetailViewController.h"
+@protocol PopView_delegate5<NSObject>
+@optional
+-(void)Popaction_method5;
+@end
 @interface PortFolio2ViewController : UIViewController
 {
     NSString *CustomerCode,*AuthToken,*ProductName,*PurchaseValue,*purchaseDate;
     NSMutableArray *ArrProductDetail,*ArrImage,*ArrDoc;
     UrlconnectionObject *urlobj;
 }
+@property(assign)id<PopView_delegate5>PopDelegate5;
 @property (strong, nonatomic) IBOutlet UITableView *portfoliotabview;
 @property (strong,nonatomic) NSString *itemheader;
 @property (strong,nonatomic) NSString *ProductCode;

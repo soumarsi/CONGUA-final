@@ -10,7 +10,11 @@
 #import "AddCategoryViewController.h"
 #import "AddProductViewController.h"
 #import "EditCategoryViewController.h"
-@interface portfolioitemViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@protocol PopView_delegateFromItem<NSObject>
+@optional
+-(void)Popaction_methodFromItem;
+@end
+@interface portfolioitemViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,PopView_delegateFromAddProduct>
 {
     NSString *CustomerCode,*AuthToken,*PortfolioCode,*categoryCode;
     NSMutableArray *ArrCategory,*ArrProduct,*ArrShowProduct;
@@ -20,6 +24,7 @@
     NSInteger tappedRow;
  //   NSMutableIndexSet *expandedSections;
 }
+@property(assign)id<PopView_delegateFromItem>PopDelegateFromItem;
 @property (strong, nonatomic) IBOutlet UITableView *mytabview;
 @property (weak, nonatomic) IBOutlet UILabel *lblportfilioName;
 @property (weak, nonatomic) IBOutlet UILabel *lblAddress;

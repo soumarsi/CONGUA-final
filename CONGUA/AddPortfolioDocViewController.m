@@ -13,7 +13,7 @@
 @end
 
 @implementation AddPortfolioDocViewController
-@synthesize mainscroll,btnDocType,txtDocName,txtvwDescription,lblDesc,lblDocType,DocImage,btnSubmit,btnAddDoc,documentImage,btnOther,btnInsureCertificate,btnPurchaseReceipt,DocView,btnCamera,btnPhotoLib;
+@synthesize mainscroll,btnDocType,txtDocName,txtvwDescription,lblDesc,lblDocType,DocImage,btnSubmit,btnAddDoc,documentImage,btnOther,btnInsureCertificate,btnPurchaseReceipt,DocView,btnCamera,btnPhotoLib,PopDelegate7;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -694,6 +694,7 @@
                    [self checkLoader];
                 UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Document Added Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [aler show];
+                [PopDelegate7 Popaction_method7];
                 [self.navigationController popViewControllerAnimated:YES];
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])

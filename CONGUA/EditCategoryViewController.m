@@ -13,7 +13,7 @@
 @end
 
 @implementation EditCategoryViewController
-@synthesize txtCategoryName,CategoryCode;
+@synthesize txtCategoryName,CategoryCode,PopDelegate4;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -173,6 +173,7 @@
                 [self checkLoader];
                 //    UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Category Added Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 //    [aler show];
+                [PopDelegate4 Popaction_method4];
                 [self dismissViewControllerAnimated:YES completion:nil];
             }
             else

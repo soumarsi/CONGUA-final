@@ -11,6 +11,10 @@
 #import "login.h"
 #import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
+@protocol PopView_delegate7<NSObject>
+@optional
+-(void)Popaction_method7;
+@end
 @interface AddPortfolioDocViewController : UIViewController
 {
     UIView *loader_shadow_View,*Doctypeview;
@@ -22,6 +26,7 @@
     UIButton *btnDoctypesave,*btnDoctypeCancel;
     UIActionSheet *actionsheet;
 }
+@property(assign)id<PopView_delegate7>PopDelegate7;
 @property (weak, nonatomic) IBOutlet UITextField *txtDocName;
 @property (weak, nonatomic) IBOutlet UIButton *btnDocType;
 @property (weak, nonatomic) IBOutlet UILabel *lblDocType;

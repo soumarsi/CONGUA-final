@@ -14,7 +14,7 @@
 @end
 
 @implementation AddProductViewController
-@synthesize txtproductName,txtPurchaseValue,txtVwDescription,btnIsInsuredPort,btnIsOtherInsured,btnproductType,btnPurchaseDt,IsInsuredPortToggleImg,IsOtherInsuredToggleImg,mainscroll,lblDescription,lblProductType,lblPurchaseDt,CategoryCode,ProductType,btnSubmit,DescImgView,InsuredPortSwitch,OtherInsuredSwitch,lblDescTop;
+@synthesize txtproductName,txtPurchaseValue,txtVwDescription,btnIsInsuredPort,btnIsOtherInsured,btnproductType,btnPurchaseDt,IsInsuredPortToggleImg,IsOtherInsuredToggleImg,mainscroll,lblDescription,lblProductType,lblPurchaseDt,CategoryCode,ProductType,btnSubmit,DescImgView,InsuredPortSwitch,OtherInsuredSwitch,lblDescTop,PopDelegateFromAddProduct;
 
 @synthesize ArrCategory,ArrProductType,catCode;
 
@@ -701,6 +701,7 @@
                 [self checkLoader];
                 UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Product Added Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [aler show];
+                [PopDelegateFromAddProduct Popaction_methodFromAddProduct];
                 [self dismissViewControllerAnimated:YES completion:nil];
                 
             }

@@ -10,6 +10,10 @@
 #import "UrlconnectionObject.h"
 #import "login.h"
 #import "CKCalendarView.h"
+@protocol PopView_delegate6<NSObject>
+@optional
+-(void)Popaction_method6;
+@end
 @interface EditPortfolioViewController : UIViewController
 {
     NSString *portType,*CustomerCode,*AuthToken,*Isinsured,*PortfolioCode,*IsPriviouslyInsured;
@@ -23,6 +27,7 @@
     UIPickerView *mypicker;
     bool start;
 }
+@property(assign)id<PopView_delegate6>PopDelegate6;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (weak, nonatomic) IBOutlet UITextField *txtPortfolioName;
 @property (weak, nonatomic) IBOutlet UITextView *txtvwAddress;

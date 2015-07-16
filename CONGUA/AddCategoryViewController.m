@@ -13,7 +13,7 @@
 @end
 
 @implementation AddCategoryViewController
-@synthesize txtcategoryName,mainscroll;
+@synthesize txtcategoryName,mainscroll,PopDelegate3;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -91,6 +91,7 @@
                 [self checkLoader];
             //    UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Category Added Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             //    [aler show];
+                [PopDelegate3 Popaction_method3];
                 [self dismissViewControllerAnimated:YES completion:nil];
             }
             else

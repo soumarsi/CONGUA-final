@@ -9,7 +9,7 @@
 #import "portfoliodetailpageViewController.h"
 #import "portfolioitemViewController.h"
 
-@interface portfoliodetailpageViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface portfoliodetailpageViewController ()<UITableViewDataSource,UITableViewDelegate,PopView_delegate6,PopView_delegate7,PopView_delegateFromItem>
 
 @end
 
@@ -28,28 +28,7 @@
     [super viewDidAppear:animated];
     
     
-    mainscroll.hidden=YES;
-    if ([UIScreen mainScreen].bounds.size.width==320)
-    {
-    mainscroll.contentSize = CGSizeMake(0, 500);
-    }
-    else if([UIScreen mainScreen].bounds.size.width>320)
-    {
-        mainscroll.contentSize = CGSizeMake(0, 590);
-    }
     
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    CustomerCode=[prefs valueForKey:@"CustomerCode"];
-    AuthToken=[prefs valueForKey:@"AuthToken"];
-    PortfolioCode=[prefs valueForKey:@"PortfolioCode"];
-    NSLog(@"portfolio code=%@",PortfolioCode);
-    
-    urlobj=[[UrlconnectionObject alloc]init];
-    ArrPortDetail=[[NSMutableArray alloc]init];
-    ArrInsureDetail=[[NSMutableArray alloc]init];
-    ArrDoc=[[NSMutableArray alloc]init];
-    
-    [self PortfolioViewUrl];
     
 }
 - (void)viewDidLoad {
@@ -77,12 +56,58 @@
      [self PortfolioViewUrl];
      */
     // Do any additional setup after loading the view.
-     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    mainscroll.hidden=YES;
+    if ([UIScreen mainScreen].bounds.size.width==320)
+    {
+        mainscroll.contentSize = CGSizeMake(0, 500);
+    }
+    else if([UIScreen mainScreen].bounds.size.width>320)
+    {
+        mainscroll.contentSize = CGSizeMake(0, 590);
+    }
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    CustomerCode=[prefs valueForKey:@"CustomerCode"];
+    AuthToken=[prefs valueForKey:@"AuthToken"];
+    PortfolioCode=[prefs valueForKey:@"PortfolioCode"];
+    NSLog(@"portfolio code=%@",PortfolioCode);
+    
+    urlobj=[[UrlconnectionObject alloc]init];
+    ArrPortDetail=[[NSMutableArray alloc]init];
+    ArrInsureDetail=[[NSMutableArray alloc]init];
+    ArrDoc=[[NSMutableArray alloc]init];
+ //   NSLog(@"before=%@",didappear);
+    [self PortfolioViewUrl];
+   didappear=1;
    lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
      
-    didappear=1;
+    
 }
-
+-(void)Popaction_method6
+{
+    NSLog(@"pop view called");
+    mainscroll.hidden=YES;
+   
+    [self viewDidLoad];
+     didappear=0;
+}
+-(void)Popaction_method7
+{
+    NSLog(@"pop view called");
+    mainscroll.hidden=YES;
+   
+    [self viewDidLoad];
+     didappear=0;
+}
+-(void)Popaction_methodFromItem
+{
+    NSLog(@"pop view called");
+    mainscroll.hidden=YES;
+    
+    [self viewDidLoad];
+    didappear=0;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -90,6 +115,7 @@
 - (IBAction)PUSHTOPORTFOLIOITEM:(id)sender
 {
     portfolioitemViewController * pdvc=[self.storyboard instantiateViewControllerWithIdentifier:@"portfolioitemviewcontroller"];
+    pdvc.PopDelegateFromItem=self;
     [self.navigationController  pushViewController:pdvc animated:YES];
 
 }
@@ -139,7 +165,7 @@
                     
                     NSString *insured=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"IsInsured"]];
                     
-                    mainscroll.hidden=NO;
+                //    mainscroll.hidden=NO;
                     if ([insured isEqualToString:@"0"])
                     {
                         lblinsureexpiry.hidden=YES;
@@ -296,6 +322,7 @@
                         mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+43.0*[ArrDoc count]-86.0);
                         [tblDoc reloadData];
                     }
+                    mainscroll.hidden=NO;
                     
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
@@ -400,6 +427,7 @@
 {
     
     AddPortfolioDocViewController *addportvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPortfolioDocViewControllersid"];
+    addportvc.PopDelegate7=self;
     [self.navigationController  pushViewController:addportvc animated:YES];
    
     /*
@@ -411,6 +439,7 @@
 - (IBAction)EditPortfolioClk:(id)sender
 {
     EditPortfolioViewController * pdvc=[self.storyboard instantiateViewControllerWithIdentifier:@"EditPortfolioViewControllersid"];
+    pdvc.PopDelegate6=self;
     [self.navigationController  pushViewController:pdvc animated:YES];
 }
 @end

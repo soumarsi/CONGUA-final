@@ -21,13 +21,14 @@
 - (IBAction)HomeClick:(id)sender;
 - (IBAction)BusinessClick:(id)sender;
 - (IBAction)PersonalClick:(id)sender;
+- (IBAction)SegmentClick:(id)sender;
 
 - (IBAction)OtherClick:(id)sender;
 
 @end
 
 @implementation AddPortfolioViewController
-@synthesize lbladdress,lblinsureDetail,btnhasInsure,toggleimg,btnenddate,btnstartdate,InsuranceView,btnSubmit,InsuredSwitch,btnOther,btnPersonal,btnBusiness,businessImg,btnHome,homeImg,personalImg,otherImg;
+@synthesize lbladdress,lblinsureDetail,btnhasInsure,toggleimg,btnenddate,btnstartdate,InsuranceView,btnSubmit,InsuredSwitch,btnOther,btnPersonal,btnBusiness,businessImg,btnHome,homeImg,personalImg,otherImg,PopDelegateFromAddPort,SegmentControl;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden=YES;
@@ -130,51 +131,7 @@
     // Set the toolbar as accessory view of an UITextField object
     self.vcovertxt.inputAccessoryView = toolbar1;
     
-    //button design
-  //  [btnHome.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
- //   btnHome.layer.borderWidth=0.5;
-    btnHome.layer.cornerRadius=15.0f;
-    [btnHome setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-    
-    [[btnHome layer] setBorderWidth:0.5f];
-    [btnHome.layer setBorderColor:[[UIColor colorWithRed:(202.0f/255.0f) green:(202.0f/255.0f) blue:(202.0f/255.0f) alpha:1] CGColor]];
-    [[btnBusiness layer] setBorderWidth:0.5f];
-    [btnBusiness.layer setBorderColor:[[UIColor colorWithRed:(202.0f/255.0f) green:(202.0f/255.0f) blue:(202.0f/255.0f) alpha:1] CGColor]];
-    [[btnPersonal layer] setBorderWidth:0.5f];
-    [btnPersonal.layer setBorderColor:[[UIColor colorWithRed:(202.0f/255.0f) green:(202.0f/255.0f) blue:(202.0f/255.0f) alpha:1] CGColor]];
-    [[btnOther layer] setBorderWidth:0.5f];
-    [btnOther.layer setBorderColor:[[UIColor colorWithRed:(202.0f/255.0f) green:(202.0f/255.0f) blue:(202.0f/255.0f) alpha:1] CGColor]];
- //   [[btnHome layer] setBorderWidth:0.5f];
- //   [[btnHome layer] setBorderColor:[UIColor blackColor].CGColor];
-//    btnHome.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
- //   btnHome.backgroundColor=[UIColor whiteColor];
-    
- //   [btnBusiness.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
- //   btnBusiness.layer.borderWidth=0.5;
-    btnBusiness.layer.cornerRadius=15.0f;
-    btnBusiness.backgroundColor=[UIColor whiteColor];
-    //  [btnHome setTitleColor:[UIColor colorWithRed:(115.0f/255.0) green:(115.0f/255.0) blue:(115.0f/255.0) alpha:3] forState:UIControlStateNormal];
-//    [[btnBusiness layer] setBorderWidth:0.5f];
-//    [[btnBusiness layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-   //   [btnBusiness setBackgroundColor:[UIColor whiteColor]];
-    
-//    [btnPersonal.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
-//    btnPersonal.layer.borderWidth=0.5;
-    btnPersonal.layer.cornerRadius=15.0f;
-    btnPersonal.backgroundColor=[UIColor whiteColor];
-    //  [btnHome setTitleColor:[UIColor colorWithRed:(115.0f/255.0) green:(115.0f/255.0) blue:(115.0f/255.0) alpha:3] forState:UIControlStateNormal];
-//    [[btnPersonal layer] setBorderWidth:0.5f];
-//    [[btnPersonal layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-    //  [btnHome setBackgroundColor:[UIColor whiteColor]];
-    
- //   [btnOther.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
-//    btnOther.layer.borderWidth=0.5;
-    btnOther.layer.cornerRadius=15.0f;
-    btnOther.backgroundColor=[UIColor whiteColor];
-    //  [btnHome setTitleColor:[UIColor colorWithRed:(115.0f/255.0) green:(115.0f/255.0) blue:(115.0f/255.0) alpha:3] forState:UIControlStateNormal];
-//    [[btnOther layer] setBorderWidth:0.5f];
-//    [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-    //  [btnHome setBackgroundColor:[UIColor whiteColor]];
+   
 
 }
 -(void)resetView1
@@ -1213,6 +1170,7 @@
                     //   login * vc=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                     //   [self.navigationController  pushViewController:vc animated:YES];
                     [aler show];
+                    [PopDelegateFromAddPort Popaction_methodFromAddPort];
                      [self dismissViewControllerAnimated:YES completion:nil];
 
                 }
@@ -1644,6 +1602,27 @@
         portType=@"3";
     }
 
+}
+
+- (IBAction)SegmentClick:(id)sender
+{
+    switch (SegmentControl.selectedSegmentIndex) {
+        case 0:
+          portType=@"1";
+            break;
+        case 1:
+            portType=@"2";
+            break;
+        case 2:
+            portType=@"3";
+            break;
+        case 3:
+            portType=@"4";
+            break;
+        default:
+            portType=@"1";
+            break;
+    }
 }
 
 - (IBAction)OtherClick:(id)sender

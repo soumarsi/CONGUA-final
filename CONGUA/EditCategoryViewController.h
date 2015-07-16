@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "UrlconnectionObject.h"
-
+@protocol PopView_delegate4<NSObject>
+@optional
+-(void)Popaction_method4;
+@end
 @interface EditCategoryViewController : UIViewController
 {
     UIView *loader_shadow_View;
@@ -16,6 +19,7 @@
     NSDictionary *tempDict;
     NSString *CustomerCode,*AuthToken,*PortfolioCode;
 }
+@property(assign)id<PopView_delegate4>PopDelegate4;
 - (IBAction)BackClk:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *txtCategoryName;
 @property (weak, nonatomic) NSString *CategoryCode;

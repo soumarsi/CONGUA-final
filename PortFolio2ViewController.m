@@ -9,21 +9,30 @@
 #import "PortFolio2ViewController.h"
 #import "PortFolio2PrototypeTableViewCell.h"
 
-@interface PortFolio2ViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+@interface PortFolio2ViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,PopView_delegate,PopView_delegate1,PopView_delegate2>
 
 @end
 
 @implementation PortFolio2ViewController
-@synthesize ProductCode,portfoliotabview,tblDoc,tblPhoto,lblUserName,mainscroll,btnPhoto,btnPhotoPlus,photoUpperLineView,lblPhoto;
+@synthesize ProductCode,portfoliotabview,tblDoc,tblPhoto,lblUserName,mainscroll,btnPhoto,btnPhotoPlus,photoUpperLineView,lblPhoto,PopDelegate5;
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+   
+    
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+   
     NSLog(@"product Code.......%@",ProductCode);
     [[NSUserDefaults standardUserDefaults] setObject:ProductCode forKey:@"ProductCode"];
     self.portfoliotabview.delegate=self;
     self.portfoliotabview.dataSource=self;
     
-     mainscroll.hidden=YES;
+    //   AddProductDocViewController *doc=[[AddProductDocViewController alloc]init];
+    //   doc.PopDelegate=self;
+    mainscroll.hidden=YES;
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
@@ -44,15 +53,26 @@
         mainscroll.contentSize = CGSizeMake(0, 540);
     }
     [self ProductViewUrl];
-    
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-   
-    
    
     // Do any additional setup after loading the view.
+}
+-(void)Popaction_method
+{
+    NSLog(@"pop view called");
+    mainscroll.hidden=YES;
+    [self viewDidLoad];
+}
+-(void)Popaction_method1
+{
+    NSLog(@"pop view called");
+    mainscroll.hidden=YES;
+    [self viewDidLoad];
+}
+-(void)Popaction_method2
+{
+    NSLog(@"pop view called");
+    mainscroll.hidden=YES;
+    [self viewDidLoad];
 }
 -(void)ProductViewUrl
 {
@@ -145,7 +165,7 @@
                         [ArrDoc addObject:tempDict1];
                         
                     }
-                    mainscroll.hidden=NO;
+                  //  mainscroll.hidden=NO;
                     NSLog(@"summary name=%@",ArrDoc);
                     [tblDoc reloadData];
                     [self ImageShowUrl];
@@ -246,6 +266,7 @@
                         
                         
                     }
+                    mainscroll.hidden=NO;
 
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
@@ -372,6 +393,7 @@
 }
 - (IBAction)BACKFROMPORFOLIO2:(id)sender
 {
+    [PopDelegate5 Popaction_method5];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -394,12 +416,14 @@
 {
     AddProductDocViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"AddProductDocViewControllersid"];
    // obj.taskid=[[arrtask objectAtIndex:indexPath.row] valueForKey:@"id"];
+    obj.PopDelegate=self;
     [self.navigationController pushViewController:obj animated:YES];
 }
 
 - (IBAction)AddPhotoClk:(id)sender
 {
     AddProductImgViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"AddProductImgViewControllersid"];
+    obj.PopDelegate1=self;
     // obj.taskid=[[arrtask objectAtIndex:indexPath.row] valueForKey:@"id"];
     [self.navigationController pushViewController:obj animated:YES];
 }
@@ -412,6 +436,7 @@
 - (IBAction)EditClk:(id)sender
 {
     EditProductViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"EditProductViewControllersid"];
+    obj.PopDelegate2=self;
     // obj.taskid=[[arrtask objectAtIndex:indexPath.row] valueForKey:@"id"];
     [self.navigationController pushViewController:obj animated:YES];
 }

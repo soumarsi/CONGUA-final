@@ -127,7 +127,11 @@
 {
  
     if([country length]<1)
-        txtcountry.text=@"Choose Country";
+    {
+        txtcountry.text=@"United Kingdom";
+        countrycode=@"UK";
+    }
+    
     else
         txtcountry.text=country;
     
@@ -895,7 +899,7 @@
     
     
     tempDict = [[NSDictionary alloc] initWithObjectsAndKeys:self.titletxt.text, @"Title",self.fnametxt.text, @"FirstName",self.lnametxt.text,@"LastName",self.emailtxt.text,@"Email",self.phnotxt.text, @"Phone",self.addrtxt.text, @"Address1",self.alteraddrtxt.text, @"Address2",self.pcodetxt.text, @"PostCode",self.passtxt.text, @"Password",countrycode,@"CountryCode",  nil];
-  //  NSLog(@"tempdic=%@",tempDict);
+    NSLog(@"tempdic=%@",tempDict);
     NSString *loginstring = [NSString stringWithFormat:@"%@InsertCustomer",URL_LINK]; //api done
     
     NSError *localErr;

@@ -8,12 +8,12 @@
 
 #import "AddProductImgViewController.h"
 
-@interface AddProductImgViewController ()<UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate>
+@interface AddProductImgViewController ()<UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,PopView_delegate1>
 
 @end
 
 @implementation AddProductImgViewController
-@synthesize mainscroll,lblDesc,txtvwDesc,ProductImg,btnSubmit,DocView;
+@synthesize mainscroll,lblDesc,txtvwDesc,ProductImg,btnSubmit,DocView,PopDelegate1;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -463,6 +463,7 @@
                 [self checkLoader];
                 UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Image Added Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [aler show];
+                [PopDelegate1 Popaction_method1];
                 [self.navigationController popViewControllerAnimated:YES];
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
@@ -518,6 +519,7 @@
 }
 - (IBAction)BackClk:(id)sender
 {
+   
     [self.navigationController popViewControllerAnimated:YES];
 }
 

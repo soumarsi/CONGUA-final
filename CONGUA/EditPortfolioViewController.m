@@ -13,7 +13,7 @@
 @end
 
 @implementation EditPortfolioViewController
-@synthesize lblEndDate,lblInsureDetail,lblPortfolioType,lblStartDate,mainscroll,txtInsureName,txtPortfolioName,txtPostCode,txtValueCovered,txtvwAddress,txtvwInsureDetail,btnEndDate,btnHasInsure,btnPortfolioType,btnStartDate,lblAddress,HasInsureImg,btnSubmit,InsuranceView,IsInsuredSwitch,homeImg,personalImg,businessImg,otherImg,btnBusiness,btnHome,btnOther,btnPersonal;
+@synthesize lblEndDate,lblInsureDetail,lblPortfolioType,lblStartDate,mainscroll,txtInsureName,txtPortfolioName,txtPostCode,txtValueCovered,txtvwAddress,txtvwInsureDetail,btnEndDate,btnHasInsure,btnPortfolioType,btnStartDate,lblAddress,HasInsureImg,btnSubmit,InsuranceView,IsInsuredSwitch,homeImg,personalImg,businessImg,otherImg,btnBusiness,btnHome,btnOther,btnPersonal,PopDelegate6;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -1787,10 +1787,11 @@
                 }
                 else
                 {
-                    UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Portfolio Updated Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    //   login * vc=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
-                    //   [self.navigationController  pushViewController:vc animated:YES];
-                    [aler show];
+                 //   UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Portfolio Updated Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    
+                 //   [aler show];
+                    [PopDelegate6 Popaction_method6];
+                    [self.navigationController popViewControllerAnimated:YES];
                     
                 }
                 
@@ -1872,10 +1873,12 @@
             
             if ([[result valueForKey:@"IsSuccess"] integerValue]==1) {
                 
-                [[NSUserDefaults standardUserDefaults] setObject:[result valueForKey:@"ResultInfo"] forKey:@"CustomerCode"];
+             //   [[NSUserDefaults standardUserDefaults] setObject:[result valueForKey:@"ResultInfo"] forKey:@"CustomerCode"];
                 [self checkLoader];
-                UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Portfolio Updated Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [aler show];
+           //     UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Portfolio Updated Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+           //     [aler show];
+                [PopDelegate6 Popaction_method6];
+                [self.navigationController popViewControllerAnimated:YES];
                 
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])

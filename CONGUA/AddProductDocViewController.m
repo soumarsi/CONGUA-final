@@ -13,7 +13,7 @@
 @end
 
 @implementation AddProductDocViewController
-@synthesize mainscroll,lblDesc,lblDocType,txtDocName,txtvwDescription,btnDocType,DocImage,btnsubmit,btnAddDoc,btnPurchaseReceipt,btnOther,btnInsuranceCertificate,DocView;
+@synthesize mainscroll,lblDesc,lblDocType,txtDocName,txtvwDescription,btnDocType,DocImage,btnsubmit,btnAddDoc,btnPurchaseReceipt,btnOther,btnInsuranceCertificate,DocView,PopDelegate;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -522,6 +522,7 @@
                 [self checkLoader];
                 UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Document Added Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [aler show];
+                [PopDelegate Popaction_method];
                 [self.navigationController popViewControllerAnimated:YES];
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
@@ -577,7 +578,9 @@
 }
 - (IBAction)BackClk:(id)sender
 {
+   
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 - (IBAction)PurchaseReceiptClick:(id)sender

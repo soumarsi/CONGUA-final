@@ -11,6 +11,10 @@
 #import "login.h"
 #import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
+@protocol PopView_delegate1<NSObject>
+@optional
+-(void)Popaction_method1;
+@end
 @interface AddProductImgViewController : UIViewController
 {
     UIView *loader_shadow_View,*Doctypeview;
@@ -22,6 +26,7 @@
     UIButton *btnDoctypesave,*btnDoctypeCancel;
     UIActionSheet *actionsheet;
 }
+@property(assign)id<PopView_delegate1>PopDelegate1;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (weak, nonatomic) IBOutlet UITextView *txtvwDesc;
 @property (weak, nonatomic) IBOutlet UIImageView *ProductImg;

@@ -9,6 +9,10 @@
 #import "ViewController.h"
 #import "UrlconnectionObject.h"
 #import "CKCalendarView.h"
+@protocol PopView_delegateFromAddPort<NSObject>
+@optional
+-(void)Popaction_methodFromAddPort;
+@end
 @interface AddPortfolioViewController : UIViewController
 {
     NSString *portType,*CustomerCode,*AuthToken,*Isinsured,*portfoliocode;
@@ -17,6 +21,7 @@
     NSDictionary *tempDict;
     bool start;
 }
+@property(assign)id<PopView_delegateFromAddPort>PopDelegateFromAddPort;
 @property (strong, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (strong, nonatomic) IBOutlet UITextField *portnmtxt;
 @property (strong, nonatomic) IBOutlet UITextField *pcodetxt;
@@ -36,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnBusiness;
 @property (weak, nonatomic) IBOutlet UIButton *btnPersonal;
 @property (weak, nonatomic) IBOutlet UIButton *btnOther;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *SegmentControl;
 
 
 
