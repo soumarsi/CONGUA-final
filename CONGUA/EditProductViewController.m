@@ -9,8 +9,9 @@
 #import "EditProductViewController.h"
 #import "UrlconnectionObject.h"
 #import "login.h"
+#import "countryViewController.h"
 
-@interface EditProductViewController ()<UITextFieldDelegate,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,CKCalendarDelegate,UIAlertViewDelegate>
+@interface EditProductViewController ()<UITextFieldDelegate,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,CKCalendarDelegate,UIAlertViewDelegate,countryDelegate>
 
 @end
 
@@ -100,6 +101,7 @@
     [txtPurchaseValue resignFirstResponder];
     [mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
 }
+
 -(void)ProductViewUrl
 {
     @try {
@@ -261,9 +263,13 @@
         
         
         [ArrCategory removeAllObjects];
+        
         NSString *str=[NSString stringWithFormat:@"%@GetCategoryInfoList/%@?PortfolioCode=%@",URL_LINK,AuthToken,PortfolioCode];
+        
         NSLog(@"str=%@",str);
+        
         BOOL net=[urlobj connectedToNetwork];
+        
         if (net==YES) {
             [urlobj global:str typerequest:@"array" withblock:^(id result, NSError *error,BOOL completed) {
                 
@@ -396,9 +402,43 @@
 }
 */
 
+
+-(void)countryViewcontrollerDismissedwithCategoryName:(NSString *)categoryyName categoryCode:(NSString *)categoryCode
+{
+
+
+    lblProductType.text=categoryyName;
+    
+    CategoryCode=categoryCode;
+
+}
+
+
+
 - (IBAction)ProductTypeClk:(id)sender
 {
     [txtProductNmae resignFirstResponder];
+    
+    
+    countryViewController *countryVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"country"];
+    
+    countryVC.myDelegate=self;
+    
+    countryVC.ArrCategory=ArrCategory;
+    
+    [self presentViewController:countryVC animated:YES completion:^{
+        
+        
+        
+        countryVC.headerLbl1.text=@"Product";
+        countryVC.headerLbl2.text=@"category";
+        
+        
+        
+    }];
+    
+    
+    /*
     if (btnProductType.selected==NO)
     {
         btnProductType.selected=YES;
@@ -459,7 +499,8 @@
         btnProductType.selected=NO;
         [Producttypeview removeFromSuperview];
         
-    }
+    }*/
+    
 }
 
 - (IBAction)PurchaseDtClk:(id)sender
