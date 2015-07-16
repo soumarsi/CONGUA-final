@@ -26,6 +26,9 @@
             <string>HelveticaNeueLTPro-Th</string>
             <string>HelveticaNeueLTPro-Th</string>
         </mutableArray>
+        <mutableArray key="HelveticaNeueLTPro-UltLt.otf">
+            <string>HelveticaNeueLTPro-UltLt</string>
+        </mutableArray>
     </customFonts>
     <scenes>
         <!--View Controller-->
@@ -223,6 +226,79 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1592" y="79"/>
+        </scene>
+        <!--Country View Controller-->
+        <scene sceneID="F7V-CK-JNg">
+            <objects>
+                <viewController storyboardIdentifier="country" id="LgH-Pf-quU" customClass="countryViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b6b-FV-DjP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="D2d-fz-fs6">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LandingBg" id="sen-hB-vkv">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <view alpha="0.49999999999999961" contentMode="scaleToFill" id="X91-h3-Azd">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="ZR9-tG-83E">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MXF-pQ-907">
+                                        <rect key="frame" x="0.0" y="3" width="60" height="62"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeueLTPro-UltLt" family="Helvetica Neue LT Pro" pointSize="38"/>
+                                        <state key="normal" title="&lt;">
+                                            <color key="titleColor" red="0.73725490196078436" green="0.73333333333333328" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backBtnFunc:" destination="LgH-Pf-quU" eventType="touchUpInside" id="du5-g9-w34"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Y8l-xI-g9a">
+                                        <rect key="frame" x="77" y="12" width="106" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
+                                        <color key="textColor" red="0.8901960784313725" green="0.16078431372549021" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r7O-rj-TY0">
+                                        <rect key="frame" x="179" y="16" width="123" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="backBtn" destination="MXF-pQ-907" id="Kfc-4b-3PG"/>
+                        <outlet property="headerLbl1" destination="Y8l-xI-g9a" id="9Ul-Ay-ym3"/>
+                        <outlet property="headerLbl2" destination="r7O-rj-TY0" id="lyK-NO-0pb"/>
+                        <outlet property="topBarView" destination="ZR9-tG-83E" id="sEI-2a-yGb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lrV-Si-0MR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1461" y="367"/>
         </scene>
         <!--Portfoliodetailpage View Controller-->
         <scene sceneID="aaM-JJ-JPv">
@@ -2384,7 +2460,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="enk-Jb-ZTB">
-                                        <rect key="frame" x="164.00000137522926" y="408" width="131" height="21"/>
+                                        <rect key="frame" x="164" y="408" width="131" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                         <state key="normal" title="Forgot Password">
@@ -4848,7 +4924,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eAi-Uc-b0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1229" y="79"/>
+            <point key="canvasLocation" x="1232" y="95"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="xCH-iL-HiI">
@@ -5085,7 +5161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wV1-rV-FPT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="874" y="131"/>
+            <point key="canvasLocation" x="859" y="133"/>
         </scene>
     </scenes>
     <resources>

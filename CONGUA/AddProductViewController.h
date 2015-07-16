@@ -10,18 +10,22 @@
 #import "UrlconnectionObject.h"
 #import "login.h"
 #import "CKCalendarView.h"
-@interface AddProductViewController : UIViewController
+#import "countryViewController.h"
+@interface AddProductViewController : UIViewController<countryDelegate>
 {
     UIView *loader_shadow_View,*Producttypeview,*PurchaseDateview;
     UrlconnectionObject *urlobj;
     NSDictionary *tempDict;
-    NSString *CustomerCode,*AuthToken,*PortfolioCode,*ProductType,*Isinsured,*Isotherinsured;
-    NSMutableArray *ArrProductType,*ArrCategory;
+    NSString *CustomerCode,*AuthToken,*PortfolioCode,*Isinsured,*Isotherinsured;
+    
     UIPickerView *producttypepicker;
     UIDatePicker *datepicker;
     UIButton *btnProducttypesave,*btnproducttypeCancel;
     UIView *myview;
 }
+
+@property(nonatomic,strong)NSMutableArray *ArrProductType,*ArrCategory;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (weak, nonatomic) IBOutlet UITextField *txtproductName;
 @property (weak, nonatomic) IBOutlet UIButton *btnproductType;
@@ -38,6 +42,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @property (strong, nonatomic) NSString *CategoryCode;
+@property (strong, nonatomic) NSString *ProductType;
+@property (strong, nonatomic) NSString *catCode;
 @property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
 @property (weak, nonatomic) IBOutlet UIImageView *DescImgView;
 @property (weak, nonatomic) IBOutlet UISwitch *InsuredPortSwitch;

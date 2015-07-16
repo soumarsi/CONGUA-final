@@ -7,16 +7,30 @@
 //
 
 #import "AddProductViewController.h"
+#import "countryViewController.h"
 
 @interface AddProductViewController ()<UITextFieldDelegate,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,CKCalendarDelegate>
 
 @end
 
 @implementation AddProductViewController
-@synthesize txtproductName,txtPurchaseValue,txtVwDescription,btnIsInsuredPort,btnIsOtherInsured,btnproductType,btnPurchaseDt,IsInsuredPortToggleImg,IsOtherInsuredToggleImg,mainscroll,lblDescription,lblProductType,lblPurchaseDt,CategoryCode,btnSubmit,DescImgView,InsuredPortSwitch,OtherInsuredSwitch,lblDescTop;
+@synthesize txtproductName,txtPurchaseValue,txtVwDescription,btnIsInsuredPort,btnIsOtherInsured,btnproductType,btnPurchaseDt,IsInsuredPortToggleImg,IsOtherInsuredToggleImg,mainscroll,lblDescription,lblProductType,lblPurchaseDt,CategoryCode,ProductType,btnSubmit,DescImgView,InsuredPortSwitch,OtherInsuredSwitch,lblDescTop;
+
+@synthesize ArrCategory,ArrProductType,catCode;
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    if (ProductType.length==0) {
+        
+        
+        lblProductType.text=@"";
+        CategoryCode=@"";
+    }
+
     
     if(self.view.frame.size.height==480)
     {
@@ -262,8 +276,38 @@
 - (IBAction)ProductTypeClk:(id)sender
 {
     [txtproductName resignFirstResponder];
+    
+    NSLog(@"Category btn clicked....");
+    
+    
+    countryViewController *countryVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"country"];
+    
+    countryVC.myDelegate=self;
+    
+    
+//    countryVC.ArrCategory=ArrCategory;
+    
+    countryVC.ArrCategory=ArrCategory;
+    
+    
+    NSLog(@"Category array....%@",countryVC.ArrCategory);
+
+    
+    [self presentViewController:countryVC animated:YES completion:^{
+        
+        
+        countryVC.headerLbl1.text=@"Product";
+        countryVC.headerLbl2.text=@"Category";
+
+        
+        
+    }];
+    
+    //[self.view presentedViewController:countryVC];
+    
+    //[self.navigationController pushViewController:countryVC animated:YES];
    
-    if (btnproductType.selected==NO)
+  /*  if (btnproductType.selected==NO)
     {
         btnproductType.selected=YES;
         //  [mainscroll setContentOffset:CGPointMake(0,20) animated:YES];
@@ -329,9 +373,24 @@
         btnproductType.selected=NO;
         [Producttypeview removeFromSuperview];
         
-    }
+    }*/
 
 }
+
+
+-(void)countryViewcontrollerDismissedwithCategoryName:(NSString *)categoryyName categoryCode:(NSString *)categoryCode
+{
+    
+    NSLog(@"Delegate calling...");
+    
+    lblProductType.text=categoryyName;
+    
+    lblProductType.textColor=[UIColor blackColor];
+    
+    CategoryCode=categoryCode;
+    
+}
+
 -(void)producttypepickerCancel
 {
     [UIView animateWithDuration:0.4f
@@ -348,6 +407,18 @@
     btnproductType.selected=NO;
     [Producttypeview removeFromSuperview];
 }
+
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+    NSLog(@"View did appear...");
+    
+    
+}
+
+/*
+
 -(void)producttypepickerChange
 {
     [UIView animateWithDuration:0.4f
@@ -411,6 +482,7 @@
     if(pickerView==producttypepicker){
         
       //  ProductType= ArrProductType[row];
+        
         ProductType= [[ArrCategory objectAtIndex:row] valueForKey:@"CategoryName"];
         CategoryCode=[[ArrCategory objectAtIndex:row] valueForKey:@"CategoryCode"];
         lblProductType.textColor=[UIColor blackColor];
@@ -421,6 +493,9 @@
         
     }
 }
+ */
+ 
+ 
 -(IBAction)OtherInsuredSwitched:(id)sender{
     NSLog(@"Switch current state %@", OtherInsuredSwitch.on ? @"On" : @"Off");
     if (OtherInsuredSwitch.on==YES) {
@@ -531,7 +606,7 @@
         [aler show];
     }
     
-    else if (lblProductType.text.length==0 || [lblProductType.text isEqualToString:@"Product Type"])
+    else if (lblProductType.text.length==0)
     {
         /*
         lblProductType.text=@"Choose Category";

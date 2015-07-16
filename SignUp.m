@@ -12,6 +12,8 @@
 
 #import "SignUp.h"
 #import "login.h"
+#import "countryViewController.h"
+#import "Landing.h"
 
 @interface SignUp()<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
@@ -21,7 +23,7 @@
 
 
 @implementation SignUp
-@synthesize btncountry,imgArrow,txtcountry,mainscroll;
+@synthesize btncountry,imgArrow,txtcountry,mainscroll,country,countrycode;
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -36,6 +38,8 @@
     self.pcodetxt.delegate=self;
     self.passtxt.delegate=self;
     self.cpasstxt.delegate=self;
+    
+    txtcountry.text=@"Choose Country";
     
     urlobj=[[UrlconnectionObject alloc]init];
     
@@ -118,6 +122,19 @@
 
     
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+ 
+    if([country length]<1)
+        txtcountry.text=@"Choose Country";
+    else
+        txtcountry.text=country;
+    
+    
+}
+
+
 -(void)CountryShowUrl
 {
     @try {
@@ -1074,14 +1091,30 @@
 
 
 - (IBAction)BACKFROMSIGNUP:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    
+    Landing *landingVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"landing"];
+    
+
+    
+    [self.navigationController pushViewController:landingVC animated:YES];
 
 }
 
 - (IBAction)CountryClk:(id)sender
 {
     [self.cpasstxt resignFirstResponder];
-    [UIView animateWithDuration:0.4f
+    
+    
+    countryViewController *countryVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"country"];
+    
+    countryVC.ArrCountryName=ArrCountryName;
+    countryVC.ArrCountryCode=ArrCountryCode;
+    
+    [self.navigationController pushViewController:countryVC animated:YES];
+    
+    
+   /* [UIView animateWithDuration:0.4f
      // delay:0.1f
      // options:UIViewAnimationTransitionNone
                      animations:^{
@@ -1092,6 +1125,10 @@
                          
                      }
      ];
+    
+    */
+    
+  /*
     if(btncountry.selected==NO)
     {
         btncountry.selected=YES;
@@ -1136,7 +1173,7 @@
         btncountry.selected=NO;
         [CountryView removeFromSuperview];
         
-    }
+    } */
 }
 -(void)CountrySave
 {

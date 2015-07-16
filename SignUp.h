@@ -18,8 +18,10 @@
     UIButton *btnsave,*btncancel;
     UIPickerView *Countrypicker;
     UIView *CountryView;
-    NSString *country,*countrycode;
+    
 }
+@property(nonatomic,weak)NSString *country,*countrycode;
+
 @property (strong, nonatomic) IBOutlet UIView *regview;
 
 @property (strong, nonatomic) IBOutlet UITextField *fnametxt;
