@@ -148,7 +148,18 @@
                 //    lblNoOfItem.text=[NSString stringWithFormat:@"You have "@"%@"@" items in your portfolio",[[result objectForKey:@"ResultInfo"] valueForKey:@"ProductCount"]];
                     lblNoOfItem.text=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"ProductCount"]];
                     lbltotalcover.text=[@"£ " stringByAppendingString:[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"TotalCover"]]];
-                    lbltotalValue.text=[@"£ " stringByAppendingString:[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"TotalValue"]]];
+                    // thousand comma separetor
+                    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+                    [numberFormatter setGroupingSeparator:@","];
+                    [numberFormatter setGroupingSize:3];
+                    [numberFormatter setUsesGroupingSeparator:YES];
+                    [numberFormatter setDecimalSeparator:@"."];
+                    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                    [numberFormatter setMaximumFractionDigits:2];
+          //          NSString *theString = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:[[result objectForKey:@"ResultInfo"] valueForKey:@"TotalValue"]] ;
+             //                              lbltotalValue.text=theString;
+                    
+               //     lbltotalValue.text=[@"£ " stringByAppendingString:[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"TotalValue"]]];
                    
                     
                     if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"PortfolioTypeCode"] integerValue] ==1) {
