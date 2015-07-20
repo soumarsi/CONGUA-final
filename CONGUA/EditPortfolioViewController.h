@@ -57,13 +57,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnPersonal;
 @property (weak, nonatomic) IBOutlet UIButton *btnOther;
 
-
-
-
-- (IBAction)HomeClick:(id)sender;
-- (IBAction)BusinessClick:(id)sender;
-- (IBAction)PersonalClick:(id)sender;
-- (IBAction)OtherClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *SegmentControl;
+- (IBAction)SegmentControlClick:(id)sender;
 
 
 

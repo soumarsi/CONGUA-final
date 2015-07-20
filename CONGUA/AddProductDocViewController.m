@@ -13,7 +13,7 @@
 @end
 
 @implementation AddProductDocViewController
-@synthesize mainscroll,lblDesc,lblDocType,txtDocName,txtvwDescription,btnDocType,DocImage,btnsubmit,btnAddDoc,btnPurchaseReceipt,btnOther,btnInsuranceCertificate,DocView,PopDelegate;
+@synthesize mainscroll,lblDesc,lblDocType,txtDocName,txtvwDescription,btnDocType,DocImage,btnsubmit,btnAddDoc,btnPurchaseReceipt,btnOther,btnInsuranceCertificate,DocView,PopDelegate,SegmentedControl;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -120,6 +120,24 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)SegmentClick:(id)sender {
+    switch (SegmentedControl.selectedSegmentIndex)
+    {
+        case 0:
+            DocType1=@"2";
+            break;
+        case 1:
+            DocType1=@"1";
+            break;
+        case 2:
+            DocType1=@"99";
+            break;
+            
+        default:
+            break;
+    }
+}
 
 - (IBAction)DocTypeClk:(id)sender
 {

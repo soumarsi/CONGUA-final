@@ -13,7 +13,7 @@
 @end
 
 @implementation EditPortfolioDocViewController
-@synthesize lblDocType,lblDesc,txtDocName,txtVwDesc,DocImage,mainscroll,btnDocType,btnsubmit,btnAddDoc,btnPurchaseReceipt,btnOther,btnInsureCertificate,btnSave;
+@synthesize lblDocType,lblDesc,txtDocName,txtVwDesc,DocImage,mainscroll,btnDocType,btnsubmit,btnAddDoc,btnPurchaseReceipt,btnOther,btnInsureCertificate,btnSave,SegmentedControl;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -105,32 +105,7 @@
                         btnInsureCertificate.backgroundColor=[UIColor whiteColor];
                         btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
                         btnOther.backgroundColor=[UIColor whiteColor];
-                        /*
-                        [btnPurchaseReceipt.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
-                        btnPurchaseReceipt.layer.borderWidth=0.5;
-                        btnPurchaseReceipt.layer.cornerRadius=15.0f;
-                        [btnPurchaseReceipt setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-                        [[btnPurchaseReceipt layer] setBorderWidth:0.5f];
-                        [[btnPurchaseReceipt layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-                        btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
-                        
-                        btnInsureCertificate.selected=NO;
-                        btnInsureCertificate.layer.borderWidth=0.5;
-                        btnInsureCertificate.layer.cornerRadius=15.0f;
-                        [btnInsureCertificate setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
-                        [[btnInsureCertificate layer] setBorderWidth:0.5f];
-                        [[btnInsureCertificate layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-                        btnInsureCertificate.backgroundColor=[UIColor whiteColor];
-                        
-                        btnOther.selected=NO;
-                        btnOther.layer.borderWidth=0.5;
-                        btnOther.layer.cornerRadius=15.0f;
-                        [btnOther setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
-                        [[btnOther layer] setBorderWidth:0.5f];
-                        [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-                        btnOther.backgroundColor=[UIColor whiteColor];
-                        */
-                        
+                        SegmentedControl.selectedSegmentIndex=1;
                         DocType1=@"1";
                     }
                     else if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"DocTypeCode"] integerValue] ==2) {
@@ -141,31 +116,7 @@
                         btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
                         btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
                         btnOther.backgroundColor=[UIColor whiteColor];
-                        /*
-                        [btnInsureCertificate.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
-                        btnInsureCertificate.layer.borderWidth=0.5;
-                        btnInsureCertificate.layer.cornerRadius=15.0f;
-                        [btnInsureCertificate setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-                        [[btnInsureCertificate layer] setBorderWidth:0.5f];
-                        [[btnInsureCertificate layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-                        btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
-                        
-                        btnPurchaseReceipt.selected=NO;
-                        btnPurchaseReceipt.layer.borderWidth=0.5;
-                        btnPurchaseReceipt.layer.cornerRadius=15.0f;
-                        [btnPurchaseReceipt setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
-                        [[btnPurchaseReceipt layer] setBorderWidth:0.5f];
-                        [[btnPurchaseReceipt layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-                        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
-                        
-                        btnOther.selected=NO;
-                        btnOther.layer.borderWidth=0.5;
-                        btnOther.layer.cornerRadius=15.0f;
-                        [btnOther setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
-                        [[btnOther layer] setBorderWidth:0.5f];
-                        [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-                        btnOther.backgroundColor=[UIColor whiteColor];
-                        */
+                         SegmentedControl.selectedSegmentIndex=0;
                         
                         DocType1=@"2";
                     }
@@ -178,31 +129,7 @@
                         btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
                         btnInsureCertificate.backgroundColor=[UIColor whiteColor];
 
-                        /*
-                        [btnOther.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
-                        btnOther.layer.borderWidth=0.5;
-                        btnOther.layer.cornerRadius=15.0f;
-                        [btnOther setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-                        [[btnOther layer] setBorderWidth:0.5f];
-                        [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-                        btnOther.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
-                        
-                        btnInsureCertificate.selected=NO;
-                        btnInsureCertificate.layer.borderWidth=0.5;
-                        btnInsureCertificate.layer.cornerRadius=15.0f;
-                        [btnInsureCertificate setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
-                        [[btnInsureCertificate layer] setBorderWidth:0.5f];
-                        [[btnInsureCertificate layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-                        btnInsureCertificate.backgroundColor=[UIColor whiteColor];
-                        
-                        btnPurchaseReceipt.selected=NO;
-                        btnPurchaseReceipt.layer.borderWidth=0.5;
-                        btnPurchaseReceipt.layer.cornerRadius=15.0f;
-                        [btnPurchaseReceipt setTitleColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1] forState:UIControlStateNormal];
-                        [[btnPurchaseReceipt layer] setBorderWidth:0.5f];
-                        [[btnPurchaseReceipt layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-                        btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
-                        */
+                         SegmentedControl.selectedSegmentIndex=2;
                         
                         DocType1=@"99";
                     }
@@ -891,6 +818,25 @@
         btnInsureCertificate.backgroundColor=[UIColor whiteColor];
         
         DocType1=@"99";
+    }
+}
+
+- (IBAction)SegmentClick:(id)sender
+{
+    switch (SegmentedControl.selectedSegmentIndex)
+    {
+        case 0:
+            DocType1=@"2";
+            break;
+        case 1:
+            DocType1=@"1";
+            break;
+        case 2:
+            DocType1=@"99";
+            break;
+       
+        default:
+            break;
     }
 }
 

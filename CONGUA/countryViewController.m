@@ -53,6 +53,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     NSLog(@"Category array table values.....%@",ArrCategory);
     
     
@@ -137,7 +138,7 @@
     
     countryTableCell.layer.shadowRadius=3.0;
     
-    NSLog(@"Cell creating....");
+ //   NSLog(@"Cell creating....");
     
     return countryTableCell;
 

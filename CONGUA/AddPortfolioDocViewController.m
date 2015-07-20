@@ -13,7 +13,7 @@
 @end
 
 @implementation AddPortfolioDocViewController
-@synthesize mainscroll,btnDocType,txtDocName,txtvwDescription,lblDesc,lblDocType,DocImage,btnSubmit,btnAddDoc,documentImage,btnOther,btnInsureCertificate,btnPurchaseReceipt,DocView,btnCamera,btnPhotoLib,PopDelegate7;
+@synthesize mainscroll,btnDocType,txtDocName,txtvwDescription,lblDesc,lblDocType,DocImage,btnSubmit,btnAddDoc,documentImage,btnOther,btnInsureCertificate,btnPurchaseReceipt,DocView,btnCamera,btnPhotoLib,PopDelegate7,SegmentedControl;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -66,30 +66,7 @@
     [[btnOther layer] setBorderWidth:0.5f];
     [btnOther.layer setBorderColor:[[UIColor colorWithRed:(202.0f/255.0f) green:(202.0f/255.0f) blue:(202.0f/255.0f) alpha:1] CGColor]];
     
-    /*
-    [btnInsureCertificate.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
-    btnInsureCertificate.layer.borderWidth=0.5;
-    btnInsureCertificate.layer.cornerRadius=15.0f;
-    [btnInsureCertificate setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [[btnInsureCertificate layer] setBorderWidth:0.5f];
-    [[btnInsureCertificate layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-    btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1];
     
-    [btnPurchaseReceipt.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
-    btnPurchaseReceipt.layer.borderWidth=0.5;
-    btnPurchaseReceipt.layer.cornerRadius=15.0f;
-    //  [btnHome setTitleColor:[UIColor colorWithRed:(115.0f/255.0) green:(115.0f/255.0) blue:(115.0f/255.0) alpha:3] forState:UIControlStateNormal];
-    [[btnPurchaseReceipt layer] setBorderWidth:0.5f];
-    [[btnPurchaseReceipt layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-    //  [btnHome setBackgroundColor:[UIColor whiteColor]];
-    
-    [btnOther.layer setBorderColor:[[UIColor colorWithRed:(171.0f/255.0f) green:(171.0f/255.0f) blue:(171.0f/255.0f) alpha:1] CGColor]];
-    btnOther.layer.borderWidth=0.5;
-    btnOther.layer.cornerRadius=15.0f;
-    //  [btnHome setTitleColor:[UIColor colorWithRed:(115.0f/255.0) green:(115.0f/255.0) blue:(115.0f/255.0) alpha:3] forState:UIControlStateNormal];
-    [[btnOther layer] setBorderWidth:0.5f];
-    [[btnOther layer] setBorderColor:[UIColor colorWithRed:(224.0f/255.0) green:(44.0f/255.0) blue:(17.0f/255.0) alpha:1].CGColor];
-     */
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -144,6 +121,25 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)SegmentClick:(id)sender
+{
+    switch (SegmentedControl.selectedSegmentIndex)
+    {
+        case 0:
+            DocType1=@"2";
+            break;
+        case 1:
+            DocType1=@"1";
+            break;
+        case 2:
+            DocType1=@"99";
+            break;
+            
+        default:
+            break;
+    }
+}
 
 - (IBAction)CameraClick:(id)sender
 {

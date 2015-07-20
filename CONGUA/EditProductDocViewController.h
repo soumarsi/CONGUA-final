@@ -33,6 +33,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnInsureCertificate;
 @property (weak, nonatomic) IBOutlet UIButton *btnPurchaseReceipt;
 @property (weak, nonatomic) IBOutlet UIButton *btnOther;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *SegmentedControl;
+- (IBAction)SegmentClick:(id)sender;
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *DocImage;

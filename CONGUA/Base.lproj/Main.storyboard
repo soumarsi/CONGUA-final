@@ -25,9 +25,7 @@
             <string>HelveticaNeueLTPro-Th</string>
             <string>HelveticaNeueLTPro-Th</string>
             <string>HelveticaNeueLTPro-Th</string>
-        </mutableArray>
-        <mutableArray key="HelveticaNeueLTPro-UltLt.otf">
-            <string>HelveticaNeueLTPro-UltLt</string>
+            <string>HelveticaNeueLTPro-Th</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -255,11 +253,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MXF-pQ-907">
-                                        <rect key="frame" x="0.0" y="3" width="60" height="62"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MXF-pQ-907">
+                                        <rect key="frame" x="0.0" y="0.0" width="62" height="67"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeueLTPro-UltLt" family="Helvetica Neue LT Pro" pointSize="38"/>
-                                        <state key="normal" title="&lt;">
+                                        <state key="normal" image="myback">
                                             <color key="titleColor" red="0.73725490196078436" green="0.73333333333333328" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -268,14 +265,14 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Y8l-xI-g9a">
-                                        <rect key="frame" x="77" y="12" width="106" height="36"/>
+                                        <rect key="frame" x="77" y="16" width="106" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
                                         <color key="textColor" red="0.8901960784313725" green="0.16078431372549021" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r7O-rj-TY0">
-                                        <rect key="frame" x="179" y="16" width="123" height="33"/>
+                                        <rect key="frame" x="179" y="16" width="123" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -396,7 +393,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="43" sectionHeaderHeight="22" sectionFooterHeight="22" id="KPz-4s-uzc">
-                                                <rect key="frame" x="0.0" y="349" width="319" height="73"/>
+                                                <rect key="frame" x="0.0" y="350" width="319" height="73"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <prototypes>
@@ -415,7 +412,7 @@
                                                                     <rect key="frame" x="63" y="5" width="544" height="32"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeueLTPro-Th" family="Helvetica Neue LT Pro" pointSize="19"/>
-                                                                    <color key="textColor" red="0.90196078430000004" green="0.1647058824" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -430,6 +427,13 @@
                                                     <outlet property="delegate" destination="yhW-IY-8qD" id="ww4-po-aPh"/>
                                                 </connections>
                                             </tableView>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You do not have any document uploaded in this portfolio." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W3S-4w-umc">
+                                                <rect key="frame" x="22" y="359" width="294" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeueLTPro-Th" family="Helvetica Neue LT Pro" pointSize="13"/>
+                                                <color key="textColor" red="0.12941176469999999" green="0.1176470588" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <view alpha="0.40000000596046448" contentMode="scaleToFill" id="J28-iD-rCZ">
                                                 <rect key="frame" x="0.0" y="77" width="320" height="2"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -541,10 +545,10 @@
                                                 <color key="textColor" red="0.90196078430000004" green="0.1647058824" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keep your all important document such Insurance certificate etc semrity within your portfolio" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ta0-bW-GdD">
-                                                <rect key="frame" x="25" y="311" width="294" height="44"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keep your all important documents such as insurance certificate, purchase receipts etc. securely within your portfolio." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ta0-bW-GdD">
+                                                <rect key="frame" x="22" y="315" width="294" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeueLTPro-Th" family="Helvetica Neue LT Pro" pointSize="13"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeueLTPro-Th" family="Helvetica Neue LT Pro" pointSize="12"/>
                                                 <color key="textColor" red="0.12941176469999999" green="0.1176470588" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -568,7 +572,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" id="Ar4-H7-W8b">
-                                                <rect key="frame" x="-1" y="424" width="320" height="56"/>
+                                                <rect key="frame" x="-1" y="425" width="320" height="56"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="J6n-DK-MFm">
@@ -598,6 +602,7 @@
                         <outlet property="dividerImg" destination="qyd-VH-bxv" id="1vN-XW-lwr"/>
                         <outlet property="iconImage" destination="7WH-ii-biH" id="E5j-cp-lX3"/>
                         <outlet property="lblNoOfItem" destination="9st-uZ-ZDh" id="njU-VI-xNl"/>
+                        <outlet property="lblNoPortfolioDoc" destination="W3S-4w-umc" id="b1F-X0-5GP"/>
                         <outlet property="lblTitle" destination="1bh-cX-inR" id="Cds-f3-aJb"/>
                         <outlet property="lblTolalValuable" destination="okb-kW-VaC" id="GZI-75-HbG"/>
                         <outlet property="lblTotalCover1" destination="rdV-Fr-ToW" id="EI2-Br-8sn"/>
@@ -2220,71 +2225,34 @@
                                                     <action selector="SubmitClk:" destination="17n-Dw-Xiw" eventType="touchUpInside" id="Oli-Ed-7lY"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="82J-1e-VgG">
-                                                <rect key="frame" x="21" y="74" width="144" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Insurance Certificate">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="HomeClick:" destination="dzF-4F-sgo" eventType="touchUpInside" id="vam-lj-kmy"/>
-                                                    <action selector="InsureCertificateClick:" destination="17n-Dw-Xiw" eventType="touchUpInside" id="2xT-Ub-fin"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Document Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="us3-Aa-h82">
                                                 <rect key="frame" x="21" y="8" width="174" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4hr-t6-kQ9">
-                                                <rect key="frame" x="173" y="74" width="126" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Purchase Receipt">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="HomeClick:" destination="dzF-4F-sgo" eventType="touchUpInside" id="i3p-lX-xwZ"/>
-                                                    <action selector="PurchaseReceiptClick:" destination="17n-Dw-Xiw" eventType="touchUpInside" id="58c-fG-8pU"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="egZ-EK-MeR">
-                                                <rect key="frame" x="97" y="109" width="126" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Others">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="OtherClick:" destination="17n-Dw-Xiw" eventType="touchUpInside" id="pZ6-ba-NJc"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DVf-Vf-0fN">
                                                 <rect key="frame" x="21" y="140" width="174" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" id="yIL-Ib-f6a">
+                                                <rect key="frame" x="17" y="94" width="286" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <segments>
+                                                    <segment title="Insurance Certificate" width="129"/>
+                                                    <segment title="Purchase Receipt" width="110"/>
+                                                    <segment title="Others" width="45"/>
+                                                </segments>
+                                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <action selector="SegmentClick:" destination="dzF-4F-sgo" eventType="valueChanged" id="3Ya-D1-W30"/>
+                                                    <action selector="SegmentClick:" destination="17n-Dw-Xiw" eventType="valueChanged" id="R5v-63-CAG"/>
+                                                    <action selector="SegmentClick:" destination="5tD-Fz-eeD" eventType="valueChanged" id="mUY-MB-NyW"/>
+                                                    <action selector="SegmentControlClick:" destination="a2z-Hv-HRj" eventType="valueChanged" id="eye-8I-sQg"/>
+                                                </connections>
+                                            </segmentedControl>
                                         </subviews>
                                     </scrollView>
                                     <view contentMode="scaleToFill" id="mC9-uP-Pjc">
@@ -2331,13 +2299,11 @@
                     <connections>
                         <outlet property="DocImage" destination="3Ac-c2-cIW" id="lVm-TL-1yp"/>
                         <outlet property="DocView" destination="mC9-uP-Pjc" id="8d3-UE-oyY"/>
+                        <outlet property="SegmentedControl" destination="yIL-Ib-f6a" id="woL-e1-qiw"/>
                         <outlet property="btnAddDoc" destination="D41-eJ-CGS" id="AkS-PS-gAk"/>
                         <outlet property="btnCamera" destination="zuJ-65-5Pg" id="5H1-Uu-q0k"/>
                         <outlet property="btnDocType" destination="6xB-hM-ze7" id="Mfe-SH-JA3"/>
-                        <outlet property="btnInsureCertificate" destination="82J-1e-VgG" id="Whb-mt-JiG"/>
-                        <outlet property="btnOther" destination="egZ-EK-MeR" id="Fvw-eq-hip"/>
                         <outlet property="btnPhotoLib" destination="3l1-DH-Jdn" id="UXR-ue-gTL"/>
-                        <outlet property="btnPurchaseReceipt" destination="4hr-t6-kQ9" id="23o-to-Iqg"/>
                         <outlet property="btnSubmit" destination="Zhg-rX-hdu" id="gGh-EL-IX8"/>
                         <outlet property="lblDesc" destination="S10-kr-KiW" id="leH-kH-EVm"/>
                         <outlet property="lblDocType" destination="bSO-fw-Sq9" id="11X-ih-96a"/>
@@ -2404,7 +2370,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="enk-Jb-ZTB">
-                                        <rect key="frame" x="164" y="408" width="131" height="21"/>
+                                        <rect key="frame" x="164.00000137522926" y="408" width="131" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                         <state key="normal" title="Forgot Password">
@@ -2544,63 +2510,12 @@
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gug-96-dUu">
-                                                <rect key="frame" x="174" y="73" width="126" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Purchase Receipt">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="PurchaseReceiptClick:" destination="zrD-nA-xB1" eventType="touchUpInside" id="Aiw-Dj-6RG"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4ds-Cr-Ytb">
-                                                <rect key="frame" x="97" y="106" width="126" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Others">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="OtherClick:" destination="zrD-nA-xB1" eventType="touchUpInside" id="sWW-Ia-bKl"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uJ3-eD-Li7">
                                                 <rect key="frame" x="21" y="137" width="304" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="k11-Gb-dnS">
-                                                <rect key="frame" x="21" y="73" width="144" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Insurance Certificate">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="InsuranceCertificateClick:" destination="zrD-nA-xB1" eventType="touchUpInside" id="PdD-fW-ciD"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="l0W-h1-T4Q">
                                                 <rect key="frame" x="20" y="252" width="279" height="128"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2613,6 +2528,22 @@
                                                     <action selector="AddDocClk:" destination="zrD-nA-xB1" eventType="touchUpInside" id="3OA-fb-CyL"/>
                                                 </connections>
                                             </button>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" id="4bu-fW-fVc">
+                                                <rect key="frame" x="17" y="95" width="286" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <segments>
+                                                    <segment title="Insurance Certificate" width="129"/>
+                                                    <segment title="Purchase Receipt" width="110"/>
+                                                    <segment title="Others" width="45"/>
+                                                </segments>
+                                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <action selector="SegmentClick:" destination="zrD-nA-xB1" eventType="valueChanged" id="6pV-yt-EHR"/>
+                                                    <action selector="SegmentClick:" destination="dzF-4F-sgo" eventType="valueChanged" id="ebO-ff-xoI"/>
+                                                    <action selector="SegmentClick:" destination="5tD-Fz-eeD" eventType="valueChanged" id="gPc-rg-qcX"/>
+                                                    <action selector="SegmentControlClick:" destination="a2z-Hv-HRj" eventType="valueChanged" id="QkE-Vk-0NL"/>
+                                                </connections>
+                                            </segmentedControl>
                                         </subviews>
                                     </scrollView>
                                     <view contentMode="scaleToFill" id="SnL-as-snI">
@@ -2692,11 +2623,9 @@
                     <connections>
                         <outlet property="DocImage" destination="1gI-yE-vlV" id="Zx0-Db-vWX"/>
                         <outlet property="DocView" destination="SnL-as-snI" id="cKm-v3-xlc"/>
+                        <outlet property="SegmentedControl" destination="4bu-fW-fVc" id="Lni-Ia-brb"/>
                         <outlet property="btnAddDoc" destination="l0W-h1-T4Q" id="aGz-Pb-Qrs"/>
                         <outlet property="btnDocType" destination="R12-Gz-I6l" id="kkC-YQ-Qz2"/>
-                        <outlet property="btnInsuranceCertificate" destination="k11-Gb-dnS" id="dBM-Yu-Wc3"/>
-                        <outlet property="btnOther" destination="4ds-Cr-Ytb" id="AvZ-ox-7Wf"/>
-                        <outlet property="btnPurchaseReceipt" destination="gug-96-dUu" id="Gvj-wZ-BxW"/>
                         <outlet property="btnsubmit" destination="QXB-fJ-rgK" id="XVP-gE-sfC"/>
                         <outlet property="lblDesc" destination="1z2-gx-kzD" id="kHh-mT-xJz"/>
                         <outlet property="lblDocType" destination="Kib-lh-enz" id="wn6-Fh-0pA"/>
@@ -3391,74 +3320,6 @@
                                                 <rect key="frame" x="99" y="295" width="51" height="31"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </switch>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Nx8-sD-ytN">
-                                                <rect key="frame" x="21" y="224" width="128" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Home">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="HomeClick:" destination="a2z-Hv-HRj" eventType="touchUpInside" id="eZ5-WT-D9Z"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1Nf-Ss-PEd">
-                                                <rect key="frame" x="171" y="224" width="128" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Business">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="BusinessClick:" destination="a2z-Hv-HRj" eventType="touchUpInside" id="ohe-WF-LOs"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="erD-rS-C6w">
-                                                <rect key="frame" x="171" y="260" width="128" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Other">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="OtherClick:" destination="a2z-Hv-HRj" eventType="touchUpInside" id="HXk-Wv-vW5"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RT5-St-Oe0">
-                                                <rect key="frame" x="21" y="260" width="128" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Personal">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="PersonalClick:" destination="a2z-Hv-HRj" eventType="touchUpInside" id="did-fw-Gog"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Portfolio Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RR5-lW-ldD">
                                                 <rect key="frame" x="21" y="6" width="174" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -3493,6 +3354,21 @@
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" id="c3H-eb-69k">
+                                                <rect key="frame" x="21" y="247" width="281" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <segments>
+                                                    <segment title="Home"/>
+                                                    <segment title="Business"/>
+                                                    <segment title="Personal"/>
+                                                    <segment title="Other"/>
+                                                </segments>
+                                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <action selector="SegmentClick:" destination="dzF-4F-sgo" eventType="valueChanged" id="S1h-0c-YlB"/>
+                                                    <action selector="SegmentControlClick:" destination="a2z-Hv-HRj" eventType="valueChanged" id="6BP-Gi-p77"/>
+                                                </connections>
+                                            </segmentedControl>
                                         </subviews>
                                     </scrollView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Portfolio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vny-rQ-joO">
@@ -3537,12 +3413,9 @@
                         <outlet property="HasInsureImg" destination="8J0-c0-29V" id="WF1-AP-Nc3"/>
                         <outlet property="InsuranceView" destination="1VQ-Vt-mjc" id="V3J-Er-9qZ"/>
                         <outlet property="IsInsuredSwitch" destination="4F2-Fe-cfm" id="6OT-9R-WMg"/>
-                        <outlet property="btnBusiness" destination="1Nf-Ss-PEd" id="KzP-mW-6xi"/>
+                        <outlet property="SegmentControl" destination="c3H-eb-69k" id="KzR-vc-LMt"/>
                         <outlet property="btnEndDate" destination="SOc-Br-703" id="PzB-3l-hRQ"/>
                         <outlet property="btnHasInsure" destination="OBX-V9-LPS" id="EDU-Ua-UDP"/>
-                        <outlet property="btnHome" destination="Nx8-sD-ytN" id="vjr-fL-hpH"/>
-                        <outlet property="btnOther" destination="erD-rS-C6w" id="Jua-f8-vVW"/>
-                        <outlet property="btnPersonal" destination="RT5-St-Oe0" id="Mgg-Pk-qPb"/>
                         <outlet property="btnPortfolioType" destination="O8y-pB-NOz" id="YoJ-z3-dLI"/>
                         <outlet property="btnStartDate" destination="hEm-AT-13q" id="mAI-TX-KHn"/>
                         <outlet property="btnSubmit" destination="a0I-pw-74F" id="f66-06-DhU"/>
@@ -3838,63 +3711,12 @@
                                                 <rect key="frame" x="21" y="246" width="277" height="128"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AhU-Ag-HLh">
-                                                <rect key="frame" x="23" y="70" width="144" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Insurance Certificate">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="InsureCertificateClick:" destination="5tD-Fz-eeD" eventType="touchUpInside" id="R4n-ab-tNv"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Document Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PUu-HA-KyT">
                                                 <rect key="frame" x="21" y="3" width="174" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1rR-me-Dwg">
-                                                <rect key="frame" x="175" y="70" width="126" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Purchase Receipt">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="PurchaseReceiptClick:" destination="5tD-Fz-eeD" eventType="touchUpInside" id="lvQ-4n-U64"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RBK-it-8Ss">
-                                                <rect key="frame" x="99" y="105" width="126" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Others">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="OtherClick:" destination="5tD-Fz-eeD" eventType="touchUpInside" id="nzs-nY-w3X"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ftp-MY-DnJ">
                                                 <rect key="frame" x="23" y="132" width="174" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -3936,6 +3758,21 @@
                                                     <action selector="deleteDocClick:" destination="5tD-Fz-eeD" eventType="touchUpInside" id="ios-Xw-CSS"/>
                                                 </connections>
                                             </button>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" id="1uw-z6-9bw">
+                                                <rect key="frame" x="17" y="90" width="286" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <segments>
+                                                    <segment title="Insurance Certificate" width="129"/>
+                                                    <segment title="Purchase Receipt" width="110"/>
+                                                    <segment title="Others" width="45"/>
+                                                </segments>
+                                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <action selector="SegmentClick:" destination="dzF-4F-sgo" eventType="valueChanged" id="1K2-qe-xEr"/>
+                                                    <action selector="SegmentClick:" destination="5tD-Fz-eeD" eventType="valueChanged" id="iib-2r-51i"/>
+                                                    <action selector="SegmentControlClick:" destination="a2z-Hv-HRj" eventType="valueChanged" id="BvM-Ug-LbH"/>
+                                                </connections>
+                                            </segmentedControl>
                                         </subviews>
                                     </scrollView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cgz-hs-rhb">
@@ -3965,11 +3802,9 @@
                     </view>
                     <connections>
                         <outlet property="DocImage" destination="OZy-P1-Cyy" id="LJQ-6N-iVN"/>
+                        <outlet property="SegmentedControl" destination="1uw-z6-9bw" id="82G-VM-5Gz"/>
                         <outlet property="btnAddDoc" destination="Oer-9L-0CP" id="zCs-gQ-btk"/>
                         <outlet property="btnDocType" destination="hlr-dG-Wcs" id="TpV-Nb-s9d"/>
-                        <outlet property="btnInsureCertificate" destination="AhU-Ag-HLh" id="rE1-p2-YCb"/>
-                        <outlet property="btnOther" destination="RBK-it-8Ss" id="SDa-hw-T3j"/>
-                        <outlet property="btnPurchaseReceipt" destination="1rR-me-Dwg" id="m2n-1S-IE8"/>
                         <outlet property="btnSave" destination="Cgz-hs-rhb" id="3iH-kq-xCb"/>
                         <outlet property="btnsubmit" destination="rC1-WJ-vXh" id="GdO-rp-AGH"/>
                         <outlet property="lblDesc" destination="jCz-Pb-rzM" id="hFo-D6-r3d"/>
@@ -4308,57 +4143,6 @@
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MAB-82-6eV">
-                                                <rect key="frame" x="21" y="76" width="144" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Insurance Certificate">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="InsureCertificateClk:" destination="Z7E-uP-2CU" eventType="touchUpInside" id="5Sc-4n-jlK"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Hnk-ns-DU3">
-                                                <rect key="frame" x="173" y="76" width="126" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Purchase Receipt">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="PurchaseReceiptClick:" destination="Z7E-uP-2CU" eventType="touchUpInside" id="SXC-Ir-atc"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zBJ-kS-Frt">
-                                                <rect key="frame" x="97" y="111" width="126" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Others">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="OtherClick:" destination="Z7E-uP-2CU" eventType="touchUpInside" id="8Kl-3K-dWf"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Ou-Cq-8nC">
                                                 <rect key="frame" x="22" y="140" width="174" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -4377,6 +4161,22 @@
                                                     <action selector="DeleteClick:" destination="Z7E-uP-2CU" eventType="touchUpInside" id="0ql-jV-fAk"/>
                                                 </connections>
                                             </button>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" id="zPj-yv-AHy">
+                                                <rect key="frame" x="17" y="94" width="286" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <segments>
+                                                    <segment title="Insurance Certificate" width="129"/>
+                                                    <segment title="Purchase Receipt" width="110"/>
+                                                    <segment title="Others" width="45"/>
+                                                </segments>
+                                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <action selector="SegmentClick:" destination="5tD-Fz-eeD" eventType="valueChanged" id="IXf-ln-c0d"/>
+                                                    <action selector="SegmentClick:" destination="Z7E-uP-2CU" eventType="valueChanged" id="ez9-ND-aWb"/>
+                                                    <action selector="SegmentClick:" destination="dzF-4F-sgo" eventType="valueChanged" id="xiT-fJ-QnU"/>
+                                                    <action selector="SegmentControlClick:" destination="a2z-Hv-HRj" eventType="valueChanged" id="fYV-Iw-vGZ"/>
+                                                </connections>
+                                            </segmentedControl>
                                         </subviews>
                                     </scrollView>
                                 </subviews>
@@ -4387,11 +4187,9 @@
                     </view>
                     <connections>
                         <outlet property="DocImage" destination="dZM-xh-kcc" id="lKj-Fh-mBk"/>
+                        <outlet property="SegmentedControl" destination="zPj-yv-AHy" id="cpe-j7-fhs"/>
                         <outlet property="btnAddDoc" destination="OOk-iG-pYw" id="iEC-Ho-F0N"/>
                         <outlet property="btnDocType" destination="iJA-MP-jKD" id="2aP-pq-2kY"/>
-                        <outlet property="btnInsureCertificate" destination="MAB-82-6eV" id="GNg-SS-JvD"/>
-                        <outlet property="btnOther" destination="zBJ-kS-Frt" id="TbX-bk-FfM"/>
-                        <outlet property="btnPurchaseReceipt" destination="Hnk-ns-DU3" id="0x1-20-eBh"/>
                         <outlet property="btnSubmit" destination="uP2-RC-7nb" id="dPa-Oe-tI4"/>
                         <outlet property="lblDesc" destination="O2j-BT-9AO" id="c5c-Xo-XVB"/>
                         <outlet property="lblDocType" destination="HEl-Yz-b02" id="Nod-RX-1Tm"/>

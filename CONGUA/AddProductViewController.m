@@ -9,7 +9,7 @@
 #import "AddProductViewController.h"
 #import "countryViewController.h"
 
-@interface AddProductViewController ()<UITextFieldDelegate,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,CKCalendarDelegate>
+@interface AddProductViewController ()<UITextFieldDelegate,UITableViewDelegate,CKCalendarDelegate>
 
 @end
 
@@ -411,7 +411,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
+    [super viewDidAppear:animated];
     NSLog(@"View did appear...");
     
     

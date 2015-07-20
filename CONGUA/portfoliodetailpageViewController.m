@@ -14,7 +14,7 @@
 @end
 
 @implementation portfoliodetailpageViewController
-@synthesize PortfolioCode,lbladdress,lblTitle,lblexpiryDate,lblinsureexpiry,lblNoOfItem,lbltotalcover,lbltotalValue,iconImage,tblDoc,lblUserName,mainscroll,lblTolalValuable,lblTotalCover1,dividerImg,AddDocView;
+@synthesize PortfolioCode,lbladdress,lblTitle,lblexpiryDate,lblinsureexpiry,lblNoOfItem,lbltotalcover,lbltotalValue,iconImage,tblDoc,lblUserName,mainscroll,lblTolalValuable,lblTotalCover1,dividerImg,AddDocView,lblNoPortfolioDoc;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -149,6 +149,7 @@
                     lblNoOfItem.text=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"ProductCount"]];
                     lbltotalcover.text=[@"£ " stringByAppendingString:[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"TotalCover"]]];
                     lbltotalValue.text=[@"£ " stringByAppendingString:[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"TotalValue"]]];
+                   
                     
                     if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"PortfolioTypeCode"] integerValue] ==1) {
                         iconImage.image=[UIImage imageNamed:@"home"];
@@ -317,10 +318,15 @@
                     NSLog(@"summary name=%@",ArrDoc);
                     if (ArrDoc.count>0)
                     {
+                        lblNoPortfolioDoc.hidden=YES;
                         tblDoc.frame=CGRectMake(tblDoc.frame.origin.x, tblDoc.frame.origin.y, tblDoc.frame.size.width,43.0*[ArrDoc count]);
                         AddDocView.frame=CGRectMake(AddDocView.frame.origin.x, tblDoc.frame.origin.y+tblDoc.frame.size.height+3, AddDocView.frame.size.width,AddDocView.frame.size.height);
                         mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+43.0*[ArrDoc count]-86.0);
                         [tblDoc reloadData];
+                    }
+                    else
+                    {
+                        lblNoPortfolioDoc.hidden=NO;
                     }
                     mainscroll.hidden=NO;
                     

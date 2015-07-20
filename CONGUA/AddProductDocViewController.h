@@ -39,8 +39,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnPurchaseReceipt;
 @property (weak, nonatomic) IBOutlet UIButton *btnOther;
 @property (weak, nonatomic) IBOutlet UIView *DocView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *SegmentedControl;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnsubmit;
+- (IBAction)SegmentClick:(id)sender;
 
 - (IBAction)DocTypeClk:(id)sender;
 - (IBAction)AddDocClk:(id)sender;

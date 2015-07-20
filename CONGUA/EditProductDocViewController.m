@@ -13,7 +13,7 @@
 @end
 
 @implementation EditProductDocViewController
-@synthesize txtDocName,txtVwDesc,DocImage,lblDesc,lblDocType,btnDocType,btnSubmit,btnAddDoc,mainscroll,btnOther,btnPurchaseReceipt,btnInsureCertificate;
+@synthesize txtDocName,txtVwDesc,DocImage,lblDesc,lblDocType,btnDocType,btnSubmit,btnAddDoc,mainscroll,btnOther,btnPurchaseReceipt,btnInsureCertificate,SegmentedControl;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -101,7 +101,7 @@
                         btnInsureCertificate.backgroundColor=[UIColor whiteColor];
                         btnPurchaseReceipt.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
                         btnOther.backgroundColor=[UIColor whiteColor];
-                        
+                        SegmentedControl.selectedSegmentIndex=1;
                         
                         DocType1=@"1";
                     }
@@ -113,7 +113,7 @@
                         btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
                         btnInsureCertificate.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
                         btnOther.backgroundColor=[UIColor whiteColor];
-                        
+                        SegmentedControl.selectedSegmentIndex=0;
                         
                         DocType1=@"2";
                     }
@@ -125,7 +125,7 @@
                         btnPurchaseReceipt.backgroundColor=[UIColor whiteColor];
                         btnInsureCertificate.backgroundColor=[UIColor whiteColor];
                         btnOther.backgroundColor=[UIColor colorWithRed:(202.0f/255.0) green:(202.0f/255.0) blue:(202.0f/255.0) alpha:1];
-                        
+                        SegmentedControl.selectedSegmentIndex=2;
                         
                         DocType1=@"99";
                     }
@@ -849,4 +849,22 @@
     }
 }
 
+- (IBAction)SegmentClick:(id)sender {
+    
+    switch (SegmentedControl.selectedSegmentIndex)
+    {
+        case 0:
+            DocType1=@"2";
+            break;
+        case 1:
+            DocType1=@"1";
+            break;
+        case 2:
+            DocType1=@"99";
+            break;
+            
+        default:
+            break;
+    }
+}
 @end

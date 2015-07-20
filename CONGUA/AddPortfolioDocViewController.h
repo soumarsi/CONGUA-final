@@ -43,6 +43,8 @@
 @property (weak, nonatomic) IBOutlet UIView *DocView;
 @property (weak, nonatomic) IBOutlet UIButton *btnCamera;
 @property (weak, nonatomic) IBOutlet UIButton *btnPhotoLib;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *SegmentedControl;
+- (IBAction)SegmentClick:(id)sender;
 
 
 - (IBAction)CameraClick:(id)sender;

@@ -34,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnPurchaseReceipt;
 @property (weak, nonatomic) IBOutlet UIButton *btnOther;
 @property (weak, nonatomic) IBOutlet UIButton *btnSave;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *SegmentedControl;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 
@@ -44,6 +45,7 @@
 - (IBAction)InsureCertificateClick:(id)sender;
 - (IBAction)PurchaseReceiptClick:(id)sender;
 - (IBAction)OtherClick:(id)sender;
+- (IBAction)SegmentClick:(id)sender;
 
 - (IBAction)SaveClick:(id)sender;
 - (IBAction)deleteDocClick:(id)sender;

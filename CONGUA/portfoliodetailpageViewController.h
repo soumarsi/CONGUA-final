@@ -42,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblTotalCover1;
 @property (weak, nonatomic) IBOutlet UIImageView *dividerImg;
 @property (weak, nonatomic) IBOutlet UIView *AddDocView;
+@property (weak, nonatomic) IBOutlet UILabel *lblNoPortfolioDoc;
 
 
 - (IBAction)PortfolioDetailClk:(id)sender;
