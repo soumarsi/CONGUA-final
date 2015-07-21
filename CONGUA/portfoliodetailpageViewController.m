@@ -147,7 +147,20 @@
                     lbladdress.text=[[result objectForKey:@"ResultInfo"] valueForKey:@"Address1"];
                 //    lblNoOfItem.text=[NSString stringWithFormat:@"You have "@"%@"@" items in your portfolio",[[result objectForKey:@"ResultInfo"] valueForKey:@"ProductCount"]];
                     lblNoOfItem.text=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"ProductCount"]];
-                    lbltotalcover.text=[@"£ " stringByAppendingString:[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"TotalCover"]]];
+                    
+                    // thousand comma separetor
+                    NSNumberFormatter *numberFormatter1 = [[NSNumberFormatter alloc] init];
+                    [numberFormatter1 setGroupingSeparator:@","];
+                    [numberFormatter1 setGroupingSize:3];
+                    [numberFormatter1 setUsesGroupingSeparator:YES];
+                    [numberFormatter1 setDecimalSeparator:@"."];
+                    [numberFormatter1 setNumberStyle:NSNumberFormatterDecimalStyle];
+                    [numberFormatter1 setMaximumFractionDigits:2];
+                    NSString *theString1 = [numberFormatter1 stringFromNumber:[NSNumber numberWithDouble:[[[result objectForKey:@"ResultInfo"] valueForKey:@"TotalCover"] doubleValue]]];
+                    lbltotalcover.text=[@"£ " stringByAppendingString:theString1];
+                    
+                 //   lbltotalcover.text=[@"£ " stringByAppendingString:[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"TotalCover"]]];
+                    
                     // thousand comma separetor
                     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
                     [numberFormatter setGroupingSeparator:@","];
@@ -156,10 +169,8 @@
                     [numberFormatter setDecimalSeparator:@"."];
                     [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
                     [numberFormatter setMaximumFractionDigits:2];
-          //          NSString *theString = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:[[result objectForKey:@"ResultInfo"] valueForKey:@"TotalValue"]] ;
-             //                              lbltotalValue.text=theString;
-                    
-               //     lbltotalValue.text=[@"£ " stringByAppendingString:[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"TotalValue"]]];
+                    NSString *theString = [numberFormatter stringFromNumber:[NSNumber numberWithDouble:[[[result objectForKey:@"ResultInfo"] valueForKey:@"TotalValue"] doubleValue]]];
+                    lbltotalValue.text=[@"£ " stringByAppendingString:theString];
                    
                     
                     if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"PortfolioTypeCode"] integerValue] ==1) {

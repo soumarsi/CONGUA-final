@@ -207,7 +207,7 @@
                         IsInsuredSwitch.on=NO;
                         //insurance view hide
                         
-                        btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+                   //     btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
                         InsuranceView.hidden=YES;
                     }
                     else
@@ -226,7 +226,7 @@
                         
                         //insurance view show
                         
-                        btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+InsuranceView.frame.size.height+20, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+                 //       btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+InsuranceView.frame.size.height+20, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
                         InsuranceView.hidden=NO;
                        
                         
@@ -874,7 +874,7 @@
         } completion:^(BOOL finished) {
             
             
-            btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+       //     btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
             InsuranceView.hidden=YES;
             if(self.view.frame.size.width==320)
             {
@@ -909,7 +909,7 @@
         // show insurance view
         [UIView animateWithDuration:0.5 animations:^{
             
-            btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+InsuranceView.frame.size.height+20, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+      //      btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+InsuranceView.frame.size.height+20, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
             
             
             
@@ -1555,7 +1555,7 @@
         txtInsureName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Insurance Name" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
         //  [Main_acroll setContentOffset:CGPointMake(0,0) animated:YES];
          */
-        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Insurance Name." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Insurance Company Name." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [aler show];
     }
     else if (txtvwInsureDetail.text.length==0 && btnHasInsure.selected==YES)
