@@ -403,7 +403,19 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
  
     cell.lblDocName.text=[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"DocName"];
-    
+    NSString *doctype=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"DocTypeCode"]];
+    if ([doctype isEqualToString:@"1"])
+    {
+        cell.DoctypeImg.image=[UIImage imageNamed:@"Purchase-receipt"];
+    }
+    else if ([doctype isEqualToString:@"2"])
+    {
+        cell.DoctypeImg.image=[UIImage imageNamed:@"icon1-1"];
+    }
+    else if ([doctype isEqualToString:@"99"])
+    {
+        cell.DoctypeImg.image=[UIImage imageNamed:@"otherDoc"];
+    }
     return cell;
   
     

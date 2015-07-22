@@ -507,7 +507,7 @@
         // show insurance view
         [UIView animateWithDuration:0.5 animations:^{
             
-            btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DescImgView.frame.origin.y+DescImgView.frame.size.height+20, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+          //  btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DescImgView.frame.origin.y+DescImgView.frame.size.height+20, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
             
             
             
@@ -536,7 +536,7 @@
         } completion:^(BOOL finished) {
             
             
-            btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DescImgView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+        //    btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DescImgView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
             DescImgView.hidden=YES;
             lblDescription.hidden=YES;
             txtVwDescription.hidden=YES;
@@ -556,7 +556,7 @@
         // show insurance view
         [UIView animateWithDuration:0.5 animations:^{
             
-            btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DescImgView.frame.origin.y+DescImgView.frame.size.height+20, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+         //   btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DescImgView.frame.origin.y+DescImgView.frame.size.height+20, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
             
             
             
@@ -584,7 +584,7 @@
         } completion:^(BOOL finished) {
             
             
-            btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DescImgView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+        //    btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DescImgView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
             DescImgView.hidden=YES;
             lblDescription.hidden=YES;
             txtVwDescription.hidden=YES;

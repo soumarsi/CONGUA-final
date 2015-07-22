@@ -326,12 +326,12 @@
     DocImage.clipsToBounds=YES;
     
   //  [DocImage setUserInteractionEnabled:YES];
-    btnsubmit.frame=CGRectMake(btnsubmit.frame.origin.x, DocImage.frame.origin.y+DocImage.frame.size.height+10, btnsubmit.frame.size.width, btnsubmit.frame.size.height);
+ //   btnsubmit.frame=CGRectMake(btnsubmit.frame.origin.x, DocImage.frame.origin.y+DocImage.frame.size.height+10, btnsubmit.frame.size.width, btnsubmit.frame.size.height);
     
     DocView.hidden=YES;
     [picker dismissViewControllerAnimated:YES completion:nil];
     btnAddDoc.selected=YES;
-    
+    btnsubmit.hidden=NO;
     
     
 }

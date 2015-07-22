@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UIButton *btnEditTop;
+@property (weak, nonatomic) IBOutlet UIImageView *DocTypeImg;
 
 
 - (IBAction)BackClick:(id)sender;

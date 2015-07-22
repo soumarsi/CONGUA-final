@@ -13,7 +13,7 @@
 @end
 
 @implementation ProductDocDetailViewController
-@synthesize mainscroll,lblDesc,lblDocType,lblDocName,WebView,ProductDocCode,lblUserName,btnEditTop;
+@synthesize mainscroll,lblDesc,lblDocType,lblDocName,WebView,ProductDocCode,lblUserName,btnEditTop,DocTypeImg;
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -98,12 +98,15 @@
                     
                     if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"DocTypeCode"] integerValue] ==1) {
                         lblDocType.text=@"Purchase Receipt";
+                        DocTypeImg.image=[UIImage imageNamed:@"Purchase-receipt"];
                     }
                     else if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"DocTypeCode"] integerValue] ==2) {
                         lblDocType.text=@"Insurance Certificate";
+                        DocTypeImg.image=[UIImage imageNamed:@"icon1-1"];
                     }
                     else if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"DocTypeCode"] integerValue] ==99) {
                         lblDocType.text=@"Others";
+                        DocTypeImg.image=[UIImage imageNamed:@"otherDoc"];
                     }
                     
                     

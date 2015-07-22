@@ -471,12 +471,12 @@
     DocImage.image=info[UIImagePickerControllerEditedImage];
     DocImage.contentMode = UIViewContentModeScaleAspectFit;
     DocImage.clipsToBounds=YES;
-    btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DocImage.frame.origin.y+DocImage.frame.size.height+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+ //   btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DocImage.frame.origin.y+DocImage.frame.size.height+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
     btnAddDoc.selected=YES;
  //   [DocImage setUserInteractionEnabled:YES];
     
     [DocView setHidden:YES];
-    
+    btnSubmit.hidden=NO;
     [picker dismissViewControllerAnimated:YES completion:nil];
     
     

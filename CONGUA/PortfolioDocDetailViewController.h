@@ -28,6 +28,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDocDesc;
 @property (weak, nonatomic) IBOutlet UIWebView *WebView;
+@property (weak, nonatomic) IBOutlet UIImageView *DocTypeImg;
 
 @property (strong, nonatomic)  NSString *DocCode;
 - (IBAction)DeleteClick:(id)sender;

@@ -10,5 +10,6 @@
 
 @interface PortfolioDocCell : prototypecell
 @property (weak, nonatomic) IBOutlet UILabel *lblDocName;
+@property (weak, nonatomic) IBOutlet UIImageView *DoctypeImg;
 
 @end

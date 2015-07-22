@@ -1339,7 +1339,7 @@
         } completion:^(BOOL finished) {
             
             
-            btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+         //   btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
             InsuranceView.hidden=YES;
         }];
 
@@ -1359,7 +1359,7 @@
         // show insurance view
         [UIView animateWithDuration:0.5 animations:^{
             
-            btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+InsuranceView.frame.size.height+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+          //  btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+InsuranceView.frame.size.height+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
             if(self.view.frame.size.width==320)
             {
                 

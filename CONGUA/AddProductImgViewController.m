@@ -120,9 +120,9 @@
     ProductImg.clipsToBounds=YES;
     
   //  [ProductImg setUserInteractionEnabled:YES];
-    btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, ProductImg.frame.origin.y+ProductImg.frame.size.height+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+ //   btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, ProductImg.frame.origin.y+ProductImg.frame.size.height+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
     DocView.hidden=YES;
-    
+    btnSubmit.hidden=NO;
     [picker dismissViewControllerAnimated:YES completion:nil];
     
     
