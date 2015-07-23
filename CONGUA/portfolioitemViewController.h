@@ -21,7 +21,9 @@
     UrlconnectionObject *urlobj;
     NSMutableDictionary *ProductDic;
     BOOL showAllSections;
-    NSInteger tappedRow;
+    NSInteger tappedRow,selectrow,row;
+    UIButton *headerButton,*dropdownButton,*EditButton,*DeleteButton;
+    UIScrollView *hScroll;
  //   NSMutableIndexSet *expandedSections;
 }
 @property(assign)id<PopView_delegateFromItem>PopDelegateFromItem;
@@ -33,7 +35,11 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (weak, nonatomic) IBOutlet UIView *AddProductView;
 
+@property(nonatomic,strong)NSMutableDictionary *dicTab;
 
+
+@property(nonatomic,strong)NSMutableDictionary *dicBtn;
+@property(nonatomic)NSInteger prev;
 
 - (IBAction)AddCategoryClk:(id)sender;
 - (IBAction)AddCategoryPlusClick:(id)sender;

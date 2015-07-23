@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UrlconnectionObject.h"
-
+#import "login.h"
 @interface SignUp : UIViewController
 {
     UIView *loader_shadow_View;
@@ -23,7 +23,7 @@
 @property(nonatomic,weak)NSString *country,*countrycode;
 
 @property (strong, nonatomic) IBOutlet UIView *regview;
-
+@property (assign, nonatomic) BOOL gosignin;
 @property (strong, nonatomic) IBOutlet UITextField *fnametxt;
 @property (strong, nonatomic) IBOutlet UITextField *lnametxt;
 @property (strong, nonatomic) IBOutlet UITextField *titletxt;
@@ -42,5 +42,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtcountry;
 @property (weak, nonatomic) IBOutlet UIButton *btnSignUp;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
-
+@property (strong, nonatomic) NSMutableDictionary *dataDic;
 @end

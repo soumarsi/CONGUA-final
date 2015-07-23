@@ -23,7 +23,7 @@
 
 
 @implementation SignUp
-@synthesize btncountry,imgArrow,txtcountry,mainscroll,country,countrycode;
+@synthesize btncountry,imgArrow,txtcountry,mainscroll,country,countrycode,gosignin,dataDic;
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -117,6 +117,18 @@
         [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 900)];
     }
      */
+  //  dataDic=[[NSMutableDictionary alloc]init];
+    NSLog(@"dic=%@",dataDic);
+    _titletxt.text=[dataDic valueForKey:@"title"];
+    _fnametxt.text=[dataDic valueForKey:@"FirstName"];
+    _lnametxt.text=[dataDic valueForKey:@"LastName"];
+    _emailtxt.text=[dataDic valueForKey:@"Email"];
+    _addrtxt.text=[dataDic valueForKey:@"Address"];
+    _alteraddrtxt.text=[dataDic valueForKey:@"AltAddress"];
+    _pcodetxt.text=[dataDic valueForKey:@"Pcode"];
+    _phnotxt.text=[dataDic valueForKey:@"Phone"];
+    _passtxt.text=[dataDic valueForKey:@"Password"];
+    _cpasstxt.text=[dataDic valueForKey:@"Cpassword"];
     
     [self CountryShowUrl];
 
@@ -342,7 +354,7 @@
                                  // delay:0.1f
                                // options:UIViewAnimationTransitionNone
                              animations:^{
-                                 
+        
                                  [self.mainscroll setContentOffset:CGPointMake(0.0f,140.0f
                                                                                ) animated:YES];
                              }
@@ -854,6 +866,17 @@
         [aler show];
         return NO;
     }
+    if(_passtxt.text.length<6)
+    {
+        /*
+         self.passtxt.text=Nil;
+         UIColor *color = [UIColor redColor];
+         _passtxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password can't Left Blank" attributes:@{NSForegroundColorAttributeName: color}];
+         */
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Password length should be atleast 6 character" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
+        return NO;
+    }
     
     if(![_passtxt.text isEqualToString:_cpasstxt.text])
     {
@@ -1097,12 +1120,17 @@
 
 - (IBAction)BACKFROMSIGNUP:(id)sender {
     
-    
+    NSLog(@"go=%hhd",gosignin);
+    if (gosignin==YES)
+    {
+        
+        login *landingVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
+        [self.navigationController pushViewController:landingVC animated:YES];
+    }
+    else{
     Landing *landingVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"landing"];
-    
-
-    
     [self.navigationController pushViewController:landingVC animated:YES];
+    }
 
 }
 
@@ -1110,14 +1138,33 @@
 {
     [self.cpasstxt resignFirstResponder];
     
-    
+    if (ArrCountryCode.count>0) {
+        
+   
     countryViewController *countryVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"country"];
     
+    //all data put in dic so when back to this page all the kept
+    dataDic=[[NSMutableDictionary alloc]init];
+    [dataDic setObject:_titletxt.text forKey:@"title"];
+    [dataDic setObject:_fnametxt.text forKey:@"FirstName"];
+    [dataDic setObject:_lnametxt.text forKey:@"LastName"];
+    [dataDic setObject:_emailtxt.text forKey:@"Email"];
+    [dataDic setObject:_phnotxt.text forKey:@"Phone"];
+    [dataDic setObject:_addrtxt.text forKey:@"Address"];
+    [dataDic setObject:_alteraddrtxt.text forKey:@"AltAddress"];
+    [dataDic setObject:_pcodetxt.text forKey:@"Pcode"];
+    [dataDic setObject:_passtxt.text forKey:@"Password"];
+    [dataDic setObject:_cpasstxt.text forKey:@"Cpassword"];
+    NSLog(@" data dic=%@",dataDic);
+    countryVC.SignDic=dataDic;
     countryVC.ArrCountryName=ArrCountryName;
     countryVC.ArrCountryCode=ArrCountryCode;
-    
+    //for back to splash screen to login
+    if (gosignin==YES) {
+        countryVC.signin=YES;
+    }
     [self.navigationController pushViewController:countryVC animated:YES];
-    
+    }
     
    /* [UIView animateWithDuration:0.4f
      // delay:0.1f

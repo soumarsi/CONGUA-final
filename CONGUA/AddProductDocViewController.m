@@ -89,11 +89,12 @@
     if ([text isEqualToString:@"\n"])
     {
         [textView resignFirstResponder];
+        [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
         if (self.view.frame.size.height==480)
         {
             if(textView==txtvwDescription)
             {
-                [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
+              //  [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
                 
                 if (txtvwDescription.text.length==0)
                 {

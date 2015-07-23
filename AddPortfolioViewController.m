@@ -46,13 +46,17 @@
       //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];
         
         [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 520)];
+        if (self.view.frame.size.height==480)
+        {
+            [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 480)];
+        }
     }
     //[self.mainscroll setFrame:CGRectMake(0, 60, 320, 875)];
     
     
     if ([UIScreen mainScreen].bounds.size.width>320)
     {
-        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width,595.0f)];
+        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width,550.0f)];
     
         
         
@@ -182,7 +186,12 @@
     }
     
 }
-
+-(NSString *)textFieldBlankorNot:(NSString *)str
+{
+    NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimmed = [str stringByTrimmingCharactersInSet:whitespace];
+    return trimmed;
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -990,7 +999,7 @@
 - (IBAction)SubmitClk:(id)sender
 {
    
-    if(self.portnmtxt.text.length==0)
+    if([self textFieldBlankorNot:self.portnmtxt.text].length==0)
     {
         /*
         self.portnmtxt.text=@"";
@@ -1000,7 +1009,7 @@
         UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Portfolio Name." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [aler show];
     }
-    else if (self.addrtxt.text.length==0)
+    else if ([self textFieldBlankorNot:self.addrtxt.text].length==0)
     {
         /*
         self.addrtxt.text=@"";
@@ -1013,7 +1022,7 @@
         [aler show];
     }
     
-    else if (self.pcodetxt.text.length==0)
+    else if ([self textFieldBlankorNot:self.pcodetxt.text].length==0)
     {
         /*
         self.pcodetxt.text=@"";
@@ -1023,7 +1032,7 @@
         [aler show];
     }
 
-    else if(self.inametxt.text.length==0 && btnhasInsure.selected==YES)
+    else if([self textFieldBlankorNot:self.inametxt.text].length==0 && btnhasInsure.selected==YES)
     {
         /*
         self.inametxt.text=@"";
@@ -1032,7 +1041,7 @@
         UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Insurance Company Name." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [aler show];
     }
-    else if (self.idetail.text.length==0 && btnhasInsure.selected==YES)
+    else if ([self textFieldBlankorNot:self.idetail.text].length==0 && btnhasInsure.selected==YES)
     {
         /*
         self.idetail.text=@"";
@@ -1090,7 +1099,7 @@
             
             
         }
-        else if (self.vcovertxt.text.length==0 && btnhasInsure.selected==YES)
+        else if ([self textFieldBlankorNot:self.vcovertxt.text].length==0 && btnhasInsure.selected==YES)
         {
             /*
             self.vcovertxt.text=@"";
@@ -1320,7 +1329,7 @@
             if(self.view.frame.size.width==320)
             {
                 
-                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-250);
+                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-200);
                 // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
             }
             
@@ -1330,7 +1339,7 @@
             {
                 
                 //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
-                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-250);
+                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-200);
             }
             
             
@@ -1363,7 +1372,7 @@
             if(self.view.frame.size.width==320)
             {
                 
-                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+250);
+                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+200);
                 // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
             }
             
@@ -1373,7 +1382,7 @@
             {
                 
                 //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
-                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+250);
+                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+200);
             }
             
             

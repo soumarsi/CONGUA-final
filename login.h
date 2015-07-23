@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UrlconnectionObject.h"
-
+#import "SignUp.h"
 @interface login : UIViewController<UITextFieldDelegate>
 {
     UrlconnectionObject *urlobj;

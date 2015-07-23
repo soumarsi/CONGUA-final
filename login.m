@@ -75,7 +75,8 @@
 {
     //NSLog(@"gesture is ok");
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    Landing *dest = [storyboard instantiateViewControllerWithIdentifier:@"signup"];
+    SignUp *dest = [storyboard instantiateViewControllerWithIdentifier:@"signup"];
+    dest.gosignin=YES;
     [self.navigationController pushViewController:dest animated:YES];
 }
 

@@ -23,7 +23,7 @@
 }
 //
 
-
+@property (assign, nonatomic) BOOL signin;
 @property (nonatomic, weak) id<countryDelegate>    myDelegate;
 
 //
@@ -42,6 +42,6 @@
 @property(nonatomic,strong)NSMutableArray *ArrCategory;
 
 @property(nonatomic,strong)UITableView *listTable;
-
+@property (strong, nonatomic) NSMutableDictionary *SignDic;
 
 @end

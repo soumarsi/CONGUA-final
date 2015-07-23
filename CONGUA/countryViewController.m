@@ -32,7 +32,7 @@
 
 @synthesize myDelegate;
 
-@synthesize ArrCountryCode,ArrCountryName,backBtn,topBarView,listTable,ArrCategory,categoryCheck,countryCheck,headerLbl1,headerLbl2;
+@synthesize ArrCountryCode,ArrCountryName,backBtn,topBarView,listTable,ArrCategory,categoryCheck,countryCheck,headerLbl1,headerLbl2,signin,SignDic;
 
 
 - (void)viewDidLoad {
@@ -49,13 +49,14 @@
     
     topBarView.clipsToBounds=YES;
     
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     NSLog(@"Category array table values.....%@",ArrCategory);
-    
+     NSLog(@"dic in country.....%@",SignDic);
     
     if(ArrCountryName.count>0)
     {
@@ -150,12 +151,15 @@
     
     SignUp *signupVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"signup"];
     
+        signupVC.dataDic=SignDic;
     signupVC.country=[ArrCountryName objectAtIndex:indexPath.row];
     
     signupVC.countrycode=[ArrCountryCode objectAtIndex:indexPath.row];
-    
+        if (signin==YES) {
+            signupVC.gosignin=YES;
+        }
     [ArrCountryName removeAllObjects];
-    
+        
     [ArrCountryCode removeAllObjects];
     
     [self.navigationController pushViewController:signupVC animated:YES];
@@ -223,7 +227,10 @@
     {
     
     SignUp *signupVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"signup"];
-    
+        signupVC.dataDic=SignDic;
+        if (signin==YES) {
+            signupVC.gosignin=YES;
+        }
     [ArrCountryName removeAllObjects];
     
     [ArrCountryCode removeAllObjects];
