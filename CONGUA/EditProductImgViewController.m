@@ -199,10 +199,15 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+-(NSString *)textFieldBlankorNot:(NSString *)str
+{
+    NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimmed = [str stringByTrimmingCharactersInSet:whitespace];
+    return trimmed;
+}
 - (IBAction)SubmitClick:(id)sender
 {
-    if(txtVwDesc.text.length==0)
+    if([self textFieldBlankorNot:txtVwDesc.text].length==0)
     {
         /*
         lblDesc.text=@"Enter Description";
@@ -520,15 +525,22 @@
     UIImagePickerController *picker = [[UIImagePickerController alloc]init];
     picker.delegate = (id)self;
     picker.allowsEditing = YES;
-    
+    [mainscroll setContentOffset:CGPointMake(0,0) animated:YES];
     switch (buttonIndex) {
             
         case 0:
             
             
-            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self.navigationController presentViewController:picker animated:YES completion:NULL];
-            
+            if ([UIImagePickerController isSourceTypeAvailable:
+                 UIImagePickerControllerSourceTypeCamera])
+            {
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self.navigationController presentViewController:picker animated:YES completion:NULL];
+            }
+            else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No Camera Available." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
             break;
             
         case 1:

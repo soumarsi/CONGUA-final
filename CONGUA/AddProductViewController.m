@@ -592,10 +592,15 @@
 
     }
 }
-
+-(NSString *)textFieldBlankorNot:(NSString *)str
+{
+    NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimmed = [str stringByTrimmingCharactersInSet:whitespace];
+    return trimmed;
+}
 - (IBAction)SubmitClk:(id)sender
 {
-    if(txtproductName.text.length==0)
+    if([self textFieldBlankorNot:txtproductName.text].length==0)
     {
         /*
         txtproductName.text=@"";
@@ -624,7 +629,7 @@
         UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Choose Purchase Date" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [aler show];
     }
-    else if(txtPurchaseValue.text.length==0)
+    else if([self textFieldBlankorNot:txtPurchaseValue.text].length==0)
     {
         /*
         txtPurchaseValue.text=@"";
@@ -634,7 +639,7 @@
         UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Purchase Value" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [aler show];
     }
-    else if (txtVwDescription.text.length==0 && btnIsOtherInsured.selected==YES)
+    else if ([self textFieldBlankorNot:txtVwDescription.text].length==0 && btnIsOtherInsured.selected==YES)
     {
         /*
         lblDescription.text=@"";
@@ -891,7 +896,11 @@
 - (void)calendar:(CKCalendarView *)calendar configureDateItem:(CKDateItem *)dateItem forDate:(NSDate *)date {
     //  TODO: play with the coloring if we want to...
     
-    
+    if ([self dateIsDisabled:date])
+    {
+        dateItem.backgroundColor = [UIColor whiteColor];
+        dateItem.textColor = [UIColor lightGrayColor];
+    }
     
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -938,11 +947,30 @@
     [myview removeFromSuperview];
     
 }
-
-
+- (BOOL)dateIsDisabled:(NSDate *)date {
+   
+    NSDate *today = [NSDate date];
+    NSComparisonResult result;
+    result=[today compare:date];
+        if (result==NSOrderedAscending) {
+            return YES;
+        }
+    
+    return NO;
+}
+- (BOOL)calendar:(CKCalendarView *)calendar willSelectDate:(NSDate *)date
+{
+    return ![self dateIsDisabled:date];
+}
 
 - (BOOL)calendar:(CKCalendarView *)calendar willChangeToMonth:(NSDate *)date {
     
+    NSDate *today = [NSDate date];
+    NSComparisonResult result;
+    result=[today compare:date];
+    if (result==NSOrderedAscending) {
+        return NO;
+    }
     return YES;
 }
 @end

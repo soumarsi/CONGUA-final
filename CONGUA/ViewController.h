@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnsearchicon;
 - (IBAction)searchiconclick:(id)sender;
 - (IBAction)LeftMenuClk:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *lblNoresultFound;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 

@@ -91,14 +91,22 @@
     UIImagePickerController *picker = [[UIImagePickerController alloc]init];
     picker.delegate = (id)self;
     picker.allowsEditing = YES;
-    
+    [mainscroll setContentOffset:CGPointMake(0,0) animated:YES];
     switch (buttonIndex) {
             
         case 0:
             
             
-            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self.navigationController presentViewController:picker animated:YES completion:NULL];
+            if ([UIImagePickerController isSourceTypeAvailable:
+                 UIImagePickerControllerSourceTypeCamera])
+            {
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self.navigationController presentViewController:picker animated:YES completion:NULL];
+            }
+            else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No Camera Available." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
             
             break;
             
@@ -129,10 +137,16 @@
     
     
 }
+-(NSString *)textFieldBlankorNot:(NSString *)str
+{
+    NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimmed = [str stringByTrimmingCharactersInSet:whitespace];
+    return trimmed;
+}
 
 - (IBAction)SubmitClk:(id)sender
 {
-    if(txtvwDesc.text.length==0)
+    if([self textFieldBlankorNot:txtvwDesc.text].length==0)
     {
         /*
         lblDesc.text=@"Enter Description";
@@ -525,11 +539,20 @@
 
 - (IBAction)CameraClick:(id)sender
 {
-    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
-    picker.delegate = (id)self;
-    picker.allowsEditing = YES;
-                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self.navigationController presentViewController:picker animated:YES completion:NULL];
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+        picker.delegate = (id)self;
+        picker.allowsEditing = YES;
+        
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self.navigationController presentViewController:picker animated:YES completion:NULL];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No Camera Available." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
    }
 
 - (IBAction)PhotoLibClick:(id)sender

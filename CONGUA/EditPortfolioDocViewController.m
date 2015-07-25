@@ -198,7 +198,7 @@
         //    [WebView loadRequest:requestObj];
         [DocImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str]] placeholderImage:[UIImage imageNamed:@""] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
         DocImage.contentMode=UIViewContentModeScaleAspectFit;
-        
+        DocImage.clipsToBounds=YES;
         btnsubmit.frame=CGRectMake(btnsubmit.frame.origin.x, DocImage.frame.origin.y+DocImage.frame.size.height+10, btnsubmit.frame.size.width, btnsubmit.frame.size.height);
         btnAddDoc.selected=YES;
     }
@@ -437,6 +437,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 
 {
+    [mainscroll setContentOffset:CGPointMake(0,0) animated:YES];
     UIImagePickerController *picker = [[UIImagePickerController alloc]init];
     picker.delegate = (id)self;
     picker.allowsEditing = YES;
@@ -446,8 +447,16 @@
         case 0:
             
             
-            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self.navigationController presentViewController:picker animated:YES completion:NULL];
+            if ([UIImagePickerController isSourceTypeAvailable:
+                 UIImagePickerControllerSourceTypeCamera])
+            {
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self.navigationController presentViewController:picker animated:YES completion:NULL];
+            }
+            else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No Camera Available." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
             
             break;
             
@@ -839,7 +848,12 @@
             break;
     }
 }
-
+-(NSString *)textFieldBlankorNot:(NSString *)str
+{
+    NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimmed = [str stringByTrimmingCharactersInSet:whitespace];
+    return trimmed;
+}
 - (IBAction)SaveClick:(id)sender
 {
     /*
@@ -853,7 +867,7 @@
      DocType1=@"99";
      }
      */
-    if(txtDocName.text.length==0)
+    if([self textFieldBlankorNot:txtDocName.text].length==0)
     {
         /*
          txtDocName.text=@"";

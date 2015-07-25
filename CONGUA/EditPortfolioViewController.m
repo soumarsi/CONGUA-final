@@ -29,9 +29,11 @@
     
     if(self.view.frame.size.width==320)
     {
-        //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];
-        
-        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 450)];
+        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 520)];
+        if (self.view.frame.size.height==480)
+        {
+            [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 480)];
+        }
     }
     //[self.mainscroll setFrame:CGRectMake(0, 60, 320, 875)];
     
@@ -39,7 +41,7 @@
     if ([UIScreen mainScreen].bounds.size.width>320)
     {
         
-        [self.mainscroll setContentSize:CGSizeMake(320.0f,595.0f)];
+        [self.mainscroll setContentSize:CGSizeMake(320.0f,550.0f)];
         
         
     }
@@ -879,7 +881,7 @@
             if(self.view.frame.size.width==320)
             {
                 
-                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height-295);
+                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height-250);
                 // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
             }
             
@@ -889,7 +891,7 @@
             {
                 
                 //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
-                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height-295);
+                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height-250);
             }
         }];
         
@@ -919,7 +921,7 @@
             if(self.view.frame.size.width==320)
             {
                 
-                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+295);
+                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+250);
                 // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
             }
             
@@ -929,7 +931,7 @@
             {
                 
                 //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
-                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+295);
+                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+250);
             }
         }];
     }
@@ -1521,7 +1523,7 @@
         portType=@"4";
     }
      */
-    if(txtPortfolioName.text.length==0)
+    if([self textFieldBlankorNot:txtPortfolioName.text].length==0)
     {
         /*
         txtPortfolioName.text=@"";
@@ -1531,7 +1533,7 @@
         UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Portfolio Name." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [aler show];
     }
-    else if (txtvwAddress.text.length==0)
+    else if ([self textFieldBlankorNot:txtvwAddress.text].length==0)
     {
         /*
         txtvwAddress.text=@"";
@@ -1543,7 +1545,7 @@
         [aler show];
     }
     
-    else if (txtPostCode.text.length==0)
+    else if ([self textFieldBlankorNot:txtPostCode.text].length==0)
     {/*
         txtPostCode.text=@"";
         txtPostCode.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Postal Code" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
@@ -1553,7 +1555,7 @@
         [aler show];
     }
  
-    else if(txtInsureName.text.length==0 && btnHasInsure.selected==YES)
+    else if([self textFieldBlankorNot:txtInsureName.text].length==0 && btnHasInsure.selected==YES)
     {
         /*
         txtInsureName.text=@"";
@@ -1563,7 +1565,7 @@
         UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Insurance Company Name." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [aler show];
     }
-    else if (txtvwInsureDetail.text.length==0 && btnHasInsure.selected==YES)
+    else if ([self textFieldBlankorNot:txtvwInsureDetail.text].length==0 && btnHasInsure.selected==YES)
     {
         /*
         txtvwInsureDetail.text=@"";
@@ -1617,7 +1619,7 @@
             
             
         }
-        else if (txtValueCovered.text.length==0 && btnHasInsure.selected==YES)
+        else if ([self textFieldBlankorNot:txtValueCovered.text].length==0 && btnHasInsure.selected==YES)
         {
             /*
             txtValueCovered.text=@"";

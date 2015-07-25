@@ -150,10 +150,15 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+-(NSString *)textFieldBlankorNot:(NSString *)str
+{
+    NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimmed = [str stringByTrimmingCharactersInSet:whitespace];
+    return trimmed;
+}
 - (IBAction)SubmitClk:(id)sender
 {
-    if (txtcategoryName.text.length==0)
+    if ([self textFieldBlankorNot:txtcategoryName.text].length==0)
     {
         /*
         txtcategoryName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Category" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];

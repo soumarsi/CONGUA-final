@@ -633,7 +633,11 @@
 - (void)calendar:(CKCalendarView *)calendar configureDateItem:(CKDateItem *)dateItem forDate:(NSDate *)date {
     //  TODO: play with the coloring if we want to...
     
-    
+    if ([self dateIsDisabled:date])
+    {
+        dateItem.backgroundColor = [UIColor whiteColor];
+        dateItem.textColor = [UIColor lightGrayColor];
+    }
     
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -680,11 +684,33 @@
     [PurchaseDateview removeFromSuperview];
     
 }
-
-
-
-- (BOOL)calendar:(CKCalendarView *)calendar willChangeToMonth:(NSDate *)date {
+- (BOOL)dateIsDisabled:(NSDate *)date {
     
+    NSDate *today = [NSDate date];
+    NSComparisonResult result;
+    result=[today compare:date];
+    if (result==NSOrderedAscending) {
+        return YES;
+    }
+    
+    return NO;
+}
+- (BOOL)calendar:(CKCalendarView *)calendar willSelectDate:(NSDate *)date
+{
+    return ![self dateIsDisabled:date];
+}
+
+
+- (BOOL)calendar:(CKCalendarView *)calendar willChangeToMonth:(NSDate *)date
+{
+    
+    NSDate *today = [NSDate date];
+    NSComparisonResult result;
+    result=[today compare:date];
+    if (result==NSOrderedAscending)
+    {
+        return NO;
+    }
     return YES;
 }
 -(void)producttypepickerCancel
@@ -914,10 +940,15 @@
     }
      */
 }
-
+-(NSString *)textFieldBlankorNot:(NSString *)str
+{
+    NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimmed = [str stringByTrimmingCharactersInSet:whitespace];
+    return trimmed;
+}
 - (IBAction)SubmitClk:(id)sender
 {
-    if(txtProductNmae.text.length==0)
+    if([self textFieldBlankorNot:txtProductNmae.text].length==0)
     {
         /*
         txtProductNmae.text=@"";
@@ -946,7 +977,7 @@
         UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Choose Purchase Date" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [aler show];
     }
-    else if(txtPurchaseValue.text.length==0)
+    else if([self textFieldBlankorNot:txtPurchaseValue.text].length==0)
     {
         /*
         txtPurchaseValue.text=@"";
@@ -956,7 +987,7 @@
         UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Purchase Value" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [aler show];
     }
-    else if (txtVwDescription.text.length==0 && btnIsOtherInsure.selected==YES)
+    else if ([self textFieldBlankorNot:txtVwDescription.text].length==0 && btnIsOtherInsure.selected==YES)
     {
         /*
         lblDescription.text=@"";
@@ -1135,7 +1166,7 @@
                      [aler show];
                      */
                    // [self.navigationController popViewControllerAnimated: YES];
-                    ViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"viewcontroller"];
+                    portfolioitemViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"portfolioitemviewcontroller"];
                     // obj.taskid=[[arrtask objectAtIndex:indexPath.row] valueForKey:@"id"];
                     [self.navigationController pushViewController:obj animated:YES];
                 }

@@ -105,9 +105,15 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+-(NSString *)textFieldBlankorNot:(NSString *)str
+{
+    NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimmed = [str stringByTrimmingCharactersInSet:whitespace];
+    return trimmed;
+}
 - (IBAction)SubmitClk:(id)sender
 {
-    if (txtCategoryName.text.length==0)
+    if ([self textFieldBlankorNot:txtCategoryName.text].length==0)
     {
         
       //  txtCategoryName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Category" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];

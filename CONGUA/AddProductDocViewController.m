@@ -295,6 +295,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 
 {
+    [mainscroll setContentOffset:CGPointMake(0,0) animated:YES];
     UIImagePickerController *picker = [[UIImagePickerController alloc]init];
     picker.delegate = (id)self;
     picker.allowsEditing = YES;
@@ -304,8 +305,16 @@
         case 0:
             
             
-            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self.navigationController presentViewController:picker animated:YES completion:NULL];
+            if ([UIImagePickerController isSourceTypeAvailable:
+                 UIImagePickerControllerSourceTypeCamera])
+            {
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self.navigationController presentViewController:picker animated:YES completion:NULL];
+            }
+            else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No Camera Available." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
             
             break;
             
@@ -336,6 +345,12 @@
     
     
 }
+-(NSString *)textFieldBlankorNot:(NSString *)str
+{
+    NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimmed = [str stringByTrimmingCharactersInSet:whitespace];
+    return trimmed;
+}
 
 - (IBAction)SubmitClk:(id)sender
 {
@@ -350,7 +365,7 @@
         DocType1=@"99";
     }
      */
-    if(txtDocName.text.length==0)
+    if([self textFieldBlankorNot:txtDocName.text].length==0)
     {
         /*
         txtDocName.text=@"";
@@ -652,13 +667,20 @@
 
 - (IBAction)CameraClick:(id)sender
 {
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera])
+    {
     UIImagePickerController *picker = [[UIImagePickerController alloc]init];
     picker.delegate = (id)self;
     picker.allowsEditing = YES;
    
             picker.sourceType = UIImagePickerControllerSourceTypeCamera;
             [self.navigationController presentViewController:picker animated:YES completion:NULL];
-          
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No Camera Available." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
 
 }
 

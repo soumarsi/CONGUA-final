@@ -124,7 +124,7 @@
         countryTableCell=[tableView dequeueReusableCellWithIdentifier:cellID];
     
     }
-    
+    countryTableCell.textLabel.font=[UIFont fontWithName:@"HelveticaNeueLTPro-Th" size:14.0];
     if([countryCheck isEqualToString:@"YES"])
       countryTableCell.textLabel.text=[ArrCountryName objectAtIndex:indexPath.row];
     

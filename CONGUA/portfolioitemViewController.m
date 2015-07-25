@@ -84,24 +84,28 @@
 {
     NSLog(@"pop view called");
     mainscroll.hidden=YES;
+    row=0;
     [self viewDidLoad];
 }
 -(void)Popaction_method4
 {
     NSLog(@"pop view called");
     mainscroll.hidden=YES;
+    row=0;
     [self viewDidLoad];
 }
 -(void)Popaction_method5
 {
     NSLog(@"pop view called");
     mainscroll.hidden=YES;
+    row=0;
     [self viewDidLoad];
 }
 -(void)Popaction_methodFromAddProduct
 {
     NSLog(@"pop view called");
     mainscroll.hidden=YES;
+    row=0;
     [self viewDidLoad];
 }
 -(void)CategoryShowUrl
@@ -182,6 +186,7 @@
                         [ArrProduct addObject:tempDict1];
                         
                     }
+                   
                     if (ArrCategory.count>7) {
                         mytabview.frame=CGRectMake(mytabview.frame.origin.x, mytabview.frame.origin.y, mytabview.frame.size.width,50.0*[ArrCategory count]);
                         AddProductView.frame=CGRectMake(AddProductView.frame.origin.x, mytabview.frame.origin.y+mytabview.frame.size.height+3, AddProductView.frame.size.width,AddProductView.frame.size.height);
@@ -305,7 +310,7 @@
     UILabel *productLbl=[[UILabel alloc]initWithFrame:CGRectMake(22, 15, 200, 25)];
     //   headLbl.text=[NSString stringWithFormat:@"Section %ld",(long)section];
     
-    productLbl.text=[NSString stringWithFormat:@"%@",[[ArrShowProduct objectAtIndex:indexPath.row] valueForKey:@"ProductName"]];;
+    productLbl.text=[NSString stringWithFormat:@"%@",[[ArrShowProduct objectAtIndex:indexPath.row] valueForKey:@"ProductName"]];
     productLbl.textColor=[UIColor blackColor];
     [productLbl setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-Th" size:16]];
     [headerView addSubview:productLbl];
@@ -659,7 +664,7 @@
                 else
                 {
                     
-                    UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Error" message:@"Unsucessful...." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Error" message:@"You Can't Delete Category until you delete Products under this Category." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [aler show];
                 }
                 

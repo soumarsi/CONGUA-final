@@ -21,7 +21,7 @@ menu *menuview;
 @end
 
 @implementation ViewController
-@synthesize tabview,searchbar,btnsearch,btnsearchicon,contentview,lblUserName;
+@synthesize tabview,searchbar,btnsearch,btnsearchicon,contentview,lblUserName,lblNoresultFound;
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -299,43 +299,51 @@ menu *menuview;
     }
     else if (Issearch==1)
     {
-        cell.celltitlelbl.text=[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioName"];
-        cell.celladdresslbl.text=[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"Address1"];
-        
-        if([[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductCount"]] isEqualToString:@"1"])
+        if (ArrFilter.count>0)
         {
-            cell.lblactive.text=[NSString stringWithFormat:@"%@ %@ %@",@"Total",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductCount"],@"item"];
+            cell.celltitlelbl.text=[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioName"];
+            cell.celladdresslbl.text=[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"Address1"];
+            
+            if([[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductCount"]] isEqualToString:@"1"])
+            {
+                cell.lblactive.text=[NSString stringWithFormat:@"%@ %@ %@",@"Total",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductCount"],@"item"];
+            }
+            else
+            {
+                cell.lblactive.text=[NSString stringWithFormat:@"%@ %@ %@",@"Total",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductCount"],@"items"];
+            }
+            
+            if([[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]] isEqualToString:@"0"])
+            {
+                cell.lblinsured.text=@"Not Insured";
+                cell.lblinsured.textColor=[UIColor blackColor];
+                cell.tickImg.hidden=YES;
+            }
+            else if([[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]] isEqualToString:@"1"])
+            {
+                cell.lblinsured.text=@"Insured";
+                cell.lblinsured.textColor=[UIColor colorWithRed:(32.0/255.0) green:(138.0/255.0) blue:(83.0/255.0) alpha:1.0];
+                cell.tickImg.hidden=NO;
+            }
+            
+            if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==1) {
+                cell.cellIcon.image=[UIImage imageNamed:@"home"];
+            }
+            else if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==2) {
+                cell.cellIcon.image=[UIImage imageNamed:@"business"];
+            }
+            else if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==3) {
+                cell.cellIcon.image=[UIImage imageNamed:@"personal"];
+            }
+            else if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==4) {
+                cell.cellIcon.image=[UIImage imageNamed:@"other"];
+            }
+           
         }
         else
         {
-            cell.lblactive.text=[NSString stringWithFormat:@"%@ %@ %@",@"Total",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductCount"],@"items"];
         }
-        
-        if([[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]] isEqualToString:@"0"])
-        {
-            cell.lblinsured.text=@"Not Insured";
-            cell.lblinsured.textColor=[UIColor blackColor];
-            cell.tickImg.hidden=YES;
-        }
-        else if([[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]] isEqualToString:@"1"])
-        {
-            cell.lblinsured.text=@"Insured";
-            cell.lblinsured.textColor=[UIColor colorWithRed:(32.0/255.0) green:(138.0/255.0) blue:(83.0/255.0) alpha:1.0];
-            cell.tickImg.hidden=NO;
-        }
-        
-        if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==1) {
-            cell.cellIcon.image=[UIImage imageNamed:@"home"];
-        }
-        else if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==2) {
-            cell.cellIcon.image=[UIImage imageNamed:@"business"];
-        }
-        else if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==3) {
-            cell.cellIcon.image=[UIImage imageNamed:@"personal"];
-        }
-        else if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==4) {
-            cell.cellIcon.image=[UIImage imageNamed:@"other"];
-        }
+       
     }
    
     return cell;
@@ -517,7 +525,7 @@ menu *menuview;
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO];
     searchBar.text=@"";
-   
+    lblNoresultFound.hidden=YES;
         Issearch=0;
     [tabview reloadData];
     tabview.hidden=NO;
@@ -552,6 +560,14 @@ menu *menuview;
         // Filter the array using NSPredicate
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"PortfolioName contains[c] %@",searchText];
         ArrFilter = [NSMutableArray arrayWithArray:[ArrSummary filteredArrayUsingPredicate:predicate]];
+        if (ArrFilter.count==0)
+        {
+            lblNoresultFound.hidden=NO;
+        }
+        else
+        {
+            lblNoresultFound.hidden=YES;
+        }
          [tabview reloadData];
         tabview.hidden=NO;
         NSLog(@"filter=%@",ArrFilter);
