@@ -20,11 +20,11 @@
     
     mainscroll.hidden=YES;
     
-    if(self.view.frame.size.height==480)
+    if(self.view.frame.size.width==320)
     {
         //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];
         
-        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 520)];
+        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 670)];
     }
     
   //  btnSave.imageEdgeInsets = UIEdgeInsetsMake(6, 24, 18, 0);
@@ -231,7 +231,7 @@
         if(textView==txtVwDesc)
         {
             lblDesc.hidden=YES;
-            [mainscroll setContentOffset:CGPointMake(0.0f,150.0f) animated:YES];
+            [mainscroll setContentOffset:CGPointMake(0.0f,120.0f) animated:YES];
         }
     }
     

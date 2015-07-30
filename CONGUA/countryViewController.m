@@ -43,7 +43,7 @@
     headerLbl1.adjustsFontSizeToFitWidth=YES;
     
     headerLbl2.adjustsFontSizeToFitWidth=YES;
-    
+    headerLbl2.frame=CGRectMake(headerLbl1.frame.origin.x+headerLbl1.frame.size.width, headerLbl2.frame.origin.y, headerLbl2.frame.size.width, headerLbl2.frame.size.height);
     
     topBarView.layer.borderColor=[[UIColor grayColor]CGColor];
     
@@ -63,12 +63,14 @@
         listTable=[[UITableView alloc]initWithFrame:CGRectMake(0, topBarView.frame.origin.y+topBarView.bounds.size.height, self.view.bounds.size.width, ArrCountryName.count*50)];
         
         countryCheck=@"YES";
-        
+        headerLbl1.text=@"Country";
+        headerLbl2.text=@"List";
     }
     
     else if (ArrCategory.count>0)
     {
-        
+        headerLbl1.frame=CGRectMake(headerLbl1.frame.origin.x-20, headerLbl1.frame.origin.y, headerLbl1.frame.size.width, headerLbl1.frame.size.height);
+        headerLbl2.frame=CGRectMake(headerLbl1.frame.origin.x+headerLbl1.frame.size.width, headerLbl2.frame.origin.y, headerLbl2.frame.size.width, headerLbl2.frame.size.height);
         NSLog(@"Category table creating....");
         
         listTable=[[UITableView alloc]initWithFrame:CGRectMake(0, topBarView.frame.origin.y+topBarView.bounds.size.height, self.view.bounds.size.width, ArrCategory.count*50)];

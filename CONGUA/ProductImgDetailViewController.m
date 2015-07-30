@@ -8,12 +8,12 @@
 
 #import "ProductImgDetailViewController.h"
 
-@interface ProductImgDetailViewController ()<UIAlertViewDelegate>
+@interface ProductImgDetailViewController ()<UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @end
 
 @implementation ProductImgDetailViewController
-@synthesize lblDesc,WebView,ProductImgCode,lblUserName,mainscroll,ProductImg;
+@synthesize lblDesc,WebView,ProductImgCode,lblUserName,mainscroll,ProductImg,ImgCollectionView,productIndex;
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -24,18 +24,18 @@
     AuthToken=[prefs valueForKey:@"AuthToken"];
     ProductCode=[prefs valueForKey:@"ProductCode"];
     NSLog(@"product image code=%@",ProductImgCode);
-    [[NSUserDefaults standardUserDefaults] setObject:ProductImgCode forKey:@"ProductImgCode"];
-    urlobj=[[UrlconnectionObject alloc]init];
     
-    [self ProductImgUrl];
+    urlobj=[[UrlconnectionObject alloc]init];
+    ArrImage=[[NSMutableArray alloc]init];
+    [self ImageShowUrl];
 }
--(void)ProductImgUrl
+-(void)ImageShowUrl
 {
     @try {
         
         
-        
-        NSString *str=[NSString stringWithFormat:@"%@GetProductImageInfoDetail/%@?ProductCode=%@&ProductImageCode=%@",URL_LINK,AuthToken,ProductCode,ProductImgCode];
+        [ArrImage removeAllObjects];
+        NSString *str=[NSString stringWithFormat:@"%@GetProductImageInfoList/%@?ProductCode=%@",URL_LINK,AuthToken,ProductCode];
         NSLog(@"str=%@",str);
         BOOL net=[urlobj connectedToNetwork];
         if (net==YES) {
@@ -43,43 +43,17 @@
                 
                 if ([[result valueForKey:@"IsSuccess"] integerValue]==1)
                 {
-                    /*
-                     for ( NSDictionary *tempDict1 in  [result objectForKey:@"ResultInfo"])
-                     {
-                     [ArrPortDetail addObject:tempDict1];
-                     
-                     }
-                     */
+                    for ( NSDictionary *tempDict1 in  [result objectForKey:@"ResultInfo"])
+                    {
+                        [ArrImage addObject:tempDict1];
+                        
+                    }
                     
+                    NSLog(@"summary name=%@",ArrImage);
+                    [ImgCollectionView reloadData];
                    
-                    
-                    lblDesc.text=[[result objectForKey:@"ResultInfo"] valueForKey:@"Description"];
-                    //dynamic height of label
-                    NSString *str=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"Description"]];
-                    
-                    NSInteger rw=ceil(str.length/65.0);
-                    NSInteger len=rw*25;
-                    
-                    
-                    lblDesc.frame=CGRectMake(lblDesc.frame.origin.x, lblDesc.frame.origin.y,lblDesc.frame.size.width, len);
-                    
-                    
-                    
-                    
-                    
-                    FileName=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"FileName"]];
-                    
-                    if (FileName.length==0)
-                    {
-                       
-                    }
-                    else
-                    {
-                      //  WebView.hidden=NO;
-                        [self DownloadUrl];
-                    }
-                    
-                    
+                    NSIndexPath *path = [NSIndexPath indexPathForRow:productIndex inSection:0];
+                    [ImgCollectionView scrollToItemAtIndexPath:path atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
                     
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
@@ -95,9 +69,6 @@
                     UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Error" message:@"Unsucessful...." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [aler show];
                 }
-                
-                
-                
                 
             }];
         }
@@ -125,50 +96,11 @@
         NSString *str=[NSString stringWithFormat:@"%@DownloadFile/%@?CustomerCode=%@&FileName=%@",URL_LINK,AuthToken,CustomerCode,FileName];
         NSLog(@"str=%@",str);
         
-        
-  //      NSURL *url = [NSURL URLWithString:str];
-  //      NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
- //       [WebView loadRequest:requestObj];
+
         
         [ProductImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str]] placeholderImage:[UIImage imageNamed:@""] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
         ProductImg.contentMode=UIViewContentModeScaleAspectFit;
-        /*
-         BOOL net=[urlobj connectedToNetwork];
-         if (net==YES) {
-         [urlobj global:str typerequest:@"array" withblock:^(id result, NSError *error,BOOL completed) {
-         
-         NSLog(@"result=%@",result);
-         if ([[result valueForKey:@"IsSuccess"] integerValue]==1)
-         {
-         
-         
-         
-         
-         }
-         else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
-         {
-         NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-         [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
-         login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
-         [self.navigationController pushViewController:obj1 animated:YES];
-         }
-         else
-         {
-         
-         UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Error" message:@"Unsucessful...." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-         [aler show];
-         }
-         
-         
-         
-         
-         }];
-         }
-         else{
-         UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"No Network Connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-         [aler show];
-         }
-         */
+       
     }
     @catch (NSException *exception)
     {
@@ -289,5 +221,67 @@
 - (IBAction)BackClick:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+
+{
+    
+    return [ArrImage count];
+    
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+
+{
+    
+    return 1;
+    
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+
+{
+    
+    cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"ProductImgCell" forIndexPath:indexPath];
+    
+    [cell.mainscroll setContentSize:CGSizeMake(self.view.frame.size.width, 500)];
+    
+    
+    cell.lbldesc.text=[NSString stringWithFormat:@"%@",[[ArrImage objectAtIndex:indexPath.row] valueForKey:@"Description"]];
+    
+    //dynamic height of label
+    NSString *str=[NSString stringWithFormat:@"%@",[[ArrImage objectAtIndex:indexPath.row] valueForKey:@"Description"]];
+    
+    NSInteger rw=ceil(str.length/60.0);
+    NSInteger len=rw*25;
+    
+    
+    cell.lbldesc.frame=CGRectMake(cell.lbldesc.frame.origin.x, cell.lbldesc.frame.origin.y,cell.lbldesc.frame.size.width, len);
+  
+        cell.mainscroll.contentSize = CGSizeMake(0, cell.lbldesc.frame.origin.y+cell.lbldesc.frame.size.height+10);
+   
+    ProductImgCode=[NSString stringWithFormat:@"%@",[[ArrImage objectAtIndex:indexPath.row] valueForKey:@"ProductImageCode"]];
+    [[NSUserDefaults standardUserDefaults] setObject:ProductImgCode forKey:@"ProductImgCode"];
+    
+   
+    FileName=[NSString stringWithFormat:@"%@",[[ArrImage objectAtIndex:indexPath.row] valueForKey:@"FileName"]];
+    
+    
+    NSString *str1=[NSString stringWithFormat:@"%@DownloadFile/%@?CustomerCode=%@&FileName=%@",URL_LINK,AuthToken,CustomerCode,FileName];
+    NSLog(@"str=%@",str1);
+
+    [cell.ProductImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str1]] placeholderImage:[UIImage imageNamed:@""] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+    cell.ProductImg.contentMode=UIViewContentModeScaleAspectFit;
+   
+    
+    
+    
+    // btnEdit.tag=indexPath.row;
+    return cell;
+    
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return CGSizeMake(ImgCollectionView.frame.size.width, ImgCollectionView.frame.size.height);
 }
 @end

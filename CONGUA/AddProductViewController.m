@@ -771,7 +771,7 @@
     [txtproductName resignFirstResponder];
     mainscroll.scrollEnabled=NO;
     [myview resignFirstResponder];
-    if(self.view.frame.size.width==375)
+    if(self.view.frame.size.width>320)
     {
       //  [self.mainscroll setContentOffset:CGPointMake(0.0f,50.0f) animated:YES];
         myview = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width,self.view.frame.size.height)];
@@ -896,15 +896,44 @@
 - (void)calendar:(CKCalendarView *)calendar configureDateItem:(CKDateItem *)dateItem forDate:(NSDate *)date {
     //  TODO: play with the coloring if we want to...
     
+    //future date is disabled
     if ([self dateIsDisabled:date])
     {
         dateItem.backgroundColor = [UIColor whiteColor];
         dateItem.textColor = [UIColor lightGrayColor];
     }
     
-    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd-MM-yyyy"];
+    
+    //show priviously selected date
+    if (lblPurchaseDt.text.length>0)
+    {
+        
+        NSDate *selectedDate = [[NSDate alloc] init];
+        selectedDate = [formatter dateFromString:lblPurchaseDt.text];
+        
+        NSComparisonResult result;
+        result=[selectedDate compare:date];
+        if (result==NSOrderedSame)
+        {
+             dateItem.backgroundColor = [UIColor lightGrayColor];
+        }
+        
+        NSString *stringDate = [formatter stringFromDate:[NSDate date]];
+        NSDate *dateFromString = [formatter dateFromString:stringDate];
+        NSComparisonResult result1;
+        result1=[dateFromString compare:date];
+        
+        if (result1==NSOrderedSame && result!=NSOrderedSame)
+        {
+            
+            dateItem.backgroundColor = [UIColor clearColor];
+        }
+    }
+   
+    
+   
     //   NSString *Current_date = [formatter stringFromDate:date];
     
     

@@ -124,14 +124,26 @@
                 {
                     for ( NSDictionary *tempDict1 in  [result objectForKey:@"ResultInfo"])
                     {
-                        [ArrCategory addObject:tempDict1];
+                        NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+                        dic=[tempDict1 mutableCopy];
+                        [dic setObject:@"0" forKey:@"productcount"];
+                        [ArrCategory addObject:dic];
                         
                     }
+                    
+                    //array sorting
+                    [ArrCategory sortUsingDescriptors: [NSArray arrayWithObjects: [NSSortDescriptor sortDescriptorWithKey:@"CategoryCode" ascending:NO], nil]];
+                    
+                    // add other category
                     NSMutableDictionary *tempDict2=[[NSMutableDictionary alloc]init];
                     [tempDict2 setObject:@"0" forKey:@"CategoryCode"];
                     [tempDict2 setObject:@"Other" forKey:@"CategoryName"];
-                    [ArrCategory addObject:tempDict2];
+                    [tempDict2 setObject:@"0" forKey:@"productcount"];
+                   [ArrCategory addObject:tempDict2];
+                    
                  //   NSLog(@"category name=%@",ArrCategory);
+                    
+           
                     [self ProductShowUrl];
                   //  [mytabview reloadData];
                 }
@@ -200,6 +212,30 @@
                     }
                     
                 //    NSLog(@"product name=%@",ArrProduct);
+                  
+                    
+                    
+                   
+                    for (int j=0; j<[ArrCategory count]; j++)
+                    {
+                        NSString *catCode=[NSString stringWithFormat:@"%@",[[ArrCategory objectAtIndex:j] valueForKey:@"CategoryCode"]];
+                        NSInteger productCount=0;
+                        
+                        for (int i=0; i<[ArrProduct count]; i++)
+                        {
+                            
+                            NSString *Code=[NSString stringWithFormat:@"%@",[[ArrProduct objectAtIndex:i] valueForKey:@"CategoryCode"]];
+                            if ([catCode isEqualToString:Code])
+                            {
+                                NSLog(@"code=%@",Code);
+                                productCount++;
+                            }
+                            
+                        }
+                        NSString *num=[NSString stringWithFormat:@"%ld",(long)productCount];
+                        [[ArrCategory objectAtIndex:j] setObject:num forKey:@"productcount"];
+                    }
+                     NSLog(@"product name=%@",ArrCategory);
                     [mytabview reloadData];
                     mainscroll.hidden=NO;
                 }
@@ -303,7 +339,7 @@
     
     
     myCell.backgroundColor=[UIColor clearColor];
-    UIView *headerView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, mytabview.frame.size.width, 50)];
+    UIView *headerView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, mytabview.frame.size.width, 41)];
     headerView.backgroundColor=[UIColor colorWithRed:(245.0/255.0) green:(245.0/255.0) blue:(245.0/255.0) alpha:1.0];
     [myCell addSubview:headerView];
     
@@ -394,10 +430,39 @@
     DeleteButton=[[UIButton alloc]initWithFrame:CGRectMake(self.view.bounds.size.width+59, 0, 59, 59)];
     [DeleteButton setImage:[UIImage imageNamed:@"delete-1"] forState:UIControlStateNormal];
     DeleteButton.hidden=YES;
+    
+    if (section>0)
+    {
+        UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, hScroll.frame.size.width, 1)];
+    //    lineView.backgroundColor=[UIColor clearColor];
+        lineView.backgroundColor=[UIColor colorWithRed:(230.0/255.0) green:(230.0/255.0) blue:(230.0/255.0) alpha:1.0];
+        [hScroll addSubview:lineView];
+
+    }
+    
     [hScroll addSubview:DeleteButton];
     
+    //to show number of item in category
+    /*
+    NSInteger productCount;
+    NSString *catCode=[NSString stringWithFormat:@"%@",[[ArrCategory objectAtIndex:section] valueForKey:@"CategoryCode"]];
+    NSLog(@"cat code=%@",catCode);
+    NSLog(@"product count=%lu",(unsigned long)[ArrProduct count]);
+    for (int i=0; i<[ArrProduct count]; i++)
+    {
+        
+        NSString *Code=[NSString stringWithFormat:@"%@",[[ArrProduct objectAtIndex:i] valueForKey:@"CategoryCode"]];
+        if ([catCode isEqualToString:Code])
+        {
+            NSLog(@"code=%@",Code);
+            productCount++;
+        }
+        
+    }
+    headLbl.text=[NSString stringWithFormat:@"%@ %@%ld%@",headLbl.text,@"(",(long)productCount,@")"];
+    */
+    headLbl.text=[NSString stringWithFormat:@"%@ %@%@%@",headLbl.text,@"(",[[ArrCategory objectAtIndex:section] valueForKey:@"productcount"],@")"];
     NSString *key=[NSString stringWithFormat:@"%ld",(long)section];
-    
     
     
     
@@ -409,7 +474,7 @@
         
         else
             
-            [headerButton setImage:[UIImage imageNamed:@"downarrow"] forState:UIControlStateNormal];
+            [headerButton setImage:[UIImage imageNamed:@"uparrow"] forState:UIControlStateNormal];
         [dropdownButton addTarget:self action:@selector(DropDownClk:) forControlEvents:UIControlEventTouchUpInside];
         
         
@@ -444,8 +509,7 @@
     {
     //scroll on header to show edit and delete
      [hScroll setContentSize:CGSizeMake(self.view.frame.size.width+EditButton.frame.size.width+DeleteButton.frame.size.width,40)];
-  //  headerCell.btnEdit.frame=CGRectMake(self.view.frame.size.width, 0, headerCell.btnEdit.frame.size.width, headerCell.btnEdit.frame.size.height);
-  //   headerCell.btnDelete.frame=CGRectMake(self.view.frame.size.width+headerCell.btnEdit.frame.size.width, 0, headerCell.btnDelete.frame.size.width, headerCell.btnDelete.frame.size.height);
+ 
     
     
         EditButton.hidden=NO;
@@ -563,6 +627,13 @@
             mytabview.frame=CGRectMake(mytabview.frame.origin.x, mytabview.frame.origin.y, mytabview.frame.size.width,50.0*[ArrCategory count]+40*row);
             AddProductView.frame=CGRectMake(AddProductView.frame.origin.x, mytabview.frame.origin.y+mytabview.frame.size.height+3, AddProductView.frame.size.width,AddProductView.frame.size.height);
             mainscroll.contentSize = CGSizeMake(0, AddProductView.frame.size.height+AddProductView.frame.origin.y);
+                }
+                else
+                {
+                    
+                    NSString *mesg=[NSString stringWithFormat:@"%@ %@",@"No Product Found For",[[ArrCategory objectAtIndex:supView.tag] valueForKey:@"CategoryName"]];
+                    UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:mesg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [aler show];
                 }
         }
         

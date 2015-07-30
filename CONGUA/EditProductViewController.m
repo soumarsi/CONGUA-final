@@ -508,7 +508,7 @@
     [txtProductNmae resignFirstResponder];
     mainscroll.scrollEnabled=NO;
     [PurchaseDateview resignFirstResponder];
-    if(self.view.frame.size.width==375)
+    if(self.view.frame.size.width>320)
     {
       //  [self.mainscroll setContentOffset:CGPointMake(0.0f,50.0f) animated:YES];
         PurchaseDateview = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width,self.view.frame.size.height)];
@@ -642,7 +642,32 @@
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd-MM-yyyy"];
-    //   NSString *Current_date = [formatter stringFromDate:date];
+   
+    //show priviously selected date
+    if (lblPurchaseDt.text.length>0)
+    {
+        
+        NSDate *selectedDate = [[NSDate alloc] init];
+        selectedDate = [formatter dateFromString:lblPurchaseDt.text];
+        
+        NSComparisonResult result;
+        result=[selectedDate compare:date];
+        if (result==NSOrderedSame)
+        {
+            dateItem.backgroundColor = [UIColor lightGrayColor];
+        }
+        
+        NSString *stringDate = [formatter stringFromDate:[NSDate date]];
+        NSDate *dateFromString = [formatter dateFromString:stringDate];
+        NSComparisonResult result1;
+        result1=[dateFromString compare:date];
+        
+        if (result1==NSOrderedSame && result!=NSOrderedSame)
+        {
+            
+            dateItem.backgroundColor = [UIColor clearColor];
+        }
+    }
     
     
     

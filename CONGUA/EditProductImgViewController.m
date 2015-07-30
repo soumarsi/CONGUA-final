@@ -37,6 +37,12 @@
     
     lblDesc.textColor=[UIColor grayColor];
    
+    if(self.view.frame.size.width==320)
+    {
+        //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];
+        
+        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 670)];
+    }
     
     [self ImageViewUrl];
 }
@@ -130,7 +136,7 @@
      //   NSURL *url = [NSURL URLWithString:str];
     //    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     //    [WebView loadRequest:requestObj];
-        [ProductImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str]] placeholderImage:[UIImage imageNamed:@"PlaceholderImg"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+        [ProductImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str]] placeholderImage:[UIImage imageNamed:@""] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
         ProductImgView.contentMode=UIViewContentModeScaleAspectFit;
         
     }

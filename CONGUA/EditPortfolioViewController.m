@@ -1018,7 +1018,7 @@
     start=1;
     mainscroll.scrollEnabled=NO;
     [myview removeFromSuperview];
-    if(self.view.frame.size.width==375)
+    if(self.view.frame.size.width>320)
     {
         myview = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width,self.view.frame.size.height)];
         [myview setBackgroundColor:[[UIColor blackColor]colorWithAlphaComponent:0.8]];
@@ -1142,7 +1142,7 @@
     [txtvwInsureDetail resignFirstResponder];
     [myview resignFirstResponder];
     start=0;
-    if(self.view.frame.size.width==375)
+    if(self.view.frame.size.width>320)
     {
         myview = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width,self.view.frame.size.height)];
         [myview setBackgroundColor:[[UIColor blackColor]colorWithAlphaComponent:0.8]];
@@ -1266,7 +1266,60 @@
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd-MM-yyyy"];
-    //   NSString *Current_date = [formatter stringFromDate:date];
+    
+   
+    
+    //show priviously selected date
+    if (lblStartDate.text.length>0)
+    {
+        
+        NSDate *selectedDate = [[NSDate alloc] init];
+        selectedDate = [formatter dateFromString:lblStartDate.text];
+        
+        NSComparisonResult result;
+        result=[selectedDate compare:date];
+        if (result==NSOrderedSame)
+        {
+            dateItem.backgroundColor = [UIColor yellowColor];
+        }
+        
+        NSString *stringDate = [formatter stringFromDate:[NSDate date]];
+        NSDate *dateFromString = [formatter dateFromString:stringDate];
+        NSComparisonResult result1;
+        result1=[dateFromString compare:date];
+        
+        if (result1==NSOrderedSame && result!=NSOrderedSame)
+        {
+            
+            dateItem.backgroundColor = [UIColor clearColor];
+        }
+    }
+    
+    
+    if (lblEndDate.text.length>0)
+    {
+        
+        NSDate *selectedDate = [[NSDate alloc] init];
+        selectedDate = [formatter dateFromString:lblEndDate.text];
+        
+        NSComparisonResult result;
+        result=[selectedDate compare:date];
+        if (result==NSOrderedSame)
+        {
+            dateItem.backgroundColor = [UIColor grayColor];
+        }
+        
+        NSString *stringDate = [formatter stringFromDate:[NSDate date]];
+        NSDate *dateFromString = [formatter dateFromString:stringDate];
+        NSComparisonResult result1;
+        result1=[dateFromString compare:date];
+        
+        if (result1==NSOrderedSame && result!=NSOrderedSame)
+        {
+            
+            dateItem.backgroundColor = [UIColor clearColor];
+        }
+    }
     
     
     

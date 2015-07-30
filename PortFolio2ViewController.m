@@ -385,7 +385,7 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         ProductDocDetailViewController *pv2vc = [storyboard instantiateViewControllerWithIdentifier:@"ProductDocDetailViewControllersid"];
         pv2vc.ProductDocCode=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"ProductDocCode"]];
-        
+        pv2vc.index=indexPath.row;
         [self.navigationController pushViewController:pv2vc animated:YES];
     }
     }
@@ -397,7 +397,7 @@
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
             ProductImgDetailViewController *pv2vc = [storyboard instantiateViewControllerWithIdentifier:@"ProductImgDetailViewControllersid"];
             pv2vc.ProductImgCode=[NSString stringWithFormat:@"%@",[[ArrImage objectAtIndex:indexPath.row] valueForKey:@"ProductImageCode"]];
-            
+             pv2vc.productIndex=indexPath.row;
             [self.navigationController pushViewController:pv2vc animated:YES];
         }
     }

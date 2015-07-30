@@ -54,6 +54,8 @@
 - (IBAction)CameraClick:(id)sender;
 - (IBAction)PhotoLibClick:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnCamera;
+@property (weak, nonatomic) IBOutlet UIButton *btnPhotoLib;
 
 
 @end

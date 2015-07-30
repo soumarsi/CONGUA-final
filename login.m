@@ -357,7 +357,12 @@
                           //  options:UIViewAnimationTransitionNone
                          animations:^{
                              
-                             self.loginview.frame=CGRectOffset(f,0.0f,-35.0f);}
+                             self.loginview.frame=CGRectOffset(f,0.0f,-35.0f);
+                             if (self.view.frame.size.height==480)
+                             {
+                                 self.loginview.frame=CGRectOffset(f,0.0f,-60.0f);
+                             }
+                         }
                          completion:^(BOOL finished){
                              
                          }
@@ -388,14 +393,33 @@
 //This is for temporary purpose,only for testing,this must be deleted and the original login will be as earlier above
 - (IBAction)GosignIn:(id)sender
 {
+    if ([self textFieldBlankorNot:_username.text].length==0)
+    {
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Email" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
+    }
+    else if ([self textFieldBlankorNot:_password.text].length==0)
+    {
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter Password" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aler show];
+    }
+    else
+    {
     [_btnlogin setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     _btnlogin.backgroundColor=[UIColor colorWithRed:(224.0/255.0) green:(44.0/255.0) blue:(17.0/255.0) alpha:1.0];
     [_btnlogin setTitle:@"Signing in..." forState:UIControlStateNormal];
     _btnlogin.userInteractionEnabled=NO;
     [self LoginUrl];
+    }
     
     
     
+}
+-(NSString *)textFieldBlankorNot:(NSString *)str
+{
+    NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimmed = [str stringByTrimmingCharactersInSet:whitespace];
+    return trimmed;
 }
 -(void)LoginUrl
 {

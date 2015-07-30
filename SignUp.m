@@ -1128,8 +1128,10 @@
         [self.navigationController pushViewController:landingVC animated:YES];
     }
     else{
-    Landing *landingVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"landing"];
-    [self.navigationController pushViewController:landingVC animated:YES];
+  //  Landing *landingVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"landing"];
+  //  [self.navigationController pushViewController:landingVC animated:YES];
+        login *landingVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
+        [self.navigationController pushViewController:landingVC animated:YES];
     }
 
 }

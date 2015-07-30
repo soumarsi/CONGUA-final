@@ -12,27 +12,22 @@
 #import "EditPortfolioDocViewController.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
 #import "UIImageView+WebCache.h"
+#import "DocDetailCell.h"
 @interface PortfolioDocDetailViewController : UIViewController
 {
     NSString *CustomerCode,*AuthToken,*PortfolioCode,*FileName;
     NSMutableArray *ArrPortDetail,*ArrInsureDetail,*ArrDoc;
     UrlconnectionObject *urlobj;
+    DocDetailCell *cell;
 }
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
-
-@property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
-
-@property (weak, nonatomic) IBOutlet UIImageView *DocImage;
-@property (weak, nonatomic) IBOutlet UILabel *lblDocName;
-@property (weak, nonatomic) IBOutlet UILabel *lblDocType;
-
-@property (weak, nonatomic) IBOutlet UILabel *lblDocDesc;
-@property (weak, nonatomic) IBOutlet UIWebView *WebView;
-@property (weak, nonatomic) IBOutlet UIImageView *DocTypeImg;
+@property (weak, nonatomic) IBOutlet UICollectionView *DocCollectionView;
 
 @property (strong, nonatomic)  NSString *DocCode;
+@property (assign, nonatomic)  NSInteger index;
 - (IBAction)DeleteClick:(id)sender;
 - (IBAction)EditClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *btnEdit;
 
 
 - (IBAction)BackClick:(id)sender;

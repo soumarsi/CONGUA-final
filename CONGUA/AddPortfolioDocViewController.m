@@ -18,11 +18,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    if(self.view.frame.size.height==480)
+    if(self.view.frame.size.width==320)
     {
         //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];
         
-        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 520)];
+        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 670)];
     }
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
@@ -66,6 +66,14 @@
     [[btnOther layer] setBorderWidth:0.5f];
     [btnOther.layer setBorderColor:[[UIColor colorWithRed:(202.0f/255.0f) green:(202.0f/255.0f) blue:(202.0f/255.0f) alpha:1] CGColor]];
     
+    if (self.view.frame.size.width==320)
+    {
+        [SegmentedControl setWidth:129.0 forSegmentAtIndex:0];
+        [SegmentedControl setWidth:110.0 forSegmentAtIndex:1];
+        [SegmentedControl setWidth:45.0 forSegmentAtIndex:2];
+    }
+    
+    btnPhotoLib.frame=CGRectMake(btnPhotoLib.frame.origin.x, btnCamera.frame.origin.y+btnCamera.frame.size.height+16, btnPhotoLib.frame.size.width, btnPhotoLib.frame.size.height);
     
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -84,7 +92,7 @@
     if(textView==txtvwDescription)
     {
         lblDesc.hidden=YES;
-        [mainscroll setContentOffset:CGPointMake(0.0f,150.0f) animated:YES];
+        [mainscroll setContentOffset:CGPointMake(0.0f,130.0f) animated:YES];
     }
     
 }

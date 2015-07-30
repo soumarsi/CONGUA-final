@@ -18,11 +18,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     mainscroll.hidden=YES;
-    if(self.view.frame.size.height==480)
+    if(self.view.frame.size.width==320)
     {
         //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];
         
-        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 520)];
+        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 670)];
     }
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
@@ -224,7 +224,11 @@
     if(textView==txtVwDesc)
     {
         lblDesc.hidden=YES;
-        // [mainscroll setContentOffset:CGPointMake(0.0f,170.0f) animated:YES];
+        if (self.view.frame.size.height==480)
+        {
+            [mainscroll setContentOffset:CGPointMake(0.0f,120.0f) animated:YES];
+        }
+        
     }
     
 }
@@ -237,10 +241,11 @@
         if(textView==txtVwDesc)
         {
             //  [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
-            
+            [mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
             if (txtVwDesc.text.length==0)
             {
-                lblDesc.hidden=NO;
+              //  lblDesc.hidden=NO;
+                
             }
         }
         

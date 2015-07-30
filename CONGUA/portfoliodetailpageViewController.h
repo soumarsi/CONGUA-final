@@ -14,6 +14,7 @@
 #import "PortfolioDocCell.h"
 #import "EditPortfolioViewController.h"
 #import "PortfolioDocDetailViewController.h"
+#import "ViewController.h"
 @interface portfoliodetailpageViewController : UIViewController
 {
     NSString *CustomerCode,*AuthToken;

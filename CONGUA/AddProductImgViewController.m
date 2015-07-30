@@ -13,7 +13,7 @@
 @end
 
 @implementation AddProductImgViewController
-@synthesize mainscroll,lblDesc,txtvwDesc,ProductImg,btnSubmit,DocView,PopDelegate1;
+@synthesize mainscroll,lblDesc,txtvwDesc,ProductImg,btnSubmit,DocView,PopDelegate1,btnPhotoLib,btnCamera;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -33,6 +33,14 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
     
     lblDesc.textColor=[UIColor grayColor];
+    
+    if(self.view.frame.size.width==320)
+    {
+        //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];
+        
+        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 495)];
+    }
+    btnPhotoLib.frame=CGRectMake(btnPhotoLib.frame.origin.x, btnCamera.frame.origin.y+btnCamera.frame.size.height+16, btnPhotoLib.frame.size.width, btnPhotoLib.frame.size.height);
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {

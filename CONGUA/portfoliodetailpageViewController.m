@@ -432,7 +432,7 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         PortfolioDocDetailViewController *pv2vc = [storyboard instantiateViewControllerWithIdentifier:@"PortfolioDocDetailViewControllersid"];
         pv2vc.DocCode=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"PortfolioDocCode"]];
-        
+        pv2vc.index=indexPath.row;
         [self.navigationController pushViewController:pv2vc animated:YES];
     }
     

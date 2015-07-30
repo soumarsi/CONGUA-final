@@ -8,16 +8,16 @@
 
 #import "PortfolioDocDetailViewController.h"
 
-@interface PortfolioDocDetailViewController ()<UIAlertViewDelegate>
+@interface PortfolioDocDetailViewController ()<UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @end
 
 @implementation PortfolioDocDetailViewController
-@synthesize lblDocDesc,lblDocName,lblDocType,lblUserName,DocCode,DocImage,WebView,DocTypeImg;
+@synthesize lblUserName,DocCode,DocCollectionView,index,btnEdit;
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 489)];
+ //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 489)];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
@@ -27,22 +27,26 @@
     
     
     
+    
     urlobj=[[UrlconnectionObject alloc]init];
-
-    [self DocumentViewUrl];
+    ArrDoc=[[NSMutableArray alloc]init];
+    
+    
+    [self DocShowUrl];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
 }
--(void)DocumentViewUrl
+
+-(void)DocShowUrl
 {
     @try {
         
         
-       
-        NSString *str=[NSString stringWithFormat:@"%@GetPortfolioDocInfoDetail/%@?PortfolioCode=%@&PortfolioDocCode=%@",URL_LINK,AuthToken,PortfolioCode,DocCode];
+        
+        NSString *str=[NSString stringWithFormat:@"%@GetPortfolioDocInfoList/%@?PortfolioCode=%@",URL_LINK,AuthToken,PortfolioCode];
         NSLog(@"str=%@",str);
         BOOL net=[urlobj connectedToNetwork];
         if (net==YES) {
@@ -50,54 +54,30 @@
                 
                 if ([[result valueForKey:@"IsSuccess"] integerValue]==1)
                 {
-                    /*
-                     for ( NSDictionary *tempDict1 in  [result objectForKey:@"ResultInfo"])
-                     {
-                     [ArrPortDetail addObject:tempDict1];
-                     
-                     }
-                     */
-                    
-                    lblDocName.text=[[result objectForKey:@"ResultInfo"] valueForKey:@"DocName"];
+                    [ArrDoc removeAllObjects];
+                    for ( NSDictionary *tempDict1 in  [result objectForKey:@"ResultInfo"])
+                    {
+                        [ArrDoc addObject:tempDict1];
+                      
+                        
+                        
+                    }
+                    //  ArrFilter = [NSMutableArray arrayWithCapacity:[ArrSummary count]];
+                    NSLog(@"summary name=%@",ArrDoc);
+                    if (ArrDoc.count>0)
+                    {
+                        
+                        [DocCollectionView reloadData];
+                        
+                        
+                        NSIndexPath *path = [NSIndexPath indexPathForRow:index inSection:0];
+                        [DocCollectionView scrollToItemAtIndexPath:path atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+                    }
+                    else
+                    {
+                        
+                    }
                    
-             
-                    lblDocDesc.text=[[result objectForKey:@"ResultInfo"] valueForKey:@"Description"];
-                    //dynamic height of label
-                    NSString *str=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"Description"]];
-                    
-                    NSInteger rw=ceil(str.length/67.0);
-                    NSInteger len=rw*25;
-                    
-                    
-                    lblDocDesc.frame=CGRectMake(lblDocDesc.frame.origin.x, lblDocDesc.frame.origin.y,lblDocDesc.frame.size.width, len);
-                    
-                    if (len>300)
-                    {
-                        self.mainscroll.contentSize = CGSizeMake(0, self.mainscroll.contentSize.height+len-300);
-                    }
-                    
-                    
-                    
-                    FileName=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"FileName"]];
-                  
-                    
-                    if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"DocTypeCode"] integerValue] ==1)
-                    {
-                        lblDocType.text=@"Purchase Receipt";
-                        DocTypeImg.image=[UIImage imageNamed:@"Purchase-receipt"];
-                    }
-                    else if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"DocTypeCode"] integerValue] ==2)
-                    {
-                       lblDocType.text=@"Insurance Certificate";
-                        DocTypeImg.image=[UIImage imageNamed:@"icon1-1"];
-                    }
-                    else if ([[[result objectForKey:@"ResultInfo"] valueForKey:@"DocTypeCode"] integerValue] ==99)
-                    {
-                        lblDocType.text=@"Others";
-                        DocTypeImg.image=[UIImage imageNamed:@"otherDoc"];
-                    }
-                    
-                    
                     
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
@@ -113,9 +93,6 @@
                     UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Error" message:@"Unsucessful...." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [aler show];
                 }
-                
-                
-                
                 
             }];
         }
@@ -404,5 +381,83 @@
     
     
     
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+
+{
+   
+        return [ArrDoc count];
+   
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+
+{
+    
+    return 1;
+    
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+
+{
+   
+        cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"DocDetailCell" forIndexPath:indexPath];
+ //    cell.frame=CGRectMake(cell.frame.origin.x, 0, [UIScreen mainScreen].bounds.size.width, DocCollectionView.frame.size.height);
+ //   cell.frame=CGRectMake([UIScreen mainScreen].bounds.size.width*indexPath.row, 0, [UIScreen mainScreen].bounds.size.width, DocCollectionView.frame.size.height);
+  //  NSLog(@"x=%f",cell.frame.origin.x);
+//    cell.mainscroll.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, DocCollectionView.frame.size.height);
+   [cell.mainscroll setContentSize:CGSizeMake(self.view.frame.size.width, 500)];
+    
+    cell.lblDocName.text=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"DocName"]];
+   
+  
+    if ([[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"DocTypeCode"] integerValue] ==1)
+    {
+        cell.lblDocType.text=@"Purchase Receipt";
+         cell.docTypeImg.image=[UIImage imageNamed:@"Purchase-receipt"];
+    }
+    else if ([[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"DocTypeCode"] integerValue] ==2)
+    {
+         cell.lblDocType.text=@"Insurance Certificate";
+        cell.docTypeImg.image=[UIImage imageNamed:@"icon1-1"];
+    }
+    else if ([[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"DocTypeCode"] integerValue] ==99)
+    {
+         cell.lblDocType.text=@"Others";
+        cell.docTypeImg.image=[UIImage imageNamed:@"otherDoc"];
+    }
+    cell.lblDesc.text=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"Description"]];
+    
+    //dynamic height of label
+    NSString *str=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"Description"]];
+    
+    NSInteger rw=ceil(str.length/60.0);
+    NSInteger len=rw*25;
+    
+    
+    cell.lblDesc.frame=CGRectMake(cell.lblDesc.frame.origin.x, cell.lblDesc.frame.origin.y,cell.lblDesc.frame.size.width, len);
+    if (len>270)
+    {
+        cell.mainscroll.contentSize = CGSizeMake(0, cell.mainscroll.contentSize.height+cell.DocImage.frame.size.height+len-270);
+    }
+    DocCode=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"PortfolioDocCode"]];
+    FileName=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"FileName"]];
+    
+    NSString *str1=[NSString stringWithFormat:@"%@DownloadFile/%@?CustomerCode=%@&FileName=%@",URL_LINK,AuthToken,CustomerCode,FileName];
+    [cell.DocImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str1]] placeholderImage:[UIImage imageNamed:@""] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+    cell.DocImage.contentMode=UIViewContentModeScaleAspectFit;
+    cell.DocImage.clipsToBounds=YES;
+    
+    cell.DocImage.frame=CGRectMake(cell.DocImage.frame.origin.x, cell.lblDesc.frame.origin.y+cell.lblDesc.frame.size.height+10,cell.DocImage.frame.size.width, cell.DocImage.frame.size.height);
+    
+   
+   // btnEdit.tag=indexPath.row;
+        return cell;
+    
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return CGSizeMake(DocCollectionView.frame.size.width, DocCollectionView.frame.size.height);
 }
 @end

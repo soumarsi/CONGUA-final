@@ -11,17 +11,22 @@
 #import "login.h"
 #import "EditProductImgViewController.h"
 #import "UIImageView+WebCache.h"
+#import "ProductImgCell.h"
 @interface ProductImgDetailViewController : UIViewController
 {
     NSString *CustomerCode,*AuthToken,*ProductCode,*FileName;
     UrlconnectionObject *urlobj;
+    NSMutableArray *ArrImage;
+    ProductImgCell *cell;
 }
 @property (weak, nonatomic) IBOutlet UIWebView *WebView;
 @property (weak, nonatomic) IBOutlet UILabel *lblDesc;
 @property (strong, nonatomic)  NSString *ProductImgCode;
+@property (assign, nonatomic)  NSInteger productIndex;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (weak, nonatomic) IBOutlet UIImageView *ProductImg;
+@property (weak, nonatomic) IBOutlet UICollectionView *ImgCollectionView;
 
 
 

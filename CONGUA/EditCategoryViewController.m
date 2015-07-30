@@ -31,10 +31,12 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-    
+  
+    /*
     UIView *paddingView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0,18, 20)];
     txtCategoryName.leftView = paddingView1;
     txtCategoryName.leftViewMode = UITextFieldViewModeAlways;
+     */
     
  //   txtCategoryName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Category Name" attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
     [self CategoryViewUrl];

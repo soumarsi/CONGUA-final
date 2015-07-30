@@ -12,21 +12,22 @@
 #import "EditProductDocViewController.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
 #import "UIImageView+WebCache.h"
+#import "DocDetailCell.h"
 @interface ProductDocDetailViewController : UIViewController
 {
     NSString *CustomerCode,*AuthToken,*ProductCode,*FileName;
     UrlconnectionObject *urlobj;
+    NSMutableArray *ArrDoc;
+    DocDetailCell *cell;
 }
 
-@property (weak, nonatomic) IBOutlet UILabel *lblDesc;
-@property (weak, nonatomic) IBOutlet UILabel *lblDocName;
-@property (weak, nonatomic) IBOutlet UILabel *lblDocType;
-@property (weak, nonatomic) IBOutlet UIWebView *WebView;
+@property (weak, nonatomic) IBOutlet UICollectionView *DocCollectionView;
+@property (assign, nonatomic)  NSInteger index;
 @property (strong, nonatomic)  NSString *ProductDocCode;
-@property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
+
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UIButton *btnEditTop;
-@property (weak, nonatomic) IBOutlet UIImageView *DocTypeImg;
+
 
 
 - (IBAction)BackClick:(id)sender;

@@ -74,7 +74,7 @@ menu *menuview;
     if ([UIScreen mainScreen].bounds.size.width>320)
     {
       //  NSLog(@"screen size");
-    tabview.frame = CGRectMake(0,135,self.view.frame.size.width,[UIScreen mainScreen].bounds.size.height-135);
+   // tabview.frame = CGRectMake(0,140,self.view.frame.size.width,[UIScreen mainScreen].bounds.size.height-135);
     }
     else
     {
@@ -83,33 +83,7 @@ menu *menuview;
 }
 -(void)leftclk:(NSInteger)sender
 {
-    /*
-    if (sender==0) {
-        //   NSLog(@"go task page.");
-        ViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"ViewControllersid"];
-        
-        [self.navigationController pushViewController:obj animated:YES];
-    }
-    if (sender==1) {
-        //   NSLog(@"go task page.");
-        FinancialDetailsViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"FinancialDetailsViewControllersid"];
-        
-        [self.navigationController pushViewController:obj animated:YES];
-    }
-    else if (sender==2) {
-        //   NSLog(@"go task page.");
-        MyTransactionViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"MyTransactionViewControllersid"];
-        
-        [self.navigationController pushViewController:obj animated:YES];
-    }
-    else if (sender==3) {
-        //   NSLog(@"go task page.");
-        ReferFriendViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"ReferFriendViewControllersid"];
-        
-        [self.navigationController pushViewController:obj animated:YES];
-    }
-    else
-      */  
+   
         if (sender==0) {
        
     //    [self deleteDocDirectory];
