@@ -25,5 +25,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *signupnowlbl;
 @property (strong, nonatomic) IBOutlet UIView *loginview;
 @property (weak, nonatomic) IBOutlet UIButton *btnlogin;
+@property (weak, nonatomic) IBOutlet UIButton *btnRemember;
+- (IBAction)RememberClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *ChkImg;
 
 @end

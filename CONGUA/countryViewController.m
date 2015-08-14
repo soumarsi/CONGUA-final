@@ -23,7 +23,7 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *backBtn;
 
-@property(nonatomic,strong)NSString *categoryCheck,*countryCheck;
+
 
 
 @end
@@ -32,7 +32,7 @@
 
 @synthesize myDelegate;
 
-@synthesize ArrCountryCode,ArrCountryName,backBtn,topBarView,listTable,ArrCategory,categoryCheck,countryCheck,headerLbl1,headerLbl2,signin,SignDic;
+@synthesize ArrCountryCode,ArrCountryName,backBtn,topBarView,listTable,ArrCategory,categoryCheck,countryCheck,headerLbl1,headerLbl2,signin,SignDic,header1,header2,TitleCheck,ArrTitleCode,ArrTitleName;
 
 
 - (void)viewDidLoad {
@@ -55,10 +55,21 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSLog(@"Category array table values.....%@",ArrCategory);
+//    NSLog(@"Category array table values.....%@",ArrCategory);
      NSLog(@"dic in country.....%@",SignDic);
-    
-    if(ArrCountryName.count>0)
+     NSLog(@"title check=%@",TitleCheck);
+    if([TitleCheck isEqualToString:@"YES"])
+    {
+        headerLbl1.frame=CGRectMake(headerLbl1.frame.origin.x+10, headerLbl1.frame.origin.y, headerLbl1.frame.size.width-20, headerLbl1.frame.size.height);
+        headerLbl2.frame=CGRectMake(headerLbl1.frame.origin.x+headerLbl1.frame.size.width, headerLbl2.frame.origin.y, headerLbl2.frame.size.width, headerLbl2.frame.size.height);
+        
+        listTable=[[UITableView alloc]initWithFrame:CGRectMake(0, topBarView.frame.origin.y+topBarView.bounds.size.height, self.view.bounds.size.width, ArrTitleName.count*50)];
+       
+       
+        headerLbl1.text=@"Title";
+        headerLbl2.text=@"List";
+    }
+    else if(ArrCountryName.count>0)
     {
         listTable=[[UITableView alloc]initWithFrame:CGRectMake(0, topBarView.frame.origin.y+topBarView.bounds.size.height, self.view.bounds.size.width, ArrCountryName.count*50)];
         
@@ -76,9 +87,13 @@
         listTable=[[UITableView alloc]initWithFrame:CGRectMake(0, topBarView.frame.origin.y+topBarView.bounds.size.height, self.view.bounds.size.width, ArrCategory.count*50)];
         
         categoryCheck=@"YES";
+        headerLbl1.text=header1;
+        headerLbl2.text=header2;
+      //  NSLog(@"header=%@",header1);
         
     }
     
+  //  NSLog(@"list delegate");
     listTable.delegate=self;
     listTable.dataSource=self;
     
@@ -88,7 +103,7 @@
     
     [self.view addSubview:listTable];
     
- 
+//  NSLog(@"title list=%@",ArrTitleName);
     
     
 }
@@ -103,6 +118,9 @@
         
         return ArrCategory.count;
     }
+    else if([TitleCheck isEqualToString:@"YES"])
+        return ArrTitleName.count;
+    
     else return 0;
 
 }
@@ -126,13 +144,17 @@
         countryTableCell=[tableView dequeueReusableCellWithIdentifier:cellID];
     
     }
+    
     countryTableCell.textLabel.font=[UIFont fontWithName:@"HelveticaNeueLTPro-Th" size:14.0];
     if([countryCheck isEqualToString:@"YES"])
       countryTableCell.textLabel.text=[ArrCountryName objectAtIndex:indexPath.row];
     
     else if ([categoryCheck isEqualToString:@"YES"])
         countryTableCell.textLabel.text=[[ArrCategory objectAtIndex:indexPath.row] valueForKey:@"CategoryName"];
+    else if([TitleCheck isEqualToString:@"YES"])
+        countryTableCell.textLabel.text=[ArrTitleName objectAtIndex:indexPath.row];
     
+    NSLog(@"name=%@",[ArrTitleName objectAtIndex:indexPath.row]);
     countryTableCell.layer.shadowColor=[[UIColor grayColor] CGColor];
     
     countryTableCell.layer.shadowOpacity=0.3;
@@ -152,11 +174,12 @@
     {
     
     SignUp *signupVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"signup"];
-    
+        [SignDic setObject:[ArrCountryName objectAtIndex:indexPath.row] forKey:@"country"];
+        [SignDic setObject:[ArrCountryCode objectAtIndex:indexPath.row] forKey:@"countryCode"];
         signupVC.dataDic=SignDic;
-    signupVC.country=[ArrCountryName objectAtIndex:indexPath.row];
+  //  signupVC.country=[ArrCountryName objectAtIndex:indexPath.row];
     
-    signupVC.countrycode=[ArrCountryCode objectAtIndex:indexPath.row];
+ //   signupVC.countrycode=[ArrCountryCode objectAtIndex:indexPath.row];
         if (signin==YES) {
             signupVC.gosignin=YES;
         }
@@ -172,44 +195,68 @@
     
     else if ([categoryCheck isEqualToString:@"YES"])
     {
-    
-        AddProductViewController *productVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddProductViewControllersid"];
+     categoryCheck=@"NO";
+        [self.myDelegate countryViewcontrollerDismissedwithCategoryName:[[ArrCategory objectAtIndex:indexPath.row] valueForKey:@"CategoryName"] categoryCode:[[ArrCategory objectAtIndex:indexPath.row] valueForKey:@"CategoryCode"]];
         
-        productVC.ProductType=[[ArrCategory objectAtIndex:indexPath.row] valueForKey:@"CategoryName"];
-        
-        productVC.catCode=[[ArrCategory objectAtIndex:indexPath.row] valueForKey:@"CategoryCode"];
+        [self.navigationController popViewControllerAnimated:YES];
         
         
-        if([self.myDelegate respondsToSelector:@selector(countryViewcontrollerDismissedwithCategoryName:categoryCode:)])
-        {
-        
-            [self.myDelegate countryViewcontrollerDismissedwithCategoryName:productVC.ProductType categoryCode: productVC.catCode];
-        
-        
-        }
+//        AddProductViewController *productVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddProductViewControllersid"];
+//        
+//        productVC.ProductType=[[ArrCategory objectAtIndex:indexPath.row] valueForKey:@"CategoryName"];
+//        
+//        productVC.catCode=[[ArrCategory objectAtIndex:indexPath.row] valueForKey:@"CategoryCode"];
+//        
+//        
+//        if([self.myDelegate respondsToSelector:@selector(countryViewcontrollerDismissedwithCategoryName:categoryCode:)])
+//        {
+//        
+//            [self.myDelegate countryViewcontrollerDismissedwithCategoryName:productVC.ProductType categoryCode: productVC.catCode];
+//        
+//        
+//        }
+//        
+//       
+//        
+//       
+//        
+//        [self dismissViewControllerAnimated:productVC completion:^{
+//            
+//            productVC.catCode=[[ArrCategory objectAtIndex:indexPath.row] valueForKey:@"CategoryCode"];
+//
+//            productVC.lblProductType.text=productVC.ProductType;
+//            
+//            NSLog(@"Product type value in table...%@", productVC.ProductType);
+//            
+//            
+//        }];
         
        
+    
+    
+    }
+    else if([TitleCheck isEqualToString:@"YES"])
+    {
         
-        categoryCheck=@"NO";
-        
-        [self dismissViewControllerAnimated:productVC completion:^{
-            
-            productVC.catCode=[[ArrCategory objectAtIndex:indexPath.row] valueForKey:@"CategoryCode"];
+        SignUp *signupVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"signup"];
+        [SignDic setObject:[ArrTitleName objectAtIndex:indexPath.row] forKey:@"title"];
+        [SignDic setObject:[ArrTitleCode objectAtIndex:indexPath.row] forKey:@"titleCode"];
 
-            productVC.lblProductType.text=productVC.ProductType;
-            
-            NSLog(@"Product type value in table...%@", productVC.ProductType);
-            
-            
-        }];
+        signupVC.dataDic=SignDic;
+    //    signupVC.titleName=[ArrTitleName objectAtIndex:indexPath.row];
         
-        //  lblProductType.text=[[ArrCategory objectAtIndex:0] valueForKey:@"CategoryName"];
-        //CategoryCode=[[ArrCategory objectAtIndex:0] valueForKey:@"CategoryCode"];
+    //    signupVC.titleCode=[ArrTitleCode objectAtIndex:indexPath.row];
+        if (signin==YES) {
+            signupVC.gosignin=YES;
+        }
+        [ArrCountryName removeAllObjects];
         
-       // [self.navigationController pushViewController:productVC animated:YES];
-       // categoryCheck=NO;
-    
-    
+        [ArrCountryCode removeAllObjects];
+        
+        [self.navigationController pushViewController:signupVC animated:YES];
+        
+        //  countryCheck=NO;
+        
     }
 
     
@@ -245,19 +292,40 @@
     
     else if ([categoryCheck isEqualToString:@"YES"])
     {
-        
-        AddProductViewController *addVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddProductViewControllersid"];
-        
         categoryCheck=@"NO";
+        [self.navigationController popViewControllerAnimated:YES];
+        
+//        AddProductViewController *addVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddProductViewControllersid"];
+//        
+//        
+//    
+//        [self dismissViewControllerAnimated:addVC completion:^{
+//            
+//            
+//            
+//            
+//        }];
     
-        [self dismissViewControllerAnimated:addVC completion:^{
-            
-            
-            
-            
-        }];
     
-    
+    }
+    else if([TitleCheck isEqualToString:@"YES"])
+    {
+        
+        SignUp *signupVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"signup"];
+        signupVC.dataDic=SignDic;
+     //   signupVC.titleName=[SignDic valueForKey:@"title"];
+     //   signupVC.titleCode=[SignDic valueForKey:@"titleCode"];
+        if (signin==YES) {
+            signupVC.gosignin=YES;
+        }
+        [ArrTitleName removeAllObjects];
+        
+        [ArrTitleCode removeAllObjects];
+        
+        TitleCheck=@"NO";
+        
+        [self.navigationController pushViewController:signupVC animated:YES];
+        
     }
 
     

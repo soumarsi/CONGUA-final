@@ -32,12 +32,17 @@
 
 
 @property (strong, nonatomic) IBOutlet UILabel *headerLbl2;
-
-
+@property (strong, nonatomic) NSString *header1;
+@property (strong, nonatomic) NSString *header2;
+@property(nonatomic,strong)NSString *categoryCheck,*countryCheck,*TitleCheck;
 
  @property(nonatomic,strong)NSMutableArray *ArrCountryName;
     
   @property(nonatomic,strong)NSMutableArray *ArrCountryCode;
+
+@property(nonatomic,strong)NSMutableArray *ArrTitleName;
+
+@property(nonatomic,strong)NSMutableArray *ArrTitleCode;
 
 @property(nonatomic,strong)NSMutableArray *ArrCategory;
 

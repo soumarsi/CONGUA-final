@@ -62,6 +62,15 @@
     
     urlobj=[[UrlconnectionObject alloc]init];
     // Do any additional setup after loading the view.
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+    {
+        self.username.text=[prefs valueForKey:@"email"];
+        self.password.text=[prefs valueForKey:@"password"];
+        self.btnRemember.selected=YES;
+        self.ChkImg.image=[UIImage imageNamed:@"tick"];
+    }
 }
 
 -(void)addlabelgesture
@@ -341,7 +350,7 @@
                            // options:UIViewAnimationTransitionNone
                          animations:^{
                              
-                             self.loginview.frame=CGRectOffset(f,0.0f,-20.0f);}
+                             self.loginview.frame=CGRectOffset(f,0.0f,-60.0f);}
                          completion:^(BOOL finished){
                              
                          }
@@ -357,10 +366,10 @@
                           //  options:UIViewAnimationTransitionNone
                          animations:^{
                              
-                             self.loginview.frame=CGRectOffset(f,0.0f,-35.0f);
+                             self.loginview.frame=CGRectOffset(f,0.0f,-100.0f);
                              if (self.view.frame.size.height==480)
                              {
-                                 self.loginview.frame=CGRectOffset(f,0.0f,-60.0f);
+                                 self.loginview.frame=CGRectOffset(f,0.0f,-120.0f);
                              }
                          }
                          completion:^(BOOL finished){
@@ -449,6 +458,22 @@
                 [[NSUserDefaults standardUserDefaults] setObject:[[result valueForKey:@"ResultInfo"] valueForKey:@"LoginName"]  forKey:@"email"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[result valueForKey:@"ResultInfo"] valueForKey:@"AuthToken"]  forKey:@"AuthToken"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[result valueForKey:@"ResultInfo"] valueForKey:@"UserCode"]  forKey:@"UserCode"];
+                
+                if (self.btnRemember.selected==YES)
+                {
+                    [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                    [[NSUserDefaults standardUserDefaults] setObject:self.username.text  forKey:@"email"];
+                    [[NSUserDefaults standardUserDefaults] setObject:self.password.text  forKey:@"password"];
+                    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                    NSLog(@"remember=%@",[prefs valueForKey:@"remember"]);
+                }
+                else
+                {
+                    [[NSUserDefaults standardUserDefaults] setObject:@"0"  forKey:@"remember"];
+                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"email"];
+                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
+                }
+                
                 UIViewController * vc=[self.storyboard instantiateViewControllerWithIdentifier:@"viewcontroller"];
                 [self.navigationController  pushViewController:vc animated:YES];
             }
@@ -497,6 +522,19 @@
         
         [loader_shadow_View addSubview:loader];
         [self.view addSubview:loader_shadow_View];
+    }
+}
+- (IBAction)RememberClick:(id)sender
+{
+    if (self.btnRemember.selected==YES)
+    {
+        self.btnRemember.selected=NO;
+        self.ChkImg.image=[UIImage imageNamed:@"tick-1"];
+    }
+    else
+    {
+        self.btnRemember.selected=YES;
+        self.ChkImg.image=[UIImage imageNamed:@"tick"];
     }
 }
 @end

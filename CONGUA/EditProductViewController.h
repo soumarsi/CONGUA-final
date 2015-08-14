@@ -57,6 +57,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDescTop;
 @property (weak, nonatomic) IBOutlet UIButton *btnDelete;
 
+@property (weak, nonatomic) IBOutlet UIImageView *ArrowImg;
 
 
 @end

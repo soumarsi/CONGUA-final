@@ -48,11 +48,13 @@
 @property (strong, nonatomic) NSString *CategoryCode;
 @property (strong, nonatomic) NSString *ProductType;
 @property (strong, nonatomic) NSString *catCode;
+
 @property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
 @property (weak, nonatomic) IBOutlet UIImageView *DescImgView;
 @property (weak, nonatomic) IBOutlet UISwitch *InsuredPortSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *OtherInsuredSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescTop;
+@property (weak, nonatomic) IBOutlet UIImageView *ArrowImg;
 
 
 

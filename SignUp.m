@@ -23,10 +23,13 @@
 
 
 @implementation SignUp
-@synthesize btncountry,imgArrow,txtcountry,mainscroll,country,countrycode,gosignin,dataDic;
+@synthesize btncountry,imgArrow,txtcountry,mainscroll,country,countrycode,gosignin,dataDic,TitleArrow,titleName,titleCode;
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    imgArrow.transform = CGAffineTransformMakeRotation(M_PI_2*3);
+    TitleArrow.transform = CGAffineTransformMakeRotation(M_PI_2*3);
+    
     f = _regview.frame;
     self.titletxt.delegate=self;
     self.fnametxt.delegate=self;
@@ -56,6 +59,8 @@
     
     ArrCountryName=[[NSMutableArray alloc]init];
     ArrCountryCode=[[NSMutableArray alloc]init];
+    ArrTitleCode=[[NSMutableArray alloc]init];
+    ArrTitleName=[[NSMutableArray alloc]init];
     
     UIView *paddingView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0,18, 20)];
     self.titletxt.leftView = paddingView1;
@@ -118,8 +123,14 @@
     }
      */
   //  dataDic=[[NSMutableDictionary alloc]init];
+    
+    
+    
+    
+    
     NSLog(@"dic=%@",dataDic);
     _titletxt.text=[dataDic valueForKey:@"title"];
+    titleCode=[dataDic valueForKey:@"titleCode"];
     _fnametxt.text=[dataDic valueForKey:@"FirstName"];
     _lnametxt.text=[dataDic valueForKey:@"LastName"];
     _emailtxt.text=[dataDic valueForKey:@"Email"];
@@ -129,8 +140,23 @@
     _phnotxt.text=[dataDic valueForKey:@"Phone"];
     _passtxt.text=[dataDic valueForKey:@"Password"];
     _cpasstxt.text=[dataDic valueForKey:@"Cpassword"];
+    txtcountry.text=[dataDic valueForKey:@"country"];
+    countrycode=[dataDic valueForKey:@"countryCode"];
     
-    [self CountryShowUrl];
+    NSLog(@"title=%lu",(unsigned long)_titletxt.text.length);
+    if (txtcountry.text.length==0)
+    {
+        txtcountry.text=@"United Kingdom";
+        countrycode=@"UK";
+    }
+    
+    if (_titletxt.text.length==0)
+    {
+        self.titletxt.text=@"Mr";
+        titleCode=@"1";
+    }
+    
+    [self TitleShowUrl];
 
     
 }
@@ -139,6 +165,8 @@
 {
  
     [super viewWillAppear:animated];
+    
+    /*
     if([country length]<1)
     {
         txtcountry.text=@"United Kingdom";
@@ -149,6 +177,17 @@
         txtcountry.text=country;
     
     
+    if([titleName length]<1)
+    {
+        self.titletxt.text=@"Mr";
+        titleCode=@"1";
+    }
+    
+    else
+        self.titletxt.text=titleName;
+    */
+    
+    NSLog(@"title code=%@",titleCode);
 }
 
 
@@ -172,7 +211,7 @@
                         [ArrCountryCode addObject:[tempDict1 valueForKey:@"CountryCode"]];
                     }
                 }
-                NSLog(@"country name=%@",ArrCountryName);
+             //   NSLog(@"country name=%@",ArrCountryName);
       
             }];
         }
@@ -184,6 +223,49 @@
     @catch (NSException *exception)
     {
         }
+    @finally {
+        
+    }
+    
+    
+    
+    
+}
+-(void)TitleShowUrl
+{
+    @try {
+        
+        [ArrTitleName removeAllObjects];
+        [ArrTitleCode removeAllObjects];
+        NSString *str=[NSString stringWithFormat:@"%@GetTitleInfoList",URL_LINK];
+        NSLog(@"str=%@",str);
+        BOOL net=[urlobj connectedToNetwork];
+        if (net==YES) {
+            [urlobj global:str typerequest:@"array" withblock:^(id result, NSError *error,BOOL completed) {
+                
+                if ([[result valueForKey:@"IsSuccess"] integerValue]==1)
+                {
+                    for ( NSDictionary *tempDict1 in  [result objectForKey:@"ResultInfo"])
+                    {
+                        [ArrTitleName addObject:[tempDict1 valueForKey:@"TitleName"]];
+                        [ArrTitleCode addObject:[tempDict1 valueForKey:@"TitleCode"]];
+                    }
+                    
+                   // NSLog(@"country name=%@",ArrTitleName);
+                    [self CountryShowUrl];
+                }
+                
+                
+            }];
+        }
+        else{
+            UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"No Network Connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [aler show];
+        }
+    }
+    @catch (NSException *exception)
+    {
+    }
     @finally {
         
     }
@@ -922,7 +1004,7 @@
     
     
     
-    tempDict = [[NSDictionary alloc] initWithObjectsAndKeys:self.titletxt.text, @"Title",self.fnametxt.text, @"FirstName",self.lnametxt.text,@"LastName",self.emailtxt.text,@"Email",self.phnotxt.text, @"Phone",self.addrtxt.text, @"Address1",self.alteraddrtxt.text, @"Address2",self.pcodetxt.text, @"PostCode",self.passtxt.text, @"Password",countrycode,@"CountryCode",  nil];
+    tempDict = [[NSDictionary alloc] initWithObjectsAndKeys:titleCode, @"Title",self.fnametxt.text, @"FirstName",self.lnametxt.text,@"LastName",self.emailtxt.text,@"Email",self.phnotxt.text, @"Phone",self.addrtxt.text, @"Address1",self.alteraddrtxt.text, @"Address2",self.pcodetxt.text, @"PostCode",self.passtxt.text, @"Password",countrycode,@"CountryCode",  nil];
     NSLog(@"tempdic=%@",tempDict);
     NSString *loginstring = [NSString stringWithFormat:@"%@InsertCustomer",URL_LINK]; //api done
     
@@ -1147,16 +1229,19 @@
     
     //all data put in dic so when back to this page all the kept
     dataDic=[[NSMutableDictionary alloc]init];
-    [dataDic setObject:_titletxt.text forKey:@"title"];
-    [dataDic setObject:_fnametxt.text forKey:@"FirstName"];
-    [dataDic setObject:_lnametxt.text forKey:@"LastName"];
-    [dataDic setObject:_emailtxt.text forKey:@"Email"];
-    [dataDic setObject:_phnotxt.text forKey:@"Phone"];
-    [dataDic setObject:_addrtxt.text forKey:@"Address"];
-    [dataDic setObject:_alteraddrtxt.text forKey:@"AltAddress"];
-    [dataDic setObject:_pcodetxt.text forKey:@"Pcode"];
-    [dataDic setObject:_passtxt.text forKey:@"Password"];
-    [dataDic setObject:_cpasstxt.text forKey:@"Cpassword"];
+        [dataDic setObject:_titletxt.text forKey:@"title"];
+        [dataDic setObject:titleCode forKey:@"titleCode"];
+        [dataDic setObject:_fnametxt.text forKey:@"FirstName"];
+        [dataDic setObject:_lnametxt.text forKey:@"LastName"];
+        [dataDic setObject:_emailtxt.text forKey:@"Email"];
+        [dataDic setObject:_phnotxt.text forKey:@"Phone"];
+        [dataDic setObject:_addrtxt.text forKey:@"Address"];
+        [dataDic setObject:_alteraddrtxt.text forKey:@"AltAddress"];
+        [dataDic setObject:_pcodetxt.text forKey:@"Pcode"];
+        [dataDic setObject:_passtxt.text forKey:@"Password"];
+        [dataDic setObject:_cpasstxt.text forKey:@"Cpassword"];
+        [dataDic setObject:txtcountry.text forKey:@"country"];
+        [dataDic setObject:countrycode forKey:@"countryCode"];
     NSLog(@" data dic=%@",dataDic);
     countryVC.SignDic=dataDic;
     countryVC.ArrCountryName=ArrCountryName;
@@ -1311,5 +1396,40 @@
     {
         
     }
+}
+- (IBAction)TitleClick:(id)sender
+{
+    if (ArrTitleCode.count>0) {
+        
+        
+        countryViewController *countryVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"country"];
+        
+        //all data put in dic so when back to this page all the kept
+        dataDic=[[NSMutableDictionary alloc]init];
+        [dataDic setObject:_titletxt.text forKey:@"title"];
+        [dataDic setObject:titleCode forKey:@"titleCode"];
+        [dataDic setObject:_fnametxt.text forKey:@"FirstName"];
+        [dataDic setObject:_lnametxt.text forKey:@"LastName"];
+        [dataDic setObject:_emailtxt.text forKey:@"Email"];
+        [dataDic setObject:_phnotxt.text forKey:@"Phone"];
+        [dataDic setObject:_addrtxt.text forKey:@"Address"];
+        [dataDic setObject:_alteraddrtxt.text forKey:@"AltAddress"];
+        [dataDic setObject:_pcodetxt.text forKey:@"Pcode"];
+        [dataDic setObject:_passtxt.text forKey:@"Password"];
+        [dataDic setObject:_cpasstxt.text forKey:@"Cpassword"];
+        [dataDic setObject:txtcountry.text forKey:@"country"];
+        [dataDic setObject:countrycode forKey:@"countryCode"];
+        NSLog(@" data dic=%@",dataDic);
+        countryVC.SignDic=dataDic;
+        countryVC.ArrTitleName=ArrTitleName;
+        countryVC.ArrTitleCode=ArrTitleCode;
+        countryVC.TitleCheck=@"YES";
+        //for back to splash screen to login
+        if (gosignin==YES) {
+            countryVC.signin=YES;
+        }
+        [self.navigationController pushViewController:countryVC animated:YES];
+    }
+
 }
 @end

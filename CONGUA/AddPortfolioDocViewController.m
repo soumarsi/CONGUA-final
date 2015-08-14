@@ -156,9 +156,10 @@
     {
         UIImagePickerController *picker = [[UIImagePickerController alloc]init];
         picker.delegate = (id)self;
-        picker.allowsEditing = YES;
+        picker.allowsEditing=NO;
         
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+       
         [self.navigationController presentViewController:picker animated:YES completion:NULL];
     }
     else {
@@ -172,7 +173,7 @@
 {
     UIImagePickerController *picker = [[UIImagePickerController alloc]init];
     picker.delegate = (id)self;
-    picker.allowsEditing = YES;
+    picker.allowsEditing = NO;
     
    
             picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -460,7 +461,7 @@
 {
     UIImagePickerController *picker = [[UIImagePickerController alloc]init];
     picker.delegate = (id)self;
-    picker.allowsEditing = YES;
+    picker.allowsEditing = NO;
     [mainscroll setContentOffset:CGPointMake(0,0) animated:YES];
     switch (buttonIndex) {
             
@@ -491,7 +492,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
-    DocImage.image=info[UIImagePickerControllerEditedImage];
+    DocImage.image=info[UIImagePickerControllerOriginalImage];
     DocImage.contentMode = UIViewContentModeScaleAspectFit;
     DocImage.clipsToBounds=YES;
  //   btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, DocImage.frame.origin.y+DocImage.frame.size.height+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
@@ -641,8 +642,28 @@
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
             {
+                NSString *email,*password,*remember;
+                
+                NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                {
+                    email=[prefs valueForKey:@"email"];
+                    password=[prefs valueForKey:@"password"];
+                    remember=[prefs valueForKey:@"remember"];
+                    
+                }
+                
                 NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                 [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                
+                if ([remember isEqualToString:@"1"])
+                {
+                    [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                    [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                    [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                    
+                }
+                
                 login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                 [self.navigationController pushViewController:obj1 animated:YES];
             }
@@ -724,8 +745,27 @@
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
             {
+                NSString *email,*password,*remember;
+                
+                NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                {
+                    email=[prefs valueForKey:@"email"];
+                    password=[prefs valueForKey:@"password"];
+                    remember=[prefs valueForKey:@"remember"];
+                    
+                }
+                
                 NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                 [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                
+                if ([remember isEqualToString:@"1"])
+                {
+                    [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                    [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                    [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                    
+                }
                 login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                 [self.navigationController pushViewController:obj1 animated:YES];
             }

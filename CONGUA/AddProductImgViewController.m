@@ -98,7 +98,7 @@
 {
     UIImagePickerController *picker = [[UIImagePickerController alloc]init];
     picker.delegate = (id)self;
-    picker.allowsEditing = YES;
+    picker.allowsEditing = NO;
     [mainscroll setContentOffset:CGPointMake(0,0) animated:YES];
     switch (buttonIndex) {
             
@@ -131,7 +131,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
-    ProductImg.image=info[UIImagePickerControllerEditedImage];
+    ProductImg.image=info[UIImagePickerControllerOriginalImage];
     ProductImg.contentMode = UIViewContentModeScaleAspectFit;
     ProductImg.clipsToBounds=YES;
     
@@ -259,8 +259,26 @@
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
             {
+                NSString *email,*password,*remember;
+                
+                NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                {
+                    email=[prefs valueForKey:@"email"];
+                    password=[prefs valueForKey:@"password"];
+                    remember=[prefs valueForKey:@"remember"];
+                    
+                }
                 NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                 [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                
+                if ([remember isEqualToString:@"1"])
+                {
+                    [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                    [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                    [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                    
+                }
                 login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                 [self.navigationController pushViewController:obj1 animated:YES];
             }
@@ -490,8 +508,26 @@
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
             {
+                NSString *email,*password,*remember;
+                
+                NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                {
+                    email=[prefs valueForKey:@"email"];
+                    password=[prefs valueForKey:@"password"];
+                    remember=[prefs valueForKey:@"remember"];
+                    
+                }
                 NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                 [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                
+                if ([remember isEqualToString:@"1"])
+                {
+                    [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                    [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                    [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                    
+                }
                 login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                 [self.navigationController pushViewController:obj1 animated:YES];
             }
@@ -552,7 +588,7 @@
     {
         UIImagePickerController *picker = [[UIImagePickerController alloc]init];
         picker.delegate = (id)self;
-        picker.allowsEditing = YES;
+        picker.allowsEditing = NO;
         
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self.navigationController presentViewController:picker animated:YES completion:NULL];
@@ -567,7 +603,7 @@
 {
     UIImagePickerController *picker = [[UIImagePickerController alloc]init];
     picker.delegate = (id)self;
-    picker.allowsEditing = YES;
+    picker.allowsEditing = NO;
   
             picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             [self.navigationController presentViewController:picker animated:YES completion:NULL];

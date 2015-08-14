@@ -149,8 +149,26 @@
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
                 {
+                    NSString *email,*password,*remember;
+                    
+                    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                    if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                    {
+                        email=[prefs valueForKey:@"email"];
+                        password=[prefs valueForKey:@"password"];
+                        remember=[prefs valueForKey:@"remember"];
+                        
+                    }
                     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                    
+                    if ([remember isEqualToString:@"1"])
+                    {
+                        [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                        [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                        [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                        
+                    }
                     login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                     [self.navigationController pushViewController:obj1 animated:YES];
                 }
@@ -241,8 +259,26 @@
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
                 {
+                    NSString *email,*password,*remember;
+                    
+                    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                    if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                    {
+                        email=[prefs valueForKey:@"email"];
+                        password=[prefs valueForKey:@"password"];
+                        remember=[prefs valueForKey:@"remember"];
+                        
+                    }
                     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                    
+                    if ([remember isEqualToString:@"1"])
+                    {
+                        [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                        [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                        [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                        
+                    }
                     login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                     [self.navigationController pushViewController:obj1 animated:YES];
                 }
@@ -433,9 +469,9 @@
     
     if (section>0)
     {
-        UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, hScroll.frame.size.width, 1)];
+        UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, hScroll.frame.size.width, 2)];
     //    lineView.backgroundColor=[UIColor clearColor];
-        lineView.backgroundColor=[UIColor colorWithRed:(230.0/255.0) green:(230.0/255.0) blue:(230.0/255.0) alpha:1.0];
+        lineView.backgroundColor=[UIColor colorWithRed:(247.0/255.0) green:(248.0/255.0) blue:(246.0/255.0) alpha:0.5];
         [hScroll addSubview:lineView];
 
     }
@@ -727,8 +763,26 @@
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
                 {
+                    NSString *email,*password,*remember;
+                    
+                    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                    if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                    {
+                        email=[prefs valueForKey:@"email"];
+                        password=[prefs valueForKey:@"password"];
+                        remember=[prefs valueForKey:@"remember"];
+                        
+                    }
                     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                    
+                    if ([remember isEqualToString:@"1"])
+                    {
+                        [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                        [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                        [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                        
+                    }
                     login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                     [self.navigationController pushViewController:obj1 animated:YES];
                 }
@@ -839,10 +893,12 @@
     //add product
     AddProductViewController *addportvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddProductViewControllersid"];
     addportvc.PopDelegateFromAddProduct=self;
+    
+    [self.navigationController pushViewController:addportvc animated:YES];
   //  addportvc.CategoryCode=[NSString stringWithFormat:@"%ld",(long)sender.tag];
-    [self presentViewController:addportvc
-                       animated:YES
-                     completion:NULL];
+//    [self presentViewController:addportvc
+//                       animated:YES
+//                     completion:NULL];
 }
 
 - (IBAction)AddCategoryPlusClick:(id)sender

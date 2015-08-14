@@ -16,11 +16,11 @@
 @end
 
 @implementation EditProductViewController
-@synthesize lblDescription,lblProductType,lblPurchaseDt,txtProductNmae,txtPurchaseValue,txtVwDescription,btnIsInsured,btnIsOtherInsure,btnProductType,btnPurchaseDt,mainscroll,CategoryCode,IsInsureImg,IsOtherInsureImg,btnSubmit,DescImgView,InsuredPortSwitch,OtherInsuredSwitch,lblDescTop,btnDelete,PopDelegate2;
+@synthesize lblDescription,lblProductType,lblPurchaseDt,txtProductNmae,txtPurchaseValue,txtVwDescription,btnIsInsured,btnIsOtherInsure,btnProductType,btnPurchaseDt,mainscroll,CategoryCode,IsInsureImg,IsOtherInsureImg,btnSubmit,DescImgView,InsuredPortSwitch,OtherInsuredSwitch,lblDescTop,btnDelete,PopDelegate2,ArrowImg;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+     ArrowImg.transform = CGAffineTransformMakeRotation(M_PI_2*3);
     mainscroll.hidden=YES;
     if(self.view.frame.size.width==320)
     {
@@ -224,8 +224,26 @@
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
                 {
+                    NSString *email,*password,*remember;
+                    
+                    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                    if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                    {
+                        email=[prefs valueForKey:@"email"];
+                        password=[prefs valueForKey:@"password"];
+                        remember=[prefs valueForKey:@"remember"];
+                        
+                    }
                     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                    
+                    if ([remember isEqualToString:@"1"])
+                    {
+                        [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                        [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                        [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                        
+                    }
                     login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                     [self.navigationController pushViewController:obj1 animated:YES];
                 }
@@ -290,8 +308,26 @@
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
                 {
+                    NSString *email,*password,*remember;
+                    
+                    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                    if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                    {
+                        email=[prefs valueForKey:@"email"];
+                        password=[prefs valueForKey:@"password"];
+                        remember=[prefs valueForKey:@"remember"];
+                        
+                    }
                     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                    
+                    if ([remember isEqualToString:@"1"])
+                    {
+                        [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                        [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                        [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                        
+                    }
                     login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                     [self.navigationController pushViewController:obj1 animated:YES];
                 }
@@ -422,20 +458,24 @@
     
     countryViewController *countryVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"country"];
     
+    countryVC.header1=@"Product";
+    countryVC.header2=@"category";
+    
     countryVC.myDelegate=self;
     
     countryVC.ArrCategory=ArrCategory;
+    [self.navigationController pushViewController:countryVC animated:YES];
     
-    [self presentViewController:countryVC animated:YES completion:^{
-        
-        
-        
-        countryVC.headerLbl1.text=@"Product";
-        countryVC.headerLbl2.text=@"category";
-        
-        
-        
-    }];
+//    [self presentViewController:countryVC animated:YES completion:^{
+//        
+//        
+//        
+//        countryVC.headerLbl1.text=@"Product";
+//        countryVC.headerLbl2.text=@"category";
+//        
+//        
+//        
+//    }];
     
     
     /*
@@ -1097,8 +1137,26 @@
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
             {
+                NSString *email,*password,*remember;
+                
+                NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                {
+                    email=[prefs valueForKey:@"email"];
+                    password=[prefs valueForKey:@"password"];
+                    remember=[prefs valueForKey:@"remember"];
+                    
+                }
                 NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                 [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                
+                if ([remember isEqualToString:@"1"])
+                {
+                    [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                    [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                    [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                    
+                }
                 login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                 [self.navigationController pushViewController:obj1 animated:YES];
             }
@@ -1197,9 +1255,26 @@
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
                 {
+                    NSString *email,*password,*remember;
+                    
+                    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                    if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                    {
+                        email=[prefs valueForKey:@"email"];
+                        password=[prefs valueForKey:@"password"];
+                        remember=[prefs valueForKey:@"remember"];
+                        
+                    }
                     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
-                    login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+                    
+                    if ([remember isEqualToString:@"1"])
+                    {
+                        [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                        [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                        [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                        
+                    }                    login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                     [self.navigationController pushViewController:obj1 animated:YES];
                 }
                 else

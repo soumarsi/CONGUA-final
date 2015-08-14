@@ -14,7 +14,7 @@
 @end
 
 @implementation AddProductViewController
-@synthesize txtproductName,txtPurchaseValue,txtVwDescription,btnIsInsuredPort,btnIsOtherInsured,btnproductType,btnPurchaseDt,IsInsuredPortToggleImg,IsOtherInsuredToggleImg,mainscroll,lblDescription,lblProductType,lblPurchaseDt,CategoryCode,ProductType,btnSubmit,DescImgView,InsuredPortSwitch,OtherInsuredSwitch,lblDescTop,PopDelegateFromAddProduct;
+@synthesize txtproductName,txtPurchaseValue,txtVwDescription,btnIsInsuredPort,btnIsOtherInsured,btnproductType,btnPurchaseDt,IsInsuredPortToggleImg,IsOtherInsuredToggleImg,mainscroll,lblDescription,lblProductType,lblPurchaseDt,CategoryCode,ProductType,btnSubmit,DescImgView,InsuredPortSwitch,OtherInsuredSwitch,lblDescTop,PopDelegateFromAddProduct,ArrowImg;
 
 @synthesize ArrCategory,ArrProductType,catCode;
 
@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+     ArrowImg.transform = CGAffineTransformMakeRotation(M_PI_2*3);
     
     if (ProductType.length==0) {
         
@@ -243,8 +243,26 @@
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
                 {
+                    NSString *email,*password,*remember;
+                    
+                    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                    if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                    {
+                        email=[prefs valueForKey:@"email"];
+                        password=[prefs valueForKey:@"password"];
+                        remember=[prefs valueForKey:@"remember"];
+                        
+                    }
                     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                    
+                    if ([remember isEqualToString:@"1"])
+                    {
+                        [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                        [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                        [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                        
+                    }
                     login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                     [self.navigationController pushViewController:obj1 animated:YES];
                 }
@@ -281,27 +299,31 @@
     
     
     countryViewController *countryVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"country"];
-    
+//    countryViewController *countryVC=[self.storyboard instantiateViewControllerWithIdentifier:@"country"];
     countryVC.myDelegate=self;
     
-    
+    countryVC.header1=@"Product";
+   countryVC.header2=@"Category";
 //    countryVC.ArrCategory=ArrCategory;
     
     countryVC.ArrCategory=ArrCategory;
     
     
-    NSLog(@"Category array....%@",countryVC.ArrCategory);
-
+//    NSLog(@"Category array....%@",countryVC.ArrCategory);
     
-    [self presentViewController:countryVC animated:YES completion:^{
-        
-        
-        countryVC.headerLbl1.text=@"Product";
-        countryVC.headerLbl2.text=@"Category";
+   
 
-        
-        
-    }];
+    [self.navigationController pushViewController:countryVC animated:YES];
+    
+//    [self presentViewController:countryVC animated:YES completion:^{
+//        
+//        
+//        countryVC.headerLbl1.text=@"Product";
+//        countryVC.headerLbl2.text=@"Category";
+//
+//        
+//        
+//    }];
     
     //[self.view presentedViewController:countryVC];
     
@@ -707,13 +729,32 @@
                 UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Product Added Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [aler show];
                 [PopDelegateFromAddProduct Popaction_methodFromAddProduct];
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [self.navigationController popViewControllerAnimated:YES];
+              //  [self dismissViewControllerAnimated:YES completion:nil];
                 
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
             {
+                NSString *email,*password,*remember;
+                
+                NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                {
+                    email=[prefs valueForKey:@"email"];
+                    password=[prefs valueForKey:@"password"];
+                    remember=[prefs valueForKey:@"remember"];
+                    
+                }
                 NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                 [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                
+                if ([remember isEqualToString:@"1"])
+                {
+                    [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                    [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                    [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                    
+                }
                 login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                 [self.navigationController pushViewController:obj1 animated:YES];
             }
@@ -763,7 +804,9 @@
 }
 - (IBAction)BackClk:(id)sender {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"back");
+    [self.navigationController popViewControllerAnimated:YES];
+   // [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)PurchaseDateClk:(id)sender

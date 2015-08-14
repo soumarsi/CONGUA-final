@@ -14,13 +14,13 @@
     UIView *loader_shadow_View;
     UrlconnectionObject *urlobj;
     NSDictionary *tempDict;
-    NSMutableArray *ArrCountryName,*ArrCountryCode;
+    NSMutableArray *ArrCountryName,*ArrCountryCode,*ArrTitleName,*ArrTitleCode;
     UIButton *btnsave,*btncancel;
     UIPickerView *Countrypicker;
     UIView *CountryView;
     
 }
-@property(nonatomic,weak)NSString *country,*countrycode;
+@property(nonatomic,weak)NSString *country,*countrycode,*titleName,*titleCode;
 
 @property (strong, nonatomic) IBOutlet UIView *regview;
 @property (assign, nonatomic) BOOL gosignin;
@@ -43,4 +43,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnSignUp;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
 @property (strong, nonatomic) NSMutableDictionary *dataDic;
+@property (weak, nonatomic) IBOutlet UIImageView *TitleArrow;
+- (IBAction)TitleClick:(id)sender;
+
 @end

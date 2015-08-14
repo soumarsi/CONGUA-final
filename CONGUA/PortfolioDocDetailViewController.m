@@ -82,8 +82,26 @@
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
                 {
+                    NSString *email,*password,*remember;
+                    
+                    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                    if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                    {
+                        email=[prefs valueForKey:@"email"];
+                        password=[prefs valueForKey:@"password"];
+                        remember=[prefs valueForKey:@"remember"];
+                        
+                    }
                     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                    
+                    if ([remember isEqualToString:@"1"])
+                    {
+                        [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                        [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                        [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                        
+                    }
                     login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                     [self.navigationController pushViewController:obj1 animated:YES];
                 }
@@ -169,8 +187,26 @@
                 }
                 else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
                 {
+                    NSString *email,*password,*remember;
+                    
+                    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                    if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                    {
+                        email=[prefs valueForKey:@"email"];
+                        password=[prefs valueForKey:@"password"];
+                        remember=[prefs valueForKey:@"remember"];
+                        
+                    }
                     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                    
+                    if ([remember isEqualToString:@"1"])
+                    {
+                        [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                        [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                        [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                        
+                    }
                     login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                     [self.navigationController pushViewController:obj1 animated:YES];
                 }
@@ -450,7 +486,7 @@
     cell.DocImage.clipsToBounds=YES;
     
     cell.DocImage.frame=CGRectMake(cell.DocImage.frame.origin.x, cell.lblDesc.frame.origin.y+cell.lblDesc.frame.size.height+10,cell.DocImage.frame.size.width, cell.DocImage.frame.size.height);
-    
+    cell.mainscroll.contentSize = CGSizeMake(0, cell.DocImage.frame.origin.y+cell.DocImage.frame.size.height+10);
    
    // btnEdit.tag=indexPath.row;
         return cell;

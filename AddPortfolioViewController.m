@@ -1233,8 +1233,26 @@
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
             {
+                NSString *email,*password,*remember;
+                
+                NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                {
+                    email=[prefs valueForKey:@"email"];
+                    password=[prefs valueForKey:@"password"];
+                    remember=[prefs valueForKey:@"remember"];
+                    
+                }
                 NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                 [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                
+                if ([remember isEqualToString:@"1"])
+                {
+                    [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                    [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                    [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                    
+                }
                 login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                 [self.navigationController pushViewController:obj1 animated:YES];
             }
@@ -1307,8 +1325,26 @@
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
             {
+                NSString *email,*password,*remember;
+                
+                NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                {
+                    email=[prefs valueForKey:@"email"];
+                    password=[prefs valueForKey:@"password"];
+                    remember=[prefs valueForKey:@"remember"];
+                    
+                }
                 NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
                 [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                
+                if ([remember isEqualToString:@"1"])
+                {
+                    [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                    [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                    [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                    
+                }
                 login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
                 [self.navigationController pushViewController:obj1 animated:YES];
             }
@@ -1357,8 +1393,10 @@
         [self.view addSubview:loader_shadow_View];
     }
 }
--(IBAction)switched:(id)sender{
+-(IBAction)switched:(id)sender
+{
     NSLog(@"Switch current state %@", InsuredSwitch.on ? @"On" : @"Off");
+    
     if (InsuredSwitch.on==NO)
     {
        
@@ -1374,21 +1412,22 @@
         // hide insurance view
         [UIView animateWithDuration:0.5 animations:^{
             
-            if(self.view.frame.size.width==320)
-            {
-                
-                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-200);
-                // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
-            }
-            
-            
-            
-            if ([UIScreen mainScreen].bounds.size.width>320)
-            {
-                
-                //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
-                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-200);
-            }
+            _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-200);
+//            if(self.view.frame.size.width==320)
+//            {
+//                
+//                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-200);
+//               
+//            }
+//            
+//            
+//            
+//            if ([UIScreen mainScreen].bounds.size.width>320)
+//            {
+//                
+//               
+//                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-200);
+//            }
             
             
             
@@ -1396,7 +1435,7 @@
         } completion:^(BOOL finished) {
             
             
-         //   btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
+        
             InsuranceView.hidden=YES;
         }];
 
@@ -1416,22 +1455,23 @@
         // show insurance view
         [UIView animateWithDuration:0.5 animations:^{
             
-          //  btnSubmit.frame=CGRectMake(btnSubmit.frame.origin.x, InsuranceView.frame.origin.y+InsuranceView.frame.size.height+10, btnSubmit.frame.size.width, btnSubmit.frame.size.height);
-            if(self.view.frame.size.width==320)
-            {
-                
-                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+200);
-                // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
-            }
-            
-            
-            
-            if ([UIScreen mainScreen].bounds.size.width>320)
-            {
-                
-                //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
-                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+200);
-            }
+            _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+200);
+         
+//            if(self.view.frame.size.width==320)
+//            {
+//                
+//                
+//                
+//            }
+//            
+//            
+//            
+//            if ([UIScreen mainScreen].bounds.size.width>320)
+//            {
+//                
+//               
+//                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+200);
+//            }
             
             
         } completion:^(BOOL finished) {
