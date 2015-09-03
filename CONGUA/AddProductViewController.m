@@ -113,7 +113,7 @@
         if(textField==txtPurchaseValue)
         {
             lblDescription.hidden=YES;
-            [mainscroll setContentOffset:CGPointMake(0.0f,120.0f) animated:YES];
+            [mainscroll setContentOffset:CGPointMake(0.0f,200.0f) animated:YES];
         }
     }
     else
@@ -141,7 +141,7 @@
         if(textView==txtVwDescription)
         {
             lblDescription.hidden=YES;
-            [mainscroll setContentOffset:CGPointMake(0.0f,260.0f) animated:YES];
+            [mainscroll setContentOffset:CGPointMake(0.0f,340.0f) animated:YES];
         }
     }
     else
@@ -149,7 +149,7 @@
     if(textView==txtVwDescription)
     {
         lblDescription.hidden=YES;
-          [mainscroll setContentOffset:CGPointMake(0.0f,170.0f) animated:YES];
+          [mainscroll setContentOffset:CGPointMake(0.0f,220.0f) animated:YES];
     }
     }
    
@@ -539,6 +539,10 @@
             lblDescription.hidden=NO;
             lblDescTop.hidden=NO;
             txtVwDescription.hidden=NO;
+            if (self.view.frame.size.width==320)
+            {
+                [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 560)];
+            }
         }];
     }
     else if (OtherInsuredSwitch.on==NO) {

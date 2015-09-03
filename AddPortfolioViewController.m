@@ -26,7 +26,7 @@
 @end
 
 @implementation AddPortfolioViewController
-@synthesize lbladdress,lblinsureDetail,btnhasInsure,toggleimg,btnenddate,btnstartdate,InsuranceView,btnSubmit,InsuredSwitch,btnOther,btnPersonal,btnBusiness,businessImg,btnHome,homeImg,personalImg,otherImg,PopDelegateFromAddPort,SegmentControl;
+@synthesize lbladdress,lblinsureDetail,btnhasInsure,toggleimg,btnenddate,btnstartdate,InsuranceView,btnSubmit,InsuredSwitch,btnOther,btnPersonal,btnBusiness,businessImg,btnHome,homeImg,personalImg,otherImg,PopDelegateFromAddPort,SegmentControl,lblAddress2,txtvwAddress2;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden=YES;
@@ -154,9 +154,13 @@
     
     if(textField==self.pcodetxt)
     {
-        if ([UIScreen mainScreen].bounds.size.height==480)
+        if ([UIScreen mainScreen].bounds.size.width>320)
         {
-            [self.mainscroll setContentOffset:CGPointMake(0.0f, 100.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 120.0f) animated:YES];
+        }
+        else
+        {
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 220.0f) animated:YES];
         }
     }
     if(textField==self.inametxt)
@@ -164,11 +168,11 @@
         [myview removeFromSuperview];
         if ([UIScreen mainScreen].bounds.size.width>320)
         {
-            [self.mainscroll setContentOffset:CGPointMake(0.0f, 100.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 260.0f) animated:YES];
         }
         else
         {
-            [self.mainscroll setContentOffset:CGPointMake(0.0f, 250.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 450.0f) animated:YES];
         }
     }
      
@@ -177,11 +181,11 @@
         [myview removeFromSuperview];
         if ([UIScreen mainScreen].bounds.size.width>320)
         {
-            [self.mainscroll setContentOffset:CGPointMake(0.0f, 300.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 500.0f) animated:YES];
         }
         else
         {
-            [self.mainscroll setContentOffset:CGPointMake(0.0f, 480.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 680.0f) animated:YES];
         }
     }
     
@@ -219,12 +223,18 @@
     if(textView==self.idetail)
     {
        // lblinsureDetail.hidden=YES;
-        [self.mainscroll setContentOffset:CGPointMake(0.0f,300.0f) animated:YES];
+        [self.mainscroll setContentOffset:CGPointMake(0.0f,500.0f) animated:YES];
     }
     // _addrlbl.hidden=YES;
     if(textView==self.addrtxt)
     {
+        [self.mainscroll setContentOffset:CGPointMake(0.0f,80.0f) animated:YES];
         lbladdress.hidden=YES;
+    }
+    if(textView==txtvwAddress2)
+    {
+        [self.mainscroll setContentOffset:CGPointMake(0.0f,160.0f) animated:YES];
+        lblAddress2.hidden=YES;
     }
 }
 
@@ -245,7 +255,7 @@
             }
             if (self.idetail.text.length==0)
             {
-                lblinsureDetail.hidden=NO;
+               // lblinsureDetail.hidden=NO;
             }
         }
         if(textView==self.addrtxt)
@@ -253,8 +263,13 @@
             [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
             if (self.addrtxt.text.length==0)
             {
-                lbladdress.hidden=NO;
+                lbladdress.hidden=YES;
             }
+        }
+        if(textView==txtvwAddress2)
+        {
+            [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
+            
         }
         
     }
@@ -1172,7 +1187,7 @@
     
     
     
-    tempDict = [[NSDictionary alloc] initWithObjectsAndKeys:@"0", @"PortfolioCode",self.portnmtxt.text, @"PortfolioName",self.addrtxt.text,@"Address1",@"",@"Address2",self.pcodetxt.text, @"PostCode",Isinsured, @"IsInsured",portType,@"PortfolioTypeCode",  nil];
+    tempDict = [[NSDictionary alloc] initWithObjectsAndKeys:@"0", @"PortfolioCode",self.portnmtxt.text, @"PortfolioName",self.addrtxt.text,@"Address1",txtvwAddress2.text,@"Address2",self.pcodetxt.text, @"PostCode",Isinsured, @"IsInsured",portType,@"PortfolioTypeCode",  nil];
       NSLog(@"tempdic=%@",tempDict);
     NSString *loginstring = [NSString stringWithFormat:@"%@InsertPortfolio/%@?CustomerCode=%@",URL_LINK,AuthToken,CustomerCode]; //api done
     
@@ -1395,6 +1410,7 @@
 }
 -(IBAction)switched:(id)sender
 {
+    [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f)];
     NSLog(@"Switch current state %@", InsuredSwitch.on ? @"On" : @"Off");
     
     if (InsuredSwitch.on==NO)
@@ -1412,7 +1428,7 @@
         // hide insurance view
         [UIView animateWithDuration:0.5 animations:^{
             
-            _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-200);
+            _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-InsuranceView.frame.size.height);
 //            if(self.view.frame.size.width==320)
 //            {
 //                
@@ -1442,7 +1458,8 @@
     }
     else if (InsuredSwitch.on==YES)
     {
-        
+        [self.pcodetxt resignFirstResponder];
+        [self.mainscroll setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
         btnhasInsure.selected=YES;
         Isinsured=@"1";
     //    toggleimg.frame=CGRectMake(toggleimg.frame.origin.x+20, toggleimg.frame.origin.y, toggleimg.frame.size.width, toggleimg.frame.size.height);
@@ -1455,7 +1472,7 @@
         // show insurance view
         [UIView animateWithDuration:0.5 animations:^{
             
-            _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+200);
+            _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+InsuranceView.frame.size.height);
          
 //            if(self.view.frame.size.width==320)
 //            {

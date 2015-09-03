@@ -469,16 +469,20 @@
     cell.lblDesc.text=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"Description"]];
     
     //dynamic height of label
-    NSString *str=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"Description"]];
+//    NSString *str=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"Description"]];
+//    
+//    NSInteger rw=ceil(str.length/60.0);
+//    NSInteger len=rw*25;
+    CGSize maximumLabelSize = CGSizeMake(cell.lblDesc.frame.size.width,9999);
+    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13.0];
+    CGRect titleRect = [self rectForText:cell.lblDesc.text // <- your text here
+                               usingFont:font
+                           boundedBySize:maximumLabelSize];
     
-    NSInteger rw=ceil(str.length/60.0);
-    NSInteger len=rw*25;
-    
-    
-    cell.lblDesc.frame=CGRectMake(cell.lblDesc.frame.origin.x, cell.lblDesc.frame.origin.y,cell.lblDesc.frame.size.width, len);
-    if (len>270)
+    cell.lblDesc.frame=CGRectMake(cell.lblDesc.frame.origin.x, cell.lblDesc.frame.origin.y,cell.lblDesc.frame.size.width, titleRect.size.height);
+    if (titleRect.size.height>270)
     {
-        cell.mainscroll.contentSize = CGSizeMake(0, cell.mainscroll.contentSize.height+cell.DocImage.frame.size.height+len-270);
+        cell.mainscroll.contentSize = CGSizeMake(0, cell.mainscroll.contentSize.height+cell.DocImage.frame.size.height+titleRect.size.height-270);
     }
     ProductDocCode=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"ProductDocCode"]];
      [[NSUserDefaults standardUserDefaults] setObject:ProductDocCode forKey:@"ProductDocCode"];
@@ -495,6 +499,18 @@
     // btnEdit.tag=indexPath.row;
     return cell;
     
+}
+-(CGRect)rectForText:(NSString *)text
+           usingFont:(UIFont *)font
+       boundedBySize:(CGSize)maxSize
+{
+    NSAttributedString *attrString =
+    [[NSAttributedString alloc] initWithString:text
+                                    attributes:@{ NSFontAttributeName:font}];
+    
+    return [attrString boundingRectWithSize:maxSize
+                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                    context:nil];
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     

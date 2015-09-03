@@ -17,7 +17,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    mainscroll.contentSize=CGSizeMake(0, 489);
+ //   mainscroll.contentSize=CGSizeMake(0, 489);
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
@@ -49,7 +49,7 @@
                         
                     }
                     
-                    NSLog(@"summary name=%@",ArrImage);
+                  //  NSLog(@"summary name=%@",ArrImage);
                     [ImgCollectionView reloadData];
                    
                     NSIndexPath *path = [NSIndexPath indexPathForRow:productIndex inSection:0];
@@ -279,21 +279,25 @@
     
     cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"ProductImgCell" forIndexPath:indexPath];
     
-    [cell.mainscroll setContentSize:CGSizeMake(self.view.frame.size.width, 500)];
+ //   [cell.mainscroll setContentSize:CGSizeMake(self.view.frame.size.width, 500)];
     
     
     cell.lbldesc.text=[NSString stringWithFormat:@"%@",[[ArrImage objectAtIndex:indexPath.row] valueForKey:@"Description"]];
     
     //dynamic height of label
-    NSString *str=[NSString stringWithFormat:@"%@",[[ArrImage objectAtIndex:indexPath.row] valueForKey:@"Description"]];
+//    NSString *str=[NSString stringWithFormat:@"%@",[[ArrImage objectAtIndex:indexPath.row] valueForKey:@"Description"]];
+//    
+//    NSInteger rw=ceil(str.length/60.0);
+//    NSInteger len=rw*25;
+    CGSize maximumLabelSize = CGSizeMake(cell.lbldesc.frame.size.width,9999);
+    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13.0];
+    CGRect titleRect = [self rectForText:cell.lbldesc.text // <- your text here
+                               usingFont:font
+                           boundedBySize:maximumLabelSize];
     
-    NSInteger rw=ceil(str.length/60.0);
-    NSInteger len=rw*25;
-    
-    
-    cell.lbldesc.frame=CGRectMake(cell.lbldesc.frame.origin.x, cell.lbldesc.frame.origin.y,cell.lbldesc.frame.size.width, len);
+    cell.lbldesc.frame=CGRectMake(cell.lbldesc.frame.origin.x, cell.lbldesc.frame.origin.y,cell.lbldesc.frame.size.width, titleRect.size.height);
   
-        cell.mainscroll.contentSize = CGSizeMake(0, cell.lbldesc.frame.origin.y+cell.lbldesc.frame.size.height+10);
+        cell.mainscroll.contentSize = CGSizeMake(0, cell.lbldesc.frame.origin.y+cell.lbldesc.frame.size.height+20);
    
     ProductImgCode=[NSString stringWithFormat:@"%@",[[ArrImage objectAtIndex:indexPath.row] valueForKey:@"ProductImageCode"]];
     [[NSUserDefaults standardUserDefaults] setObject:ProductImgCode forKey:@"ProductImgCode"];
@@ -314,6 +318,18 @@
     // btnEdit.tag=indexPath.row;
     return cell;
     
+}
+-(CGRect)rectForText:(NSString *)text
+           usingFont:(UIFont *)font
+       boundedBySize:(CGSize)maxSize
+{
+    NSAttributedString *attrString =
+    [[NSAttributedString alloc] initWithString:text
+                                    attributes:@{ NSFontAttributeName:font}];
+    
+    return [attrString boundingRectWithSize:maxSize
+                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                    context:nil];
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     

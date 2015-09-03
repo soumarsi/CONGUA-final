@@ -28,6 +28,7 @@
 - (IBAction)DeleteClick:(id)sender;
 - (IBAction)EditClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *btnEdit;
+@property (weak, nonatomic) IBOutlet UIPageControl *PageControl;
 
 
 - (IBAction)BackClick:(id)sender;

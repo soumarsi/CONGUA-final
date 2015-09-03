@@ -13,10 +13,13 @@
 @end
 
 @implementation PortfolioDocDetailViewController
-@synthesize lblUserName,DocCode,DocCollectionView,index,btnEdit;
+@synthesize lblUserName,DocCode,DocCollectionView,index,btnEdit,PageControl;
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    DocCollectionView.hidden=YES;
+    PageControl.hidden=YES;
  //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 489)];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
@@ -32,12 +35,13 @@
     ArrDoc=[[NSMutableArray alloc]init];
     
     
+    
     [self DocShowUrl];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    DocCollectionView.hidden=YES;
 }
 
 -(void)DocShowUrl
@@ -66,7 +70,10 @@
                     NSLog(@"summary name=%@",ArrDoc);
                     if (ArrDoc.count>0)
                     {
-                        
+                        DocCollectionView.hidden=NO;
+                        PageControl.hidden=NO;
+                        PageControl.numberOfPages=ArrDoc.count;
+                        PageControl.currentPage=index;
                         [DocCollectionView reloadData];
                         
                         
@@ -464,18 +471,23 @@
         cell.docTypeImg.image=[UIImage imageNamed:@"otherDoc"];
     }
     cell.lblDesc.text=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"Description"]];
-    
+ //   NSLog(@"label weight=%f",cell.lblDesc.frame.size.width);
     //dynamic height of label
-    NSString *str=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"Description"]];
+    CGSize maximumLabelSize = CGSizeMake(cell.lblDesc.frame.size.width,9999);
+    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13.0];
+    CGRect titleRect = [self rectForText:cell.lblDesc.text // <- your text here
+                               usingFont:font
+                           boundedBySize:maximumLabelSize];
+//    NSString *str=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"Description"]];
+//    
+//    NSInteger rw=ceil(str.length/60.0);
+//    NSInteger len=rw*25;
     
-    NSInteger rw=ceil(str.length/60.0);
-    NSInteger len=rw*25;
     
-    
-    cell.lblDesc.frame=CGRectMake(cell.lblDesc.frame.origin.x, cell.lblDesc.frame.origin.y,cell.lblDesc.frame.size.width, len);
-    if (len>270)
+    cell.lblDesc.frame=CGRectMake(cell.lblDesc.frame.origin.x, cell.lblDesc.frame.origin.y,cell.lblDesc.frame.size.width, titleRect.size.height);
+    if (titleRect.size.height>270)
     {
-        cell.mainscroll.contentSize = CGSizeMake(0, cell.mainscroll.contentSize.height+cell.DocImage.frame.size.height+len-270);
+        cell.mainscroll.contentSize = CGSizeMake(0, cell.mainscroll.contentSize.height+cell.DocImage.frame.size.height+titleRect.size.height-270);
     }
     DocCode=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"PortfolioDocCode"]];
     FileName=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"FileName"]];
@@ -485,15 +497,42 @@
     cell.DocImage.contentMode=UIViewContentModeScaleAspectFit;
     cell.DocImage.clipsToBounds=YES;
     
-    cell.DocImage.frame=CGRectMake(cell.DocImage.frame.origin.x, cell.lblDesc.frame.origin.y+cell.lblDesc.frame.size.height+10,cell.DocImage.frame.size.width, cell.DocImage.frame.size.height);
+    cell.DocImage.frame=CGRectMake(cell.DocImage.frame.origin.x, cell.lblDesc.frame.origin.y+cell.lblDesc.frame.size.height+3,cell.DocImage.frame.size.width, cell.DocImage.frame.size.height);
     cell.mainscroll.contentSize = CGSizeMake(0, cell.DocImage.frame.origin.y+cell.DocImage.frame.size.height+10);
    
    // btnEdit.tag=indexPath.row;
         return cell;
     
 }
+-(CGRect)rectForText:(NSString *)text
+           usingFont:(UIFont *)font
+       boundedBySize:(CGSize)maxSize
+{
+    NSAttributedString *attrString =
+    [[NSAttributedString alloc] initWithString:text
+                                    attributes:@{ NSFontAttributeName:font}];
+    
+    return [attrString boundingRectWithSize:maxSize
+                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                    context:nil];
+}
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     return CGSizeMake(DocCollectionView.frame.size.width, DocCollectionView.frame.size.height);
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    CGFloat pageWidth = DocCollectionView.frame.size.width;
+    float currentPage = DocCollectionView.contentOffset.x / pageWidth;
+    
+    if (0.0f != fmodf(currentPage, 1.0f))
+    {
+        PageControl.currentPage = currentPage + 1;
+    }
+    else
+    {
+        PageControl.currentPage = currentPage;
+    }
+    NSLog(@"finishPage: %ld", (long)PageControl.currentPage);
 }
 @end

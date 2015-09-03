@@ -42,6 +42,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnPersonal;
 @property (weak, nonatomic) IBOutlet UIButton *btnOther;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SegmentControl;
+@property (weak, nonatomic) IBOutlet UITextView *txtvwAddress2;
+@property (weak, nonatomic) IBOutlet UILabel *lblAddress2;
 
 
 

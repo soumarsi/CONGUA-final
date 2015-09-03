@@ -56,6 +56,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnBusiness;
 @property (weak, nonatomic) IBOutlet UIButton *btnPersonal;
 @property (weak, nonatomic) IBOutlet UIButton *btnOther;
+@property (weak, nonatomic) IBOutlet UITextView *txtvwAddress2;
+@property (weak, nonatomic) IBOutlet UILabel *lbladdress;
+
+
+
+
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SegmentControl;
 - (IBAction)SegmentControlClick:(id)sender;

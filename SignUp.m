@@ -106,7 +106,7 @@
     self.txtcountry.leftView = paddingView11;
     self.txtcountry.leftViewMode = UITextFieldViewModeAlways;
 
-[self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 900)];
+[self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 1050)];
     /*
     if (self.view.frame.size.width==320)
     {
@@ -328,7 +328,7 @@
                                 //options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,70.0f
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,190.0f
                                                                                ) animated:YES];
                              }
                              completion:^(BOOL finished){
@@ -364,7 +364,7 @@
                                 //options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,140.0f
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,150.0f
                                                                                ) animated:YES];
                              }
                              completion:^(BOOL finished){
@@ -437,7 +437,7 @@
                                // options:UIViewAnimationTransitionNone
                              animations:^{
         
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,140.0f
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,280.0f
                                                                                ) animated:YES];
                              }
                              completion:^(BOOL finished){
@@ -456,7 +456,7 @@
                                // options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,210.0f
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,340.0f
                                                                                ) animated:YES];                          }
                              completion:^(BOOL finished){
                                  
@@ -474,7 +474,7 @@
                                // options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,280.0f
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,420.0f
                                                                                ) animated:YES];
                              }
                              completion:^(BOOL finished){
@@ -491,7 +491,7 @@
                               //  options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,350.0f
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,500.0f
                                                                                ) animated:YES];
                              }
                              completion:^(BOOL finished){
@@ -529,7 +529,7 @@
                               //  options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 140.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 250.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -548,7 +548,7 @@
                               //  options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 70.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 150.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -565,8 +565,7 @@
                              //   options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                               //  self.regview.frame=CGRectOffset(f,0.0f,0.0f);
-                             }
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 60.0f) animated:YES];                             }
                              completion:^(BOOL finished){
                                  
                              }
@@ -582,7 +581,7 @@
                             //    options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                               //  self.regview.frame=CGRectOffset(f,0.0f,0.0f);
+                                // self.regview.frame=CGRectOffset(f,0.0f,50.0f);
                              }
                              completion:^(BOOL finished){
                                  
@@ -600,7 +599,7 @@
                            //     options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 210.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 280.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -617,7 +616,7 @@
                            //     options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 280.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 370.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -633,7 +632,7 @@
                             //    options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 350.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 450.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -651,7 +650,7 @@
                            //     options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 420.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 520.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -667,7 +666,7 @@
                            //     options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 490.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 590.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -705,7 +704,7 @@
              //  options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 250.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 340.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -724,7 +723,7 @@
              //  options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 140.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 220.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -741,7 +740,7 @@
              //   options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 80.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 140.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -758,7 +757,7 @@
              //    options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                [self.mainscroll setContentOffset:CGPointMake(0.0f, 40.0f) animated:YES];
+                                [self.mainscroll setContentOffset:CGPointMake(0.0f, 80.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -776,7 +775,7 @@
              //     options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 280.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 370.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -793,7 +792,7 @@
              //     options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,350.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f,450.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -809,7 +808,7 @@
              //    options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 400.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 520.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -827,7 +826,7 @@
              //     options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 450.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 590.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  
@@ -843,7 +842,7 @@
              //     options:UIViewAnimationTransitionNone
                              animations:^{
                                  
-                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 500.0f) animated:YES];
+                                 [self.mainscroll setContentOffset:CGPointMake(0.0f, 670.0f) animated:YES];
                              }
                              completion:^(BOOL finished){
                                  

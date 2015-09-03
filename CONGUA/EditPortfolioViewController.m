@@ -13,7 +13,7 @@
 @end
 
 @implementation EditPortfolioViewController
-@synthesize lblEndDate,lblInsureDetail,lblPortfolioType,lblStartDate,mainscroll,txtInsureName,txtPortfolioName,txtPostCode,txtValueCovered,txtvwAddress,txtvwInsureDetail,btnEndDate,btnHasInsure,btnPortfolioType,btnStartDate,lblAddress,HasInsureImg,btnSubmit,InsuranceView,IsInsuredSwitch,homeImg,personalImg,businessImg,otherImg,btnBusiness,btnHome,btnOther,btnPersonal,PopDelegate6,SegmentControl;
+@synthesize lblEndDate,lblInsureDetail,lblPortfolioType,lblStartDate,mainscroll,txtInsureName,txtPortfolioName,txtPostCode,txtValueCovered,txtvwAddress,txtvwInsureDetail,btnEndDate,btnHasInsure,btnPortfolioType,btnStartDate,lblAddress,HasInsureImg,btnSubmit,InsuranceView,IsInsuredSwitch,homeImg,personalImg,businessImg,otherImg,btnBusiness,btnHome,btnOther,btnPersonal,PopDelegate6,SegmentControl,lbladdress,txtvwAddress2;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -41,7 +41,7 @@
     if ([UIScreen mainScreen].bounds.size.width>320)
     {
         
-        [self.mainscroll setContentSize:CGSizeMake(320.0f,550.0f)];
+        [self.mainscroll setContentSize:CGSizeMake(320.0f,600.0f)];
         
         
     }
@@ -157,6 +157,7 @@
                     txtPortfolioName.text=[[result objectForKey:@"ResultInfo"] valueForKey:@"PortfolioName"];
                     lblAddress.hidden=YES;
                     txtvwAddress.text=[[result objectForKey:@"ResultInfo"] valueForKey:@"Address1"];
+                    txtvwAddress2.text=[[result objectForKey:@"ResultInfo"] valueForKey:@"Address2"];
                     txtPostCode.text=[NSString stringWithFormat:@"%@",[[result objectForKey:@"ResultInfo"] valueForKey:@"PostCode"]];
                     
                     lblPortfolioType.textColor=[UIColor blackColor];
@@ -235,7 +236,7 @@
                         if(self.view.frame.size.width==320)
                         {
                             
-                            mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+295);
+                            mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+InsuranceView.frame.size.height+20);
                             // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
                         }
                         
@@ -245,7 +246,7 @@
                         {
                             
                             //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
-                            mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+295);
+                            mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+InsuranceView.frame.size.height+20);
                         }
                         
                         [self InsuranceViewUrl];
@@ -403,9 +404,14 @@
     
     if(textField==txtPostCode)
     {
-        if ([UIScreen mainScreen].bounds.size.height==480)
+        if ([UIScreen mainScreen].bounds.size.width==320)
         {
-            [self.mainscroll setContentOffset:CGPointMake(0.0f, 100.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 180.0f) animated:YES];
+            
+            if ([UIScreen mainScreen].bounds.size.height==480)
+            {
+                [self.mainscroll setContentOffset:CGPointMake(0.0f, 230.0f) animated:YES];
+            }
         }
     }
     if(textField==txtInsureName)
@@ -413,11 +419,11 @@
         [myview removeFromSuperview];
         if ([UIScreen mainScreen].bounds.size.width>320)
         {
-            [self.mainscroll setContentOffset:CGPointMake(0.0f, 100.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 280.0f) animated:YES];
         }
         else
         {
-            [self.mainscroll setContentOffset:CGPointMake(0.0f, 250.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 420.0f) animated:YES];
         }
     }
     
@@ -426,11 +432,11 @@
         [myview removeFromSuperview];
         if ([UIScreen mainScreen].bounds.size.width>320)
         {
-            [self.mainscroll setContentOffset:CGPointMake(0.0f, 300.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 480.0f) animated:YES];
         }
         else
         {
-            [self.mainscroll setContentOffset:CGPointMake(0.0f, 480.0f) animated:YES];
+            [self.mainscroll setContentOffset:CGPointMake(0.0f, 650.0f) animated:YES];
         }
     }
     
@@ -462,13 +468,25 @@
     if(textView==txtvwInsureDetail)
     {
         lblInsureDetail.hidden=YES;
-        [self.mainscroll setContentOffset:CGPointMake(0.0f,340.0f) animated:YES];
+        [self.mainscroll setContentOffset:CGPointMake(0.0f,540.0f) animated:YES];
     }
     // _addrlbl.hidden=YES;
     if(textView==txtvwAddress)
     {
         lblAddress.hidden=YES;
         [self.mainscroll setContentOffset:CGPointMake(0.0f,80.0f) animated:YES];
+    }
+    if(textView==txtvwAddress2)
+    {
+        lblAddress.hidden=YES;
+        if (self.view.frame.size.height==480)
+        {
+            [self.mainscroll setContentOffset:CGPointMake(0.0f,180.0f) animated:YES];
+        }
+        else
+        {
+        [self.mainscroll setContentOffset:CGPointMake(0.0f,100.0f) animated:YES];
+        }
     }
 }
 
@@ -499,6 +517,12 @@
             {
                 lblAddress.hidden=NO;
             }
+        }
+        
+        if(textView==txtvwAddress2)
+        {
+            [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f) animated:YES];
+            
         }
         
     }
@@ -888,6 +912,7 @@
      */
 }
 -(IBAction)switched:(id)sender{
+    [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f)];
     NSLog(@"Switch current state %@", IsInsuredSwitch.on ? @"On" : @"Off");
     if (IsInsuredSwitch.on==NO)
     {
@@ -917,7 +942,7 @@
             if(self.view.frame.size.width==320)
             {
                 
-                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height-250);
+                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height-InsuranceView.frame.size.height);
                 // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
             }
             
@@ -927,14 +952,15 @@
             {
                 
                 //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
-                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height-250);
+                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height-InsuranceView.frame.size.height);
             }
         }];
         
     }
     else if (IsInsuredSwitch.on==YES)
     {
-        
+        [txtPostCode resignFirstResponder];
+       [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f)];
         btnHasInsure.selected=YES;
         Isinsured=@"1";
     //    HasInsureImg.frame=CGRectMake(HasInsureImg.frame.origin.x+20, HasInsureImg.frame.origin.y, HasInsureImg.frame.size.width, HasInsureImg.frame.size.height);
@@ -957,7 +983,7 @@
             if(self.view.frame.size.width==320)
             {
                 
-                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+250);
+                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+InsuranceView.frame.size.height);
                 // [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+100)];
             }
             
@@ -967,7 +993,7 @@
             {
                 
                 //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, mainscroll.contentSize.height+60)];
-                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+250);
+                mainscroll.contentSize = CGSizeMake(0, mainscroll.contentSize.height+InsuranceView.frame.size.height);
             }
         }];
     }
@@ -1732,7 +1758,7 @@
     
     
     
-    tempDict = [[NSDictionary alloc] initWithObjectsAndKeys:PortfolioCode, @"PortfolioCode",txtPortfolioName.text, @"PortfolioName",txtvwAddress.text,@"Address1",@"",@"Address2",txtPostCode.text, @"PostCode",Isinsured, @"IsInsured",portType,@"PortfolioTypeCode",  nil];
+    tempDict = [[NSDictionary alloc] initWithObjectsAndKeys:PortfolioCode, @"PortfolioCode",txtPortfolioName.text, @"PortfolioName",txtvwAddress.text,@"Address1",txtvwAddress2.text,@"Address2",txtPostCode.text, @"PostCode",Isinsured, @"IsInsured",portType,@"PortfolioTypeCode",  nil];
     NSLog(@"tempdic=%@",tempDict);
     NSString *loginstring = [NSString stringWithFormat:@"%@UpdatePortfolio/%@?CustomerCode=%@",URL_LINK,AuthToken,CustomerCode]; //api done
     NSLog(@"edit url=%@",loginstring);

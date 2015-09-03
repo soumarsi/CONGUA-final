@@ -26,7 +26,7 @@
     {
         //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];
         
-        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 560)];
+        [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 600)];
     }
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -364,7 +364,7 @@
         if(textField==txtPurchaseValue)
         {
             lblDescription.hidden=YES;
-            [mainscroll setContentOffset:CGPointMake(0.0f,130.0f) animated:YES];
+            [mainscroll setContentOffset:CGPointMake(0.0f,190.0f) animated:YES];
         }
     }
     else
@@ -372,7 +372,7 @@
     if(textField==txtPurchaseValue)
     {
         lblDescription.hidden=YES;
-        [mainscroll setContentOffset:CGPointMake(0.0f,70.0f) animated:YES];
+        [mainscroll setContentOffset:CGPointMake(0.0f,100.0f) animated:YES];
     }
     }
 }
@@ -391,7 +391,7 @@
         if(textView==txtVwDescription)
         {
             lblDescription.hidden=YES;
-            [mainscroll setContentOffset:CGPointMake(0.0f,280.0f) animated:YES];
+            [mainscroll setContentOffset:CGPointMake(0.0f,350.0f) animated:YES];
         }
     }
     else
@@ -399,7 +399,7 @@
     if(textView==txtVwDescription)
     {
         lblDescription.hidden=YES;
-        [mainscroll setContentOffset:CGPointMake(0.0f,170.0f) animated:YES];
+        [mainscroll setContentOffset:CGPointMake(0.0f,270.0f) animated:YES];
     }
     }
     
