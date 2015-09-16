@@ -19,6 +19,7 @@
     NSMutableArray *ArrPortDetail,*ArrInsureDetail,*ArrDoc;
     UrlconnectionObject *urlobj;
     DocDetailCell *cell;
+    UIView *imageview;
 }
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UICollectionView *DocCollectionView;

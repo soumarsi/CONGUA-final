@@ -32,7 +32,7 @@
 
 @synthesize myDelegate;
 
-@synthesize ArrCountryCode,ArrCountryName,backBtn,topBarView,listTable,ArrCategory,categoryCheck,countryCheck,headerLbl1,headerLbl2,signin,SignDic,header1,header2,TitleCheck,ArrTitleCode,ArrTitleName;
+@synthesize ArrCountryCode,ArrCountryName,backBtn,topBarView,listTable,ArrCategory,categoryCheck,countryCheck,headerLbl1,headerLbl2,signin,SignDic,header1,header2,TitleCheck,ArrTitleCode,ArrTitleName,myprofile;
 
 
 - (void)viewDidLoad {
@@ -172,7 +172,7 @@
 {
     if([countryCheck isEqualToString:@"YES"])
     {
-    
+    if (signin==YES) {
     SignUp *signupVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"signup"];
         [SignDic setObject:[ArrCountryName objectAtIndex:indexPath.row] forKey:@"country"];
         [SignDic setObject:[ArrCountryCode objectAtIndex:indexPath.row] forKey:@"countryCode"];
@@ -180,16 +180,34 @@
   //  signupVC.country=[ArrCountryName objectAtIndex:indexPath.row];
     
  //   signupVC.countrycode=[ArrCountryCode objectAtIndex:indexPath.row];
-        if (signin==YES) {
+        
             signupVC.gosignin=YES;
-        }
+        
     [ArrCountryName removeAllObjects];
         
     [ArrCountryCode removeAllObjects];
     
     [self.navigationController pushViewController:signupVC animated:YES];
+    }
+    else if (myprofile==YES)
+    {
+        MyProfileViewController *signupVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
+        [SignDic setObject:[ArrCountryName objectAtIndex:indexPath.row] forKey:@"country"];
+        [SignDic setObject:[ArrCountryCode objectAtIndex:indexPath.row] forKey:@"countryCode"];
+        signupVC.dataDic=SignDic;
+        //  signupVC.country=[ArrCountryName objectAtIndex:indexPath.row];
         
-      //  countryCheck=NO;
+        //   signupVC.countrycode=[ArrCountryCode objectAtIndex:indexPath.row];
+        
+        signupVC.goprofile=YES;
+        
+        [ArrCountryName removeAllObjects];
+        
+        [ArrCountryCode removeAllObjects];
+        
+        [self.navigationController pushViewController:signupVC animated:YES];
+    }
+     
         
     }
     
@@ -237,7 +255,7 @@
     }
     else if([TitleCheck isEqualToString:@"YES"])
     {
-        
+        if (signin==YES) {
         SignUp *signupVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"signup"];
         [SignDic setObject:[ArrTitleName objectAtIndex:indexPath.row] forKey:@"title"];
         [SignDic setObject:[ArrTitleCode objectAtIndex:indexPath.row] forKey:@"titleCode"];
@@ -246,15 +264,34 @@
     //    signupVC.titleName=[ArrTitleName objectAtIndex:indexPath.row];
         
     //    signupVC.titleCode=[ArrTitleCode objectAtIndex:indexPath.row];
-        if (signin==YES) {
+        
             signupVC.gosignin=YES;
-        }
+        
         [ArrCountryName removeAllObjects];
         
         [ArrCountryCode removeAllObjects];
         
         [self.navigationController pushViewController:signupVC animated:YES];
-        
+        }
+        else if (myprofile==YES)
+        {
+            MyProfileViewController *signupVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
+            [SignDic setObject:[ArrTitleName objectAtIndex:indexPath.row] forKey:@"title"];
+            [SignDic setObject:[ArrTitleCode objectAtIndex:indexPath.row] forKey:@"titleCode"];
+            
+            signupVC.dataDic=SignDic;
+            //    signupVC.titleName=[ArrTitleName objectAtIndex:indexPath.row];
+            
+            //    signupVC.titleCode=[ArrTitleCode objectAtIndex:indexPath.row];
+            
+            signupVC.goprofile=YES;
+            
+            [ArrCountryName removeAllObjects];
+            
+            [ArrCountryCode removeAllObjects];
+            
+            [self.navigationController pushViewController:signupVC animated:YES];
+        }
         //  countryCheck=NO;
         
     }
@@ -274,12 +311,13 @@
 {
     if([countryCheck isEqualToString:@"YES"])
     {
-    
+    if (signin==YES)
+    {
     SignUp *signupVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"signup"];
         signupVC.dataDic=SignDic;
-        if (signin==YES) {
+        
             signupVC.gosignin=YES;
-        }
+       
     [ArrCountryName removeAllObjects];
     
     [ArrCountryCode removeAllObjects];
@@ -287,6 +325,22 @@
     countryCheck=@"NO";
     
     [self.navigationController pushViewController:signupVC animated:YES];
+    }
+      else if (myprofile==YES)
+      {
+            MyProfileViewController *signupVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
+            signupVC.dataDic=SignDic;
+            
+            signupVC.goprofile=YES;
+            
+            [ArrCountryName removeAllObjects];
+            
+            [ArrCountryCode removeAllObjects];
+            
+            countryCheck=@"NO";
+            
+            [self.navigationController pushViewController:signupVC animated:YES];
+        }
         
     }
     
@@ -310,14 +364,16 @@
     }
     else if([TitleCheck isEqualToString:@"YES"])
     {
-        
+        NSLog(@"my profile");
+        if (signin==YES)
+        {
         SignUp *signupVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"signup"];
         signupVC.dataDic=SignDic;
      //   signupVC.titleName=[SignDic valueForKey:@"title"];
      //   signupVC.titleCode=[SignDic valueForKey:@"titleCode"];
-        if (signin==YES) {
+        
             signupVC.gosignin=YES;
-        }
+        
         [ArrTitleName removeAllObjects];
         
         [ArrTitleCode removeAllObjects];
@@ -325,7 +381,25 @@
         TitleCheck=@"NO";
         
         [self.navigationController pushViewController:signupVC animated:YES];
-        
+        }
+        else if (myprofile==YES)
+        {
+            
+            MyProfileViewController *signupVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
+            signupVC.dataDic=SignDic;
+            //   signupVC.titleName=[SignDic valueForKey:@"title"];
+            //   signupVC.titleCode=[SignDic valueForKey:@"titleCode"];
+            
+            signupVC.goprofile=YES;
+            
+            [ArrTitleName removeAllObjects];
+            
+            [ArrTitleCode removeAllObjects];
+            
+            TitleCheck=@"NO";
+            
+            [self.navigationController pushViewController:signupVC animated:YES];
+        }
     }
 
     

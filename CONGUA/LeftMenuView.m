@@ -29,7 +29,7 @@
     collector=-1;
     
  //   arrmenuname = [[NSMutableArray alloc] initWithObjects:@"Post a Task",@"Financial Details",@"My Transactions",@"Refer a Friend",@"Logout", nil];
-     arrmenuname = [[NSMutableArray alloc] initWithObjects:@"Logout", nil];
+     arrmenuname = [[NSMutableArray alloc] initWithObjects:@"My Profile",@"Logout", nil];
     tblmenu.backgroundColor=[UIColor clearColor];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     txtusername.text=[prefs valueForKey:@"FullName"];
@@ -90,9 +90,10 @@
     [selectedbgview addSubview:selectedlblmenu];
     */
             lblmenu = [[UILabel alloc]initWithFrame:CGRectMake(30,10, 120, 20)];
-        lblmenu.font = [UIFont fontWithName:@"Helvetica Neue" size:17]; //custom font
+        lblmenu.font = [UIFont fontWithName:@"Helvetica Neue" size:16]; //custom font
         lblmenu.backgroundColor = [UIColor clearColor];
-        lblmenu.textColor = [UIColor colorWithRed:(221.0/255.0) green:(52.0/255.0) blue:(24.0/255.0) alpha:1.0];
+    lblmenu.textColor =[UIColor darkGrayColor];
+     //   lblmenu.textColor = [UIColor colorWithRed:(221.0/255.0) green:(52.0/255.0) blue:(24.0/255.0) alpha:1.0];
         lblmenu.textAlignment = NSTextAlignmentLeft;
         lblmenu.text=[NSString stringWithFormat:@"%@",arrmenuname[indexPath.row]];
         [bgview addSubview:lblmenu];

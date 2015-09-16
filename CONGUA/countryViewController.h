@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MyProfileViewController.h"
 @protocol countryDelegate <NSObject>
 
 -(void)countryViewcontrollerDismissedwithCategoryName:(NSString *)categoryyName categoryCode:(NSString *)categoryCode;
@@ -24,6 +24,7 @@
 //
 
 @property (assign, nonatomic) BOOL signin;
+@property (assign, nonatomic) BOOL myprofile;
 @property (nonatomic, weak) id<countryDelegate>    myDelegate;
 
 //

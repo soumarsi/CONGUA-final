@@ -86,10 +86,17 @@ menu *menuview;
    
         if (sender==0) {
        
-    //    [self deleteDocDirectory];
-            [self LogOutUrl];
+            MyProfileViewController * pdvc=[self.storyboard instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
+            [self.navigationController  pushViewController:pdvc animated:YES];
        
     }
+    else if (sender==1) {
+        
+        
+        [self LogOutUrl];
+        
+    }
+    
 }
 -(void)LogOutUrl
 {
@@ -465,8 +472,8 @@ menu *menuview;
 
 - (IBAction)LeftMenuClk:(id)sender
 {
-    [self LogOutUrl];
-    /*
+  //  [self LogOutUrl];
+   
   //  [self.navigationController popViewControllerAnimated:YES];
     if(contentview.center.x==self.view.frame.size.width/2)
     {
@@ -537,7 +544,7 @@ menu *menuview;
         
         
     }
-     */
+     
 }
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {

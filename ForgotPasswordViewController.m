@@ -98,7 +98,8 @@
                 [self checkLoader];
                      UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Mail sent successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                  [aler show];
-               
+                login * loginvc=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+                [self.navigationController  pushViewController:loginvc animated:YES];
             }
             else
             {

@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *docTypeImg;
 @property (weak, nonatomic) IBOutlet UILabel *lblDocType;
 @property (weak, nonatomic) IBOutlet UIImageView *DocImage;
+@property (weak, nonatomic) IBOutlet UIButton *btnZoomImage;
 
 @end

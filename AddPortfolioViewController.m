@@ -43,7 +43,7 @@
     
     if(self.view.frame.size.width==320)
     {
-      //  [self.mainscroll setContentSize:CGSizeMake(320.0f,480.0f)];
+      
         
         [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 520)];
         if (self.view.frame.size.height==480)
@@ -51,8 +51,7 @@
             [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 480)];
         }
     }
-    //[self.mainscroll setFrame:CGRectMake(0, 60, 320, 875)];
-    
+   
     
     if ([UIScreen mainScreen].bounds.size.width>320)
     {
@@ -1418,7 +1417,7 @@
        
         btnhasInsure.selected=NO;
         Isinsured=@"0";
-    //    toggleimg.frame=CGRectMake(toggleimg.frame.origin.x-10, toggleimg.frame.origin.y, toggleimg.frame.size.width, toggleimg.frame.size.height);
+   
         self.inametxt.userInteractionEnabled=NO;
         self.idetail.userInteractionEnabled=NO;
         self.btnstartdate.userInteractionEnabled=NO;
@@ -1429,23 +1428,6 @@
         [UIView animateWithDuration:0.5 animations:^{
             
             _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-InsuranceView.frame.size.height);
-//            if(self.view.frame.size.width==320)
-//            {
-//                
-//                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-200);
-//               
-//            }
-//            
-//            
-//            
-//            if ([UIScreen mainScreen].bounds.size.width>320)
-//            {
-//                
-//               
-//                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-200);
-//            }
-            
-            
             
             
         } completion:^(BOOL finished) {
@@ -1462,7 +1444,7 @@
         [self.mainscroll setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
         btnhasInsure.selected=YES;
         Isinsured=@"1";
-    //    toggleimg.frame=CGRectMake(toggleimg.frame.origin.x+20, toggleimg.frame.origin.y, toggleimg.frame.size.width, toggleimg.frame.size.height);
+   
         self.inametxt.userInteractionEnabled=YES;
         self.idetail.userInteractionEnabled=YES;
         self.btnstartdate.userInteractionEnabled=YES;
@@ -1474,21 +1456,6 @@
             
             _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+InsuranceView.frame.size.height);
          
-//            if(self.view.frame.size.width==320)
-//            {
-//                
-//                
-//                
-//            }
-//            
-//            
-//            
-//            if ([UIScreen mainScreen].bounds.size.width>320)
-//            {
-//                
-//               
-//                _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+200);
-//            }
             
             
         } completion:^(BOOL finished) {

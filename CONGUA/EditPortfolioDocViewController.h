@@ -11,6 +11,10 @@
 #import "login.h"
 #import "UIImageView+WebCache.h"
 #import "ViewController.h"
+@protocol PopView_EditPortDoc<NSObject>
+@optional
+-(void)Popaction_EditPortDoc;
+@end
 @interface EditPortfolioDocViewController : UIViewController
 {
     UIView *loader_shadow_View,*Doctypeview;
@@ -22,6 +26,7 @@
     UIButton *btnDoctypesave,*btnDoctypeCancel;
     UIActionSheet *actionsheet;
 }
+@property(assign)id<PopView_EditPortDoc>PopDelegateEdit;
 @property (weak, nonatomic) IBOutlet UITextField *txtDocName;
 @property (weak, nonatomic) IBOutlet UILabel *lblDocType;
 @property (weak, nonatomic) IBOutlet UILabel *lblDesc;

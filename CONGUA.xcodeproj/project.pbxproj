@@ -55,6 +55,7 @@
 		5BA5F1751B3AEA1A00704AA4 /* EditPortfolioDocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA5F1741B3AEA1A00704AA4 /* EditPortfolioDocViewController.m */; };
 		5BD79C0B1B67441F00779721 /* DocDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD79C0A1B67441F00779721 /* DocDetailCell.m */; };
 		5BD79C0E1B67C10600779721 /* ProductImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD79C0D1B67C10600779721 /* ProductImgCell.m */; };
+		5BDDC8711BA8225B000C8989 /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDC8701BA8225B000C8989 /* MyProfileViewController.m */; };
 		8428D3DF1B171316002CB0C5 /* login.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428D3DE1B171316002CB0C5 /* login.m */; };
 		8428D3E21B171659002CB0C5 /* Landing.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428D3E11B171659002CB0C5 /* Landing.m */; };
 		8428D3F11B171A3A002CB0C5 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428D3F01B171A3A002CB0C5 /* ForgotPasswordViewController.m */; };
@@ -184,6 +185,8 @@
 		5BD79C0A1B67441F00779721 /* DocDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocDetailCell.m; sourceTree = "<group>"; };
 		5BD79C0C1B67C10600779721 /* ProductImgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductImgCell.h; sourceTree = "<group>"; };
 		5BD79C0D1B67C10600779721 /* ProductImgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductImgCell.m; sourceTree = "<group>"; };
+		5BDDC86F1BA8225B000C8989 /* MyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
+		5BDDC8701BA8225B000C8989 /* MyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
 		8428D3DD1B171316002CB0C5 /* login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = login.h; path = ../login.h; sourceTree = "<group>"; };
 		8428D3DE1B171316002CB0C5 /* login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = login.m; path = ../login.m; sourceTree = "<group>"; };
 		8428D3E01B171659002CB0C5 /* Landing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Landing.h; path = ../Landing.h; sourceTree = "<group>"; };
@@ -298,6 +301,8 @@
 				5B94C37B1B440769007174F5 /* EditCategoryViewController.m */,
 				8F8DE27B1B5778BE00E00127 /* countryViewController.h */,
 				8F8DE27C1B5778BE00E00127 /* countryViewController.m */,
+				5BDDC86F1BA8225B000C8989 /* MyProfileViewController.h */,
+				5BDDC8701BA8225B000C8989 /* MyProfileViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -636,6 +641,7 @@
 				5B9D02921B2FE8D200DD1231 /* UIImageView+AFNetworking.m in Sources */,
 				846DE56E1B16CF5C00EC86E6 /* AddPortfolioViewController.m in Sources */,
 				5B9590A91B45023E00BC4470 /* SDImageCache.m in Sources */,
+				5BDDC8711BA8225B000C8989 /* MyProfileViewController.m in Sources */,
 				5B9ADAD11B319E4B00B454C6 /* EditPortfolioViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -218,9 +218,9 @@
                         btnHasInsure.selected=YES;
                         Isinsured=@"1";
                          IsInsuredSwitch.on=YES;
-                        IsInsuredSwitch.userInteractionEnabled=NO;
-                        btnHasInsure.userInteractionEnabled=NO;
-                        HasInsureImg.frame=CGRectMake(HasInsureImg.frame.origin.x+20, HasInsureImg.frame.origin.y, HasInsureImg.frame.size.width, HasInsureImg.frame.size.height);
+                    //    IsInsuredSwitch.userInteractionEnabled=NO;
+                    //    btnHasInsure.userInteractionEnabled=NO;
+                    //    HasInsureImg.frame=CGRectMake(HasInsureImg.frame.origin.x+20, HasInsureImg.frame.origin.y, HasInsureImg.frame.size.width, HasInsureImg.frame.size.height);
                         txtInsureName.userInteractionEnabled=YES;
                         txtvwInsureDetail.userInteractionEnabled=YES;
                         btnStartDate.userInteractionEnabled=YES;
@@ -1747,7 +1747,7 @@
         else
         {
             [self EditPortfolioUrl];
-            //    [self AddInsuranceUrl];
+            
         }
     }
     
@@ -1795,23 +1795,28 @@
             
             
             
-            if ([[result valueForKey:@"IsSuccess"] integerValue]==1) {
+            if ([[result valueForKey:@"IsSuccess"] integerValue]==1)
+            {
                 
                 
                 [self checkLoader];
                 if ([Isinsured isEqualToString:@"1"])
                 {
-                  //  portfoliocode=[result valueForKey:@"ResultInfo"];
-                 //   NSLog(@"port code=%@",portfoliocode);
+                 
                     [self UpdateInsuranceUrl];
                 }
-                else
+                else if ([Isinsured isEqualToString:@"0"])
                 {
-                 //   UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Portfolio Updated Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    
-                 //   [aler show];
+                    if ([IsPriviouslyInsured isEqualToString:@"1"])
+                    {
+                        [self DeleteInsuranceUrl];
+                    }
+                    else
+                    {
+                      // do nothing just pop
                     [PopDelegate6 Popaction_method6];
                     [self.navigationController popViewControllerAnimated:YES];
+                    }
                     
                 }
                 
@@ -1858,7 +1863,78 @@
     
     
 }
-
+-(void)DeleteInsuranceUrl
+{
+    
+        @try {
+            
+            NSString *str=[NSString stringWithFormat:@"%@DeletePortfolioInsurance/%@?PortfolioCode=%@",URL_LINK,AuthToken,PortfolioCode];
+            NSLog(@"str=%@",str);
+            BOOL net=[urlobj connectedToNetwork];
+            if (net==YES)
+            {
+                [self checkLoader];
+                [urlobj global:str typerequest:@"array" withblock:^(id result, NSError *error,BOOL completed) {
+                    
+                    if ([[result valueForKey:@"IsSuccess"] integerValue]==1)
+                    {
+                        [self checkLoader];
+                       
+                        [PopDelegate6 Popaction_method6];
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                    else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
+                    {
+                        [self checkLoader];
+                        NSString *email,*password,*remember;
+                        
+                        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                        if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                        {
+                            email=[prefs valueForKey:@"email"];
+                            password=[prefs valueForKey:@"password"];
+                            remember=[prefs valueForKey:@"remember"];
+                            
+                        }
+                        NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+                        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                        
+                        if ([remember isEqualToString:@"1"])
+                        {
+                            [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                            [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                            [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                            
+                        }
+                        login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+                        [self.navigationController pushViewController:obj1 animated:YES];
+                    }
+                    else
+                    {
+                        [self checkLoader];
+                        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Error" message:@"Unsucessful...." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                        [aler show];
+                    }
+                    
+                }];
+            }
+            else{
+                UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"No Network Connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [aler show];
+            }
+        }
+        @catch (NSException *exception)
+        {
+        }
+        @finally {
+            
+        }
+        
+        
+        
+        
+   
+}
 -(void)UpdateInsuranceUrl
 {
     
