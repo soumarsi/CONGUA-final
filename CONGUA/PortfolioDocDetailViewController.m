@@ -8,7 +8,7 @@
 
 #import "PortfolioDocDetailViewController.h"
 
-@interface PortfolioDocDetailViewController ()<UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface PortfolioDocDetailViewController ()<UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,PopView_EditPortDoc>
 
 @end
 
@@ -18,9 +18,16 @@
 {
     [super viewDidAppear:animated];
     
+    
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+   
+    
     DocCollectionView.hidden=YES;
     PageControl.hidden=YES;
- //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 489)];
+    //   [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 489)];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
     CustomerCode=[prefs valueForKey:@"CustomerCode"];
@@ -38,12 +45,12 @@
     
     [self DocShowUrl];
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    DocCollectionView.hidden=YES;
+-(void)Popaction_EditPortDoc:(NSInteger )docindex
+{
+  //  NSLog(@"pop view called=%@",doc);
+    index=docindex;
+    [self viewDidLoad];
 }
-
 -(void)DocShowUrl
 {
     @try {
@@ -157,22 +164,22 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@" Do you want to Delete This Document?" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
     [alertView show];
 }
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-    if (buttonIndex == [alertView cancelButtonIndex])
-    {
-        
-    }
-    else
-    {
-        [self DeleteDocumentUrl];
-        
-        
-    }
-    
-    
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    
+//    if (buttonIndex == [alertView cancelButtonIndex])
+//    {
+//        
+//    }
+//    else
+//    {
+//        [self DeleteDocumentUrl];
+//        
+//        
+//    }
+//    
+//    
+//}
 -(void)DeleteDocumentUrl
 {
     @try {
@@ -251,6 +258,8 @@
     [[NSUserDefaults standardUserDefaults] setObject:DocCode  forKey:@"PortfolioDocCode"];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     EditPortfolioDocViewController *pv2vc = [storyboard instantiateViewControllerWithIdentifier:@"EditPortfolioDocViewControllersid"];
+    pv2vc.PopDelegateEdit=self;
+    pv2vc.docindex=index;
     [self.navigationController pushViewController:pv2vc animated:YES];
 }
 
@@ -268,9 +277,27 @@
     }
     else
     {
-      //  WebView.hidden=NO;
-        [self DownloadUrl];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@" Do you want to Download This Document?" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+        [alertView show];
+        
     }
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex == [alertView cancelButtonIndex])
+    {
+        
+    }
+    else
+    {
+       [self DownloadUrl];
+        
+        
+    }
+    
     
 }
 -(void)DownloadUrl
@@ -336,7 +363,7 @@
                                                               
                                                               NSLog(@"updating UIImageView");
                                                               
-                                                              UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Image saved successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                                                              UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Document saved successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
                                                               [alert show];
 
                                                          
@@ -491,14 +518,15 @@
     }
     DocCode=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"PortfolioDocCode"]];
     FileName=[NSString stringWithFormat:@"%@",[[ArrDoc objectAtIndex:indexPath.row] valueForKey:@"FileName"]];
-    
+    index=indexPath.row;
     NSString *str1=[NSString stringWithFormat:@"%@DownloadFile/%@?CustomerCode=%@&FileName=%@",URL_LINK,AuthToken,CustomerCode,FileName];
     [cell.DocImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str1]] placeholderImage:[UIImage imageNamed:@""] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
     cell.DocImage.contentMode=UIViewContentModeScaleAspectFit;
     cell.DocImage.clipsToBounds=YES;
     
-    cell.DocImage.frame=CGRectMake(cell.DocImage.frame.origin.x, cell.lblDesc.frame.origin.y+cell.lblDesc.frame.size.height+3,cell.DocImage.frame.size.width, cell.DocImage.frame.size.height);
-    cell.mainscroll.contentSize = CGSizeMake(0, cell.DocImage.frame.origin.y+cell.DocImage.frame.size.height+10);
+  //  cell.DocImage.frame=CGRectMake(cell.DocImage.frame.origin.x, cell.lblDesc.frame.origin.y+cell.lblDesc.frame.size.height+3,cell.DocImage.frame.size.width, cell.DocImage.frame.size.height);
+  //  cell.mainscroll.contentSize = CGSizeMake(0, cell.DocImage.frame.origin.y+cell.DocImage.frame.size.height+10);
+    cell.mainscroll.contentSize = CGSizeMake(0, cell.lblDesc.frame.origin.y+cell.lblDesc.frame.size.height+10);
     
     [cell.btnZoomImage addTarget:self action:@selector(imageclick:) forControlEvents:UIControlEventTouchUpInside];
     

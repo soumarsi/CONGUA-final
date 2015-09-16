@@ -18,6 +18,7 @@
     UrlconnectionObject *urlobj;
     NSMutableArray *ArrImage;
     ProductImgCell *cell;
+    UIView *imageview;
 }
 @property (weak, nonatomic) IBOutlet UIWebView *WebView;
 @property (weak, nonatomic) IBOutlet UILabel *lblDesc;

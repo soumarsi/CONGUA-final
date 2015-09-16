@@ -8,7 +8,7 @@
 
 #import "ProductDocDetailViewController.h"
 
-@interface ProductDocDetailViewController ()<UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface ProductDocDetailViewController ()<UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,PopView_EditProductDoc>
 
 @end
 
@@ -20,32 +20,7 @@
     [super viewDidAppear:animated];
   //  [self.mainscroll setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 487)];
     
-    if (self.view.frame.size.width>320)
-    {
-        btnEditTop.imageEdgeInsets = UIEdgeInsetsMake(34, 36, 17, 0);
-    }
-    else
-    {
-        btnEditTop.imageEdgeInsets = UIEdgeInsetsMake(27, 36, 24, 0);
-    }
     
-    if (self.view.frame.size.height==480)
-    {
-        btnEditTop.imageEdgeInsets = UIEdgeInsetsMake(20, 36, 32, 0);
-    }
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
-    CustomerCode=[prefs valueForKey:@"CustomerCode"];
-    AuthToken=[prefs valueForKey:@"AuthToken"];
-    ProductCode=[prefs valueForKey:@"ProductCode"];
-    NSLog(@"product doc code=%@",ProductDocCode);
-  //  [[NSUserDefaults standardUserDefaults] setObject:ProductDocCode forKey:@"ProductDocCode"];
-    urlobj=[[UrlconnectionObject alloc]init];
-    ArrDoc=[[NSMutableArray alloc]init];
-   
-    
-    [self DocShowUrl];
 }
 -(void)DocShowUrl
 {
@@ -125,6 +100,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    if (self.view.frame.size.width>320)
+    {
+        btnEditTop.imageEdgeInsets = UIEdgeInsetsMake(34, 36, 17, 0);
+    }
+    else
+    {
+        btnEditTop.imageEdgeInsets = UIEdgeInsetsMake(27, 36, 24, 0);
+    }
+    
+    if (self.view.frame.size.height==480)
+    {
+        btnEditTop.imageEdgeInsets = UIEdgeInsetsMake(20, 36, 32, 0);
+    }
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
+    CustomerCode=[prefs valueForKey:@"CustomerCode"];
+    AuthToken=[prefs valueForKey:@"AuthToken"];
+    ProductCode=[prefs valueForKey:@"ProductCode"];
+    NSLog(@"product doc code=%@",ProductDocCode);
+    //  [[NSUserDefaults standardUserDefaults] setObject:ProductDocCode forKey:@"ProductDocCode"];
+    urlobj=[[UrlconnectionObject alloc]init];
+    ArrDoc=[[NSMutableArray alloc]init];
+    
+    
+    [self DocShowUrl];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -157,7 +159,9 @@
     else
     {
       //  WebView.hidden=NO;
-        [self DownloadUrl];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@" Do you want to Download This Document?" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+        [alertView show];
+        
     }
 
 }
@@ -227,7 +231,7 @@
                                                               
                                                               NSLog(@"updating UIImageView");
                                                               
-                                                              UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Image saved successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                                                              UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Document saved successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
                                                               [alert show];
                                                               
                                                               
@@ -260,7 +264,7 @@
             }
             else{
                 
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Image saved successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Document saved successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
                     [alert show];
                 
             }
@@ -335,9 +339,9 @@
     }
     else
     {
-        [self DeleteDocumentUrl];
+      //  [self DeleteDocumentUrl];
         
-        
+        [self DownloadUrl];
     }
     
     
@@ -417,9 +421,16 @@
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     EditProductDocViewController *pv2vc = [storyboard instantiateViewControllerWithIdentifier:@"EditProductDocViewControllersid"];
-   
+    pv2vc.PopDelegateEdit1=self;
+    pv2vc.docindex=index;
     
     [self.navigationController pushViewController:pv2vc animated:YES];
+}
+-(void)Popaction_EditProductDoc:(NSInteger )docindex
+{
+    //  NSLog(@"pop view called=%@",doc);
+    index=docindex;
+    [self viewDidLoad];
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 
@@ -493,12 +504,44 @@
     cell.DocImage.contentMode=UIViewContentModeScaleAspectFit;
     cell.DocImage.clipsToBounds=YES;
     
-    cell.DocImage.frame=CGRectMake(cell.DocImage.frame.origin.x, cell.lblDesc.frame.origin.y+cell.lblDesc.frame.size.height+10,cell.DocImage.frame.size.width, cell.DocImage.frame.size.height);
-   cell.mainscroll.contentSize = CGSizeMake(0, cell.DocImage.frame.origin.y+cell.DocImage.frame.size.height);
-    
+  //  cell.DocImage.frame=CGRectMake(cell.DocImage.frame.origin.x, cell.lblDesc.frame.origin.y+cell.lblDesc.frame.size.height+10,cell.DocImage.frame.size.width, cell.DocImage.frame.size.height);
+ //  cell.mainscroll.contentSize = CGSizeMake(0, cell.DocImage.frame.origin.y+cell.DocImage.frame.size.height);
+     cell.mainscroll.contentSize = CGSizeMake(0, cell.lblDesc.frame.origin.y+cell.lblDesc.frame.size.height+10);
+    [cell.btnZoomImage addTarget:self action:@selector(imageclick:) forControlEvents:UIControlEventTouchUpInside];
+    index=indexPath.row;
     // btnEdit.tag=indexPath.row;
     return cell;
     
+}
+
+
+-(void)imageclick:(UIButton *)sender
+{
+    
+    [imageview removeFromSuperview];
+    imageview = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width,self.view.frame.size.height)];
+    [imageview setBackgroundColor:[[UIColor blackColor]colorWithAlphaComponent:0.8]];
+    [self.view addSubview:imageview];
+    
+    UIImageView *img=[[UIImageView alloc]initWithFrame:CGRectMake(20, 50, self.view.frame.size.width-40, self.view.frame.size.height-100)];
+    NSString *str1=[NSString stringWithFormat:@"%@DownloadFile/%@?CustomerCode=%@&FileName=%@",URL_LINK,AuthToken,CustomerCode,FileName];
+    NSLog(@"zoom image=%@",str1);
+    [img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str1]] placeholderImage:[UIImage imageNamed:@""] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+    img.contentMode=UIViewContentModeScaleAspectFit;
+    //  img.clipsToBounds=YES;
+    
+    [imageview addSubview:img];
+    
+    UIButton *btnCross = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnCross.frame = CGRectMake(img.frame.origin.x+img.frame.size.width-30, 20, 30, 30);
+    [btnCross addTarget:self action:@selector(CrossClick) forControlEvents:UIControlEventTouchUpInside];
+    btnCross.imageEdgeInsets = UIEdgeInsetsMake(5,5, 5, 5);
+    [btnCross setImage:[UIImage imageNamed:@"crossWhite"] forState:UIControlStateNormal];
+    [imageview addSubview:btnCross];
+}
+-(void)CrossClick
+{
+    [imageview removeFromSuperview];
 }
 -(CGRect)rectForText:(NSString *)text
            usingFont:(UIFont *)font

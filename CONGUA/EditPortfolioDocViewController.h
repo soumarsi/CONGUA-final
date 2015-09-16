@@ -13,7 +13,7 @@
 #import "ViewController.h"
 @protocol PopView_EditPortDoc<NSObject>
 @optional
--(void)Popaction_EditPortDoc;
+-(void)Popaction_EditPortDoc:(NSInteger )docindex;
 @end
 @interface EditPortfolioDocViewController : UIViewController
 {
@@ -42,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SegmentedControl;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
+@property (assign, nonatomic)  NSInteger docindex;
 
 - (IBAction)DocTypeClick:(id)sender;
 - (IBAction)AddDocumentClick:(id)sender;

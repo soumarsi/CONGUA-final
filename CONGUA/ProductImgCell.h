@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbldesc;
 @property (weak, nonatomic) IBOutlet UIImageView *ProductImg;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainscroll;
+@property (weak, nonatomic) IBOutlet UIButton *btnzoom;
 
 @end

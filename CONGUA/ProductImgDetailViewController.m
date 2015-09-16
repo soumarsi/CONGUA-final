@@ -312,12 +312,41 @@
     [cell.ProductImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str1]] placeholderImage:[UIImage imageNamed:@""] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
     cell.ProductImg.contentMode=UIViewContentModeScaleAspectFit;
    
-    
+    [cell.btnzoom addTarget:self action:@selector(imageclick:) forControlEvents:UIControlEventTouchUpInside];
     
     
     // btnEdit.tag=indexPath.row;
     return cell;
     
+}
+
+-(void)imageclick:(UIButton *)sender
+{
+    
+    [imageview removeFromSuperview];
+    imageview = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width,self.view.frame.size.height)];
+    [imageview setBackgroundColor:[[UIColor blackColor]colorWithAlphaComponent:0.8]];
+    [self.view addSubview:imageview];
+    
+    UIImageView *img=[[UIImageView alloc]initWithFrame:CGRectMake(20, 50, self.view.frame.size.width-40, self.view.frame.size.height-100)];
+    NSString *str1=[NSString stringWithFormat:@"%@DownloadFile/%@?CustomerCode=%@&FileName=%@",URL_LINK,AuthToken,CustomerCode,FileName];
+    NSLog(@"zoom image=%@",str1);
+    [img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",str1]] placeholderImage:[UIImage imageNamed:@""] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+    img.contentMode=UIViewContentModeScaleAspectFit;
+    //  img.clipsToBounds=YES;
+    
+    [imageview addSubview:img];
+    
+    UIButton *btnCross = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnCross.frame = CGRectMake(img.frame.origin.x+img.frame.size.width-30, 20, 30, 30);
+    [btnCross addTarget:self action:@selector(CrossClick) forControlEvents:UIControlEventTouchUpInside];
+    btnCross.imageEdgeInsets = UIEdgeInsetsMake(5,5, 5, 5);
+    [btnCross setImage:[UIImage imageNamed:@"crossWhite"] forState:UIControlStateNormal];
+    [imageview addSubview:btnCross];
+}
+-(void)CrossClick
+{
+    [imageview removeFromSuperview];
 }
 -(CGRect)rectForText:(NSString *)text
            usingFont:(UIFont *)font

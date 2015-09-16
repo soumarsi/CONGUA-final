@@ -11,6 +11,10 @@
 #import "login.h"
 #import "UIImageView+WebCache.h"
 #import "ViewController.h"
+@protocol PopView_EditProductDoc<NSObject>
+@optional
+-(void)Popaction_EditProductDoc:(NSInteger )docindex;
+@end
 @interface EditProductDocViewController : UIViewController
 {
     UIView *loader_shadow_View,*Doctypeview;
@@ -35,8 +39,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnOther;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SegmentedControl;
 - (IBAction)SegmentClick:(id)sender;
-
-
+@property(assign)id<PopView_EditProductDoc>PopDelegateEdit1;
+@property (assign, nonatomic)  NSInteger docindex;
 @property (weak, nonatomic) IBOutlet UIImageView *DocImage;
 
 - (IBAction)BackClick:(id)sender;

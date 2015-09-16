@@ -19,6 +19,7 @@
     UrlconnectionObject *urlobj;
     NSMutableArray *ArrDoc;
     DocDetailCell *cell;
+    UIView *imageview;
 }
 
 @property (weak, nonatomic) IBOutlet UICollectionView *DocCollectionView;

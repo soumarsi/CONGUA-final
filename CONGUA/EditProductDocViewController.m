@@ -13,7 +13,7 @@
 @end
 
 @implementation EditProductDocViewController
-@synthesize txtDocName,txtVwDesc,DocImage,lblDesc,lblDocType,btnDocType,btnSubmit,btnAddDoc,mainscroll,btnOther,btnPurchaseReceipt,btnInsureCertificate,SegmentedControl;
+@synthesize txtDocName,txtVwDesc,DocImage,lblDesc,lblDocType,btnDocType,btnSubmit,btnAddDoc,mainscroll,btnOther,btnPurchaseReceipt,btnInsureCertificate,SegmentedControl,PopDelegateEdit1,docindex;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -580,6 +580,7 @@
                 [self checkLoader];
                 UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Document Updated Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [aler show];
+                [PopDelegateEdit1 Popaction_EditProductDoc:docindex];
                 [self.navigationController popViewControllerAnimated:YES];
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])

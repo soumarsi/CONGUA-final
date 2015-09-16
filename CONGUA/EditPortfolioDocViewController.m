@@ -13,7 +13,7 @@
 @end
 
 @implementation EditPortfolioDocViewController
-@synthesize lblDocType,lblDesc,txtDocName,txtVwDesc,DocImage,mainscroll,btnDocType,btnsubmit,btnAddDoc,btnPurchaseReceipt,btnOther,btnInsureCertificate,btnSave,SegmentedControl,PopDelegateEdit;
+@synthesize lblDocType,lblDesc,txtDocName,txtVwDesc,DocImage,mainscroll,btnDocType,btnsubmit,btnAddDoc,btnPurchaseReceipt,btnOther,btnInsureCertificate,btnSave,SegmentedControl,PopDelegateEdit,docindex;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -685,7 +685,8 @@
                 [self checkLoader];
                 UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Document Updated Successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [aler show];
-                [PopDelegateEdit Popaction_EditPortDoc];
+            //    NSLog(@"code=%@",PortfolioDocCode);
+                [PopDelegateEdit Popaction_EditPortDoc:docindex];
                 [self.navigationController popViewControllerAnimated:YES];
             }
             else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
