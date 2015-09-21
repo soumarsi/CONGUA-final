@@ -55,6 +55,7 @@
 		5BA5F1751B3AEA1A00704AA4 /* EditPortfolioDocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA5F1741B3AEA1A00704AA4 /* EditPortfolioDocViewController.m */; };
 		5BD79C0B1B67441F00779721 /* DocDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD79C0A1B67441F00779721 /* DocDetailCell.m */; };
 		5BD79C0E1B67C10600779721 /* ProductImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD79C0D1B67C10600779721 /* ProductImgCell.m */; };
+		5BDDC1B21BB02125001CEA8C /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDC1B11BB02125001CEA8C /* ProductCell.m */; };
 		5BDDC8711BA8225B000C8989 /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDC8701BA8225B000C8989 /* MyProfileViewController.m */; };
 		8428D3DF1B171316002CB0C5 /* login.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428D3DE1B171316002CB0C5 /* login.m */; };
 		8428D3E21B171659002CB0C5 /* Landing.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428D3E11B171659002CB0C5 /* Landing.m */; };
@@ -185,6 +186,8 @@
 		5BD79C0A1B67441F00779721 /* DocDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocDetailCell.m; sourceTree = "<group>"; };
 		5BD79C0C1B67C10600779721 /* ProductImgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductImgCell.h; sourceTree = "<group>"; };
 		5BD79C0D1B67C10600779721 /* ProductImgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductImgCell.m; sourceTree = "<group>"; };
+		5BDDC1B01BB02125001CEA8C /* ProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCell.h; sourceTree = "<group>"; };
+		5BDDC1B11BB02125001CEA8C /* ProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCell.m; sourceTree = "<group>"; };
 		5BDDC86F1BA8225B000C8989 /* MyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
 		5BDDC8701BA8225B000C8989 /* MyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
 		8428D3DD1B171316002CB0C5 /* login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = login.h; path = ../login.h; sourceTree = "<group>"; };
@@ -384,6 +387,8 @@
 				5BD79C0A1B67441F00779721 /* DocDetailCell.m */,
 				5BD79C0C1B67C10600779721 /* ProductImgCell.h */,
 				5BD79C0D1B67C10600779721 /* ProductImgCell.m */,
+				5BDDC1B01BB02125001CEA8C /* ProductCell.h */,
+				5BDDC1B11BB02125001CEA8C /* ProductCell.m */,
 			);
 			name = ProtoTypeCell;
 			sourceTree = "<group>";
@@ -586,6 +591,7 @@
 				8428D3F41B171D66002CB0C5 /* SignUp.m in Sources */,
 				5B9590AE1B45023E00BC4470 /* SDWebImageManager.m in Sources */,
 				8428D3F11B171A3A002CB0C5 /* ForgotPasswordViewController.m in Sources */,
+				5BDDC1B21BB02125001CEA8C /* ProductCell.m in Sources */,
 				5BA5F1751B3AEA1A00704AA4 /* EditPortfolioDocViewController.m in Sources */,
 				5B9590AB1B45023E00BC4470 /* SDWebImageDecoder.m in Sources */,
 				5B9D028F1B2FE85C00DD1231 /* AFXMLRequestOperation.m in Sources */,

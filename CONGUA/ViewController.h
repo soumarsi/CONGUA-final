@@ -12,6 +12,7 @@
 #import "LeftMenuView.h"
 #import "login.h"
 #import "MyProfileViewController.h"
+#import "ProductCell.h"
 @interface ViewController : UIViewController<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,leftDelegate>
 {
     NSString *CustomerCode,*AuthToken;

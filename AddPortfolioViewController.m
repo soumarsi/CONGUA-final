@@ -1409,62 +1409,177 @@
 }
 -(IBAction)switched:(id)sender
 {
+    
     [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f)];
+    
     NSLog(@"Switch current state %@", InsuredSwitch.on ? @"On" : @"Off");
     
+    [self.view setUserInteractionEnabled:NO];
+    
+    
+    
     if (InsuredSwitch.on==NO)
+        
     {
-       
+        
+        NSLog(@"111111111");
+        
         btnhasInsure.selected=NO;
+        
         Isinsured=@"0";
-   
+        
+        
+        
         self.inametxt.userInteractionEnabled=NO;
+        
         self.idetail.userInteractionEnabled=NO;
+        
         self.btnstartdate.userInteractionEnabled=NO;
+        
         self.btnenddate.userInteractionEnabled=NO;
+        
         self.vcovertxt.userInteractionEnabled=NO;
         
+        
+        
         // hide insurance view
-        [UIView animateWithDuration:0.5 animations:^{
+        
+        [UIView animateWithDuration:0.005f animations:^{
+            
+            
             
             _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-InsuranceView.frame.size.height);
             
             
+            
         } completion:^(BOOL finished) {
             
             
-        
+            
             InsuranceView.hidden=YES;
+            
+            [self.view setUserInteractionEnabled:YES];
+            
+            
+            
         }];
-
+        
+        
+        
     }
+    
     else if (InsuredSwitch.on==YES)
+        
     {
+        
+        NSLog(@"2222222222");
+        
+        
+        
         [self.pcodetxt resignFirstResponder];
+        
         [self.mainscroll setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
+        
         btnhasInsure.selected=YES;
+        
         Isinsured=@"1";
-   
+        
+        
+        
         self.inametxt.userInteractionEnabled=YES;
+        
         self.idetail.userInteractionEnabled=YES;
+        
         self.btnstartdate.userInteractionEnabled=YES;
+        
         self.btnenddate.userInteractionEnabled=YES;
+        
         self.vcovertxt.userInteractionEnabled=YES;
         
+        
+        
         // show insurance view
-        [UIView animateWithDuration:0.5 animations:^{
+        
+        [UIView animateWithDuration:0.005f animations:^{
+            
+            
             
             _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+InsuranceView.frame.size.height);
-         
+            
             
             
         } completion:^(BOOL finished) {
             
+            
+            
             InsuranceView.hidden=NO;
+            
+            [self.view setUserInteractionEnabled:YES];
+            
         }];
-
+        
+        
+        
     }
+    
 }
+//{
+//    [self.mainscroll setContentOffset:CGPointMake(0.0f,0.0f)];
+//    NSLog(@"Switch current state %@", InsuredSwitch.on ? @"On" : @"Off");
+//    
+//    if (InsuredSwitch.on==NO)
+//    {
+//       
+//        btnhasInsure.selected=NO;
+//        Isinsured=@"0";
+//   
+//        self.inametxt.userInteractionEnabled=NO;
+//        self.idetail.userInteractionEnabled=NO;
+//        self.btnstartdate.userInteractionEnabled=NO;
+//        self.btnenddate.userInteractionEnabled=NO;
+//        self.vcovertxt.userInteractionEnabled=NO;
+//        
+//        // hide insurance view
+//        [UIView animateWithDuration:0.5 animations:^{
+//            
+//            _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height-InsuranceView.frame.size.height);
+//            
+//            
+//        } completion:^(BOOL finished) {
+//            
+//            
+//        
+//            InsuranceView.hidden=YES;
+//        }];
+//
+//    }
+//    else if (InsuredSwitch.on==YES)
+//    {
+//        [self.pcodetxt resignFirstResponder];
+//        [self.mainscroll setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
+//        btnhasInsure.selected=YES;
+//        Isinsured=@"1";
+//   
+//        self.inametxt.userInteractionEnabled=YES;
+//        self.idetail.userInteractionEnabled=YES;
+//        self.btnstartdate.userInteractionEnabled=YES;
+//        self.btnenddate.userInteractionEnabled=YES;
+//        self.vcovertxt.userInteractionEnabled=YES;
+//        
+//        // show insurance view
+//        [UIView animateWithDuration:0.5 animations:^{
+//            
+//            _mainscroll.contentSize = CGSizeMake(0, _mainscroll.contentSize.height+InsuranceView.frame.size.height);
+//         
+//            
+//            
+//        } completion:^(BOOL finished) {
+//            
+//            InsuranceView.hidden=NO;
+//        }];
+//
+//    }
+//}
 
 - (IBAction)HasInsureClk:(id)sender
 {

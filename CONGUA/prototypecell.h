@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblactive;
 @property (weak, nonatomic) IBOutlet UILabel *lblinsured;
 @property (weak, nonatomic) IBOutlet UIImageView *tickImg;
+@property (weak, nonatomic) IBOutlet UIImageView *addrImg;
 
 @end

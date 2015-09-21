@@ -34,7 +34,9 @@ menu *menuview;
     lblUserName.text=[@"Welcome " stringByAppendingString:[prefs valueForKey:@"FullName"]];
     urlobj=[[UrlconnectionObject alloc]init];
     ArrSummary=[[NSMutableArray alloc]init];
-    //  ArrFilter=[[NSMutableArray alloc]init];
+      ArrFilter=[[NSMutableArray alloc]init];
+    Issearch=0;
+    searchbar.text=nil;
     [self SummaryShowUrl];
     
 }
@@ -286,8 +288,10 @@ menu *menuview;
     {
         if (ArrSummary.count>0)
         {
+            static NSString *cellid=@"prototypecell";
+            prototypecell *cell=(prototypecell *)[tableView dequeueReusableCellWithIdentifier:cellid];
             
-       
+            cell.addrImg.hidden=NO;
         cell.celltitlelbl.text=[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"PortfolioName"];
         cell.celladdresslbl.text=[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"Address1"];
            
@@ -330,50 +334,50 @@ menu *menuview;
         else if ([[[ArrSummary objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==4) {
             cell.cellIcon.image=[UIImage imageNamed:@"other"];
         }
+            return cell;
         }
+        
+        
     }
     else if (Issearch==1)
     {
         if (ArrFilter.count>0)
         {
-            cell.celltitlelbl.text=[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioName"];
-            cell.celladdresslbl.text=[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"Address1"];
+            static NSString *cellid=@"ProductCell";
+            ProductCell *cell=(ProductCell *)[tableView dequeueReusableCellWithIdentifier:cellid];
             
-            if([[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductCount"]] isEqualToString:@"1"])
-            {
-                cell.lblactive.text=[NSString stringWithFormat:@"%@ %@ %@",@"Total",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductCount"],@"item"];
-            }
-            else
-            {
-                cell.lblactive.text=[NSString stringWithFormat:@"%@ %@ %@",@"Total",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductCount"],@"items"];
-            }
+          
+            cell.lblName.text=[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductName"];
+            cell.lblDate.text=[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PurchaseDate"];
+            cell.lblValue.text=[ NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PurchaseValue"]];
+
             
-            if([[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]] isEqualToString:@"0"])
+            if([[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"IsInsuredWithPortfolio"]] isEqualToString:@"0"])
             {
-                cell.lblinsured.text=@"Not Insured";
-                cell.lblinsured.textColor=[UIColor blackColor];
-                cell.tickImg.hidden=YES;
+                cell.lblInsured.text=@"Not Insured";
+                cell.lblInsured.textColor=[UIColor blackColor];
+                cell.insureImg.hidden=YES;
             }
-            else if([[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"IsInsured"]] isEqualToString:@"1"])
+            else if([[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"IsInsuredWithPortfolio"]] isEqualToString:@"1"])
             {
-                cell.lblinsured.text=@"Insured";
-                cell.lblinsured.textColor=[UIColor colorWithRed:(32.0/255.0) green:(138.0/255.0) blue:(83.0/255.0) alpha:1.0];
-                cell.tickImg.hidden=NO;
+                cell.lblInsured.text=@"Insured";
+                cell.lblInsured.textColor=[UIColor colorWithRed:(32.0/255.0) green:(138.0/255.0) blue:(83.0/255.0) alpha:1.0];
+                cell.insureImg.hidden=NO;
             }
             
-            if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==1) {
-                cell.cellIcon.image=[UIImage imageNamed:@"home"];
-            }
-            else if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==2) {
-                cell.cellIcon.image=[UIImage imageNamed:@"business"];
-            }
-            else if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==3) {
-                cell.cellIcon.image=[UIImage imageNamed:@"personal"];
-            }
-            else if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==4) {
-                cell.cellIcon.image=[UIImage imageNamed:@"other"];
-            }
-           
+//            if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==1) {
+//                cell.cellIcon.image=[UIImage imageNamed:@"home"];
+//            }
+//            else if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==2) {
+//                cell.cellIcon.image=[UIImage imageNamed:@"business"];
+//            }
+//            else if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==3) {
+//                cell.cellIcon.image=[UIImage imageNamed:@"personal"];
+//            }
+//            else if ([[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioTypeCode"] integerValue] ==4) {
+//                cell.cellIcon.image=[UIImage imageNamed:@"other"];
+//            }
+            return cell;
         }
         else
         {
@@ -425,10 +429,15 @@ menu *menuview;
         
         if (ArrFilter.count>0)
         {
-        portfoliodetailpageViewController * pdvc=[self.storyboard instantiateViewControllerWithIdentifier:@"portfoliodetailpageviewcontroller"];
-        [[NSUserDefaults standardUserDefaults] setObject:[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioCode"]  forKey:@"PortfolioCode"];
-        [self.navigationController  pushViewController:pdvc animated:YES];
-      //  pdvc.PortfolioCode=[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioCode"];
+//        portfoliodetailpageViewController * pdvc=[self.storyboard instantiateViewControllerWithIdentifier:@"portfoliodetailpageviewcontroller"];
+//        [[NSUserDefaults standardUserDefaults] setObject:[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"PortfolioCode"]  forKey:@"PortfolioCode"];
+//        [self.navigationController  pushViewController:pdvc animated:YES];
+      
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+            PortFolio2ViewController *pv2vc = [storyboard instantiateViewControllerWithIdentifier:@"portfolio2viewcontroller"];
+            pv2vc.ProductCode=[NSString stringWithFormat:@"%@",[[ArrFilter objectAtIndex:indexPath.row] valueForKey:@"ProductCode"]];
+         //   pv2vc.PopDelegate5=self;
+            [self.navigationController pushViewController:pv2vc animated:YES];
         }
     }
     
@@ -592,35 +601,12 @@ menu *menuview;
         Issearch=1;
         [searchBar setShowsCancelButton:YES];
         [ArrFilter removeAllObjects];
+        [self ProductShowUrl:searchText];
         // Filter the array using NSPredicate
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"PortfolioName contains[c] %@",searchText];
-        ArrFilter = [NSMutableArray arrayWithArray:[ArrSummary filteredArrayUsingPredicate:predicate]];
-        if (ArrFilter.count==0)
-        {
-            lblNoresultFound.hidden=NO;
-        }
-        else
-        {
-            lblNoresultFound.hidden=YES;
-        }
-         [tabview reloadData];
-        tabview.hidden=NO;
-        NSLog(@"filter=%@",ArrFilter);
-        //    NSPredicate *pred = [NSPredicate predicateWithFormat:@"title beginswith[c] %@", searchBar.text];
-      
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"PortfolioName contains[c] %@",searchText];
+//        ArrFilter = [NSMutableArray arrayWithArray:[ArrSummary filteredArrayUsingPredicate:predicate]];
         
         
-        //     arrtask = [[arrtask filteredArrayUsingPredicate:pred] mutableCopy];
-    //    NSLog(@"the count after sorting=%lu",(unsigned long)arrtask.count);
-        
-        /*        float height=[arrsearchresult count]*25;
-         if (([arrsearchresult count]*25)>365) {
-         height=365;
-         }
-         
-         [tblsearch setFrame: CGRectMake(0, tblsearch.frame.origin.y, tblsearch.frame.size.width, height)];
-         */
-       
     }
     else {
         NSLog(@"searchbar is NOT");
@@ -634,4 +620,93 @@ menu *menuview;
    
     
 }
+-(void)ProductShowUrl:(NSString *)text
+{
+    @try {
+        
+        
+        [ArrFilter removeAllObjects];
+        NSString *str=[NSString stringWithFormat:@"%@SearchProductInfoList/%@?CustomerCode=%@&Keyword=%@",URL_LINK,AuthToken,CustomerCode,text];
+        NSLog(@"str=%@",str);
+        BOOL net=[urlobj connectedToNetwork];
+        if (net==YES) {
+            [urlobj global:str typerequest:@"array" withblock:^(id result, NSError *error,BOOL completed) {
+                
+              //  NSLog(@"result=%@",result);
+                if ([[result valueForKey:@"IsSuccess"] integerValue]==1)
+                {
+                  //  NSLog(@"result=%@",[result objectForKey:@"ResultInfo"]);
+                    for ( NSDictionary *tempDict2 in  [result objectForKey:@"ResultInfo"])
+                    {
+                        [ArrFilter addObject:tempDict2];
+                        
+                    }
+                   
+                    if (ArrFilter.count==0)
+                    {
+                        lblNoresultFound.hidden=NO;
+                    }
+                    else
+                    {
+                        lblNoresultFound.hidden=YES;
+                        
+                    }
+                    [tabview reloadData];
+                    tabview.hidden=NO;
+                    //         [tabview reloadData];
+                    //        tabview.hidden=NO;
+                    NSLog(@"filter=%@",ArrFilter);
+                    
+                }
+                else if ([[result valueForKey:@"Description"] isEqualToString:@"AuthToken has expired."])
+                {
+                    NSString *email,*password,*remember;
+                    
+                    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                    if ([[prefs valueForKey:@"remember"] isEqualToString:@"1"])
+                    {
+                        email=[prefs valueForKey:@"email"];
+                        password=[prefs valueForKey:@"password"];
+                        remember=[prefs valueForKey:@"remember"];
+                        
+                    }
+                    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+                    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                    
+                    if ([remember isEqualToString:@"1"])
+                    {
+                        [[NSUserDefaults standardUserDefaults] setObject:@"1"  forKey:@"remember"];
+                        [[NSUserDefaults standardUserDefaults] setObject:email  forKey:@"email"];
+                        [[NSUserDefaults standardUserDefaults] setObject:password  forKey:@"password"];
+                        
+                    }
+                    login *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+                    [self.navigationController pushViewController:obj1 animated:YES];
+                }
+                else
+                {
+                    
+                    UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Error" message:@"Unsucessful...." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [aler show];
+                }
+                
+            }];
+        }
+        else{
+            UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"No Network Connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [aler show];
+        }
+    }
+    @catch (NSException *exception)
+    {
+    }
+    @finally {
+        
+    }
+    
+    
+    
+    
+}
+
 @end
